@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- META DATA -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="MSSmartTagsPreventParsing" content="true" />
+        <meta http-equiv="imagetoolbar" content="no" />
+        <!--[if IE]><meta http-equiv="cleartype" content="on" /><![endif]-->
+
+        <!-- SEO -->
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="robots" content="index,follow,archive" />
+
+        <!-- ICONS -->
+        <link rel="shortcut icon" type="image/ico" href="assets/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+
+        <!-- STYLESHEETS -->
+        <link rel="stylesheet" media="screen, projection" href="assets/styles/screen.css" />
+    </head>
+<body>
+    <div class="js-sample">
+        <div class="js-card card">
+            <div class="card-front">
+                <div>Awww.</div>The JavaScript boilerplate has not been initialized :-(
+            </div>
+            <div class="card-back">
+                <div>Success!</div>The JavaScript boilerplate has been initialized!
+            </div>
+        </div>
+    </div>
+    
+    <!-- SCRIPTS -->
+    <!--
+        These scripts should be the only external <script> includes on the page.
+        All other scripts will be loaded dynamically by RequireJs.
+    -->
+    <script src="assets/scripts/src/lib-thirdparty/require.js"></script>
+    <script src="assets/scripts/src/config.js"></script>
+    <script>
+        /**
+         * Global constants
+         * TODO: ideally all of these values would be filled in from the server side
+         */
+        window.SETTINGS = {};
+        
+        /**
+         * Indicates whether we are running on a production environment
+         *
+         * @constant
+         * @type {bool}
+         */
+        SETTINGS.IS_PRODUCTION = false;
+        
+         /**
+         * Set to true to allow application to output to browser console, false to silence all console output
+         * This should be set to `false` on production.
+         *
+         * @constant
+         * @type {bool}
+         */
+        SETTINGS.LOG_CONSOLE = SETTINGS.IS_PRODUCTION ? false : true;
+
+        /**
+         * Appended to query string for versioning of network resources (CSS, JavaScript, etc)
+         * This version number should be updated in production for every release.
+         *
+         * @constant
+         * @type {string}
+         */
+        SETTINGS.APP_VERSION = '1.0.0';
+
+        /**
+         * Appended to query string to defeat caching of network resources (CSS, JavaScript, etc)
+         * Should be set to '' on production
+         *
+         * @constant
+         * @type {string}
+         */
+        SETTINGS.CACHE_BUSTER = SETTINGS.IS_PRODUCTION ? '' : Math.random();
+
+        /**
+         * True to use a single, combined script on production environments
+         * This should be set to 'true' for production.
+         *
+         * @constant
+         * @type {bool}
+         */
+        SETTINGS.USE_COMBINED_JAVASCRIPT = SETTINGS.IS_PRODUCTION ? true : false;
+        
+        /**
+         * Root path for all JavaScript files
+         *
+         * @constant
+         * @type {string}
+         */
+        SETTINGS.SCRIPT_PATH = 'assets/scripts/' + (SETTINGS.USE_COMBINED_JAVASCRIPT ? 'build/' : 'src/');
+        
+        /**
+         * Set any RequireJs configuration that is dependent on dynamic configuration variables.
+         * Note that this config data is merged into any other require.config() statements defined elsewhere.
+         */
+        require.config(
+            {
+                baseUrl: SETTINGS.SCRIPT_PATH,
+                
+                // Params to append to the end of each js file request
+                urlArgs: 'v=' + SETTINGS.APP_VERSION + (SETTINGS.CACHE_BUSTER != '' ? '&bust=' + SETTINGS.CACHE_BUSTER : ''),
+                
+                // Timeout to load each js file, in seconds
+                waitSeconds: 120
+            }
+        );
+        
+        /**
+         * Set route and kick off RequireJs, which begins loading of scripts starting from main.js
+         */
+        var route = 'main';
+        require([route]);
+    </script>
+</body>
+</html>
