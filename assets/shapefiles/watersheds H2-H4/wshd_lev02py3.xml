@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+
+
+<metadata>
+
+
+  <idinfo>
+
+    <citation>
+      <citeinfo>
+        <origin>Minnesota DNR - Division of Waters - Watershed Delineation Project</origin>
+        <pubdate>2009-10-29 00:00:00.0</pubdate>
+        <title>DNR Watersheds - DNR Level 02 - HUC 04</title>
+        <mgmg1cid></mgmg1cid>
+          <pubinfo>
+            <publish>Minnesota DNR - Division of Waters - Watershed Delineation Project </publish>
+          </pubinfo>
+        <onlink>http://deli.dnr.state.mn.us</onlink>
+      </citeinfo>
+    </citation>
+
+    <descript>
+      <abstract>These data consists of watershed delineations in one seamless dataset of drainage areas called Minnesota Department of Natural Resources (DNR) Level 02 Watersheds. DNR Level 02 Watersheds are the largest administrative Minnesota watershed unit delineation existing at the 2nd defined level in the Minnesota DNR watershed unit hierarchy. 
+
+
+These modern DNR Level 02 Watersheds are derived from the DNR Catchment base-watershed dataset and have been clipped to the Minnesota state boundary.  Unlike DNR Levels 01, 04 (Major), and 07 (Minor) Watersheds, DNR Level 02 watersheds have no corresponding legacy dataset.
+
+
+For a more detailed background on this data, follow this link to the paper DNR Watershed Project: History, Methodology, Terminology, Attributes 2009(http://maps.dnr.state.mn.us:8080/gis/ancillary/DNR_Watershed_Project_History_Methodology_Terminology_Attributes_2009.pdf) document (PDF).  This document may take a few moments to load for viewing.
+
+
+</abstract>
+      <purpose>
+DNR Level 02 Watersheds are a new, non-legacy watershed delineation dataset representing the 2nd hydrologic unit level of the DNR watershed hierarchal system.  
+&lt;/p&gt;
+
+These watershed delineations are suitable for regional and statewide GIS analysis, database tiling, reference, business reporting, small scale mapping and other business needs associated with hydrologic systems.
+&lt;/p&gt;
+These polygons provide a means for organizing land use and related data in a manner which is useful for hydrologic studies and watershed based decision-making.
+
+
+</purpose>
+      <supplinf>Statewide</supplinf>
+    </descript>
+
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>1998 ? Present</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>Data have been tested for completeness and attribute coding correctness.  
+
+
+The geometry of this data vary widely as to their currentness.  The parent dataset, DNR Catchments, is the maintenance version of the DNR Major Watershed dataset.  The user of this data is encouraged to review the metadata entry for the DNR Watersheds Level 08 ? All Catchments dataset for more detailed information concerning the currentness of this dataset.  
+</current>
+    </timeperd>
+
+    <status>
+      <progress>Complete</progress>
+      <update>Yearly</update>
+    </status>
+    
+    <spdom>
+      <bounding>
+        <westbc>-97.3</westbc>
+        <eastbc>-89.4</eastbc>
+        <northbc>49.4</northbc>
+        <southbc>43.4</southbc>
+      </bounding>
+    </spdom>
+
+    <keywords>
+      <theme>
+        <themekey>Water, watershed, drainage area, major watershed, minor watershed, contributing area, hydrologic unit, hydrologic unit level, level 02, HUC, HUC04, sub-region, catchment, hydrology, hydrography, watershed ratio</themekey>
+      </theme>
+      <place>
+        <placekey>Minnesota</placekey>
+      </place>
+    </keywords>
+
+    <accconst>Data are unrestricted with regards to access.</accconst>
+    <useconst>&lt;i&gt;USE AGREEMENT:&lt;/i&gt;&lt;br&gt;
+- Use of the data are constrained by the Minnesota Department of Natural Resources General Geographic Data License Agreement agreed to at the time of data download from the Minnesota DNR Data Deli distribution portal.
+
+
+&lt;i&gt;ACKNOWLEDGMENTS:&lt;/i&gt;&lt;br&gt;
+- As defined in the DNR License Agreement, users of this data must credit the &lt;i&gt; Originator &lt;/i&gt; on published maps and analysis.&lt;br&gt;
+- The user shall include the Minnesota DNR source data &lt;i&gt; Title&lt;/i&gt; (name). &lt;br&gt;
+- The user shall include the Minnesota DNR source data &lt;i&gt; Publication Date&lt;/i&gt;.&lt;br&gt;
+ 
+- For example, &lt;i&gt; Source:&lt;/i&gt; DNR Watersheds - DNR Level 02 ? HUC04, &lt;i&gt; Originator:&lt;/i&gt; Minnesota DNR - Division of Waters - Watershed Delineation Project, &lt;i&gt; Publication Date: &lt;/i&gt; 4/7/2009).
+
+
+&lt;i&gt;USE CONSTRAINT COMMENTS:&lt;/i&gt;&lt;br&gt; 
+- See Cartographic Lineage, Logical Consistency, Positional Accuracy, and Currentness Reference for further discussion of data capture. &lt;br&gt;
+- This data is not the same as any MN DNR legacy dataset.  This modern DNR Level 02 dataset was derived directly from the DNR Catchment layer.  The user of this data is encouraged to review the metadata entry for the DNR Watersheds Level 08 ? All Catchments dataset for more detailed information.  &lt;br&gt;
+- The DNR Level 02 Watershed dataset is specific to the state of Minnesota and is not part of the NRCS Watershed Boundary Dataset (WBD). </useconst>
+    
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Sean Vaughn</cntper>
+          <cntorg>Minnesota DNR - Division of Waters</cntorg>
+        </cntperp>
+        <cntpos>GIS Hydrologist</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>800 Oak Savanna Lane SW</address>
+          <city>Cambridge</city>
+          <state>MN</state>
+          <postal>55088</postal>
+        </cntaddr>
+        <cntvoice>763-689-7106</cntvoice>
+        <cntfax>763-689-7120</cntfax>
+        <cntemail>sean.vaughn@state.mn.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+
+    <browse>
+      <browsen>http://jmaps.dnr.state.mn.us/gis/dp_datasample.jsp?mpid=39000624&amp;ptid=2&amp;fcid=1&amp;lname=DNR Watersheds - DNR Level 02 - HUC 04</browsen>
+      <browsed></browsed>
+    </browse>
+
+    <native>ArcGIS File Geodatabase</native>
+    
+    <crossref>
+      <citeinfo>
+        <title></title>
+      </citeinfo>
+    </crossref>
+
+  </idinfo>
+
+
+  <dataqual>
+
+    <attracc>
+      <attraccr></attraccr>
+    </attracc>
+
+    <logic>This DNR Level 02 Watershed dataset is topologically correct using ArcGIS 9.3. All polygons are closed and lines intersect where intended.
+
+This modern DNR Level 02 Watershed dataset was derived directly from the DNR Catchment layer. It was created by dissolving the DNR Catchments on the 4-digit HUC_04 field so that DNR Catchment linework internal to the ## DNR Level 02 Watersheds are removed. The user of this data is encouraged to review the metadata entry for the DNR Watersheds Level 08 ? All Catchments dataset for more detailed information. 
+</logic>
+    <complete>These data are published for November 2009.</complete>
+    
+    <posacc>
+      <horizpa>
+        <horizpar>Source layer wshd_lev02py3:  No quantitative studies of horizontal positional accuracy exist for the data. Although positional accuracy of watershed delineations can be arbitrary, accuracy of these data can be reasonably estimated based on the characteristics of all source materials and processing techniques to be 100 feet (30 meters) from correct position.
+</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>Source layer wshd_lev02py3:  No quantitative studies of vertical positional accuracy exist for the data.
+</vertaccr>
+      </vertacc>
+    </posacc>
+     
+    <lineage>
+      <srcinfo>
+        <srcscale>Source layer wshd_lev02py3:  24000
+</srcscale>
+      </srcinfo>
+      <procstep>
+        <procdesc></procdesc>
+      </procstep>
+    </lineage>
+
+  </dataqual>
+
+
+  <spdoinfo>
+
+    <indspref>DNR Level 02 Watershed Polygons</indspref>
+    <direct>vector</direct>
+    <mgmg3obj>polygon</mgmg3obj>
+    <mgmg3til>state</mgmg3til>
+
+  </spdoinfo>
+
+
+  <spref>
+
+    <horizsys>
+      <geograph>
+        <latres></latres>
+        <longres></longres>
+      </geograph>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <mgmg4par>Not Applicable</mgmg4par>
+          <otherprj>Not Applicable</otherprj>
+        </mapproj>
+        <gridsys>
+          <gridsysn>UTM</gridsysn>
+          <utm>
+            <utmzone>15</utmzone>
+          </utm>
+          <spcs>
+            <spcszone></spcszone>
+          </spcs>
+          <mgmg4coz></mgmg4coz>
+          <mgmg4adj>Not Applicable</mgmg4adj>
+        </gridsys>
+        <planci>
+          <coordrep>
+            <absres></absres>
+            <ordres></ordres>
+          </coordrep>
+          <distbrep>
+            <distres></distres>
+          </distbrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83</horizdn>
+        <ellips>GRS1980</ellips>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>Not Applicable</altdatum>
+        <altunits>Not Applicable</altunits>
+      </altsys>
+      <depthsys>
+        <depthdn>Not Applicable</depthdn>
+        <depthdu>Not Applicable</depthdu>
+      </depthsys>
+    </vertdef>
+
+  </spref>
+
+
+  <eainfo>
+
+
+
+    <overview>
+      <eaover></eaover>
+      <eadetcit></eadetcit>
+    </overview>
+
+  </eainfo>
+
+
+  <distinfo>
+
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>Sean Vaughn</cntper>
+          <cntorg>Minnesota DNR - Division of Waters</cntorg>
+        </cntperp>
+        <cntpos>GIS Hydrologist</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>800 Oak Savanna Lane SW</address>
+          <city>Cambridge</city>
+          <state>MN</state>
+          <postal>55088</postal>
+        </cntaddr>
+        <cntvoice>763-689-7106</cntvoice>
+        <cntfax>763-689-7120</cntfax>
+        <cntemail>sean.vaughn@state.mn.us</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>wshd_lev02py3</resdesc>
+    <distliab>By accepting this data, the user agrees not to transmit this data or provide access to it or any part of it to another party unless the user shall include with the data a copy of this disclaimer:&lt;br&gt;
+- The Minnesota Department of Natural Resources makes no representation or warranties, express or implied, with respect to the reuse of data provided herewith, regardless of its format or the means of its transmission.  There is no guarantee or representation to the user as to the accuracy, currency, suitability, or reliability of this data for any purpose.  The user accepts the data &apos;as is&apos;, and assumes all risks associated with its use.  The Minnesota Department of Natural Resources assumes no responsibility for actual or consequential damage incurred as a result of any user&apos;s reliance on this data.
+
+
+&lt;i&gt;Second Party Distribution Metadata&lt;/i&gt;&lt;br&gt;
+- The user/distributor shall credit the &lt;i&gt; Originator&lt;/i&gt;.&lt;br&gt;
+- The user/distributor shall include the Minnesota DNR source data &lt;i&gt; Title&lt;/i&gt; (name). &lt;br&gt;
+- The user/distributor shall include the Minnesota DNR source data &lt;i&gt; Publication Date&lt;/i&gt;.&lt;br&gt;
+- The user/distributor shall include the Minnesota DNR source data &lt;i&gt;Cartographic Lineage&lt;/i&gt;.
+
+</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>ArcView Shapefile</formname>
+          <formvern>9.3</formvern>
+          <transize>1024</transize>
+        </digtinfo>
+      </digform>
+      <ordering>See Online Linkage or Distribution Contact</ordering>
+    </stdorder>
+
+  </distinfo>
+
+
+  <metainfo>
+
+    <metd>2009-11-10 15:14:06.0</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Sean Vaughn</cntper>
+          <cntorg>Minnesota DNR - Division of Waters</cntorg>
+        </cntperp>
+        <cntpos>GIS Hydrologist</cntpos>
+        <cntaddr>
+	  <addrtype>Mailing and Physical</addrtype>
+          <address>800 Oak Savanna Lane SW</address>
+          <city>Cambridge</city>
+          <state>MN</state>
+          <postal>55088</postal>
+        </cntaddr>
+        <cntvoice>763-689-7106</cntvoice>
+        <cntfax>763-689-7120</cntfax>
+        <cntemail>sean.vaughn@state.mn.us</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>Minnesota Geographic Metadata Guidelines</metstdn>
+    <metstdv>1.2</metstdv>
+    <metextns>
+      <onlink>http://www.gis.state.mn.us/stds/metadata.htm</onlink>
+    </metextns>
+
+  </metainfo>
+
+</metadata>
+
