@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+
+
+<metadata>
+
+
+  <idinfo>
+
+    <citation>
+      <citeinfo>
+        <origin>Minnesota DNR - Fisheries Division</origin>
+        <pubdate>2003-09-04 00:00:00.0</pubdate>
+        <title>State Aquatic Management Area Aquisitions</title>
+        <mgmg1cid></mgmg1cid>
+          <pubinfo>
+            <publish>Minnesota DNR - MIS Bureau</publish>
+          </pubinfo>
+        <onlink>http://deli.dnr.state.mn.us/</onlink>
+      </citeinfo>
+    </citation>
+
+    <descript>
+      <abstract>This data layer shows lands acquired by DNR Fisheries through purchase, donation and easement.  Some features are hotlinked to scanned deed documents on the DNR Intranet. Use Arcview's hotlink tool to access.</abstract>
+      <purpose>This layer enables users to locate Fisheries-administered DNR lands and gather statistics for a variety of related parameters.  It represents a finer resolution of the State Admin Lands - DNR Fisheries layer(which show administered lands by 40-acre parcel only.)</purpose>
+      <supplinf>State of Minnesota.  As of February 2004, most of NE and SE Minnesota is completed.  This layer is still a work in progress, with an expected completion date of December 2004.  </supplinf>
+    </descript>
+
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>1917-2004</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>As of February 2004, most of NE and SE Minnesota is completed.  This layer is still a work in progress, with an expected completion date of December 2004.  Until then, updates will be made on a weekly basis.  In time, deeds for specific acquisitions will be available and can be viewed by clicking on the ?pdf_path? database field.  As the trout stream layer is improved, the acquisition layer will be adjusted accordingly.  </current>
+    </timeperd>
+
+    <status>
+      <progress>In Work</progress>
+      <update>Weekly</update>
+    </status>
+    
+    <spdom>
+      <bounding>
+        <westbc>-97.5</westbc>
+        <eastbc>-89</eastbc>
+        <northbc>49.5</northbc>
+        <southbc>43</southbc>
+      </bounding>
+    </spdom>
+
+    <keywords>
+      <theme>
+        <themekey>Fisheries, acquisitions, parcels, easement, admin, planningCadastre</themekey>
+      </theme>
+      <place>
+        <placekey>Minnesota</placekey>
+      </place>
+    </keywords>
+
+    <accconst>The Minnesota Department of Natural Resources makes no representation or warranties, express or implied, with respect to the reuse of data provided herewith, regardless of its format or the means of its transmission. There is no guarantee or representation to the user as to the accuracy, currency, suitability, or reliability of this data for any purpose. The user accepts the data &apos;as is&apos;, and assumes all risks associated with its use. By accepting this data, the user agrees not to transmit this data or provide access to it or any part of it to another party unless the user shall include with the data a copy of this disclaimer. The Minnesota Department of Natural Resources assumes no responsibility for actual or consequential damage incurred as a result of any user&apos;s reliance on this data.</accconst>
+    <useconst>Trout Stream easements corridors are based on the current trout stream layer, which doesn?t always match current aerial photos.   As the trout stream layer is improved, the acquisition layer will be adjusted accordingly.  Upstream and downstream boundaries of parcels are accurate.  Easement corridors are measured from either the centerline of the stream, or edge of the stream and change with the stream as its course changes over time.  Contact individual Area Fisheries offices for more information concerning access to local Fisheries-administered DNR properties.  </useconst>
+    
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Lyn Bergquist</cntper>
+          <cntorg>DNR-Fisheries</cntorg>
+        </cntperp>
+        <cntpos>GIS Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road
+Central Office - Box 20</address>
+          <city>Saint Paul</city>
+          <state>MN</state>
+          <postal>55155</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5189</cntvoice>
+        <cntfax>(651) 297-4961</cntfax>
+        <cntemail>lyn.bergquist@state.mn.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+
+    <browse>
+      <browsen>http://jmaps.dnr.state.mn.us/gis/dp_datasample.jsp?mpid=39000288&amp;ptid=2&amp;fcid=1&amp;lname=State Aquatic Management Area Aquisitions</browsen>
+      <browsed></browsed>
+    </browse>
+
+    <native>shapefile</native>
+    
+    <crossref>
+      <citeinfo>
+        <title></title>
+      </citeinfo>
+    </crossref>
+
+  </idinfo>
+
+
+  <dataqual>
+
+    <attracc>
+      <attraccr>Source table ADM_FSHACQPY3.DBF:  Unknown
+</attraccr>
+    </attracc>
+
+    <logic>Not Specifically Assessed</logic>
+    <complete>As of February 2004, most of NE and SE Minnesota is completed. Data will be updated weekly.</complete>
+    
+    <posacc>
+      <horizpa>
+        <horizpar>Source layer adm_fshacqpy3:  Not specifically assessed.
+</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>Source layer adm_fshacqpy3:  Not specifically assessed.
+</vertaccr>
+      </vertacc>
+    </posacc>
+     
+    <lineage>
+      <srcinfo>
+        <srcscale>Source layer adm_fshacqpy3:  24000
+</srcscale>
+      </srcinfo>
+      <procstep>
+        <procdesc>Attribute Lineage for source table ADM_FSHACQPY3.DBF:  Unknown
+</procdesc>
+      </procstep>
+    </lineage>
+
+  </dataqual>
+
+
+  <spdoinfo>
+
+    <indspref>None</indspref>
+    <direct>vector</direct>
+    <mgmg3obj>polygon</mgmg3obj>
+    <mgmg3til>state</mgmg3til>
+
+  </spdoinfo>
+
+
+  <spref>
+
+    <horizsys>
+      <geograph>
+        <latres></latres>
+        <longres></longres>
+      </geograph>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <mgmg4par>Not Applicable</mgmg4par>
+          <otherprj>Not Applicable</otherprj>
+        </mapproj>
+        <gridsys>
+          <gridsysn>UTM</gridsysn>
+          <utm>
+            <utmzone>15</utmzone>
+          </utm>
+          <spcs>
+            <spcszone></spcszone>
+          </spcs>
+          <mgmg4coz></mgmg4coz>
+          <mgmg4adj>Not Applicable</mgmg4adj>
+        </gridsys>
+        <planci>
+          <coordrep>
+            <absres></absres>
+            <ordres></ordres>
+          </coordrep>
+          <distbrep>
+            <distres></distres>
+          </distbrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83</horizdn>
+        <ellips>GRS1980</ellips>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>Not Applicable</altdatum>
+        <altunits>Not Applicable</altunits>
+      </altsys>
+      <depthsys>
+        <depthdn>Not Applicable</depthdn>
+        <depthdu>Not Applicable</depthdu>
+      </depthsys>
+    </vertdef>
+
+  </spref>
+
+
+  <eainfo>
+
+  <detailed><enttyp><enttypl>ADM_FSHACQPY3.DBF</enttypl><enttypd>Shapefile Attribute Table</enttypd></enttyp><attr><attrlabl>RDIR</attrlabl><attrdef>Range direction</attrdef><attrdomv><edom><edomv>0</edomv><edomvd>West</edomvd></edom><edom><edomv>1</edomv><edomvd>East</edomvd></edom><edom><edomv>2</edomv><edomvd>Township 58 1/2 (St. Louis Co.) and Range 42 1/2 (Roseau Co.)</edomvd></edom></attrdomv></attr><attr><attrlabl>DOWLKNUM</attrlabl><attrdef>Minnesota DNR Division of Waters Lake ID (sub-basin number;may end in &apos;01, 02, etc.; refers to a single basin) </attrdef><attrdomv><edom><edomv>010001-879999</edomv><edomvd>The first two digits (01-87) of these composite codes denote which county the lake is in.</edomvd></edom></attrdomv></attr><attr><attrlabl>ACQ_DB_ID</attrlabl><attrdef>Unique record# (DB use only)</attrdef></attr><attr><attrlabl>ACQ_NUMB</attrlabl><attrdef>FMA or AMA Numbe</attrdef></attr><attr><attrlabl>DOC_NUMB</attrlabl><attrdef>County Document Number</attrdef></attr><attr><attrlabl>DATE</attrlabl><attrdef>Date Easement Recorded</attrdef></attr><attr><attrlabl>PROJ_NAME</attrlabl><attrdef>Project Name - AMA</attrdef></attr><attr><attrlabl>PARCEL_NUM</attrlabl><attrdef>Parcel Number</attrdef></attr><attr><attrlabl>COUNTY</attrlabl><attrdef>County Name</attrdef></attr><attr><attrlabl>TOWN</attrlabl><attrdef>Township, downstream end</attrdef></attr><attr><attrlabl>RANG</attrlabl><attrdef>Range, downstream end</attrdef></attr><attr><attrlabl>SECT</attrlabl><attrdef>Section, downstream end</attrdef></attr><attr><attrlabl>QSEC</attrlabl><attrdef>Quarter/Q of downstream</attrdef></attr><attr><attrlabl>TYPE</attrlabl><attrdef>Stream, Lake, Other</attrdef></attr><attr><attrlabl>INT_TYPE</attrlabl><attrdef>Easement or Fee Title</attrdef></attr><attr><attrlabl>TROUT</attrlabl><attrdef>Trout Stream Easement</attrdef></attr><attr><attrlabl>KITTNAME</attrlabl><attrdef>Stream Name</attrdef></attr><attr><attrlabl>KITTLE_NO</attrlabl><attrdef>Fisheries Stream Identifier</attrdef></attr><attr><attrlabl>LAKE_NAME</attrlabl><attrdef>Lake Name per Division of Waters LKDBMAIN database</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>ACRES_DOC</attrlabl><attrdef>Total Acres of Acquisition</attrdef></attr><attr><attrlabl>ACRES_GIS</attrlabl><attrdef>Total Calculated Acres</attrdef></attr><attr><attrlabl>LAKE_FEET</attrlabl><attrdef>Linear feet along lakeshore</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>STR_FEET</attrlabl><attrdef>Linear feet of stream</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>FT_ONESIDE</attrlabl><attrdef>Feet of stream - one side only</attrdef></attr><attr><attrlabl>WIDTH</attrlabl><attrdef>Width of main easement</attrdef></attr><attr><attrlabl>AMOUNT</attrlabl><attrdef>Payment to Landowner</attrdef></attr><attr><attrlabl>VALUE</attrlabl><attrdef>Monetary value of property</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>MEANS_ACQ</attrlabl><attrdef>Means acquired by DNR Fisheries</attrdef><attrdomv><edom><edomv>D</edomv><edomvd>Donate</edomvd></edom><edom><edomv>P</edomv><edomvd>Purchase</edomvd></edom><edom><edomv>T</edomv><edomvd>Tax Forfeit</edomvd></edom><edom><edomv>X</edomv><edomvd>Partial Donation</edomvd></edom></attrdomv></attr><attr><attrlabl>FED_AID</attrlabl><attrdef>Federal Aid used</attrdef><attrdomv><edom><edomv>0</edomv><edomvd>Federal Aid not used (default)</edomvd></edom><edom><edomv>1</edomv><edomvd>Federal Aid used</edomvd></edom></attrdomv></attr><attr><attrlabl>FA_SEGMENT</attrlabl><attrdef>Federal Aid segment number</attrdef></attr><attr><attrlabl>GRANTORS</attrlabl><attrdef>Original Owners</attrdef></attr><attr><attrlabl>OWN_LAST</attrlabl><attrdef>Current owner last name</attrdef></attr><attr><attrlabl>OWN_FIRST</attrlabl><attrdef>Current owner first name</attrdef></attr><attr><attrlabl>OWN_MI</attrlabl><attrdef>Current owner middle initial</attrdef></attr><attr><attrlabl>OWN_ADDRES</attrlabl><attrdef>Current owner street address</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>OWN_CITY</attrlabl><attrdef>Current owner city</attrdef></attr><attr><attrlabl>OWN_STATE</attrlabl><attrdef>Current owner state</attrdef></attr><attr><attrlabl>OWN_ZIP</attrlabl><attrdef>Current owner zip code</attrdef></attr><attr><attrlabl>OWN_BUS_PH</attrlabl><attrdef>Current owner business phone</attrdef></attr><attr><attrlabl>OWN_HOM_PH</attrlabl><attrdef>Current owner home phone</attrdef></attr><attr><attrlabl>MILE_LOW</attrlabl><attrdef>River mile (downstream end)</attrdef></attr><attr><attrlabl>MILE_UPP</attrlabl><attrdef>River mile (upstream end)</attrdef></attr><attr><attrlabl>COMMENT</attrlabl><attrdef>Comments</attrdef></attr><attr><attrlabl>PDF_PATH</attrlabl><attrdef>URL path to scanned deed PDF document</attrdef></attr><attr><attrlabl>ACQ_LM</attrlabl><attrdef>DNR Lands &amp; Minerals acquisition number</attrdef></attr></detailed>
+
+    <overview>
+      <eaover></eaover>
+      <eadetcit></eadetcit>
+    </overview>
+
+  </eainfo>
+
+
+  <distinfo>
+
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>Hal Watson</cntper>
+          <cntorg>DNR-MIS</cntorg>
+        </cntperp>
+        <cntpos>GIS Database Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road, Box 11</address>
+          <city>St. Paul</city>
+          <state>MN</state>
+          <postal>55155-4011</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5508</cntvoice>
+        <cntfax>(651) 297-4946</cntfax>
+        <cntemail>hal.watson@state.mn.us</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>adm_fshacqpy3</resdesc>
+    <distliab>The Minnesota Department of Natural Resources makes no representation or warranties, express or implied, with respect to the reuse of data provided herewith, regardless of its format or the means of its transmission. There is no guarantee or representation to the user as to the accuracy, currency, suitability, or reliability of this data for any purpose. The user accepts the data &apos;as is&apos;, and assumes all risks associated with its use. By accepting this data, the user agrees not to transmit this data or provide access to it or any part of it to another party unless the user shall include with the data a copy of this disclaimer. The Minnesota Department of Natural Resources assumes no responsibility for actual or consequential damage incurred as a result of any user&apos;s reliance on this data.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Shapefile</formname>
+          <formvern>Not Applicable</formvern>
+          <transize>1024</transize>
+        </digtinfo>
+      </digform>
+      <ordering>See Online Linkage or Distribution Contact</ordering>
+    </stdorder>
+
+  </distinfo>
+
+
+  <metainfo>
+
+    <metd>2011-02-23 14:43:58.0</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Lyn Bergquist</cntper>
+          <cntorg>DNR-Fisheries</cntorg>
+        </cntperp>
+        <cntpos>GIS Coordinator</cntpos>
+        <cntaddr>
+	  <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road
+Central Office - Box 20</address>
+          <city>Saint Paul</city>
+          <state>MN</state>
+          <postal>55155</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5189</cntvoice>
+        <cntfax>(651) 297-4961</cntfax>
+        <cntemail>lyn.bergquist@state.mn.us</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>Minnesota Geographic Metadata Guidelines</metstdn>
+    <metstdv>1.2</metstdv>
+    <metextns>
+      <onlink>http://www.gis.state.mn.us/stds/metadata.htm</onlink>
+    </metextns>
+
+  </metainfo>
+
+</metadata>
+
