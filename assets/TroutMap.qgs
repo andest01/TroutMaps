@@ -1,13 +1,13 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.0.1-Dufour">
-    <title></title>
+<qgis projectname="Trout Stream Map" version="2.0.1-Dufour">
+    <title>Trout Stream Map</title>
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>219918.77352303930092603</xmin>
-            <ymin>4896324.57471572700887918</ymin>
-            <xmax>931536.45127446681726724</xmax>
-            <ymax>5365461.67031640652567148</ymax>
+            <xmin>-505444.94658245332539082</xmin>
+            <ymin>4422469.73469389230012894</ymin>
+            <xmax>1216056.02017554873600602</xmax>
+            <ymax>5698689.31653512269258499</ymax>
         </extent>
         <projections>0</projections>
         <destinationsrs>
@@ -23,35 +23,10 @@
             </spatialrefsys>
         </destinationsrs>
     </mapcanvas>
-    <legend updateDrawingOrder="true" activeLayer="bdry_snapy320131209172922139">
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Easements" showFeatureCount="0">
-            <filegroup open="false" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="adm_fshacqpy320131207143946582" visible="0"/>
-            </filegroup>
-        </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Scientific and Natural Areas" showFeatureCount="0">
-            <filegroup open="true" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="bdry_snapy320131209172922139" visible="1"/>
-            </filegroup>
-        </legendlayer>
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Wildlife Management Areas" showFeatureCount="0">
-            <filegroup open="false" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="bdry_adwma2py320131207172725157" visible="0"/>
-            </filegroup>
-        </legendlayer>
+    <legend updateDrawingOrder="true" activeLayer="bdry_stprkpy320131207171302493">
         <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Trout Streams 4000 Unit buffer" showFeatureCount="0">
             <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="BufferedEasements400020131207150630265" visible="0"/>
-            </filegroup>
-        </legendlayer>
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Special Regulations" showFeatureCount="0">
-            <filegroup open="false" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="strm_regsln320131207152059048" visible="0"/>
-            </filegroup>
-        </legendlayer>
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="State Parks" showFeatureCount="0">
-            <filegroup open="false" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="bdry_stprkpy320131207171302493" visible="0"/>
             </filegroup>
         </legendlayer>
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Trout Streams (designated)" showFeatureCount="0">
@@ -59,9 +34,34 @@
                 <legendlayerfile isInOverview="0" layerid="strm_troutln320131207143926584" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Watersheds" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Special Regulations" showFeatureCount="0">
+            <filegroup open="true" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="strm_regsln320131207152059048" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Easements" showFeatureCount="0">
             <filegroup open="false" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="adm_fshacqpy320131207143946582" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Watersheds" showFeatureCount="0">
+            <filegroup open="true" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="wshd_lev02py320131209171926427" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Scientific and Natural Areas" showFeatureCount="0">
+            <filegroup open="true" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="bdry_snapy320131209172922139" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Wildlife Management Areas" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="bdry_adwma2py320131207172725157" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="State Parks" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="bdry_stprkpy320131207171302493" visible="1"/>
             </filegroup>
         </legendlayer>
     </legend>
@@ -274,7 +274,7 @@
             <excludeAttributesWFS/>
             <attributeactions/>
         </maplayer>
-        <maplayer minimumScale="0" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Polygon" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="-4.65661e-10" maximumScale="750000" minLabelScale="0" maxLabelScale="1e+08" geometry="Polygon" type="vector" hasScaleBasedVisibilityFlag="1" scaleBasedLabelVisibilityFlag="0">
             <id>adm_fshacqpy320131207143946582</id>
             <datasource>./shapefiles/easments/adm_fshacqpy3.shp</datasource>
             <title></title>
@@ -304,7 +304,7 @@
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
                             <prop k="color" v="150,150,150,255"/>
-                            <prop k="color_border" v="0,0,0,255"/>
+                            <prop k="color_border" v="100,100,100,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
                             <prop k="style" v="solid"/>
@@ -571,11 +571,11 @@
                     <symbol alpha="1" type="fill" name="0">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="255,187,15,255"/>
-                            <prop k="color_border" v="0,0,0,255"/>
+                            <prop k="color" v="248,255,164,255"/>
+                            <prop k="color_border" v="204,204,204,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
-                            <prop k="style" v="solid"/>
+                            <prop k="style" v="dense1"/>
                             <prop k="style_border" v="solid"/>
                             <prop k="width_border" v="0.26"/>
                         </layer>
@@ -704,7 +704,7 @@
             </customproperties>
             <blendMode>0</blendMode>
             <featureBlendMode>0</featureBlendMode>
-            <layerTransparency>56</layerTransparency>
+            <layerTransparency>0</layerTransparency>
             <displayfield>UNITNAME</displayfield>
             <label>0</label>
             <labelattributes>
@@ -818,13 +818,13 @@
                     <symbol alpha="1" type="fill" name="0">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="129,94,87,255"/>
-                            <prop k="color_border" v="0,0,0,255"/>
+                            <prop k="color" v="230,179,210,255"/>
+                            <prop k="color_border" v="111,111,111,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
-                            <prop k="style" v="solid"/>
+                            <prop k="style" v="dense1"/>
                             <prop k="style_border" v="solid"/>
-                            <prop k="width_border" v="0.26"/>
+                            <prop k="width_border" v="0.2"/>
                         </layer>
                     </symbol>
                 </symbols>
@@ -987,9 +987,9 @@
                 <edittype labelontop="0" editable="1" type="0" name="UNIT_NAME"/>
                 <edittype labelontop="0" editable="1" type="0" name="UNIT_TYPE"/>
             </edittypes>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -1024,11 +1024,11 @@
                     <symbol alpha="1" type="fill" name="0">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="23,252,252,255"/>
-                            <prop k="color_border" v="0,0,0,255"/>
+                            <prop k="color" v="163,255,158,255"/>
+                            <prop k="color_border" v="208,208,208,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
-                            <prop k="style" v="solid"/>
+                            <prop k="style" v="dense1"/>
                             <prop k="style_border" v="solid"/>
                             <prop k="width_border" v="0.26"/>
                         </layer>
@@ -1157,7 +1157,7 @@
             </customproperties>
             <blendMode>0</blendMode>
             <featureBlendMode>0</featureBlendMode>
-            <layerTransparency>51</layerTransparency>
+            <layerTransparency>0</layerTransparency>
             <displayfield>area_name</displayfield>
             <label>0</label>
             <labelattributes>
@@ -1194,7 +1194,7 @@
             <excludeAttributesWFS/>
             <attributeactions/>
         </maplayer>
-        <maplayer minimumScale="0" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Line" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="-4.65661e-10" maximumScale="307115" minLabelScale="0" maxLabelScale="1e+08" geometry="Line" type="vector" hasScaleBasedVisibilityFlag="1" scaleBasedLabelVisibilityFlag="0">
             <id>strm_regsln320131207152059048</id>
             <datasource>./shapefiles/special regulations/strm_regsln3.shp</datasource>
             <title></title>
@@ -1338,16 +1338,16 @@
                     </symbol>
                     <symbol alpha="1" type="line" name="7">
                         <layer pass="0" class="SimpleLine" locked="0">
-                            <prop k="capstyle" v="square"/>
-                            <prop k="color" v="255,255,0,255"/>
+                            <prop k="capstyle" v="round"/>
+                            <prop k="color" v="255,170,255,255"/>
                             <prop k="customdash" v="5;2"/>
                             <prop k="customdash_unit" v="MM"/>
-                            <prop k="joinstyle" v="bevel"/>
+                            <prop k="joinstyle" v="round"/>
                             <prop k="offset" v="0"/>
                             <prop k="offset_unit" v="MM"/>
                             <prop k="penstyle" v="solid"/>
                             <prop k="use_custom_dash" v="0"/>
-                            <prop k="width" v="4"/>
+                            <prop k="width" v="3"/>
                             <prop k="width_unit" v="MM"/>
                         </layer>
                     </symbol>
@@ -1513,7 +1513,7 @@
             </customproperties>
             <blendMode>0</blendMode>
             <featureBlendMode>0</featureBlendMode>
-            <layerTransparency>46</layerTransparency>
+            <layerTransparency>0</layerTransparency>
             <displayfield>STRM_NAME</displayfield>
             <label>0</label>
             <labelattributes>
@@ -1576,7 +1576,7 @@
             <excludeAttributesWFS/>
             <attributeactions/>
         </maplayer>
-        <maplayer minimumScale="0" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Line" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Line" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
             <id>strm_troutln320131207143926584</id>
             <datasource>./shapefiles/trout streams/strm_troutln3.shp</datasource>
             <title></title>
@@ -1599,7 +1599,9 @@
             </srs>
             <provider encoding="System">ogr</provider>
             <previewExpression>COALESCE( "OBJECTID", '&lt;NULL>' )</previewExpression>
-            <vectorjoins/>
+            <vectorjoins>
+                <join joinFieldName="KITTLE_NO" targetFieldName="KITTLE_NBR" memoryCache="1" joinLayerId="strm_regsln320131207152059048"/>
+            </vectorjoins>
             <renderer-v2 symbollevels="0" type="singleSymbol">
                 <symbols>
                     <symbol alpha="1" type="line" name="0">
@@ -1631,28 +1633,29 @@
                 <property key="labeling/bufferColorB" value="255"/>
                 <property key="labeling/bufferColorG" value="255"/>
                 <property key="labeling/bufferColorR" value="255"/>
-                <property key="labeling/bufferDraw" value="false"/>
+                <property key="labeling/bufferDraw" value="true"/>
                 <property key="labeling/bufferJoinStyle" value="64"/>
                 <property key="labeling/bufferNoFill" value="false"/>
                 <property key="labeling/bufferSize" value="1"/>
                 <property key="labeling/bufferSizeInMapUnits" value="false"/>
-                <property key="labeling/bufferTransp" value="0"/>
+                <property key="labeling/bufferTransp" value="70"/>
                 <property key="labeling/centroidWhole" value="false"/>
+                <property key="labeling/dataDefined/MaxScale" value="1~~1~~CASE &#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 12 THEN 60000000 &#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 5 THEN 6000000&#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 2 THEN 600000&#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 1 AND &quot;KITTLE_NAM&quot; not like 'Unnamed%' THEN 100000&#xa;&#x9;ELSE 9000&#xa;END~~"/>
                 <property key="labeling/decimals" value="3"/>
                 <property key="labeling/displayAll" value="false"/>
                 <property key="labeling/dist" value="0"/>
                 <property key="labeling/distInMapUnits" value="false"/>
-                <property key="labeling/enabled" value="false"/>
-                <property key="labeling/fieldName" value=""/>
+                <property key="labeling/enabled" value="true"/>
+                <property key="labeling/fieldName" value="KITTLE_NAM"/>
                 <property key="labeling/fontBold" value="false"/>
-                <property key="labeling/fontCapitals" value="0"/>
+                <property key="labeling/fontCapitals" value="4"/>
                 <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
                 <property key="labeling/fontItalic" value="false"/>
                 <property key="labeling/fontLetterSpacing" value="0"/>
                 <property key="labeling/fontLimitPixelSize" value="false"/>
                 <property key="labeling/fontMaxPixelSize" value="10000"/>
                 <property key="labeling/fontMinPixelSize" value="3"/>
-                <property key="labeling/fontSize" value="8.25"/>
+                <property key="labeling/fontSize" value="7.25"/>
                 <property key="labeling/fontSizeInMapUnits" value="false"/>
                 <property key="labeling/fontStrikeout" value="false"/>
                 <property key="labeling/fontUnderline" value="false"/>
@@ -1664,28 +1667,28 @@
                 <property key="labeling/labelPerPart" value="false"/>
                 <property key="labeling/leftDirectionSymbol" value="&lt;"/>
                 <property key="labeling/limitNumLabels" value="false"/>
-                <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-                <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-                <property key="labeling/maxNumLabels" value="2000"/>
+                <property key="labeling/maxCurvedCharAngleIn" value="60"/>
+                <property key="labeling/maxCurvedCharAngleOut" value="-65"/>
+                <property key="labeling/maxNumLabels" value="128"/>
                 <property key="labeling/mergeLines" value="false"/>
-                <property key="labeling/minFeatureSize" value="0"/>
+                <property key="labeling/minFeatureSize" value="4"/>
                 <property key="labeling/multilineAlign" value="0"/>
                 <property key="labeling/multilineHeight" value="1"/>
                 <property key="labeling/namedStyle" value="Normal"/>
-                <property key="labeling/obstacle" value="true"/>
+                <property key="labeling/obstacle" value="false"/>
                 <property key="labeling/placeDirectionSymbol" value="0"/>
-                <property key="labeling/placement" value="2"/>
-                <property key="labeling/placementFlags" value="10"/>
+                <property key="labeling/placement" value="4"/>
+                <property key="labeling/placementFlags" value="0"/>
                 <property key="labeling/plussign" value="false"/>
-                <property key="labeling/preserveRotation" value="true"/>
+                <property key="labeling/preserveRotation" value="false"/>
                 <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-                <property key="labeling/priority" value="5"/>
+                <property key="labeling/priority" value="0"/>
                 <property key="labeling/quadOffset" value="4"/>
                 <property key="labeling/reverseDirectionSymbol" value="false"/>
                 <property key="labeling/rightDirectionSymbol" value=">"/>
                 <property key="labeling/scaleMax" value="10000000"/>
-                <property key="labeling/scaleMin" value="1"/>
-                <property key="labeling/scaleVisibility" value="false"/>
+                <property key="labeling/scaleMin" value="10"/>
+                <property key="labeling/scaleVisibility" value="true"/>
                 <property key="labeling/shadowBlendMode" value="6"/>
                 <property key="labeling/shadowColorB" value="0"/>
                 <property key="labeling/shadowColorG" value="0"/>
@@ -1733,7 +1736,7 @@
                 <property key="labeling/textColorB" value="0"/>
                 <property key="labeling/textColorG" value="0"/>
                 <property key="labeling/textColorR" value="0"/>
-                <property key="labeling/textTransp" value="0"/>
+                <property key="labeling/textTransp" value="20"/>
                 <property key="labeling/upsidedownLabels" value="0"/>
                 <property key="labeling/wrapChar" value=""/>
                 <property key="labeling/xOffset" value="0"/>
@@ -1776,6 +1779,35 @@
                 <edittype labelontop="0" editable="1" type="0" name="SHAPE_Le_1"/>
                 <edittype labelontop="0" editable="1" type="0" name="START_X"/>
                 <edittype labelontop="0" editable="1" type="0" name="START_Y"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_DITCH_ABBR"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_DITCH_NAME"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_DNRSTLN3_"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_DNRSTLN3_I"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_FNODE_"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_KITTNAME"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_LENGTH"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_LPOLY_"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_NEW_REG"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_OBJECTID"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_PROD_PER"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_PROD_SRC"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_PWI_FLAG"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_RCH_CODE"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_RCH_DATE"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_RCH_NAME"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_RPOLY_"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_SHAPE_LEN"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_BASEL"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_BAS_1"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_BRK"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_LONG"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_NAME"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_SRC"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_STRM_TYPE"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_TNODE_"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_TROUT_FLAG"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_XSTRM_SRC"/>
+                <edittype labelontop="0" editable="0" type="0" name="Special Regulations_XTROUT_FLA"/>
                 <edittype labelontop="0" editable="1" type="0" name="TO_MEAS"/>
                 <edittype labelontop="0" editable="1" type="0" name="TROUT_FLAG"/>
             </edittypes>
@@ -1826,7 +1858,7 @@
                     <symbol alpha="1" type="fill" name="0">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="170,0,0,255"/>
+                            <prop k="color" v="226,193,193,255"/>
                             <prop k="color_border" v="0,0,0,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
@@ -1835,7 +1867,7 @@
                             <prop k="width_border" v="0.26"/>
                         </layer>
                     </symbol>
-                    <symbol alpha="1" type="fill" name="1">
+                    <symbol alpha="0.145098" type="fill" name="1">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
                             <prop k="color" v="0,85,0,255"/>
@@ -1847,7 +1879,7 @@
                             <prop k="width_border" v="0.26"/>
                         </layer>
                     </symbol>
-                    <symbol alpha="1" type="fill" name="2">
+                    <symbol alpha="0.145098" type="fill" name="2">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
                             <prop k="color" v="0,85,0,255"/>
@@ -1862,7 +1894,7 @@
                     <symbol alpha="1" type="fill" name="3">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="0,85,127,255"/>
+                            <prop k="color" v="255,255,127,255"/>
                             <prop k="color_border" v="0,0,0,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
@@ -1874,7 +1906,7 @@
                     <symbol alpha="1" type="fill" name="4">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="0,85,127,255"/>
+                            <prop k="color" v="255,255,127,255"/>
                             <prop k="color_border" v="0,0,0,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
@@ -1883,7 +1915,7 @@
                             <prop k="width_border" v="0.26"/>
                         </layer>
                     </symbol>
-                    <symbol alpha="1" type="fill" name="5">
+                    <symbol alpha="0.145098" type="fill" name="5">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
                             <prop k="color" v="0,85,0,255"/>
@@ -1895,7 +1927,7 @@
                             <prop k="width_border" v="0.26"/>
                         </layer>
                     </symbol>
-                    <symbol alpha="1" type="fill" name="6">
+                    <symbol alpha="0.145098" type="fill" name="6">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
                             <prop k="color" v="0,85,0,255"/>
@@ -1964,7 +1996,7 @@
                 <property key="labeling/displayAll" value="false"/>
                 <property key="labeling/dist" value="0"/>
                 <property key="labeling/distInMapUnits" value="false"/>
-                <property key="labeling/enabled" value="false"/>
+                <property key="labeling/enabled" value="true"/>
                 <property key="labeling/fieldName" value=""/>
                 <property key="labeling/fontBold" value="false"/>
                 <property key="labeling/fontCapitals" value="0"/>
@@ -2095,9 +2127,9 @@
                 <edittype labelontop="0" editable="1" type="0" name="Shape_Area"/>
                 <edittype labelontop="0" editable="1" type="0" name="Shape_Leng"/>
             </edittypes>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2105,25 +2137,66 @@
         </maplayer>
     </projectlayers>
     <properties>
-        <SpatialRefSys>
-            <ProjectCrs type="QString">EPSG:4326</ProjectCrs>
-            <ProjectCRSID type="int">2292</ProjectCRSID>
-        </SpatialRefSys>
+        <WMSContactPerson type="QString"></WMSContactPerson>
+        <WMSOnlineResource type="QString"></WMSOnlineResource>
+        <WMSContactOrganization type="QString"></WMSContactOrganization>
+        <WMSKeywordList type="QStringList">
+            <value></value>
+        </WMSKeywordList>
+        <WFSUrl type="QString"></WFSUrl>
         <Paths>
             <Absolute type="bool">false</Absolute>
         </Paths>
-        <Gui>
-            <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-            <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
-            <CanvasColorRedPart type="int">255</CanvasColorRedPart>
-            <SelectionColorRedPart type="int">255</SelectionColorRedPart>
-            <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
-            <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-            <CanvasColorBluePart type="int">255</CanvasColorBluePart>
-        </Gui>
+        <WMSServiceTitle type="QString"></WMSServiceTitle>
+        <WFSLayers type="QStringList"/>
+        <WMSContactMail type="QString"></WMSContactMail>
         <PositionPrecision>
             <DecimalPlaces type="int">2</DecimalPlaces>
             <Automatic type="bool">true</Automatic>
+            <DegreeFormat type="QString">D</DegreeFormat>
         </PositionPrecision>
+        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+        <WMSContactPhone type="QString"></WMSContactPhone>
+        <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+        <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
+        <Measure>
+            <Ellipsoid type="QString">NONE</Ellipsoid>
+        </Measure>
+        <WFSTLayers>
+            <Insert type="QStringList"/>
+            <Update type="QStringList"/>
+            <Delete type="QStringList"/>
+        </WFSTLayers>
+        <Gui>
+            <SelectionColorBluePart type="int">145</SelectionColorBluePart>
+            <CanvasColorGreenPart type="int">213</CanvasColorGreenPart>
+            <CanvasColorRedPart type="int">213</CanvasColorRedPart>
+            <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+            <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+            <SelectionColorGreenPart type="int">0</SelectionColorGreenPart>
+            <CanvasColorBluePart type="int">213</CanvasColorBluePart>
+        </Gui>
+        <Identify>
+            <disabledLayers type="QStringList"/>
+        </Identify>
+        <Macros>
+            <pythonCode type="QString"></pythonCode>
+        </Macros>
+        <WMSAccessConstraints type="QString"></WMSAccessConstraints>
+        <SpatialRefSys>
+            <ProjectCRSProj4String type="QString">+proj=utm +zone=15 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</ProjectCRSProj4String>
+            <ProjectCrs type="QString">EPSG:4326</ProjectCrs>
+            <ProjectCRSID type="int">2292</ProjectCRSID>
+        </SpatialRefSys>
+        <DefaultStyles>
+            <Fill type="QString"></Fill>
+            <Line type="QString"></Line>
+            <Marker type="QString"></Marker>
+            <RandomColors type="bool">true</RandomColors>
+            <AlphaInt type="int">255</AlphaInt>
+            <ColorRamp type="QString"></ColorRamp>
+        </DefaultStyles>
+        <WMSFees type="QString"></WMSFees>
+        <WMSUrl type="QString"></WMSUrl>
     </properties>
 </qgis>
