@@ -4,21 +4,21 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>-505444.94658245332539082</xmin>
-            <ymin>4422469.73469389230012894</ymin>
-            <xmax>1216056.02017554873600602</xmax>
-            <ymax>5698689.31653512269258499</ymax>
+            <xmin>-11190076.77282463014125824</xmin>
+            <ymin>5280645.90255701076239347</ymin>
+            <xmax>-9460035.14605998247861862</xmax>
+            <ymax>6411168.15371014643460512</ymax>
         </extent>
-        <projections>0</projections>
+        <projections>1</projections>
         <destinationsrs>
             <spatialrefsys>
-                <proj4>+proj=utm +zone=15 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
-                <srsid>2292</srsid>
-                <srid>26915</srid>
-                <authid>EPSG:26915</authid>
-                <description>NAD83 / UTM zone 15N</description>
-                <projectionacronym>utm</projectionacronym>
-                <ellipsoidacronym>GRS80</ellipsoidacronym>
+                <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
+                <srsid>3857</srsid>
+                <srid>3857</srid>
+                <authid>EPSG:3857</authid>
+                <description>WGS 84 / Pseudo Mercator</description>
+                <projectionacronym>merc</projectionacronym>
+                <ellipsoidacronym>WGS84</ellipsoidacronym>
                 <geographicflag>false</geographicflag>
             </spatialrefsys>
         </destinationsrs>
@@ -29,13 +29,13 @@
                 <legendlayerfile isInOverview="0" layerid="BufferedEasements400020131207150630265" visible="0"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Trout Streams (designated)" showFeatureCount="0">
-            <filegroup open="true" hidden="false">
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Trout Streams (designated)" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="strm_troutln320131207143926584" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Special Regulations" showFeatureCount="0">
-            <filegroup open="true" hidden="false">
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Special Regulations" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="strm_regsln320131207152059048" visible="1"/>
             </filegroup>
         </legendlayer>
@@ -44,13 +44,13 @@
                 <legendlayerfile isInOverview="0" layerid="adm_fshacqpy320131207143946582" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Watersheds" showFeatureCount="0">
-            <filegroup open="true" hidden="false">
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Watersheds" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="wshd_lev02py320131209171926427" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Scientific and Natural Areas" showFeatureCount="0">
-            <filegroup open="true" hidden="false">
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Scientific and Natural Areas" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="bdry_snapy320131209172922139" visible="1"/>
             </filegroup>
         </legendlayer>
@@ -64,8 +64,18 @@
                 <legendlayerfile isInOverview="0" layerid="bdry_stprkpy320131207171302493" visible="1"/>
             </filegroup>
         </legendlayer>
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Google Physical" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20131216131201528" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Stamen Toner/OSM" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20131216130517159" visible="0"/>
+            </filegroup>
+        </legendlayer>
     </legend>
-    <projectlayers layercount="8">
+    <projectlayers layercount="10">
         <maplayer minimumScale="0" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Polygon" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
             <id>BufferedEasements400020131207150630265</id>
             <datasource>./shapefiles/easments/BufferedEasements4000.shp</datasource>
@@ -273,6 +283,52 @@
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
             <attributeactions/>
+        </maplayer>
+        <maplayer minimumScale="0" maximumScale="1e+08" hasScaleBasedVisibilityFlag="0">
+            <id>OpenLayers_plugin_layer20131216130517159</id>
+            <datasource></datasource>
+            <title></title>
+            <abstract></abstract>
+            <keywordList>
+                <value></value>
+            </keywordList>
+            <layername>Stamen Toner/OSM</layername>
+            <srs>
+                <spatialrefsys>
+                    <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
+                    <srsid>3857</srsid>
+                    <srid>3857</srid>
+                    <authid>EPSG:3857</authid>
+                    <description>WGS 84 / Pseudo Mercator</description>
+                    <projectionacronym>merc</projectionacronym>
+                    <ellipsoidacronym>WGS84</ellipsoidacronym>
+                    <geographicflag>false</geographicflag>
+                </spatialrefsys>
+            </srs>
+            <customproperties/>
+        </maplayer>
+        <maplayer minimumScale="0" maximumScale="1e+08" ol_layer_type="0" type="plugin" hasScaleBasedVisibilityFlag="0" name="openlayers">
+            <id>OpenLayers_plugin_layer20131216131201528</id>
+            <datasource></datasource>
+            <title></title>
+            <abstract></abstract>
+            <keywordList>
+                <value></value>
+            </keywordList>
+            <layername>Google Physical</layername>
+            <srs>
+                <spatialrefsys>
+                    <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
+                    <srsid>3857</srsid>
+                    <srid>3857</srid>
+                    <authid>EPSG:3857</authid>
+                    <description>WGS 84 / Pseudo Mercator</description>
+                    <projectionacronym>merc</projectionacronym>
+                    <ellipsoidacronym>WGS84</ellipsoidacronym>
+                    <geographicflag>false</geographicflag>
+                </spatialrefsys>
+            </srs>
+            <customproperties/>
         </maplayer>
         <maplayer minimumScale="-4.65661e-10" maximumScale="750000" minLabelScale="0" maxLabelScale="1e+08" geometry="Polygon" type="vector" hasScaleBasedVisibilityFlag="1" scaleBasedLabelVisibilityFlag="0">
             <id>adm_fshacqpy320131207143946582</id>
@@ -1638,7 +1694,7 @@
                 <property key="labeling/bufferNoFill" value="false"/>
                 <property key="labeling/bufferSize" value="1"/>
                 <property key="labeling/bufferSizeInMapUnits" value="false"/>
-                <property key="labeling/bufferTransp" value="70"/>
+                <property key="labeling/bufferTransp" value="8"/>
                 <property key="labeling/centroidWhole" value="false"/>
                 <property key="labeling/dataDefined/MaxScale" value="1~~1~~CASE &#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 12 THEN 60000000 &#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 5 THEN 6000000&#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 2 THEN 600000&#xa;&#x9;WHEN &quot;ROUTE_MI&quot; > 1 AND &quot;KITTLE_NAM&quot; not like 'Unnamed%' THEN 100000&#xa;&#x9;ELSE 9000&#xa;END~~"/>
                 <property key="labeling/decimals" value="3"/>
@@ -1736,7 +1792,7 @@
                 <property key="labeling/textColorB" value="0"/>
                 <property key="labeling/textColorG" value="0"/>
                 <property key="labeling/textColorR" value="0"/>
-                <property key="labeling/textTransp" value="20"/>
+                <property key="labeling/textTransp" value="0"/>
                 <property key="labeling/upsidedownLabels" value="0"/>
                 <property key="labeling/wrapChar" value=""/>
                 <property key="labeling/xOffset" value="0"/>
@@ -2155,8 +2211,8 @@
             <Automatic type="bool">true</Automatic>
             <DegreeFormat type="QString">D</DegreeFormat>
         </PositionPrecision>
-        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
         <WMSContactPhone type="QString"></WMSContactPhone>
+        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
         <WMSServiceAbstract type="QString"></WMSServiceAbstract>
         <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
         <Measure>
@@ -2186,7 +2242,8 @@
         <SpatialRefSys>
             <ProjectCRSProj4String type="QString">+proj=utm +zone=15 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</ProjectCRSProj4String>
             <ProjectCrs type="QString">EPSG:4326</ProjectCrs>
-            <ProjectCRSID type="int">2292</ProjectCRSID>
+            <ProjectCRSID type="int">3857</ProjectCRSID>
+            <ProjectionsEnabled type="int">1</ProjectionsEnabled>
         </SpatialRefSys>
         <DefaultStyles>
             <Fill type="QString"></Fill>
