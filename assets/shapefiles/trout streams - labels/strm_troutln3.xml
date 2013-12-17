@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+
+
+<metadata>
+
+
+  <idinfo>
+
+    <citation>
+      <citeinfo>
+        <origin>Minnesota DNR - Division of Fisheries</origin>
+        <pubdate>2002-03-29 00:00:00.0</pubdate>
+        <title>Minnesota Trout Streams</title>
+        <mgmg1cid></mgmg1cid>
+          <pubinfo>
+            <publish>Minnesota DNR - Divisionion of Fisheries</publish>
+          </pubinfo>
+        <onlink>http://deli.dnr.state.mn.us/</onlink>
+      </citeinfo>
+    </citation>
+
+    <descript>
+      <abstract>This layer shows legally designated trout streams and trout stream tributaries as identified in Minnesota Rules Chapter 6264. See <font color=blue>http://www.revisor.leg.state.mn.us/arule/6264/0050.html ( http://www.revisor.leg.state.mn.us/arule/6264/0050.html)</font color> for legal descriptions and restrictions associated with designated trout waters.  This data layer is a subset of the DNR 24K streams layer, a statewide streams-hydrography data set cooperatively developed amongst many units of government within Minnesota.  </abstract>
+      <purpose>To support land use planning, watershed management, timber harvest plans, and other natural resource management activities with impact on trout streams.  Also supports recreational access to trout resources.</purpose>
+      <supplinf>Statewide</supplinf>
+    </descript>
+
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>2009</caldate>
+        </sngdate>
+      </timeinfo>
+      <current></current>
+    </timeperd>
+
+    <status>
+      <progress>Complete</progress>
+      <update>As Needed</update>
+    </status>
+    
+    <spdom>
+      <bounding>
+        <westbc></westbc>
+        <eastbc></eastbc>
+        <northbc></northbc>
+        <southbc></southbc>
+      </bounding>
+    </spdom>
+
+    <keywords>
+      <theme>
+        <themekey>Trout, stream, designated, rules, inlandWaters</themekey>
+      </theme>
+      <place>
+        <placekey>Minnesota</placekey>
+      </place>
+    </keywords>
+
+    <accconst></accconst>
+    <useconst></useconst>
+    
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Lyn Bergquist</cntper>
+          <cntorg>DNR-Fisheries</cntorg>
+        </cntperp>
+        <cntpos>GIS Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road
+Central Office - Box 20</address>
+          <city>Saint Paul</city>
+          <state>MN</state>
+          <postal>55155</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5189</cntvoice>
+        <cntfax>(651) 297-4961</cntfax>
+        <cntemail>lyn.bergquist@state.mn.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+
+    <browse>
+      <browsen>http://jmaps.dnr.state.mn.us/gis/dp_datasample.jsp?mpid=26000024&amp;ptid=2&amp;fcid=2&amp;lname=Minnesota Trout Streams</browsen>
+      <browsed></browsed>
+    </browse>
+
+    <native>Arc/Info 8.0</native>
+    
+    <crossref>
+      <citeinfo>
+        <title></title>
+      </citeinfo>
+    </crossref>
+
+  </idinfo>
+
+
+  <dataqual>
+
+    <attracc>
+      <attraccr></attraccr>
+    </attracc>
+
+    <logic></logic>
+    <complete>Data are completed for designated trout streams and protected tributaries statewide.  However, this layer is still under review and subject to future revision.  Most recent updates were completed in 2009.</complete>
+    
+    <posacc>
+      <horizpa>
+        <horizpar></horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr></vertaccr>
+      </vertacc>
+    </posacc>
+     
+    <lineage>
+      <srcinfo>
+        <srcscale>Source layer strm_troutln3:  100000
+</srcscale>
+      </srcinfo>
+      <procstep>
+        <procdesc></procdesc>
+      </procstep>
+    </lineage>
+
+  </dataqual>
+
+
+  <spdoinfo>
+
+    <indspref>Not Applicable</indspref>
+    <direct>vector</direct>
+    <mgmg3obj>line</mgmg3obj>
+    <mgmg3til>state</mgmg3til>
+
+  </spdoinfo>
+
+
+  <spref>
+
+    <horizsys>
+      <geograph>
+        <latres></latres>
+        <longres></longres>
+      </geograph>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <mgmg4par>Not Applicable</mgmg4par>
+          <otherprj>Not Applicable</otherprj>
+        </mapproj>
+        <gridsys>
+          <gridsysn>UTM</gridsysn>
+          <utm>
+            <utmzone>15</utmzone>
+          </utm>
+          <spcs>
+            <spcszone></spcszone>
+          </spcs>
+          <mgmg4coz></mgmg4coz>
+          <mgmg4adj>Not Applicable</mgmg4adj>
+        </gridsys>
+        <planci>
+          <coordrep>
+            <absres></absres>
+            <ordres></ordres>
+          </coordrep>
+          <distbrep>
+            <distres></distres>
+          </distbrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83</horizdn>
+        <ellips>GRS1980</ellips>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>Not Applicable</altdatum>
+        <altunits>Not Applicable</altunits>
+      </altsys>
+      <depthsys>
+        <depthdn>Not Applicable</depthdn>
+        <depthdu>Not Applicable</depthdu>
+      </depthsys>
+    </vertdef>
+
+  </spref>
+
+
+  <eainfo>
+
+  <detailed><enttyp><enttypl>STRM_TROUTLN3.DBF</enttypl><enttypd>Shapefile Attribute Table</enttypd></enttyp><attr><attrlabl>STRM_TYPE</attrlabl><attrdef>Roughly analogous to the feature-type field in the MnDOT Source data</attrdef><attrdomv><edom><edomv>20</edomv><edomvd>Perennial stream</edomvd></edom><edom><edomv>21</edomv><edomvd>Intermittent Stream or Creek</edomvd></edom><edom><edomv>22</edomv><edomvd>Unknown Stream</edomvd></edom><edom><edomv>23</edomv><edomvd>Underground Stream (Karst areas, SE MN)</edomvd></edom><edom><edomv>40</edomv><edomvd>Drainage Ditch (Perennial)</edomvd></edom><edom><edomv>41</edomv><edomvd>Drainage Ditch (Intermittent)</edomvd></edom><edom><edomv>42</edomv><edomvd>Drainage Ditch (Undifferentiated)</edomvd></edom><edom><edomv>43</edomv><edomvd>Aqueduct (Elevated or Tunnel)</edomvd></edom><edom><edomv>60</edomv><edomvd>Connector (Lake)</edomvd></edom><edom><edomv>61</edomv><edomvd>Connector (Wetland)</edomvd></edom><edom><edomv>62</edomv><edomvd>Centerline (River)</edomvd></edom><edom><edomv>63</edomv><edomvd>Connector (River)</edomvd></edom><edom><edomv>64</edomv><edomvd>River Outflow Connector</edomvd></edom><edom><edomv>70</edomv><edomvd>Road Culvert</edomvd></edom><edom><edomv>71</edomv><edomvd>Underground Storm Sewer</edomvd></edom><edom><edomv>72</edomv><edomvd>Force Main</edomvd></edom><edom><edomv>73</edomv><edomvd>Drain Tile Line</edomvd></edom><edom><edomv>80</edomv><edomvd>Interpreted Arc Connector</edomvd></edom><edom><edomv>81</edomv><edomvd>Arbitrary Overland Flow Connector</edomvd></edom><edom><edomv>90</edomv><edomvd>Superceded Natural Channel</edomvd></edom></attrdomv></attr><attr><attrlabl>STRM_LONG</attrlabl><attrdef>Long description of values (as described above under strm_type)</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>STRM_SRC</attrlabl><attrdef>Source of feature</attrdef><attrdomv><edom><edomv>1</edomv><edomvd>Original MnDOT</edomvd></edom><edom><edomv>2</edomv><edomvd>Captured from MPCA/EPA stream cover.  Produced from digital sources.</edomvd></edom><edom><edomv>3</edomv><edomvd>Captured from other MnDOT basemap layer using split/copy process.  Produced from digital sources</edomvd></edom><edom><edomv>4</edomv><edomvd>Integrated/captured from LGU digital source.  Data provided by Local Government Unit, WMO, Lake Asso</edomvd></edom><edom><edomv>51</edomv><edomvd>Manually digitized from USGS Quad map.  Produced by manually digitizing identifiable features.</edomvd></edom><edom><edomv>52</edomv><edomvd>Digitized on screen from DRGs. The digitized arc represents a delineated feature visible on quad map</edomvd></edom><edom><edomv>53</edomv><edomvd>Digitized on screen from DOQs. The digitized arc represents a delineated feature visible on DOQ.</edomvd></edom><edom><edomv>54</edomv><edomvd>Manually digitized from LGU drainage maps. Map provided by Local Government Unit, WMO, Lake Assoc.</edomvd></edom><edom><edomv>55</edomv><edomvd>Interpreted from DRGs.  Arcs do not represent a visible feature on USGS quad map.</edomvd></edom><edom><edomv>56</edomv><edomvd>Digitized onscreen from DOQ&apos;s.  Arcs do not represent a visible feature on DOQ.</edomvd></edom><edom><edomv>60</edomv><edomvd>Digitized onscreen based on local knowledge and DOQ/DRG. Not visible feature on DOQ.</edomvd></edom><edom><edomv>61</edomv><edomvd>A GPS unit was used in the field to get coordinate location of feature.</edomvd></edom><edom><edomv>71</edomv><edomvd>Interpreted by Fisheries field staff using local knowledge, DOQ/DRG.  Feature not visible on basemap</edomvd></edom></attrdomv></attr><attr><attrlabl>TROUT_FLAG</attrlabl><attrdef>Denotes whether a stream segment is a designated trout stream or tributary according to Minnesota Rules 6264.  Designation is defined on the basis of PLS sections.</attrdef><attrdomv><edom><edomv>0</edomv><edomvd>Not a designated trout stream or tributary</edomvd></edom><edom><edomv>1</edomv><edomvd>Designated trout stream</edomvd></edom><edom><edomv>2</edomv><edomvd>Designated trout stream tributary</edomvd></edom></attrdomv></attr><attr><attrlabl>PROD_PHASE</attrlabl><attrdef>Production phase</attrdef><attrdomv><edom><edomv>1</edomv><edomvd>1996 pilot</edomvd></edom><edom><edomv>10</edomv><edomvd>2000 SCSU production</edomvd></edom><edom><edomv>2</edomv><edomvd>1998 phase 1 production</edomvd></edom><edom><edomv>3</edomv><edomvd>1999 production from SCSU</edomvd></edom><edom><edomv>4</edomv><edomvd>1999-2000 DNR Watershed mapping project</edomvd></edom><edom><edomv>5</edomv><edomvd>2000 BRW Twin Cities metro area production</edomvd></edom><edom><edomv>6</edomv><edomvd>2000 Met Council Watershed Mapping</edomvd></edom><edom><edomv>7</edomv><edomvd>2000 production DNR-MIS</edomvd></edom><edom><edomv>8</edomv><edomvd>Original MnDOT</edomvd></edom><edom><edomv>9</edomv><edomvd>1999 Mankato State University-Minnesota River Valley production</edomvd></edom></attrdomv></attr><attr><attrlabl>STRM_NAME</attrlabl><attrdef>Holds stream named derived from USGS quad map sources</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>DITCH_ABBR</attrlabl><attrdef>Ditch name abbreviation</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>DITCH_NAME</attrlabl><attrdef>Ditch name obtained from various large scale sources</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>RCH_CODE</attrlabl><attrdef>Environmental Protection Agency River Reach Code.  Not implemented.</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>RCH_NAME</attrlabl><attrdef>Environmental Protection Agency stream name.  Not implemented.</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>RCH_DATE</attrlabl><attrdef>Environmental Protection Agency date of reach assignment.  Not implemented</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>KITTLE_NO</attrlabl><attrdef>DNR Kittle Number (Fisheries stream identifier).  Currently implemented on a limited basis on this layer.</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>KITTNAME</attrlabl><attrdef>DNR Kittle Watercourse Name (Fisheries stream name). If an alternate name exists, only one is specified here.  Currently implemented on a limited basis on this layer.</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>PROD_SRC</attrlabl><attrdef>Source organization for production work</attrdef><attrdomv><edom><edomv>1</edomv><edomvd>St. Cloud State University</edomvd></edom><edom><edomv>10</edomv><edomvd>JOR Engineering</edomvd></edom><edom><edomv>2</edomv><edomvd>BRW, Inc.</edomvd></edom><edom><edomv>3</edomv><edomvd>Met Council Watershed Mapping Projec</edomvd></edom><edom><edomv>4</edomv><edomvd>DNR Waters Lakeshed Mapping Project</edomvd></edom><edom><edomv>5</edomv><edomvd>DNR MIS</edomvd></edom><edom><edomv>6</edomv><edomvd>DNR Fisheries</edomvd></edom><edom><edomv>7</edomv><edomvd>Mankato State University (MSU)</edomvd></edom><edom><edomv>8</edomv><edomvd>MNDOT</edomvd></edom><edom><edomv>9</edomv><edomvd>USGS (MN)</edomvd></edom></attrdomv></attr><attr><attrlabl>PROD_PER</attrlabl><attrdef>Year production work was done by source organization (see Prod_src); [range 1996-current year]</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>STRM_BRK</attrlabl><attrdef>Arc break code, for DNR Waters Lakeshed Delineation Project.</attrdef><attrdomv><edom><edomv>0</edomv><edomvd>Code used for Lakeshed Delineation Project; Arc break = no (null value).</edomvd></edom><edom><edomv>1</edomv><edomvd>Code used for Lakeshed Delineation Project; Arc break = yes</edomvd></edom></attrdomv></attr><attr><attrlabl>PWI_FLAG</attrlabl><attrdef>Denotes whether a stream segment is a protected watercourse as designated by Protected Waters Inventory.</attrdef><attrdomv><edom><edomv>0</edomv><edomvd>Watercourse not indicated on PWI Maps</edomvd></edom><edom><edomv>1</edomv><edomvd>Protected watercourse on PWI; indicated on PWI Maps</edomvd></edom><edom><edomv>2</edomv><edomvd>Protected Public Ditch; indicated on PWI Maps</edomvd></edom><edom><edomv>3</edomv><edomvd>Non-protected Public Ditch; not indicated on PWI Maps</edomvd></edom><edom><edomv>4</edomv><edomvd>Non-protected watercourses that drain less than 5 sq. mi.; not indicated on PWI Maps</edomvd></edom></attrdomv></attr></detailed>
+
+    <overview>
+      <eaover></eaover>
+      <eadetcit></eadetcit>
+    </overview>
+
+  </eainfo>
+
+
+  <distinfo>
+
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>Hal Watson</cntper>
+          <cntorg>DNR-MIS</cntorg>
+        </cntperp>
+        <cntpos>GIS Database Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road, Box 11</address>
+          <city>St. Paul</city>
+          <state>MN</state>
+          <postal>55155-4011</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5508</cntvoice>
+        <cntfax>(651) 297-4946</cntfax>
+        <cntemail>hal.watson@state.mn.us</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>strm_troutln3</resdesc>
+    <distliab>The Minnesota Department of Natural Resources makes no representation or warranties, express or implied, with respect to the reuse of data provided herewith, regardless of its format or the means of its transmission. There is no guarantee or representation to the user as to the accuracy, currency, suitability, or reliability of this data for any purpose. The user accepts the data &apos;as is&apos;, and assumes all risks associated with its use. By accepting this data, the user agrees not to transmit this data or provide access to it or any part of it to another party unless the user shall include with the data a copy of this disclaimer. The Minnesota Department of Natural Resources assumes no responsibility for actual or consequential damage incurred as a result of any user&apos;s reliance on this data.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Shapefile</formname>
+          <formvern>Not Applicable</formvern>
+          <transize></transize>
+        </digtinfo>
+      </digform>
+      <ordering>See Online Linkage or Distribution Contact</ordering>
+    </stdorder>
+
+  </distinfo>
+
+
+  <metainfo>
+
+    <metd>2006-08-09 09:12:25.0</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Lyn Bergquist</cntper>
+          <cntorg>DNR-Fisheries</cntorg>
+        </cntperp>
+        <cntpos>GIS Coordinator</cntpos>
+        <cntaddr>
+	  <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road
+Central Office - Box 20</address>
+          <city>Saint Paul</city>
+          <state>MN</state>
+          <postal>55155</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5189</cntvoice>
+        <cntfax>(651) 297-4961</cntfax>
+        <cntemail>lyn.bergquist@state.mn.us</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>Minnesota Geographic Metadata Guidelines</metstdn>
+    <metstdv>1.2</metstdv>
+    <metextns>
+      <onlink>http://www.gis.state.mn.us/stds/metadata.htm</onlink>
+    </metextns>
+
+  </metainfo>
+
+</metadata>
+
