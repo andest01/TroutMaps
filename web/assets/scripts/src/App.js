@@ -11,6 +11,10 @@ define(function(require) {
     
     var $ = require('jquery');
     var Util = require('lib/Util');
+    debugger;
+    var leaflet = require('leaflet');
+    var d3 = require('d3');
+
     var SampleView = require('views/SampleView');
 
     /**

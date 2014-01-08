@@ -10,12 +10,16 @@ require.config({
     // This is just to set a shorter alias for longer paths
     paths: {
         'jquery': 'lib-thirdparty/jquery-1.9.1.min',
-        'jquery-ui': 'lib-thirdparty/jquery-ui-1.10.2.custom.min'
+        'jquery-ui': 'lib-thirdparty/jquery-ui-1.10.2.custom.min',
+        'leaflet': 'lib-thirdparty/leaflet',
+        'd3': 'lib-thirdparty/d3.v3'
     },
             
     // This allows us to set dependencies for third-party libraries that do not follow the RequireJS pattern
     shim: {
         'jquery':                   { exports: '$' },
-        'jquery-ui':                { deps: ['jquery'] }
+        'jquery-ui':                { deps: ['jquery'] },
+        'leaflet': { exports: 'L'},
+        'd3': {exports: 'd3'}
     }
 });

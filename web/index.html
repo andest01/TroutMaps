@@ -20,11 +20,7 @@
 
         <!-- STYLESHEETS -->
         <link rel="stylesheet" media="screen, projection" href="assets/styles/screen.css" />
-    </head>
-<body>
-   <div id="map"></div>
-    
-    <!-- SCRIPTS -->
+        <!-- SCRIPTS -->
     <!--
         These scripts should be the only external <script> includes on the page.
         All other scripts will be loaded dynamically by RequireJs.
@@ -32,144 +28,18 @@
     <script src="assets/scripts/src/lib-thirdparty/require.js"></script>
     <script src="assets/scripts/src/config.js"></script>
     
-    <script src="http://leafletjs.com/dist/leaflet.js"></script>
+    </head>
+<body>
+   <div id="map">
+   </div>
+    
+    
+    
+    <!--<script src="http://leafletjs.com/dist/leaflet.js"></script>
 
     <script src="https://dl.dropboxusercontent.com/u/483650/stamenTile.js"></script>
-    <script src="https://dl.dropboxusercontent.com/u/483650/SEMinnesotaTroutStreamsSmaller4326.js"></script>
-    <script>
-    var map = new L.Map('map');
-var stamen = new L.StamenTileLayer("toner");
-var selectedStream;
-var oldEvent
-
-    function highlightFeature(e) {
-        var layer = e.target;
-
-        layer.setStyle({
-            weight: 5,
-            color: '#449F9A',
-            // dashArray: '',
-            fillOpacity: 1.0
-        });
-
-        if (!L.Browser.ie && !L.Browser.opera) {
-            layer.bringToFront();
-        }
-
-        info.update(layer);
-    };
-
-function resetHighlight(e) {
-    var id;
-    if (selectedStream !== undefined) {
-        id = selectedStream.feature.properties.OBJECTID;
-        var currentId = e.target.feature.properties.OBJECTID;
-        if (id === currentId) {
-            return;
-        }
-    }
-    streamLayer.resetStyle(e.target);
-    info.update();
-};
-
-function zoomToFeature(e) {
-    if (selectedStream !== undefined) {
-        // resetHighlight for unselectedStream.
-        //resetHighlight(selectedStream);
-    }
-    highlightFeature(e);
-    map.fitBounds(e.target.getBounds());
-};
-
-function onClick(e) {
-    deselect();
-    selectedStream = e.target;
-    oldEvent = e;
-    highlightFeature(e);
-    zoomToFeature(e);
-}
-
-function deselect() {
-    if (selectedStream === undefined && oldEvent !== undefined) {
-        streamLayer.resetStyle(oldEvent.target);
-        return;
-    }
-}
-
-function onEachFeature(feature, layer) {
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: onClick
-    });
-};
-
-var tilesLayer = new L.TileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png');
-// map.addLayer(tilesLayer);
-// stamen
-map.addLayer(stamen);
-
-
-var streamLayer = new L.GeoJSON(streams, {
-    style: {
-        weight: 1.9,
-        color: '#61C9BF',
-        opacity: 1,
-        clickable: true
-    },
-    onEachFeature: onEachFeature
-});
-
-map.addLayer(streamLayer);
-
-var info = L.control();
-
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (layer) {
-    var props;
-    if (layer !== undefined) {
-        props = layer.feature.properties;
-    }
-    var l = createTag(layer);
-    this._div.innerHTML = '<h4>Stream Information</h4>' + (props ? l + '<br />' + props.LENGTH_MI + ' miles long.' : 'Click a Stream.' + l);
-};
-
-function createTag(props) {
-    if (props === undefined) {
-        return;
-    }
-    var name = props.feature.properties.KITTLE_NAM;
-    var lat = props._latlngs[0].lat.toString();
-    var long = props._latlngs[0].lng.toString();
-    var link = "https://maps.google.com/maps?q=" + lat + ",+" + long; //44.935349,+-93.481842"
-    var googleClass = " class=\"google-link\"";
-    var newTab = " target=\"_blank\" ";
-    var tag = "<a " + googleClass + newTab + " href=\"";
-    tag = tag + link + "\">" + name + "</a>";
-    return tag;
-};
-
-info.addTo(map);
-
-
-
-//objectLayer.eachLayer(function (layer) {
-//    layer.editing.enable();
-//});
-//map.addLayer(objectLayer);
-
-var objectBounds = [
-    [50.806863, -99.042236],
-    [42.092961, -90.955811]
-];
-map.fitBounds(new L.LatLngBounds(objectBounds));
-    </script>
+    <script src="https://dl.dropboxusercontent.com/u/483650/SEMinnesotaTroutStreamsSmaller4326.js"></script>-->
+    
     <script>
         /**
          * Global constants
