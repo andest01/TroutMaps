@@ -31,6 +31,7 @@ define(function(require) {
         StreamCollectionService.getStreams()
             .then(function (streams) {
                 $scope.streams = streams;
+                console.log($scope.streams);
             });
     };
 

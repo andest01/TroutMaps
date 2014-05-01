@@ -73,10 +73,6 @@ define(function(require) {
             var restrictions = json.restrictions.map(function(restrictionLocationJson) {
                 var restriction = new Restriction();
                 restriction.fromJSON(restrictionLocationJson);
-//                var start = restrictionLocationJson.start;
-//                var stop = restrictionLocationJson.stop;
-//                var restrictionSegment = new RestrictionSegment(start, stop, restriction);
-
                 return restriction;
             });
             this.setRestrictionSegments(restrictions);

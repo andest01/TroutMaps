@@ -16,7 +16,8 @@ define(/** @lends Zoom */function(require) {
             var deferred = $q.defer();
 
             var streams =
-                [ { "gid" : 4200,
+                [
+                    { "gid" : 4200,
                     "kittle_nam" : "Eagle Creek",
                     "kittle_nbr" : "M-055-009",
                     "length_mi" : 2.1859999999999999,
@@ -76,7 +77,8 @@ define(/** @lends Zoom */function(require) {
                         "kittle_nbr" : "M-009-010",
                         "length_mi" : 16.071000000000002,
                         "objectid" : 25429,
-                        "publicLand" : [ { "start" : 0.932402120414244,
+                        "publicLand" :
+                            [ { "start" : 0.932402120414244,
                             "stop" : 0.959412375522536,
                             "type" : "TBD"
                         },
