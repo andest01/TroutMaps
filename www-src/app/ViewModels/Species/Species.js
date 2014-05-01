@@ -4,13 +4,12 @@
 
 define(function(require) {
     'use strict';
-    var Species = function(id, name, isStocked) {
-        if (typeof name !== 'string' || name == null || name.length === 0) {
-            throw new Error('name cannot be null');
-        }
 
-        this.init(id, name, isStocked);
+    var config = require('ViewModels/Species/SpeciesConfiguration');
+
+    var Species = function(id, name, isStocked) {
     };
+
 
     var proto = Species.prototype;
 
@@ -18,6 +17,8 @@ define(function(require) {
         this.id = id;
         this.name = name;
         this.isStocked = isStocked;
+        this.isPresent = false;
+        this.stockingClass = config.notStockedClassName;
     };
 
     proto.getId = function() {
@@ -40,6 +41,12 @@ define(function(require) {
         this.name = name;
     };
 
+    proto.getPopulationClassName = function() {
+        return this.isPresent
+            ? config.wildClassName
+            : config.notWildClassName;
+    }
+
     proto.getIsStocked = function() {
         return this.isStocked;
     };
@@ -47,6 +54,12 @@ define(function(require) {
     proto.setIsStocked = function(isStocked) {
         this.isStocked = isStocked;
     };
+
+    proto.getIsStockedClass = function() {
+        return this.getIsStocked()
+            ? config.stockedClassName
+            : config.notStockedClassName;
+    }
 
     proto.fromJSON = function(json) {
         this.setIsStocked(json.isStocked);
