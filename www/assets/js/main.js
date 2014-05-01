@@ -1,5 +1,627 @@
-define(/** @lends Zoom */function(require) {
-    'use strict';
+
+define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n<ul ng-repeat="stream in streams">\r\n    <li>\r\n        <div class="containerHeader containerRow">\r\n            <div class="grid_3 alpha">\r\n                <h2 class="sectionTitle">\r\n                    {{stream.streamName}}\r\n                </h2>\r\n            </div>\r\n            <div class="grid_1 omega">\r\n                <div class="statusContainer">\r\n                <span class="statusIcon">\r\n                    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n                         viewBox="0 0 16 16" version="1.1"\r\n                         xmlns="http://www.w3.org/2000/svg" class="species">\r\n                        <g class="brown">\r\n                            <circle class="population wild" cx="4" cy="12" r="3.5"/>\r\n                            <circle class="stocking" cx="4" cy="12" r="3"/>\r\n                        </g>\r\n\r\n                        <g class="brook">\r\n                            <circle class="population none" cx="12" cy="12" r="3.5"/>\r\n                            <circle class="stocking none" cx="12" cy="12" r="3"/>\r\n\r\n                        </g>\r\n\r\n                        <g class="rainbow">\r\n                            <circle class="population wild" cx="8" cy="5.0718" r="3.5"/>\r\n                            <circle class="stocking stocked" cx="8" cy="5.0718" r="3"/>\r\n                        </g>\r\n                    </svg>\r\n\r\n\r\n                  <!--<img src="assets/images/iconThing.png" >-->\r\n                </span>\r\n                    <span class="statusText"></span>\r\n                </div>\r\n            </div>\r\n        </div><!-- end .containerHeader -->\r\n\r\n        <div class="containerBody containerRow">\r\n            <div id="linear-reference" height="12" width="292">\r\n                <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n            </div>\r\n        </div><!-- end .containerBody -->\r\n\r\n        <div class="containerFooter containerRow">\r\n            <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n            <div class="grid_3 alpha">\r\n                <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">\r\n                    <li>\r\n                        {{restriction.restrictionType.officialText}}\r\n                    </li>\r\n                    <!--<li>-->\r\n                        <!--Trout Valley Creek and a bunch of other text to go to atleast 2 lines-->\r\n                    <!--</li>-->\r\n                    <!--<li>-->\r\n                        <!--Trout Valley Creek and a bunch of other text to go to atleast 2 lines-->\r\n                    <!--</li>-->\r\n                </ul>\r\n            </div>\r\n            <div class="grid_1 omega">\r\n                <div class="fractionContainer">\r\n                    <span class="numerator">0.0</span>\r\n                    /\r\n                    <span class="denominator">6.5</span>\r\n                </div>\r\n            </div>\r\n        </div><!-- end .containerFooter -->\r\n    </li>\r\n</ul>\r\n';});
+
+define('modules/main/home/HomeModule',['require','angular','angular-route','text!./HomeControllerTemplate.html'],function(require) {
+    
+
+    var ng = require('angular');
+    require('angular-route');
+
+    /**
+     * Home Module
+     *
+     * ### Overview
+     *
+     * This is a long-form description of the home module.  Here, things such as the available controllers, directives,
+     * routes, services, filters and so forth should be documented.  Generally speaking, these kinds of modules should
+     * only include controllers, templates and routes.  Specialized directives are also okay, although it's usually
+     * better to write directives that are reusable, rather than highly specialized ones.  Those reusable directives
+     * belong as root level modules in the 'app/modules' directory, rather than under the main module.
+     *
+     * Services are also okay, but exposing them to other modules can be tricky, especially if it requires two modules
+     * to depend on each other.  Since services are typically meant to share state between components (they are
+     * singletons after all) it's best to give special care to their design, and extrapolate them into a services
+     * sub-module or stand-alone module.  In doing so, services can be readily shared between modules so long as
+     * developers take care and understand the consequences that the coupling can create.
+     *
+     * @name app.home
+     * @requires 'angular-route'
+     */
+    var homeModule = ng.module('app.home', [
+        'ngRoute'
+    ]);
+
+    /**
+     * @requires HomeControllerTemplate.html
+     */
+    var homeControllerTemplate = require('text!./HomeControllerTemplate.html');
+
+    /**
+     * Home module configuration
+     *
+     * ### Routes
+     *
+     * The home module utilizes the following routes:
+     *
+     *  - '/'
+     *    - Controller: HomeController.js
+     *    - Template: HomeControllerTemplate.html
+     *
+     */
+    homeModule.config(function($routeProvider) {
+        $routeProvider
+            .when('/', {
+                template: homeControllerTemplate,
+                controller: 'HomeController'
+            });
+    });
+
+    return homeModule;
+});
+
+define('modules/main/home/HomeController',['require','./HomeModule'],function(require) {
+    
+
+    var homeModule = require('./HomeModule');
+    var StreamCollectionService;
+    /**
+     * Home Module Controller
+     *
+     * ### Index Page
+     *
+     * The HomeController is responsible for responding to the '/' route, as defined in HomeModule.
+     */
+
+    /**
+     * @constructor
+     * @param {$log} Angular's wrapper for window.console.log
+     */
+    function HomeController($log, $scope, _StreamCollectionService_) {
+        StreamCollectionService = _StreamCollectionService_;
+        $log.info('application is running!');
+        this.setupScope($scope);
+    }
+
+    HomeController.$inject = [
+        '$log',
+        '$scope',
+        'StreamCollectionService'
+    ];
+
+    HomeController.prototype.setupScope = function($scope) {
+        StreamCollectionService.getStreams()
+            .then(function (streams) {
+                $scope.streams = streams;
+            });
+    };
+
+    homeModule.controller(
+        'HomeController',
+        HomeController
+    );
+
+});
+
+define('modules/main/home/index',['require','./HomeController','./HomeModule'],function(require) {
+    
+
+    require('./HomeController');
+
+    require('./HomeModule');
+});
+
+/**
+ * Main Module
+ *
+ * ### Application root
+ *
+ * The MainModule is the primary namespace for the core application module.
+ *
+ * Each module that responds to the URL hash change belongs as a child module of Main.  The goal of this structure
+ * is to define how the primary application 'sections' or templates respond to the URL hash changes and routing
+ * structure.  MainModule, therefore, should remain relatively simple, as it need only require and register its
+ * child modules, as well as any sibling modules (which are primarily directives and global services).
+ *
+ * Each module should have an index.js file, which requires (but does not need to utilize or assign) all of the files
+ * within the module folder except for the *Module file itself- all other files will need to require it.  This way,
+ * it will be possible for two modules to depend on each other without introducing circular dependencies into
+ * require.js
+ *
+ * To require a module, simply:
+ *
+ * ```javascript
+ * require('childModuleFolder/index');
+ * ```
+ * and add it to the module definition:
+ *
+ * ```javascript
+ * ng.module('namespace', [
+ *     // insert the string name defined by the child module required above
+ *     'childModule'
+ * ]);
+ * ```
+ *
+ * and every file that registers itself with Angular will be available via Angular's dependency injection.
+ *
+ * ### Configuration
+ *
+ * Each module within the Main hierarchy is responsible for informing angular of the routes that it handles. MainModule
+ * does not normally need to perform any route configuration, as it is only responsible for binding together the
+ * specialized child modules.  However, it may be necessary to configure providers, such as adding domains to Angular's
+ * $sce whitelist or other tasks.  If there isn't a specialized child module (or sibling module) for which it makes
+ * sense to own responsibility for a particular domain, you can whitelist those domains in MainModule as the primary
+ * application owner.
+ *
+ * ### Run Blocks
+ *
+ * Angular module run blocks are executed after everything else, including depencency injection setup, has occured.
+ * They are difficult to unit test, and so should be kept as light and isolated as possible.
+ *
+ * @see [Angular Modules](http://docs.angularjs.org/guide/module)
+ */
+define('modules/main/MainModule',['require','angular','./home/index'],function(require) {
+    
+
+    var ng = require('angular');
+
+    /**
+     * @requires HomeModule
+     */
+    require('./home/index');
+
+    return ng.module('app', [
+        'app.home'
+    ]);
+});
+
+/**
+ * @fileOverview Stream is a base class for a Stream View.
+ */
+
+define('ViewModels/Stream',['require'],function(require) {
+    
+
+    var Stream = function() {
+        this.streamName = '';
+        this.streamLength = 0;
+        this.publiclAccessibleLength = 0;
+        this.streamId = -1;
+    };
+
+    var proto = Stream.prototype;
+
+    proto.init = function() {
+
+    };
+
+    proto.getStreamId = function() {
+        return this.streamId;
+    };
+
+    proto.setStreamId = function(id) {
+        this.streamId = id;
+    };
+
+    proto.getStreamName = function() {
+        return this.streamName;
+    };
+
+    proto.setStreamName = function(name) {
+        this.streamName = name;
+    };
+
+    proto.getStreamLength = function() {
+        return this.streamLength;
+    };
+
+    proto.setStreamLength = function(length) {
+        this.streamLength = length;
+    };
+
+    proto.getPublicAccessibleLength = function() {
+        return this.publiclAccessibleLength;
+    };
+
+    proto.setPublicAccessibleLength = function(length) {
+        this.publiclAccessibleLength = length;
+    };
+
+    proto.clone = function() {
+        throw new Error('not implemented yet');
+    };
+
+    proto.copy = function() {
+        throw new Error('not implemented yet');
+    };
+
+    proto.toJSON = function() {
+        throw new Error('not implemented yet');
+    };
+
+    proto.fromJSON = function() {
+        throw new Error('not implemented yet');
+    };
+
+    proto.destroy = function() {
+        throw new Error('not implemented yet');
+    };
+
+    return Stream;
+});
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/Species',['require'],function(require) {
+    
+    var Species = function(id, name, isStocked) {
+        if (typeof name !== 'string' || name == null || name.length === 0) {
+            throw new Error('name cannot be null');
+        }
+
+        this.init(id, name, isStocked);
+    };
+
+    var proto = Species.prototype;
+
+    proto.init = function(id, name, isStocked) {
+        this.id = id;
+        this.name = name;
+        this.isStocked = isStocked;
+    };
+
+    proto.getId = function() {
+        return this.id;
+    };
+
+    proto.setId = function(id) {
+        this.id = id;
+    };
+
+    proto.getName = function() {
+        return this.name;
+    };
+
+    proto.setName = function(name) {
+        if (typeof name !== 'string' || name == null || name.length === 0) {
+            throw new Error('name cannot be null');
+        }
+
+        this.name = name;
+    };
+
+    proto.getIsStocked = function() {
+        return this.isStocked;
+    };
+
+    proto.setIsStocked = function(isStocked) {
+        this.isStocked = isStocked;
+    };
+
+    proto.fromJSON = function(json) {
+        this.setIsStocked(json.isStocked);
+        this.setName(json.name);
+        this.setId(json.id);
+    };
+
+    proto.destroy = function() {
+        throw new Error('not implemented yet');
+    };
+
+    return Species;
+});
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/LinearReferenceSegment',['require'],function(require) {
+    
+    var LinearReferenceSegment = function(start, stop) {
+        //this.initialize(start, stop);
+    };
+
+    var proto = LinearReferenceSegment.prototype;
+
+    proto.init = function(start, stop) {
+        if (typeof start !== 'number' || start < 0 || start > 1) {
+            throw new Error('start must be a number between 0 and 1');
+        }
+
+        if (typeof stop !== 'number' || stop < 0 || stop > 1) {
+            throw new Error('start must be a number between 0 and 1');
+        }
+
+        this.start = start;
+        this.stop = stop;
+    };
+
+    return LinearReferenceSegment;
+});
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/RestrictionSegment',['require','ViewModels/LinearReferenceSegment'],function(require) {
+    
+
+    var Base = require('ViewModels/LinearReferenceSegment');
+
+
+    var RestrictionSegment = function(start, stop, restrictionType) {
+        Base.prototype.constructor.call(this, start, stop);
+        Base.prototype.init.call(this, start, stop);
+        this.restrictionType = restrictionType;
+    };
+
+    RestrictionSegment.prototype = new Base();
+
+    RestrictionSegment.prototype.getRestrictionType = function() {
+        return this.restrictionType;
+    };
+
+    RestrictionSegment.prototype.setRestrictionType = function(restrictionType) {
+        this.restrictionType = restrictionType;
+    };
+
+    RestrictionSegment.prototype.fromJSON = function(json) {
+
+    };
+
+    return RestrictionSegment;
+});
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/Restriction',['require','ViewModels/RestrictionSegment'],function(require) {
+    
+    var RestrictionSection = require('ViewModels/RestrictionSegment');
+
+    var Restriction = function() {
+        this.summary = '';
+        this.officialText = '';
+        this.isAnglingRestriction = false;
+        this.isHarvestRestriction = false;
+        this.restrictionSections = [];
+    };
+
+    var proto = Restriction.prototype;
+
+    Restriction.prototype.getIsHarvestingRestriction = function() {
+        return this.isHarvestRestriction;
+    };
+    
+    Restriction.prototype.setIsHarvestingRestriction = function(isHarvestingRestriction) {
+        this.isHarvestRestriction = isHarvestingRestriction;
+    };
+    
+    Restriction.prototype.getIsAnglingRestriction = function() {
+        return this.isAnglingRestriction;
+    };
+    
+    Restriction.prototype.setIsAnglingRestriction = function(isAnglingRestriction) {
+        this.isAnglingRestriction = isAnglingRestriction;
+    };
+    
+    Restriction.prototype.getSummary = function() {
+        return this.summary;
+    };
+    
+    Restriction.prototype.setSummary = function(summary) {
+        this.summary = summary;
+    };
+
+    Restriction.prototype.getOfficialText = function() {
+        return this.officialText;
+    };
+    
+    Restriction.prototype.setOfficialText = function(officialText) {
+        this.officialText = officialText;
+    };
+
+    Restriction.prototype.setRestrictionSections = function(restrictionSections) {
+        this.restrictionSections = restrictionSections;
+    };
+
+    Restriction.prototype.getRestrictionSections = function() {
+        return this.restrictionSections;
+    };
+
+    Restriction.prototype.fromJSON = function(json) {
+        var restrictionType = json.RestrictionType;
+        this.setSummary(restrictionType.short_description);
+        this.setIsAnglingRestriction(restrictionType.is_angling_restriction);
+        this.setIsHarvestingRestriction(restrictionType.is_harvest_restriction);
+        this.setOfficialText(restrictionType.official_text);
+
+        var sections = json.RestrictionSections;
+        if (sections == null || sections.length === 0) {
+            this.setRestrictionSections([]);
+            return;
+        }
+
+        var restrictionSections = sections.map(function(s) {
+            var restrictionSection = new RestrictionSection(s.start, s.stop, restrictionType);
+            return restrictionSection;
+        });
+
+        this.setRestrictionSections(restrictionSections);
+    };
+
+    return Restriction;
+});
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/PublicLandSegment',['require','ViewModels/LinearReferenceSegment'],function(require) {
+    
+
+    var Base = require('ViewModels/LinearReferenceSegment');
+
+    var PublicLandSegment = function(start, stop, landType) {
+        Base.prototype.constructor.call(this, start, stop);
+        Base.prototype.init.call(this, start, stop);
+        this.landType = landType;
+    };
+
+    PublicLandSegment.prototype = new Base();
+
+    PublicLandSegment.prototype.getLandType = function() {
+        return this.landType;
+    };
+    
+    PublicLandSegment.prototype.setLandType = function(landType) {
+        this.landType = landType;
+    };
+
+    return PublicLandSegment;
+});
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/PublicLand',['require'],function(require) {
+    
+
+    var PublicLand = function() {
+        this.shortText = '';
+        this.longText = '';
+        this.additionalInfo = '';
+    };
+
+    PublicLand.prototype.getShortText = function() {
+        return this.shortText;
+    };
+
+    PublicLand.prototype.setShortText = function(shortText) {
+        this.shortText = shortText;
+    };
+
+    PublicLand.prototype.getLongText = function() {
+        return this.longText;
+    };
+
+    PublicLand.prototype.setLongText = function(longText) {
+        this.longText = longText;
+    };
+
+    PublicLand.prototype.getAdditionalInfo = function() {
+        return this.additionalInfo;
+    };
+
+    PublicLand.prototype.setAdditionalInfo = function(additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    };
+
+    PublicLand.prototype.fromJSON = function(json) {
+        this.setShortText(json);
+    };
+
+    return PublicLand;
+});
+/**
+ * @fileOverview Stream is a base class for a Stream View.
+ */
+
+define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Species','ViewModels/LinearReferenceSegment','ViewModels/RestrictionSegment','ViewModels/Restriction','ViewModels/PublicLandSegment','ViewModels/PublicLand'],function(require) {
+    
+    var Base = require('ViewModels/Stream');
+    var Species = require('ViewModels/Species');
+    var LinearReferenceSegment = require('ViewModels/LinearReferenceSegment');
+
+    var RestrictionSegment = require('ViewModels/RestrictionSegment');
+    var Restriction = require('ViewModels/Restriction');
+
+    var PublicLandSegment = require('ViewModels/PublicLandSegment');
+    var PublicLand = require('ViewModels/PublicLand');
+
+
+    var StreamLine = function() {
+        Base.prototype.constructor.call(this);
+        this.init();
+    };
+
+    StreamLine.prototype = new Base();
+    var proto = StreamLine.prototype;
+
+    proto.init = function() {
+        this.streamName = '';
+        this.streamLength = 0;
+        this.publiclAccessibleLength = 0;
+        this.restrictionSegments = [];
+        this.publicAccessSegments = [];
+        this.species = [];
+    };
+
+    proto.getRestrictionSegment = function() {
+        return this.restrictionSegments;
+    };
+
+    proto.setRestrictionSegments = function(segments) {
+        this.restrictionSegments = segments;
+    };
+
+    proto.getPublicAccessSegments = function() {
+        return this.publicAccessSegments;
+    };
+
+    proto.setPublicAccessSegments = function(segments) {
+        this.publicAccessSegments = segments;
+    };
+
+    proto.getSpecies = function() {
+        return this.species;
+    };
+
+    proto.setSpecies = function(species) {
+        this.species = species;
+    };
+
+    proto.fromJSON = function(json) {
+        // how can i defer to the functionality of the base type Stream's fromJSON functionality?
+        this.setStreamId(json.gid);
+        this.setStreamName(json.kittle_nam);
+        this.setStreamLength(json.length_mi);
+
+        if (json.species != null) {
+            var species = json.species.map(function(speciesJson) {
+                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
+            });
+            this.setSpecies(species);
+        }
+
+        if (json.restrictions != null) {
+            var restrictions = json.restrictions.map(function(restrictionLocationJson) {
+                var restriction = new Restriction();
+                restriction.fromJSON(restrictionLocationJson);
+//                var start = restrictionLocationJson.start;
+//                var stop = restrictionLocationJson.stop;
+//                var restrictionSegment = new RestrictionSegment(start, stop, restriction);
+
+                return restriction;
+            });
+            this.setRestrictionSegments(restrictions);
+
+        }
+
+        if (json.publicLand != null) {
+            var publicLandSegments = json.publicLand.map(function(publicLandSegmentJson) {
+                var publicLand = new PublicLand();
+                publicLand.fromJSON(publicLandSegmentJson.type);
+                var start = publicLandSegmentJson.start;
+                var stop = publicLandSegmentJson.stop;
+                var publicLandSegment = new PublicLandSegment(start, stop, publicLand);
+                return publicLandSegment;
+            });
+            this.setPublicAccessSegments(publicLandSegments);
+        }
+    };
+
+    return StreamLine;
+});
+define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['require','modules/main/MainModule','ViewModels/StreamLine'],function(require) {
+    
 
     // load our main module.
     var mainModule = require('modules/main/MainModule');
@@ -1451,3 +2073,68 @@ define(/** @lends Zoom */function(require) {
         return new StreamCollectionService();
     });
 });
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/StreamRatio',['require'],function(require) {
+    
+    var StreamRatio = function() {
+        this.init();
+    };
+
+    var proto = StreamRatio.prototype;
+
+    proto.init = function(streamLength, publicAccessibleLength) {
+        this.streamLength = 0.0;
+        this.publicAccessibleLength = 0.0;
+
+        if (typeof streamLength === 'number') {
+            this.streamLength = streamLength;
+        }
+
+        if (typeof publicAccessibleLength === 'number') {
+            this.publicAccessibleLength = publicAccessibleLength;
+        }
+    };
+
+    proto.fromJSON = function(jsonString) {
+        throw new Error('not implemented yet');
+    };
+
+    proto.destroy = function() {
+        throw new Error('not implemented yet');
+    };
+    
+    return StreamRatio;
+});
+define('modules/main/index',['require','./MainModule','./services/StreamCollectionService','ViewModels/LinearReferenceSegment','ViewModels/PublicLand','ViewModels/PublicLandSegment','ViewModels/Restriction','ViewModels/RestrictionSegment','ViewModels/Species','ViewModels/Stream','ViewModels/StreamLine','ViewModels/StreamRatio'],function(require) {
+    
+    require('./MainModule');
+    require('./services/StreamCollectionService');
+    require('ViewModels/LinearReferenceSegment');
+    require('ViewModels/PublicLand');
+    require('ViewModels/PublicLandSegment');
+    require('ViewModels/Restriction');
+    require('ViewModels/RestrictionSegment');
+    require('ViewModels/Species');
+    require('ViewModels/Stream');
+    require('ViewModels/StreamLine');
+    require('ViewModels/StreamRatio');
+});
+
+/**
+ * bootstraps angular onto the window.document node
+ * NOTE: the ng-app attribute should not be on the index.html when using ng.bootstrap
+ */
+require([
+    'angular',
+    'modules/main/index'
+], function (ng) {
+    
+
+    ng.bootstrap(document, ['app']);
+});
+
+define("bootstrap", function(){});
+

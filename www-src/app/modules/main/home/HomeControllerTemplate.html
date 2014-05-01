@@ -1,4 +1,71 @@
 <h1>Home controller template.</h1>
 <ul ng-repeat="stream in streams">
-    <li>{{stream.kittle_nam}}</li>
+    <li>
+        <div class="containerHeader containerRow">
+            <div class="grid_3 alpha">
+                <h2 class="sectionTitle">
+                    {{stream.streamName}}
+                </h2>
+            </div>
+            <div class="grid_1 omega">
+                <div class="statusContainer">
+                <span class="statusIcon">
+                    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"
+                         viewBox="0 0 16 16" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" class="species">
+                        <g class="brown">
+                            <circle class="population wild" cx="4" cy="12" r="3.5"/>
+                            <circle class="stocking" cx="4" cy="12" r="3"/>
+                        </g>
+
+                        <g class="brook">
+                            <circle class="population none" cx="12" cy="12" r="3.5"/>
+                            <circle class="stocking none" cx="12" cy="12" r="3"/>
+
+                        </g>
+
+                        <g class="rainbow">
+                            <circle class="population wild" cx="8" cy="5.0718" r="3.5"/>
+                            <circle class="stocking stocked" cx="8" cy="5.0718" r="3"/>
+                        </g>
+                    </svg>
+
+
+                  <!--<img src="assets/images/iconThing.png" >-->
+                </span>
+                    <span class="statusText"></span>
+                </div>
+            </div>
+        </div><!-- end .containerHeader -->
+
+        <div class="containerBody containerRow">
+            <div id="linear-reference" height="12" width="292">
+                <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->
+            </div>
+        </div><!-- end .containerBody -->
+
+        <div class="containerFooter containerRow">
+            <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->
+            <div class="grid_3 alpha">
+                <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">
+                    <li>
+                        {{restriction.restrictionType.officialText}}
+                    </li>
+                    <!--<li>-->
+                        <!--Trout Valley Creek and a bunch of other text to go to atleast 2 lines-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--Trout Valley Creek and a bunch of other text to go to atleast 2 lines-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="grid_1 omega">
+                <div class="fractionContainer">
+                    <span class="numerator">0.0</span>
+                    /
+                    <span class="denominator">6.5</span>
+                </div>
+            </div>
+        </div><!-- end .containerFooter -->
+    </li>
 </ul>

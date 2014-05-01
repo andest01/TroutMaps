@@ -16,7 +16,6 @@ define(function(require) {
      * @param {$log} Angular's wrapper for window.console.log
      */
     function HomeController($log, $scope, _StreamCollectionService_) {
-        debugger;
         StreamCollectionService = _StreamCollectionService_;
         $log.info('application is running!');
         this.setupScope($scope);
@@ -36,9 +35,8 @@ define(function(require) {
     };
 
     homeModule.controller(
-        'HomeController', HomeController
-
-
+        'HomeController',
+        HomeController
     );
 
 });
