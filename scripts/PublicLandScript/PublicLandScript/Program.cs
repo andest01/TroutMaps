@@ -34,7 +34,7 @@ namespace PublicLandScript
 							                                               start = pas.start,
 							                                               stop = pas.stop,
 							                                               type = "TBD"
-						                                               });
+						                                               }).OrderBy(p => p.start);
 
 				                                        var restrictionGroups =
 					                                        s.FishingRestrictionSections.GroupBy(
@@ -47,6 +47,7 @@ namespace PublicLandScript
 																													 RestrictionType = group.FirstOrDefault().DnrAnglingRestriction
 				                                                                                             });
 				                                        model.restrictions = restrictions;
+
 				                                        return model;
 			                                        }).ToList();
 

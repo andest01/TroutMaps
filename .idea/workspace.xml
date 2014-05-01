@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3935fab-e71a-40d5-a465-fd7565fab677" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamDetailsDirective.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamDetailsTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeController.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/PublicLandScript/PublicLandScript/Program.cs" afterPath="$PROJECT_DIR$/scripts/PublicLandScript/PublicLandScript/Program.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/ViewModels/StreamLine.js" afterPath="$PROJECT_DIR$/www-src/app/ViewModels/StreamLine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/assets/js/main.js" afterPath="$PROJECT_DIR$/www/assets/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f3935fab-e71a-40d5-a465-fd7565fab677" name="Default" comment="" />
     <ignored path="TroutMaps.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
