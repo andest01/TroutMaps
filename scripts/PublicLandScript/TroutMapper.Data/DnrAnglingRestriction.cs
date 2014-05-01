@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace TroutMapper.Data
 {
 	[Table("DNR_Angling_Restrictions", Schema = "public")]
-	[DebuggerDisplay("{gid}, {start} - {stop}")]
+	[DebuggerDisplay("{short_description}, {start} - {stop}")]
 	public class DnrAnglingRestriction
 	{
 		[Key]

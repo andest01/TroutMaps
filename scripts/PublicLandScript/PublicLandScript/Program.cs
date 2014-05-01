@@ -8,6 +8,12 @@ using TroutMapper.Services;
 
 namespace PublicLandScript
 {
+	public class Restriction
+	{
+		public DnrAnglingRestriction RestrictionType { get; set; }
+		public IEnumerable<RestrictionSection> RestrictionSections { get; set; } 
+	}
+
 	public class StreamViewModel
 	{
 		public int gid { get; set; }
@@ -34,8 +40,8 @@ namespace PublicLandScript
 			}
 		}
 
-		public IEnumerable<Species> species { get; set; } 
-		public IEnumerable<RestrictionSection> restrictions { get; set; }
+		public IEnumerable<Species> species { get; set; }
+		public IEnumerable<Restriction> restrictions { get; set; }
 		public IEnumerable<PublicLand> publicLand { get; set; } 
 	}
 
@@ -96,32 +102,70 @@ namespace PublicLandScript
 							                                               stop = pas.stop,
 							                                               type = "TBD"
 						                                               });
-				                                        model.restrictions =
-					                                        s.FishingRestrictionSections.Select(
-						                                        frs => new RestrictionSection()
-						                                               {
-							                                               start = frs.start,
-							                                               stop = frs.stop,
-							                                               restriction = new FishingRestriction()
-							                                                             {
-								                                                             isAnglingRestriction =
-									                                                             frs.DnrAnglingRestriction
-									                                                             .is_angling_restriction,
-								                                                             isHarvestRestriction =
-									                                                             frs.DnrAnglingRestriction
-									                                                             .is_harvest_restriction,
-								                                                             officialText =
-									                                                             frs.DnrAnglingRestriction
-									                                                             .official_text,
-								                                                             summary =
-									                                                             frs.DnrAnglingRestriction
-									                                                             .short_description
-							                                                             }
-						                                               });
+
+				                                        var restrictionGroups =
+					                                        s.FishingRestrictionSections.GroupBy(
+						                                        restrictionSection => restrictionSection.DnrAnglingRestriction.id);
+
+				                                        var restrictions = restrictionGroups.Select(group => new Restriction()
+				                                                                                             {
+					                                                                                             RestrictionSections =
+																													 group.Select(ConvertToRestricitonSection),
+																													 RestrictionType = group.FirstOrDefault().DnrAnglingRestriction
+				                                                                                             });
+				                                        model.restrictions = restrictions;
+//				                                        model.restrictions =
+//					                                        s.FishingRestrictionSections.Select(
+//						                                        frs => new RestrictionSection()
+//						                                               {
+//							                                               start = frs.start,
+//							                                               stop = frs.stop,
+//							                                               restriction = new FishingRestriction()
+//							                                                             {
+//								                                                             isAnglingRestriction =
+//									                                                             frs.DnrAnglingRestriction
+//									                                                             .is_angling_restriction,
+//								                                                             isHarvestRestriction =
+//									                                                             frs.DnrAnglingRestriction
+//									                                                             .is_harvest_restriction,
+//								                                                             officialText =
+//									                                                             frs.DnrAnglingRestriction
+//									                                                             .official_text,
+//								                                                             summary =
+//									                                                             frs.DnrAnglingRestriction
+//									                                                             .short_description
+//							                                                             }
+//						                                               });
 				                                        return model;
 			                                        }).ToList();
 
 			var json = JsonConvert.SerializeObject(results);
+		}
+
+		private static RestrictionSection ConvertToRestricitonSection(FishingRestrictionSections frs)
+		{
+			var t = new RestrictionSection()
+			        {
+				        start = frs.start,
+				        stop = frs.stop,
+				        restriction = new FishingRestriction()
+				                      {
+					                      isAnglingRestriction =
+						                      frs.DnrAnglingRestriction
+						                      .is_angling_restriction,
+					                      isHarvestRestriction =
+						                      frs.DnrAnglingRestriction
+						                      .is_harvest_restriction,
+					                      officialText =
+						                      frs.DnrAnglingRestriction
+						                      .official_text,
+					                      summary =
+						                      frs.DnrAnglingRestriction
+						                      .short_description
+				                      }
+			        };
+
+			return t;
 		}
 
 		private static IEnumerable<Species> SpeciesGenerator()
