@@ -1,5 +1,5 @@
 
-define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n<ul ng-repeat="stream in streams">\r\n    <li>\r\n        <div class="containerHeader containerRow">\r\n            <div class="grid_3 alpha">\r\n                <h2 class="sectionTitle">\r\n                    {{stream.streamName}}\r\n                </h2>\r\n            </div>\r\n            <div class="grid_1 omega">\r\n                <div class="statusContainer">\r\n                <span class="statusIcon">\r\n                    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n                         viewBox="0 0 16 16" version="1.1"\r\n                         xmlns="http://www.w3.org/2000/svg" class="species">\r\n                        <g class="brown">\r\n                            <circle class="population wild" cx="4" cy="12" r="3.5"/>\r\n                            <circle class="stocking none" cx="4" cy="12" r="3"/>\r\n                        </g>\r\n\r\n                        <g class="brook">\r\n                            <circle class="population none" cx="12" cy="12" r="3.5"/>\r\n                            <circle class="stocking none" cx="12" cy="12" r="3"/>\r\n                        </g>\r\n\r\n                        <g class="rainbow">\r\n                            <circle class="population wild" cx="8" cy="5.0718" r="3.5"/>\r\n                            <circle class="stocking stocked" cx="8" cy="5.0718" r="3"/>\r\n                        </g>\r\n                    </svg>\r\n\r\n\r\n                  <!--<img src="assets/images/iconThing.png" >-->\r\n                </span>\r\n                    <span class="statusText"></span>\r\n                </div>\r\n            </div>\r\n        </div><!-- end .containerHeader -->\r\n\r\n        <div class="containerBody containerRow">\r\n            <div height="12" width="292">\r\n                <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n            </div>\r\n        </div><!-- end .containerBody -->\r\n\r\n        <div class="containerFooter containerRow">\r\n            <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n            <div class="grid_3 alpha">\r\n                <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">\r\n                    <li>\r\n                        {{restriction.restrictionType.officialText}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n            <div class="grid_1 omega">\r\n                <div class="fractionContainer">\r\n                    <span class="numerator">0.0</span>\r\n                    /\r\n                    <span class="denominator">6.5</span>\r\n                </div>\r\n            </div>\r\n        </div><!-- end .containerFooter -->\r\n    </li>\r\n</ul>\r\n';});
+define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n        <div class="container_12">\r\n            <ul ng-repeat="stream in streams">\r\n                <li>\r\n                    <div class="containerHeader containerRow">\r\n                        <div class="grid_3 alpha">\r\n                            <h2 class="sectionTitle">\r\n                                {{stream.streamName}}\r\n                            </h2>\r\n                        </div>\r\n                        <div class="grid_1 omega">\r\n                            <div class="statusContainer">\r\n                <span class="statusIcon">\r\n                    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n                         viewBox="0 0 16 16" version="1.1"\r\n                         xmlns="http://www.w3.org/2000/svg" class="species">\r\n                        <g>\r\n                            <g class="{{stream.speciesSummary.brownTrout.name}}">\r\n                                <circle class="population {{stream.speciesSummary.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>\r\n                                <circle class="stocking {{stream.speciesSummary.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>\r\n                            </g>\r\n\r\n                            <g class="{{stream.speciesSummary.brookTrout.name}}" >\r\n                                <circle class="population {{stream.speciesSummary.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>\r\n                                <circle class="stocking {{stream.speciesSummary.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>\r\n                            </g>\r\n\r\n                            <g class="{{stream.speciesSummary.rainbowTrout.name}}">\r\n                                <circle class="population {{stream.speciesSummary.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>\r\n                                <circle class="stocking {{stream.speciesSummary.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>\r\n                            </g>\r\n                        </g>\r\n                    </svg>\r\n                  <!--<img src="assets/images/iconThing.png" >-->\r\n                </span>\r\n                                <span class="statusText"></span>\r\n                            </div>\r\n                        </div>\r\n                    </div><!-- end .containerHeader -->\r\n\r\n                    <div class="containerBody containerRow">\r\n                        <div height="12" width="292">\r\n                            <svg class="js-stream-line" width="292" height="20">\r\n                                <g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">\r\n                                    <g data-ng-repeat="section in segment.restrictionSections">\r\n                                        <rect ng-attr-x="{{section.start * 292}}"\r\n                                                y="4"\r\n                                                ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"\r\n                                                height="11"\r\n                                                rx="4"\r\n                                                ry="4"\r\n                                                class="public-land">\r\n                                        </rect>\r\n                                    </g>\r\n                                </g>\r\n                            </svg>\r\n                            <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n                        </div>\r\n                    </div><!-- end .containerBody -->\r\n\r\n                    <div class="containerFooter containerRow">\r\n                        <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n                        <div class="grid_3 alpha">\r\n                            <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">\r\n                                <li>\r\n                                    {{restriction.restrictionType.officialText}}\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                        <div class="grid_1 omega">\r\n                            <div class="fractionContainer">\r\n                                <span class="numerator">{{stream.publiclyAccessibleLength}}</span>\r\n                                /\r\n                                <span class="denominator">{{stream.streamLength}}</span>\r\n                            </div>\r\n                        </div>\r\n                    </div><!-- end .containerFooter -->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n';});
 
 define('modules/main/home/HomeModule',['require','angular','angular-route','text!./HomeControllerTemplate.html'],function(require) {
     
@@ -185,7 +185,7 @@ define('ViewModels/Stream',['require'],function(require) {
     var Stream = function() {
         this.streamName = '';
         this.streamLength = 0;
-        this.publiclAccessibleLength = 0;
+        this.publiclyAccessibleLength = 0;
         this.streamId = -1;
     };
 
@@ -216,15 +216,15 @@ define('ViewModels/Stream',['require'],function(require) {
     };
 
     proto.setStreamLength = function(length) {
-        this.streamLength = length;
+        this.streamLength = length.toFixed(1);
     };
 
     proto.getPublicAccessibleLength = function() {
-        return this.publiclAccessibleLength;
+        return this.publiclyAccessibleLength;
     };
 
     proto.setPublicAccessibleLength = function(length) {
-        this.publiclAccessibleLength = length;
+        this.publiclyAccessibleLength = length.toFixed(1);
     };
 
     proto.clone = function() {
@@ -249,19 +249,39 @@ define('ViewModels/Stream',['require'],function(require) {
 
     return Stream;
 });
+define('ViewModels/Species/SpeciesConfiguration',['require'],function(require) {
+    
+
+    var config = {
+        rainbowTroutId: 1,
+        rainbowClassName: 'rainbow',
+
+        brookTroutId: 2,
+        brookClassName: 'brook',
+
+        brownTroutId: 3,
+        brownClassName: 'brown',
+
+        stockedClassName: 'stocked',
+        notStockedClassName: 'none',
+        wildClassName: 'wild',
+        notWildClassName: 'none'
+    }
+
+    return config;
+});
 /**
  * Created by MBP on 3/12/14.
  */
 
-define('ViewModels/Species',['require'],function(require) {
+define('ViewModels/Species/Species',['require','ViewModels/Species/SpeciesConfiguration'],function(require) {
     
-    var Species = function(id, name, isStocked) {
-        if (typeof name !== 'string' || name == null || name.length === 0) {
-            throw new Error('name cannot be null');
-        }
 
-        this.init(id, name, isStocked);
+    var config = require('ViewModels/Species/SpeciesConfiguration');
+
+    var Species = function(id, name, isStocked) {
     };
+
 
     var proto = Species.prototype;
 
@@ -269,6 +289,8 @@ define('ViewModels/Species',['require'],function(require) {
         this.id = id;
         this.name = name;
         this.isStocked = isStocked;
+        this.isPresent = false;
+        this.stockingClass = config.notStockedClassName;
     };
 
     proto.getId = function() {
@@ -291,6 +313,12 @@ define('ViewModels/Species',['require'],function(require) {
         this.name = name;
     };
 
+    proto.getPopulationClassName = function() {
+        return this.isPresent
+            ? config.wildClassName
+            : config.notWildClassName;
+    }
+
     proto.getIsStocked = function() {
         return this.isStocked;
     };
@@ -298,6 +326,12 @@ define('ViewModels/Species',['require'],function(require) {
     proto.setIsStocked = function(isStocked) {
         this.isStocked = isStocked;
     };
+
+    proto.getIsStockedClass = function() {
+        return this.getIsStocked()
+            ? config.stockedClassName
+            : config.notStockedClassName;
+    }
 
     proto.fromJSON = function(json) {
         this.setIsStocked(json.isStocked);
@@ -310,6 +344,104 @@ define('ViewModels/Species',['require'],function(require) {
     };
 
     return Species;
+});
+
+define('ViewModels/Species/BrookTrout',['require','ViewModels/Species/SpeciesConfiguration','ViewModels/Species/Species'],function(require) {
+    
+    var config = require('ViewModels/Species/SpeciesConfiguration');
+    var Base = require('ViewModels/Species/Species');
+
+    var BrookTrout = function (isStocked) {
+        Base.prototype.constructor.call(this);
+        this.init(config.brookTroutId, config.brookClassName, isStocked);
+    };
+
+    BrookTrout.prototype = new Base();
+    var proto = BrookTrout.prototype;
+
+    return BrookTrout;
+});
+
+define('ViewModels/Species/BrownTrout',['require','ViewModels/Species/SpeciesConfiguration','ViewModels/Species/Species'],function(require) {
+    
+    var config = require('ViewModels/Species/SpeciesConfiguration');
+    var Base = require('ViewModels/Species/Species');
+
+    var BrownTrout = function (isStocked) {
+        Base.prototype.constructor.call(this);
+        this.init(config.brownTroutId, config.brownClassName, isStocked);
+    };
+
+    BrownTrout.prototype = new Base();
+    var proto = BrownTrout.prototype;
+
+    return BrownTrout;
+});
+
+define('ViewModels/Species/RainbowTrout',['require','ViewModels/Species/SpeciesConfiguration','ViewModels/Species/Species'],function(require) {
+    
+    var config = require('ViewModels/Species/SpeciesConfiguration');
+    var Base = require('ViewModels/Species/Species');
+
+    var RainbowTrout = function (isStocked) {
+        if (isStocked)
+        Base.prototype.constructor.call(this);
+        this.init(config.rainbowTroutId, config.rainbowClassName, isStocked);
+    };
+
+    RainbowTrout.prototype = new Base();
+    var proto = RainbowTrout.prototype;
+
+    return RainbowTrout;
+});
+define('ViewModels/Species/SpeciesSummary',['require','ViewModels/Species/SpeciesConfiguration','ViewModels/Species/BrookTrout','ViewModels/Species/BrownTrout','ViewModels/Species/RainbowTrout'],function(require) {
+    
+    var config = require('ViewModels/Species/SpeciesConfiguration');
+    var brookTrout = require('ViewModels/Species/BrookTrout');
+    var brownTrout = require('ViewModels/Species/BrownTrout');
+    var rainbowTrout = require('ViewModels/Species/RainbowTrout');
+
+    var SpeciesSummary = function() {
+        this.init();
+    };
+
+    var proto = SpeciesSummary.prototype;
+
+    proto.init = function() {
+        this.rainbowTrout = new rainbowTrout(false);
+        this.brownTrout = new brownTrout(false);
+        this.brookTrout = new brookTrout(false);
+    };
+
+    proto.fromJSON = function(json) {
+        if (json == null || json.length === 0) {
+            return;
+        }
+        for (var i = 0; i < json.length; i++) {
+            var s = json[i];
+            debugger;
+            if (s.id === config.rainbowTroutId) {
+                this.rainbowTrout = new rainbowTrout(s.isStocked);
+                this.rainbowTrout.isPresent = true;
+            }
+
+            else if (s.id === config.brookTroutId) {
+                this.brookTrout = new brookTrout(s.isStocked);
+                this.brookTrout.isPresent = true;
+            }
+
+            else if (s.id === config.brownTroutId) {
+                this.brownTrout = new brownTrout(s.isStocked);
+                this.brownTrout.isPresent = true;
+            }
+
+        }
+//        var species = json.species.map(function(speciesJson) {
+//            return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
+//        });
+    };
+
+    return SpeciesSummary;
 });
 /**
  * Created by MBP on 3/12/14.
@@ -525,10 +657,11 @@ define('ViewModels/PublicLand',['require'],function(require) {
  * @fileOverview Stream is a base class for a Stream View.
  */
 
-define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Species','ViewModels/LinearReferenceSegment','ViewModels/RestrictionSegment','ViewModels/Restriction','ViewModels/PublicLandSegment','ViewModels/PublicLand'],function(require) {
+define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Species/Species','ViewModels/Species/SpeciesSummary','ViewModels/LinearReferenceSegment','ViewModels/RestrictionSegment','ViewModels/Restriction','ViewModels/PublicLandSegment','ViewModels/PublicLand'],function(require) {
     
     var Base = require('ViewModels/Stream');
-    var Species = require('ViewModels/Species');
+    var Species = require('ViewModels/Species/Species');
+    var SpeciesSummary = require('ViewModels/Species/SpeciesSummary');
     var LinearReferenceSegment = require('ViewModels/LinearReferenceSegment');
 
     var RestrictionSegment = require('ViewModels/RestrictionSegment');
@@ -536,6 +669,8 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
 
     var PublicLandSegment = require('ViewModels/PublicLandSegment');
     var PublicLand = require('ViewModels/PublicLand');
+
+
 
 
     var StreamLine = function() {
@@ -549,10 +684,9 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
     proto.init = function() {
         this.streamName = '';
         this.streamLength = 0;
-        this.publiclAccessibleLength = 0;
         this.restrictionSegments = [];
         this.publicAccessSegments = [];
-        this.species = [];
+        this.speciesSummary = new SpeciesSummary();
     };
 
     proto.getRestrictionSegment = function() {
@@ -571,12 +705,12 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
         this.publicAccessSegments = segments;
     };
 
-    proto.getSpecies = function() {
-        return this.species;
+    proto.getSpeciesSummary = function() {
+        return this.speciesSummary;
     };
 
-    proto.setSpecies = function(species) {
-        this.species = species;
+    proto.setSpeciesSummary = function(speciesSummary) {
+        this.speciesSummary = speciesSummary;
     };
 
     proto.fromJSON = function(json) {
@@ -584,12 +718,15 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
         this.setStreamId(json.gid);
         this.setStreamName(json.kittle_nam);
         this.setStreamLength(json.length_mi);
+        this.setPublicAccessibleLength(json.public_route_length)
 
         if (json.species != null) {
-            var species = json.species.map(function(speciesJson) {
-                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
-            });
-            this.setSpecies(species);
+//            var species = json.species.map(function(speciesJson) {
+//                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
+//            });
+            var speciesJSON = json.species;
+            this.speciesSummary.fromJSON(speciesJSON);
+//            this.setSpecies(species);
         }
 
         if (json.restrictions != null) {
@@ -599,7 +736,6 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
                 return restriction;
             });
             this.setRestrictionSegments(restrictions);
-
         }
 
         if (json.publicLand != null) {
@@ -608,8 +744,7 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
                 publicLand.fromJSON(publicLandSegmentJson.type);
                 var start = publicLandSegmentJson.start;
                 var stop = publicLandSegmentJson.stop;
-                var publicLandSegment = new PublicLandSegment(start, stop, publicLand);
-                return publicLandSegment;
+                return new PublicLandSegment(start, stop, publicLand);
             });
             this.setPublicAccessSegments(publicLandSegments);
         }
@@ -696,7 +831,8 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         "kittle_nbr" : "M-009-010",
                         "length_mi" : 16.071000000000002,
                         "objectid" : 25429,
-                        "publicLand" : [ { "start" : 0.932402120414244,
+                        "publicLand" :
+                            [ { "start" : 0.932402120414244,
                             "stop" : 0.959412375522536,
                             "type" : "TBD"
                         },
@@ -797,7 +933,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         ],
                         "route_mi" : 16.071000000000002,
                         "species" : [ { "id" : 2,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brook Trout"
                         } ],
                         "trout_flag" : null
@@ -1080,7 +1216,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         } ],
                         "route_mi" : 0.88800000000000001,
                         "species" : [ { "id" : 2,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brook Trout"
                         } ],
                         "trout_flag" : null
@@ -1200,7 +1336,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         } ],
                         "route_mi" : 17.434000000000001,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         } ],
                         "trout_flag" : null
@@ -1296,7 +1432,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         } ],
                         "route_mi" : 0.97599999999999998,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         } ],
                         "trout_flag" : null
@@ -1599,7 +1735,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         } ],
                         "route_mi" : 19.004000000000001,
                         "species" : [ { "id" : 2,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brook Trout"
                         },
                             { "id" : 1,
@@ -1679,7 +1815,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         } ],
                         "route_mi" : 0.052999999999999999,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         } ],
                         "trout_flag" : null
@@ -1750,7 +1886,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
                         } ],
                         "route_mi" : 0.46000000000000002,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         },
                             { "id" : 1,
@@ -2106,7 +2242,7 @@ define('ViewModels/StreamRatio',['require'],function(require) {
     
     return StreamRatio;
 });
-define('modules/main/index',['require','./MainModule','./services/StreamCollectionService','ViewModels/LinearReferenceSegment','ViewModels/PublicLand','ViewModels/PublicLandSegment','ViewModels/Restriction','ViewModels/RestrictionSegment','ViewModels/Species','ViewModels/Stream','ViewModels/StreamLine','ViewModels/StreamRatio'],function(require) {
+define('modules/main/index',['require','./MainModule','./services/StreamCollectionService','ViewModels/LinearReferenceSegment','ViewModels/PublicLand','ViewModels/PublicLandSegment','ViewModels/Restriction','ViewModels/RestrictionSegment','ViewModels/Species/Species','ViewModels/Species/RainbowTrout','ViewModels/Species/BrookTrout','ViewModels/Species/BrownTrout','ViewModels/Species/SpeciesConfiguration','ViewModels/Species/SpeciesSummary','ViewModels/Stream','ViewModels/StreamLine','ViewModels/StreamRatio'],function(require) {
     
     require('./MainModule');
     require('./services/StreamCollectionService');
@@ -2115,7 +2251,12 @@ define('modules/main/index',['require','./MainModule','./services/StreamCollecti
     require('ViewModels/PublicLandSegment');
     require('ViewModels/Restriction');
     require('ViewModels/RestrictionSegment');
-    require('ViewModels/Species');
+    require('ViewModels/Species/Species');
+    require('ViewModels/Species/RainbowTrout');
+    require('ViewModels/Species/BrookTrout');
+    require('ViewModels/Species/BrownTrout');
+    require('ViewModels/Species/SpeciesConfiguration');
+    require('ViewModels/Species/SpeciesSummary');
     require('ViewModels/Stream');
     require('ViewModels/StreamLine');
     require('ViewModels/StreamRatio');

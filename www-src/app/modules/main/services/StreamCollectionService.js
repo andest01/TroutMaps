@@ -179,7 +179,7 @@ define(/** @lends Zoom */function(require) {
                         ],
                         "route_mi" : 16.071000000000002,
                         "species" : [ { "id" : 2,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brook Trout"
                         } ],
                         "trout_flag" : null
@@ -462,7 +462,7 @@ define(/** @lends Zoom */function(require) {
                         } ],
                         "route_mi" : 0.88800000000000001,
                         "species" : [ { "id" : 2,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brook Trout"
                         } ],
                         "trout_flag" : null
@@ -582,7 +582,7 @@ define(/** @lends Zoom */function(require) {
                         } ],
                         "route_mi" : 17.434000000000001,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         } ],
                         "trout_flag" : null
@@ -678,7 +678,7 @@ define(/** @lends Zoom */function(require) {
                         } ],
                         "route_mi" : 0.97599999999999998,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         } ],
                         "trout_flag" : null
@@ -981,7 +981,7 @@ define(/** @lends Zoom */function(require) {
                         } ],
                         "route_mi" : 19.004000000000001,
                         "species" : [ { "id" : 2,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brook Trout"
                         },
                             { "id" : 1,
@@ -1061,7 +1061,7 @@ define(/** @lends Zoom */function(require) {
                         } ],
                         "route_mi" : 0.052999999999999999,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         } ],
                         "trout_flag" : null
@@ -1132,7 +1132,7 @@ define(/** @lends Zoom */function(require) {
                         } ],
                         "route_mi" : 0.46000000000000002,
                         "species" : [ { "id" : 3,
-                            "isStocked" : true,
+                            "isStocked" : false,
                             "name" : "Brown Trout"
                         },
                             { "id" : 1,

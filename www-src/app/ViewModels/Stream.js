@@ -8,7 +8,7 @@ define(function(require) {
     var Stream = function() {
         this.streamName = '';
         this.streamLength = 0;
-        this.publiclAccessibleLength = 0;
+        this.publiclyAccessibleLength = 0;
         this.streamId = -1;
     };
 
@@ -39,15 +39,15 @@ define(function(require) {
     };
 
     proto.setStreamLength = function(length) {
-        this.streamLength = length;
+        this.streamLength = length.toFixed(1);
     };
 
     proto.getPublicAccessibleLength = function() {
-        return this.publiclAccessibleLength;
+        return this.publiclyAccessibleLength;
     };
 
     proto.setPublicAccessibleLength = function(length) {
-        this.publiclAccessibleLength = length;
+        this.publiclyAccessibleLength = length.toFixed(1);
     };
 
     proto.clone = function() {

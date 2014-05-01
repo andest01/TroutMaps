@@ -5,7 +5,8 @@
 define(function(require) {
     'use strict';
     var Base = require('ViewModels/Stream');
-    var Species = require('ViewModels/Species');
+    var Species = require('ViewModels/Species/Species');
+    var SpeciesSummary = require('ViewModels/Species/SpeciesSummary');
     var LinearReferenceSegment = require('ViewModels/LinearReferenceSegment');
 
     var RestrictionSegment = require('ViewModels/RestrictionSegment');
@@ -13,6 +14,8 @@ define(function(require) {
 
     var PublicLandSegment = require('ViewModels/PublicLandSegment');
     var PublicLand = require('ViewModels/PublicLand');
+
+
 
 
     var StreamLine = function() {
@@ -26,10 +29,9 @@ define(function(require) {
     proto.init = function() {
         this.streamName = '';
         this.streamLength = 0;
-        this.publiclAccessibleLength = 0;
         this.restrictionSegments = [];
         this.publicAccessSegments = [];
-        this.species = [];
+        this.speciesSummary = new SpeciesSummary();
     };
 
     proto.getRestrictionSegment = function() {
@@ -48,12 +50,12 @@ define(function(require) {
         this.publicAccessSegments = segments;
     };
 
-    proto.getSpecies = function() {
-        return this.species;
+    proto.getSpeciesSummary = function() {
+        return this.speciesSummary;
     };
 
-    proto.setSpecies = function(species) {
-        this.species = species;
+    proto.setSpeciesSummary = function(speciesSummary) {
+        this.speciesSummary = speciesSummary;
     };
 
     proto.fromJSON = function(json) {
@@ -61,12 +63,15 @@ define(function(require) {
         this.setStreamId(json.gid);
         this.setStreamName(json.kittle_nam);
         this.setStreamLength(json.length_mi);
+        this.setPublicAccessibleLength(json.public_route_length)
 
         if (json.species != null) {
-            var species = json.species.map(function(speciesJson) {
-                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
-            });
-            this.setSpecies(species);
+//            var species = json.species.map(function(speciesJson) {
+//                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
+//            });
+            var speciesJSON = json.species;
+            this.speciesSummary.fromJSON(speciesJSON);
+//            this.setSpecies(species);
         }
 
         if (json.restrictions != null) {
@@ -76,7 +81,6 @@ define(function(require) {
                 return restriction;
             });
             this.setRestrictionSegments(restrictions);
-
         }
 
         if (json.publicLand != null) {
@@ -85,8 +89,7 @@ define(function(require) {
                 publicLand.fromJSON(publicLandSegmentJson.type);
                 var start = publicLandSegmentJson.start;
                 var stop = publicLandSegmentJson.stop;
-                var publicLandSegment = new PublicLandSegment(start, stop, publicLand);
-                return publicLandSegment;
+                return new PublicLandSegment(start, stop, publicLand);
             });
             this.setPublicAccessSegments(publicLandSegments);
         }
