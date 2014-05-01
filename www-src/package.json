@@ -1,0 +1,31 @@
+{
+  "name": "angular-require-starter",
+  "version": "0.0.1",
+  "private": true,
+  "_comments": {
+    "optional but useful packages, or alternative versions": {
+      "karma-complexity-preprocessor": "~0.1.0",
+      "grunt-contrib-jshint": "~0.7.2",
+      "grunt-css": "~0.5.4",
+      "karma-junit-reporter": "~0.2.1"
+    }
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "karma": "latest",
+    "karma-phantomjs-launcher": "latest",
+    "karma-requirejs": "latest",
+    "karma-coverage": "latest",
+    "ng-annotate": "latest",
+    "karma-jasmine": "latest",
+    "grunt-karma": "latest",
+    "grunt-contrib-sass": "~0.6.0",
+    "grunt-plato": "~0.2.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-markdox": "~1.2.1",
+    "load-grunt-config": "~0.7.1",
+    "grunt-contrib-concat": "~0.4.0"
+  }
+}

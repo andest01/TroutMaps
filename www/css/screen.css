@@ -1,0 +1,262 @@
+/* ---------------------------------------------------------------------
+Original Author: 
+Contributors: 
+
+Target Browsers: All
+Media Type: Screen, Projection
+Width: All Sizes
+------------------------------------------------------------------------ */
+
+/* ---------------------------------------------------------------------
+RESET CSS (thanks Eric Meyer)
+------------------------------------------------------------------------ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+:focus {
+    outline: 0;
+}
+
+/* Always show a vertical scrollbar, even when there is no scrolling */
+html {
+    overflow-y: scroll;
+}
+
+/* Don't let iOS and WinMobile mobile-optimize text for you */
+/* Turn this rule on for mobile sites or sites using mediaqueries */
+/*
+html {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+*/
+
+/* ---------------------------------------------------------------------
+ HTML5 Block / Inline Block declarations
+------------------------------------------------------------------------ */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+audio, canvas, video {
+    display: inline-block;
+}
+
+/* ---------------------------------------------------------------------
+ Form Reset Styles
+------------------------------------------------------------------------ */
+/*input[type=search]::-webkit-search-cancel-button,*/
+/*input[type=search]::-webkit-search-decoration,*/
+/*input[type=search]::-webkit-search-results-button,*/
+/*input[type=search]::-webkit-search-results-decoration {*/
+    /*-webkit-appearance: none;*/
+/*}*/
+
+input[type=search] {
+    -webkit-appearance: none;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: vertical;
+}
+
+::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/* ---------------------------------------------------------------------
+ Classes that came with the 960 grid demo
+------------------------------------------------------------------------ */
+body {
+    background: #123;
+    color: #463838;;
+    font-size: 11px;
+    height: auto;
+    padding-bottom: 20px;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+.container_12 {
+    background-color: #fff;
+    background-repeat: repeat-y;
+    margin-bottom: 20px;
+    /*background-image: url(../images/12_col.gif);*/
+}
+
+/* ---------------------------------------------------------------------
+ Throw-away Styles
+------------------------------------------------------------------------ */
+.pageHeading {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------
+ Base Styles
+------------------------------------------------------------------------ */
+.wrapper {
+    overflow: hidden;
+}
+
+.containerRow {
+    width: 100%;
+    margin: 0 0 5px 0;
+    overflow: hidden;
+}
+
+.statusContainer {
+    display: table;
+    width: 100%;
+}
+
+.fractionContainer {
+    text-align: right;
+}
+
+.restrictions li {
+    margin-bottom: 5px;
+}
+
+/* ---------------------------------------------------------------------
+ Text Styles
+------------------------------------------------------------------------ */
+
+.sectionTitle {
+    line-height: 1.1875;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #463838;
+}
+
+.statusIcon {
+    display: table-cell;
+    height: 18px;
+    width: 18px;
+    margin-right: 3px;
+}
+
+.statusText {
+    display: table-cell;
+    color: #ce4e27;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+.numerator {
+    font-size: 12px;
+    color: #acbb39;
+}
+
+.species .stocking.stocked{
+    stroke-width: 2px;
+}
+
+.species .brook {
+    fill: #acbb39;
+    color: #acbb39;
+    stroke: #acbb39;
+}
+
+.species .brown {
+    fill: #fccc14;
+    stroke: #fccc14;
+    color: #fccc14;
+}
+
+.species .rainbow {
+    fill: #ce4e27;
+    stroke: #ce4e27;
+    color: #ce4e27;
+}
+
+.species .stocking.stocked {
+    stroke: #463838;
+}
+
+.species .stocking.none {
+    display: none;
+}
+
+.species .stocking {
+    fill-opacity: 0.0;
+}
+
+.species .population.none {
+    fill: #ebebeb;
+    stroke: #ebebeb;
+    color: #ebebeb;
+}
+
+.axis text {
+    display: none;
+}
+
+.axis path.domain {
+    fill: #4e7f84;
+    /*stroke: #463838;*/
+    /*stroke: blue;*/
+    /*stroke-width: 5px;*/
+    /*shape-rendering: crispEdges;*/
+    stroke-linecap: round;
+}
+
+.axis line {
+    fill: none;
+    stroke: #000;
+    /*shape-rendering: crispEdges;*/
+}
+
+.axis .public-land {
+    fill: #acbb39;
+}
