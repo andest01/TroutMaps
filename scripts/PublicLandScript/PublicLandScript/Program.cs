@@ -114,28 +114,6 @@ namespace PublicLandScript
 																													 RestrictionType = group.FirstOrDefault().DnrAnglingRestriction
 				                                                                                             });
 				                                        model.restrictions = restrictions;
-//				                                        model.restrictions =
-//					                                        s.FishingRestrictionSections.Select(
-//						                                        frs => new RestrictionSection()
-//						                                               {
-//							                                               start = frs.start,
-//							                                               stop = frs.stop,
-//							                                               restriction = new FishingRestriction()
-//							                                                             {
-//								                                                             isAnglingRestriction =
-//									                                                             frs.DnrAnglingRestriction
-//									                                                             .is_angling_restriction,
-//								                                                             isHarvestRestriction =
-//									                                                             frs.DnrAnglingRestriction
-//									                                                             .is_harvest_restriction,
-//								                                                             officialText =
-//									                                                             frs.DnrAnglingRestriction
-//									                                                             .official_text,
-//								                                                             summary =
-//									                                                             frs.DnrAnglingRestriction
-//									                                                             .short_description
-//							                                                             }
-//						                                               });
 				                                        return model;
 			                                        }).ToList();
 
