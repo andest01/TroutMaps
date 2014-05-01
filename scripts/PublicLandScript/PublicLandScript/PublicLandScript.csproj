@@ -58,8 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FishingRestriction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicLand.cs" />
+    <Compile Include="Restriction.cs" />
+    <Compile Include="RestrictionSection.cs" />
+    <Compile Include="Species.cs" />
+    <Compile Include="StreamViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
