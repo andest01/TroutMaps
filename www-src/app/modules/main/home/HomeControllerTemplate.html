@@ -41,18 +41,43 @@
                     <div class="containerBody containerRow">
                         <div height="12" width="292">
                             <svg class="js-stream-line" width="292" height="20">
+
+
+                                <g class="js-stream-line_publicLand" data-ng-repeat="segment in stream.publicAccessSegments">
+                                    <rect ng-attr-x="{{segment.start * 292}}"
+                                          y="4"
+                                          ng-attr-width="{{(segment.stop * 292) - (segment.start * 292)}}"
+                                          height="12"
+                                          rx="4"
+                                          ry="4"
+                                          class="stream-line_publicLand">
+                                    </rect>
+                                </g>
+
+                                <g class="js-stream-line_base">
+                                    <rect width="292"
+                                          height="4"
+                                          x="0"
+                                          y="8"
+                                          class="stream-line_water">
+                                    </rect>
+                                </g>
+
                                 <g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">
                                     <g data-ng-repeat="section in segment.restrictionSections">
                                         <rect ng-attr-x="{{section.start * 292}}"
-                                                y="4"
-                                                ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"
-                                                height="11"
-                                                rx="4"
-                                                ry="4"
-                                                class="public-land">
+                                              y="8"
+                                              ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"
+                                              height="4"
+                                              rx="0"
+                                              ry="0"
+                                              class="stream-line_restriction">
                                         </rect>
                                     </g>
                                 </g>
+
+
+
                             </svg>
                             <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->
                         </div>
