@@ -23,6 +23,7 @@ define(function(require) {
         }
         for (var i = 0; i < json.length; i++) {
             var s = json[i];
+            debugger;
             if (s.id === config.rainbowTroutId) {
                 this.rainbowTrout = new rainbowTrout(s.isStocked);
                 this.rainbowTrout.isPresent = true;
