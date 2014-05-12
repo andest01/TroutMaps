@@ -13,7 +13,7 @@ define(/** @lends SelectableGeometryDirective */function(require) {
             },
             template: htmlTemplate,
             link: function(scope, element, attrs) {
-                console.log('hit the stream line directive');
+//                console.log('hit the stream line directive');
 //                console.log(scope);
 //                function onMouseDown(event) {
 //

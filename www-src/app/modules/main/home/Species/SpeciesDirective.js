@@ -13,8 +13,8 @@ define(/** @lends SelectableGeometryDirective */function(require) {
             },
             template: htmlTemplate,
             link: function(scope, element, attrs) {
-                console.log('hit the species directive');
-                console.log(scope.species);
+//                console.log('hit the species directive');
+//                console.log(scope.species);
 //                function onMouseDown(event) {
 //
 //                };

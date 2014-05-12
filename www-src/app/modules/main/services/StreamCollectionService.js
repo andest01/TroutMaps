@@ -78,7 +78,8 @@ define(/** @lends Zoom */function(require) {
                         "length_mi" : 16.071000000000002,
                         "objectid" : 25429,
                         "publicLand" :
-                            [ { "start" : 0.932402120414244,
+                            [
+                                { "start" : 0.932402120414244,
                             "stop" : 0.959412375522536,
                             "type" : "TBD"
                         },
