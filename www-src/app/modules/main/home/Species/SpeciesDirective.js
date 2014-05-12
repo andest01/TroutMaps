@@ -4,24 +4,22 @@ define(function(require) {
     var homeModule = require('./HomeModule');
     var template = require('text!./SpeciesTemplate');
 
-    homeModule.directive('analysisMapBoard', function () {
+    homeModule.directive('speciesSummary', function () {
         var exports = {
             restrict: 'A',
 
             template: template,
 
-            scope: true,
-
-            link: function(scope, element, attributes) {
-
+            scope: {
+                species: '='
             },
 
-            compile: function () {
-
+            link: function(scope, element, attributes) {
+                console.log('hit the species summary directive');
+                console.log(scope.speciesSummary);
             }
         };
 
         return exports;
     });
-
-    });
+});

@@ -15,18 +15,6 @@ define(/** @lends SelectableGeometryDirective */function(require) {
             link: function(scope, element, attrs) {
                 console.log('hit the restriction directive');
                 console.log(scope.restriction);
-//                function onMouseDown(event) {
-//
-//                };
-
-//                element
-//                    .on('mousedown', onMouseDown)
-//                    .on('click', onClick);
-
-//                scope
-//                    .$on('$destroy', function() {
-//                        element.off();
-//                    });
             }
         };
 

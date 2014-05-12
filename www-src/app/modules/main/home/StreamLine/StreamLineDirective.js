@@ -1,3 +1,24 @@
-/**
- * Created by MBP on 4/30/2014.
- */
+define(function(require) {
+    'use strict';
+
+    var homeModule = require('./HomeModule');
+    var template = require('text!./StreamLineTemplate');
+
+    homeModule.directive('streamLine', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                stream: '='
+            },
+
+            link: function(scope, element, attributes) {
+
+            }
+        };
+
+        return exports;
+    });
+});
