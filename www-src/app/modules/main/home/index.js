@@ -6,4 +6,6 @@ define(function(require) {
     require('./Restriction/RestrictionDirective');
     require('./Species/SpeciesDirective');
     require('./StreamLine/StreamLineDirective');
+    require('./StreamLine/StreamLineViewModel');
+    require('../../../ViewModels/LinearReferenceSegment');
 });

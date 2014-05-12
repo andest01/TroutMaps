@@ -15,8 +15,8 @@ define(function(require) {
             },
 
             link: function(scope, element, attributes) {
-                console.log('hit the species summary directive');
-                console.log(scope.speciesSummary);
+//                console.log('hit the species summary directive');
+//                console.log(scope.speciesSummary);
             }
         };
 

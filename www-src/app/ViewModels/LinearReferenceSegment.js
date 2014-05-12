@@ -6,6 +6,8 @@ define(function(require) {
     'use strict';
     var LinearReferenceSegment = function(start, stop) {
         //this.initialize(start, stop);
+        this.start = 0.0;
+        this.stop = 0.0;
     };
 
     var proto = LinearReferenceSegment.prototype;

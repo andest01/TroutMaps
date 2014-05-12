@@ -1,14 +1,34 @@
 <div height="12" width="292">
-    <svg class="js-stream-line" width="292" height="20">
-        <g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">
-            <g data-ng-repeat="section in segment.restrictionSections">
-                <rect ng-attr-x="{{section.start * 292}}"
-                      y="4"
-                      ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"
+    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">
+
+        <g class="stream-line_public-land js-stream-line_public-land">
+            <g data-ng-repeat="segment in publicSegments">
+                <rect ng-attr-x="{{segment.xOffset * stage.width}}"
+                      y="0"
+                      ng-attr-width="{{segment.width * stage.width}}"
                       height="11"
                       rx="4"
                       ry="4"
                       class="public-land">
+                </rect>
+            </g>
+        </g>
+
+        <g class="js-stream-line_stream stream-line_stream">
+            <rect
+                    x="0"
+                    y="4"
+                    height="5"
+                    ng-attr-width="{{stage.width}}"></rect>
+        </g>
+
+        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictions">
+            <g data-ng-repeat="segment in restriction.restrictionSections">
+                <rect ng-attr-x="{{segment.xOffset * stage.width}}"
+                      y="4"
+                      ng-attr-width="{{segment.width * stage.width}}"
+                      height="5"
+                      class="restriction">
                 </rect>
             </g>
         </g>

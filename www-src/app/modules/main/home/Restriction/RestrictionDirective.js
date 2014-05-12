@@ -13,8 +13,8 @@ define(/** @lends SelectableGeometryDirective */function(require) {
             },
             template: htmlTemplate,
             link: function(scope, element, attrs) {
-                console.log('hit the restriction directive');
-                console.log(scope.restriction);
+//                console.log('hit the restriction directive');
+//                console.log(scope.restriction);
             }
         };
 

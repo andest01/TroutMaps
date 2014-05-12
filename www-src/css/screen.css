@@ -257,6 +257,15 @@ body {
     /*shape-rendering: crispEdges;*/
 }
 
-.axis .public-land {
+.stream-line_stream {
+    fill: #4e7f84;
+}
+
+.stream-line_restriction {
+    fill: #fccc14;
+}
+
+
+.stream-line_public-land {
     fill: #acbb39;
 }
