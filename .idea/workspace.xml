@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3935fab-e71a-40d5-a465-fd7565fab677" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\standers.NERDERY\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\Species\SpeciesViewModel.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionDirective.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionDirective.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesTemplate.html" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesTemplate.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineTemplate.html" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineTemplate.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,11 +30,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.8405797">
       <split-first>
         <leaf>
-          <file leaf-file-name="HomeControllerTemplate.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="HomeControllerTemplate.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3598448" vertical-offset="445" max-vertical-offset="1547">
-                  <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+                <state vertical-scroll-proportion="-29.961538" vertical-offset="445" max-vertical-offset="1547">
+                  <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -49,7 +44,7 @@
             <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-                  <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+                  <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -59,7 +54,7 @@
             <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionDirective.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-                  <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+                  <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
@@ -105,11 +100,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="StreamLineDirective.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="StreamLineDirective.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-                  <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+                <state vertical-scroll-proportion="0.06433302" vertical-offset="0" max-vertical-offset="1057">
+                  <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
                   <folding />
                 </state>
               </provider>
@@ -119,7 +114,7 @@
             <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-                  <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+                  <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
                   <folding />
                 </state>
               </provider>
@@ -205,12 +200,12 @@
         <option value="$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js" />
         <option value="$PROJECT_DIR$/www-src/css/screen.css" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineTemplate.html" />
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesTemplate.html" />
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js" />
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionDirective.js" />
+        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" />
+        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js" />
+        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js" />
       </list>
     </option>
   </component>
@@ -979,14 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionTemplate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1057">
@@ -995,10 +982,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.961538" vertical-offset="445" max-vertical-offset="1547">
+          <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionDirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="63" />
           <folding />
         </state>
       </provider>
@@ -1006,23 +1009,15 @@
     <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesDirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineDirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3598448" vertical-offset="445" max-vertical-offset="1547">
-          <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.06433302" vertical-offset="0" max-vertical-offset="1057">
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
           <folding />
         </state>
       </provider>

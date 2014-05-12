@@ -1,8 +1,8 @@
 define(function(require) {
     'use strict';
 
-    var homeModule = require('./HomeModule');
-    var template = require('text!./SpeciesTemplate');
+    var homeModule = require('../HomeModule');
+    var template = require('text!./SpeciesTemplate.html');
 
     homeModule.directive('speciesSummary', function () {
         var exports = {

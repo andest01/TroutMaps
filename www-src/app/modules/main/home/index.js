@@ -5,5 +5,5 @@ define(function(require) {
     require('./HomeModule');
     require('./Restriction/RestrictionDirective');
     require('./Species/SpeciesDirective');
-    require('./StreamLine/SpeciesLineDirective');
+    require('./StreamLine/StreamLineDirective');
 });

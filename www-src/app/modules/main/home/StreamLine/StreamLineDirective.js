@@ -1,8 +1,8 @@
 define(function(require) {
     'use strict';
 
-    var homeModule = require('./HomeModule');
-    var template = require('text!./StreamLineTemplate');
+    var homeModule = require('../HomeModule');
+    var template = require('text!./StreamLineTemplate.html');
 
     homeModule.directive('streamLine', function () {
         var exports = {
