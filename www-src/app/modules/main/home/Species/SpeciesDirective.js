@@ -1,27 +1,37 @@
-define(function(require) {
+define(/** @lends SelectableGeometryDirective */function(require) {
     'use strict';
+    var homeModule = require('../HomeModule');
+//    require('./services/ProjectionService');
+    var htmlTemplate = require('text!./SpeciesTemplate.html');
 
-    var homeModule = require('./HomeModule');
-    var template = require('text!./SpeciesTemplate');
+    homeModule.directive('speciesSummary', function() {
 
-    homeModule.directive('analysisMapBoard', function () {
         var exports = {
-            restrict: 'A',
-
-            template: template,
-
-            scope: true,
-
-            link: function(scope, element, attributes) {
-
+            restrict: "A",
+            scope: {
+                species: '='
             },
+            template: htmlTemplate,
+            link: function(scope, element, attrs) {
+                console.log('hit the species directive');
+                console.log(scope.species);
+//                function onMouseDown(event) {
+//
+//                };
 
-            compile: function () {
+//                element
+//                    .on('mousedown', onMouseDown)
+//                    .on('click', onClick);
 
+//                scope
+//                    .$on('$destroy', function() {
+//                        element.off();
+//                    });
             }
         };
 
         return exports;
-    });
 
     });
+
+});

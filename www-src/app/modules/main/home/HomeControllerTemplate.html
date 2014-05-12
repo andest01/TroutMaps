@@ -10,86 +10,19 @@
                         </div>
                         <div class="grid_1 omega">
                             <div class="statusContainer">
-                <span class="statusIcon">
-                    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"
-                         viewBox="0 0 16 16" version="1.1"
-                         xmlns="http://www.w3.org/2000/svg" class="species">
-                        <g>
-                            <g class="{{stream.speciesSummary.brownTrout.name}}">
-                                <circle class="population {{stream.speciesSummary.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>
-                                <circle class="stocking {{stream.speciesSummary.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>
-                            </g>
-
-                            <g class="{{stream.speciesSummary.brookTrout.name}}" >
-                                <circle class="population {{stream.speciesSummary.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>
-                                <circle class="stocking {{stream.speciesSummary.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>
-                            </g>
-
-                            <g class="{{stream.speciesSummary.rainbowTrout.name}}">
-                                <circle class="population {{stream.speciesSummary.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>
-                                <circle class="stocking {{stream.speciesSummary.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>
-                            </g>
-                        </g>
-                    </svg>
-                  <!--<img src="assets/images/iconThing.png" >-->
-                </span>
-                                <span class="statusText"></span>
+                                <div data-species-summary species="stream.speciesSummary"></div>
+                                <span class="statusText">Stuff</span>
                             </div>
                         </div>
                     </div><!-- end .containerHeader -->
 
-                    <div class="containerBody containerRow">
-                        <div height="12" width="292">
-                            <svg class="js-stream-line" width="292" height="20">
-
-
-                                <g class="js-stream-line_publicLand" data-ng-repeat="segment in stream.publicAccessSegments">
-                                    <rect ng-attr-x="{{segment.start * 292}}"
-                                          y="4"
-                                          ng-attr-width="{{(segment.stop * 292) - (segment.start * 292)}}"
-                                          height="12"
-                                          rx="4"
-                                          ry="4"
-                                          class="stream-line_publicLand">
-                                    </rect>
-                                </g>
-
-                                <g class="js-stream-line_base">
-                                    <rect width="292"
-                                          height="4"
-                                          x="0"
-                                          y="8"
-                                          class="stream-line_water">
-                                    </rect>
-                                </g>
-
-                                <g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">
-                                    <g data-ng-repeat="section in segment.restrictionSections">
-                                        <rect ng-attr-x="{{section.start * 292}}"
-                                              y="8"
-                                              ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"
-                                              height="4"
-                                              rx="0"
-                                              ry="0"
-                                              class="stream-line_restriction">
-                                        </rect>
-                                    </g>
-                                </g>
-
-
-
-                            </svg>
-                            <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->
-                        </div>
-                    </div><!-- end .containerBody -->
+                    <div data-stream-line stream="stream"></div>
 
                     <div class="containerFooter containerRow">
                         <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->
                         <div class="grid_3 alpha">
                             <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">
-                                <li>
-                                    {{restriction.restrictionType.officialText}}
-                                </li>
+                                <li data-restriction-legend restriction="stream.restriction"></li>
                             </ul>
                         </div>
                         <div class="grid_1 omega">
