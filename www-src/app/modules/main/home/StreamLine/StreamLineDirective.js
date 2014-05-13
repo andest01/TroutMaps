@@ -32,6 +32,30 @@ define(function(require) {
 
                 scope.restrictionViewModel = new restrictionSummaryViewModel(scope.stream.restrictionSegments);
 
+                var createTickMarks = function(streamLength) {
+                    var clampedLength = Math.floor(length);
+                    var tickMarks = [];
+                    if (clampedLength < 1) {
+                        return tickMarks;
+                    }
+
+                    var tickWidth = scope.stage.width / clampedLength;
+                    for (var i = 0; i <= clampedLength; i++) {
+                        tickMarks.push({
+                                xOffset: i * tickWidth,
+                                width: 3,
+                                height: 3,
+                                yOffset: 8
+                            }
+                        )
+                    }
+
+                    return tickMarks;
+                };
+
+                var length = parseFloat(scope.stream.streamLength);
+                scope.tickMarks = createTickMarks(length);
+
 //                scope.restrictions = scope.stream.restrictionSegments;
 //                for (var i = 0; i < scope.restrictions.length; i++) {
 //                    var restriction = scope.restrictions[i];

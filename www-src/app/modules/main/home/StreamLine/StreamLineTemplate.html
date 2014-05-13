@@ -32,6 +32,14 @@
                 </rect>
             </g>
         </g>
+        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">
+            <rect ng-attr-x="{{tick.xOffset}}"
+                  ng-attr-y="{{tick.yOffset}}"
+                  ng-attr-width="{{tick.width}}"
+                  ng-attr-height="{{tick.height}}"
+                  class="tick">
+            </rect>
+        </g>
     </svg>
     <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->
 </div>
