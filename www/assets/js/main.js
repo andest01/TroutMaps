@@ -1,5 +1,5 @@
 
-define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n        <div class="container_12">\r\n            <ul ng-repeat="stream in streams">\r\n                <li>\r\n                    <div class="containerHeader containerRow">\r\n                        <div class="grid_3 alpha">\r\n                            <h2 class="sectionTitle">\r\n                                {{stream.streamName}}\r\n                            </h2>\r\n                        </div>\r\n                        <div class="grid_1 omega">\r\n                            <div class="statusContainer">\r\n                <div data-species-summary species="stream.speciesSummary" >\r\n\r\n                </div>\r\n                <!--<span class="statusIcon">-->\r\n                    <!--<svg preserveAspectRatio="xMidYMid meet" width="16" height="16"-->\r\n                         <!--viewBox="0 0 16 16" version="1.1"-->\r\n                         <!--xmlns="http://www.w3.org/2000/svg" class="species">-->\r\n                        <!--<g>-->\r\n                            <!--<g class="{{stream.speciesSummary.brownTrout.name}}">-->\r\n                                <!--<circle class="population {{stream.speciesSummary.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>-->\r\n                                <!--<circle class="stocking {{stream.speciesSummary.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>-->\r\n                            <!--</g>-->\r\n\r\n                            <!--<g class="{{stream.speciesSummary.brookTrout.name}}" >-->\r\n                                <!--<circle class="population {{stream.speciesSummary.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>-->\r\n                                <!--<circle class="stocking {{stream.speciesSummary.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>-->\r\n                            <!--</g>-->\r\n\r\n                            <!--<g class="{{stream.speciesSummary.rainbowTrout.name}}">-->\r\n                                <!--<circle class="population {{stream.speciesSummary.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>-->\r\n                                <!--<circle class="stocking {{stream.speciesSummary.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>-->\r\n                            <!--</g>-->\r\n                        <!--</g>-->\r\n                    <!--</svg>-->\r\n                  <!--&lt;!&ndash;<img src="assets/images/iconThing.png" >&ndash;&gt;-->\r\n                <!--</span>-->\r\n                                <span class="statusText"></span>\r\n                            </div>\r\n                        </div>\r\n                    </div><!-- end .containerHeader -->\r\n\r\n                    <div class="containerBody containerRow">\r\n                        <div data-stream-line stream="stream"></div>\r\n                        <!--<div height="12" width="292">-->\r\n                            <!--<svg class="js-stream-line" width="292" height="20">-->\r\n                                <!--<g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">-->\r\n                                    <!--<g data-ng-repeat="section in segment.restrictionSections">-->\r\n                                        <!--<rect ng-attr-x="{{section.start * 292}}"-->\r\n                                                <!--y="4"-->\r\n                                                <!--ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"-->\r\n                                                <!--height="11"-->\r\n                                                <!--rx="4"-->\r\n                                                <!--ry="4"-->\r\n                                                <!--class="public-land">-->\r\n                                        <!--</rect>-->\r\n                                    <!--</g>-->\r\n                                <!--</g>-->\r\n                            <!--</svg>-->\r\n                            <!--&lt;!&ndash;<img src="assets/images/stream-line.png" height="12" width="292" alt="" />&ndash;&gt;-->\r\n                        <!--</div>-->\r\n                    </div><!-- end .containerBody -->\r\n\r\n                    <div class="containerFooter containerRow">\r\n                        <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n                        <div class="grid_3 alpha">\r\n                            <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">\r\n                                <li>\r\n                                    <div data-restriction-legend restriction="restriction"></div>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                        <div class="grid_1 omega">\r\n                            <div class="fractionContainer">\r\n                                <span class="numerator">{{stream.publiclyAccessibleLength}}</span>\r\n                                /\r\n                                <span class="denominator">{{stream.streamLength}}</span>\r\n                            </div>\r\n                        </div>\r\n                    </div><!-- end .containerFooter -->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n';});
+define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n        <div class="container_12">\r\n            <ul ng-repeat="stream in streams">\r\n                <li>\r\n                    <div class="containerHeader containerRow">\r\n                        <div class="grid_3 alpha">\r\n                            <h2 class="sectionTitle">\r\n                                {{stream.streamName}}\r\n                            </h2>\r\n                        </div>\r\n                        <div class="grid_1 omega">\r\n                            <div class="statusContainer">\r\n                <div data-species-summary species="stream.speciesSummary" >\r\n\r\n                </div>\r\n                <!--<span class="statusIcon">-->\r\n                    <!--<svg preserveAspectRatio="xMidYMid meet" width="16" height="16"-->\r\n                         <!--viewBox="0 0 16 16" version="1.1"-->\r\n                         <!--xmlns="http://www.w3.org/2000/svg" class="species">-->\r\n                        <!--<g>-->\r\n                            <!--<g class="{{stream.speciesSummary.brownTrout.name}}">-->\r\n                                <!--<circle class="population {{stream.speciesSummary.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>-->\r\n                                <!--<circle class="stocking {{stream.speciesSummary.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>-->\r\n                            <!--</g>-->\r\n\r\n                            <!--<g class="{{stream.speciesSummary.brookTrout.name}}" >-->\r\n                                <!--<circle class="population {{stream.speciesSummary.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>-->\r\n                                <!--<circle class="stocking {{stream.speciesSummary.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>-->\r\n                            <!--</g>-->\r\n\r\n                            <!--<g class="{{stream.speciesSummary.rainbowTrout.name}}">-->\r\n                                <!--<circle class="population {{stream.speciesSummary.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>-->\r\n                                <!--<circle class="stocking {{stream.speciesSummary.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>-->\r\n                            <!--</g>-->\r\n                        <!--</g>-->\r\n                    <!--</svg>-->\r\n                  <!--&lt;!&ndash;<img src="assets/images/iconThing.png" >&ndash;&gt;-->\r\n                <!--</span>-->\r\n                                <span class="statusText"></span>\r\n                            </div>\r\n                        </div>\r\n                    </div><!-- end .containerHeader -->\r\n\r\n                    <div class="containerBody containerRow">\r\n                        <div data-stream-line stream="stream"></div>\r\n                        <!--<div height="12" width="292">-->\r\n                            <!--<svg class="js-stream-line" width="292" height="20">-->\r\n                                <!--<g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">-->\r\n                                    <!--<g data-ng-repeat="section in segment.restrictionSections">-->\r\n                                        <!--<rect ng-attr-x="{{section.start * 292}}"-->\r\n                                                <!--y="4"-->\r\n                                                <!--ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"-->\r\n                                                <!--height="11"-->\r\n                                                <!--rx="4"-->\r\n                                                <!--ry="4"-->\r\n                                                <!--class="public-land">-->\r\n                                        <!--</rect>-->\r\n                                    <!--</g>-->\r\n                                <!--</g>-->\r\n                            <!--</svg>-->\r\n                            <!--&lt;!&ndash;<img src="assets/images/stream-line.png" height="12" width="292" alt="" />&ndash;&gt;-->\r\n                        <!--</div>-->\r\n                    </div><!-- end .containerBody -->\r\n\r\n                    <div class="containerFooter containerRow">\r\n                        <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n                        <div class="grid_3 alpha">\r\n                            <div data-restriction-legend restriction="stream.restrictionSegments"></div>\r\n                        </div>\r\n                        <div class="grid_1 omega">\r\n                            <div class="fractionContainer">\r\n                                <span class="numerator">{{stream.publiclyAccessibleLength}}</span>\r\n                                /\r\n                                <span class="denominator">{{stream.streamLength}}</span>\r\n                            </div>\r\n                        </div>\r\n                    </div><!-- end .containerFooter -->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n';});
 
 define('modules/main/home/HomeModule',['require','angular','angular-route','text!./HomeControllerTemplate.html'],function(require) {
     
@@ -104,63 +104,7 @@ define('modules/main/home/HomeController',['require','./HomeModule'],function(re
 });
 
 
-define('text!modules/main/home/Restriction/RestrictionTemplate.html',[],function () { return '<div>\r\n    {{restriction.restrictionType.officialText}}\r\n</div>';});
-
-define(/** @lends SelectableGeometryDirective */'modules/main/home/Restriction/RestrictionDirective',['require','../HomeModule','text!./RestrictionTemplate.html'],function(require) {
-    
-    var homeModule = require('../HomeModule');
-//    require('./services/ProjectionService');
-    var htmlTemplate = require('text!./RestrictionTemplate.html');
-
-    homeModule.directive('restrictionLegend', function() {
-
-        var exports = {
-            restrict: "A",
-            scope: {
-                restriction: '='
-            },
-            template: htmlTemplate,
-            link: function(scope, element, attrs) {
-//                console.log('hit the restriction directive');
-//                console.log(scope.restriction);
-            }
-        };
-
-        return exports;
-
-    });
-
-});
-
-define('text!modules/main/home/Species/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
-
-define('modules/main/home/Species/SpeciesDirective',['require','../HomeModule','text!./SpeciesTemplate.html'],function(require) {
-    
-
-    var homeModule = require('../HomeModule');
-    var template = require('text!./SpeciesTemplate.html');
-
-    homeModule.directive('speciesSummary', function () {
-        var exports = {
-            restrict: 'A',
-
-            template: template,
-
-            scope: {
-                species: '='
-            },
-
-            link: function(scope, element, attributes) {
-//                console.log('hit the species summary directive');
-//                console.log(scope.speciesSummary);
-            }
-        };
-
-        return exports;
-    });
-});
-
-define('text!modules/main/home/StreamLine/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="4"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="4"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
+define('text!modules/main/home/Restriction/RestrictionTemplate.html',[],function () { return '<!--<div>-->\r\n    <!--{{restriction.restrictionType.officialText}}-->\r\n<!--</div>-->\r\n\r\n<ul class="restrictions" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n    <li>\r\n        <!--<div data-restriction-legend restriction="restriction"></div>-->\r\n        <div>\r\n            <span class="legend {{restriction.cssClass}}">\r\n                <!--<svg>-->\r\n                    <!--<rect x="0"-->\r\n                          <!--y="3"-->\r\n                          <!--width="5"-->\r\n                          <!--height="5"-->\r\n                          <!--class="restriction {{restriction.cssClass}}">-->\r\n                    <!--</rect>-->\r\n                <!--</svg>-->\r\n            </span>\r\n            <span>{{restriction.text}}</span>\r\n\r\n        </div>\r\n    </li>\r\n</ul>';});
 
 /**
  * Created by MBP on 3/12/14.
@@ -211,13 +155,101 @@ define('modules/main/home/StreamLine/StreamLineViewModel',['require','ViewModels
 
     return StreamLineViewModel;
 });
-define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeModule','text!./StreamLineTemplate.html','./StreamLineViewModel','ViewModels/LinearReferenceSegment'],function(require) {
+define('modules/main/home/StreamLine/RestrictionSummaryViewModel',['require','ViewModels/LinearReferenceSegment','./StreamLineViewModel'],function(require) {
+    
+
+    var Base = require('ViewModels/LinearReferenceSegment');
+    var streamLineViewModel = require('./StreamLineViewModel');
+
+    var RestrictionSummaryViewModel = function (restrictionSegments) {
+        this.init(restrictionSegments);
+    };
+
+    RestrictionSummaryViewModel.prototype.init = function(restrictionSegments) {
+        this.restrictions = [];
+        for (var i = 0; i < restrictionSegments.length; i++) {
+            var r = restrictionSegments[i];
+            var restrictionViewModel = {
+                restrictionSections: r.restrictionSections.map(function(t) {
+                    return new streamLineViewModel(t);
+                }),
+                cssClass: i == 0 ? 'stream-line_restriction' : 'stream-line_restriction_secondary',
+                text: r.officialText
+            };
+
+            this.restrictions.push(restrictionViewModel);
+        }
+    };
+
+    return RestrictionSummaryViewModel;
+});
+define(/** @lends SelectableGeometryDirective */'modules/main/home/Restriction/RestrictionDirective',['require','../HomeModule','text!./RestrictionTemplate.html','ViewModels/LinearReferenceSegment','../StreamLine/RestrictionSummaryViewModel'],function(require) {
+    
+    var homeModule = require('../HomeModule');
+//    require('./services/ProjectionService');
+    var htmlTemplate = require('text!./RestrictionTemplate.html');
+    var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
+    var restrictionSummaryViewModel = require('../StreamLine/RestrictionSummaryViewModel');
+
+    homeModule.directive('restrictionLegend', function() {
+
+        var exports = {
+            restrict: "A",
+            scope: {
+                restriction: '='
+            },
+            template: htmlTemplate,
+            link: function(scope, element, attrs) {
+//                console.log('hit the restriction directive');
+//                console.log(scope.restriction);
+                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
+            }
+        };
+
+        return exports;
+
+    });
+
+});
+
+define('text!modules/main/home/Species/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
+
+define('modules/main/home/Species/SpeciesDirective',['require','../HomeModule','text!./SpeciesTemplate.html'],function(require) {
+    
+
+    var homeModule = require('../HomeModule');
+    var template = require('text!./SpeciesTemplate.html');
+
+    homeModule.directive('speciesSummary', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                species: '='
+            },
+
+            link: function(scope, element, attributes) {
+//                console.log('hit the species summary directive');
+//                console.log(scope.speciesSummary);
+            }
+        };
+
+        return exports;
+    });
+});
+
+define('text!modules/main/home/StreamLine/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
+
+define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeModule','text!./StreamLineTemplate.html','./StreamLineViewModel','ViewModels/LinearReferenceSegment','./RestrictionSummaryViewModel'],function(require) {
     
 
     var homeModule = require('../HomeModule');
     var template = require('text!./StreamLineTemplate.html');
     var viewModel = require('./StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
+    var restrictionSummaryViewModel = require('./RestrictionSummaryViewModel');
 
     homeModule.directive('streamLine', function () {
         var exports = {
@@ -242,20 +274,46 @@ define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeMod
                     return new viewModel(segment);
                 });
 
-                scope.restrictions = scope.stream.restrictionSegments;
-                for (var i = 0; i < scope.restrictions.length; i++) {
-                    var restriction = scope.restrictions[i];
-                    restriction.restrictionSections = restriction.restrictionSections.map(function(segment) {
-                        return new viewModel(segment);
-                    });
-                }
+                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.stream.restrictionSegments);
+
+                var createTickMarks = function(streamLength) {
+                    var clampedLength = Math.floor(length);
+                    var tickMarks = [];
+                    if (clampedLength < 1) {
+                        return tickMarks;
+                    }
+
+                    var tickWidth = scope.stage.width / clampedLength;
+                    for (var i = 0; i <= clampedLength; i++) {
+                        tickMarks.push({
+                                xOffset: i * tickWidth,
+                                width: 3,
+                                height: 3,
+                                yOffset: 8
+                            }
+                        )
+                    }
+
+                    return tickMarks;
+                };
+
+                var length = parseFloat(scope.stream.streamLength);
+                scope.tickMarks = createTickMarks(length);
+
+//                scope.restrictions = scope.stream.restrictionSegments;
+//                for (var i = 0; i < scope.restrictions.length; i++) {
+//                    var restriction = scope.restrictions[i];
+//                    restriction.restrictionSections = restriction.restrictionSections.map(function(segment) {
+//                        return new viewModel(segment);
+//                    });
+//                }
             }
         };
 
         return exports;
     });
 });
-define('modules/main/home/index',['require','./HomeController','./HomeModule','./Restriction/RestrictionDirective','./Species/SpeciesDirective','./StreamLine/StreamLineDirective','./StreamLine/StreamLineViewModel','../../../ViewModels/LinearReferenceSegment'],function(require) {
+define('modules/main/home/index',['require','./HomeController','./HomeModule','./Restriction/RestrictionDirective','./Species/SpeciesDirective','./StreamLine/StreamLineDirective','./StreamLine/StreamLineViewModel','../../../ViewModels/LinearReferenceSegment','./StreamLine/RestrictionSummaryViewModel'],function(require) {
     
 
     require('./HomeController');
@@ -265,6 +323,7 @@ define('modules/main/home/index',['require','./HomeController','./HomeModule','.
     require('./StreamLine/StreamLineDirective');
     require('./StreamLine/StreamLineViewModel');
     require('../../../ViewModels/LinearReferenceSegment');
+    require('./StreamLine/RestrictionSummaryViewModel');
 });
 
 /**
