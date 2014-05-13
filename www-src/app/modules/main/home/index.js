@@ -8,4 +8,5 @@ define(function(require) {
     require('./StreamLine/StreamLineDirective');
     require('./StreamLine/StreamLineViewModel');
     require('../../../ViewModels/LinearReferenceSegment');
+    require('./StreamLine/RestrictionSummaryViewModel');
 });

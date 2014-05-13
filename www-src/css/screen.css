@@ -265,7 +265,26 @@ body {
     fill: #fccc14;
 }
 
+.stream-line_restriction_secondary {
+    fill: #ce4e27;
+}
+
 
 .stream-line_public-land {
     fill: #acbb39;
 }
+
+.legend {
+    width: 7px;
+    height: 5px;
+    display: inline-block;
+}
+
+.legend.stream-line_restriction {
+    background-color: #fccc14;
+}
+
+.legend.stream-line_restriction_secondary {
+    background-color: #ce4e27;
+}
+

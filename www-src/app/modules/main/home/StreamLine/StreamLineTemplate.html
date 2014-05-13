@@ -17,18 +17,18 @@
         <g class="js-stream-line_stream stream-line_stream">
             <rect
                     x="0"
-                    y="4"
+                    y="3"
                     height="5"
                     ng-attr-width="{{stage.width}}"></rect>
         </g>
 
-        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictions">
+        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">
             <g data-ng-repeat="segment in restriction.restrictionSections">
                 <rect ng-attr-x="{{segment.xOffset * stage.width}}"
-                      y="4"
+                      y="3"
                       ng-attr-width="{{segment.width * stage.width}}"
                       height="5"
-                      class="restriction">
+                      class="restriction {{restriction.cssClass}}">
                 </rect>
             </g>
         </g>

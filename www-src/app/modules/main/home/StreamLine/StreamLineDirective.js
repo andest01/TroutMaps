@@ -5,6 +5,7 @@ define(function(require) {
     var template = require('text!./StreamLineTemplate.html');
     var viewModel = require('./StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
+    var restrictionSummaryViewModel = require('./RestrictionSummaryViewModel');
 
     homeModule.directive('streamLine', function () {
         var exports = {
@@ -29,13 +30,15 @@ define(function(require) {
                     return new viewModel(segment);
                 });
 
-                scope.restrictions = scope.stream.restrictionSegments;
-                for (var i = 0; i < scope.restrictions.length; i++) {
-                    var restriction = scope.restrictions[i];
-                    restriction.restrictionSections = restriction.restrictionSections.map(function(segment) {
-                        return new viewModel(segment);
-                    });
-                }
+                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.stream.restrictionSegments);
+
+//                scope.restrictions = scope.stream.restrictionSegments;
+//                for (var i = 0; i < scope.restrictions.length; i++) {
+//                    var restriction = scope.restrictions[i];
+//                    restriction.restrictionSections = restriction.restrictionSections.map(function(segment) {
+//                        return new viewModel(segment);
+//                    });
+//                }
             }
         };
 

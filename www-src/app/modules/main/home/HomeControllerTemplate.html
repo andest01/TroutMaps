@@ -65,11 +65,7 @@
                     <div class="containerFooter containerRow">
                         <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->
                         <div class="grid_3 alpha">
-                            <ul class="restrictions" data-ng-repeat="restriction in stream.restrictionSegments">
-                                <li>
-                                    <div data-restriction-legend restriction="restriction"></div>
-                                </li>
-                            </ul>
+                            <div data-restriction-legend restriction="stream.restrictionSegments"></div>
                         </div>
                         <div class="grid_1 omega">
                             <div class="fractionContainer">
