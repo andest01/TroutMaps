@@ -31,8 +31,14 @@ define(function(require) {
         StreamCollectionService.getStreams()
             .then(function (streams) {
                 $scope.streams = streams;
-                console.log($scope.streams);
+//                console.log($scope.streams);
             });
+
+        $scope.selectStream = function(stream) {
+            console.log(stream);
+            // emit?
+            $scope.emit('streamSelectionChanged', stream);
+        };
     };
 
     homeModule.controller(
