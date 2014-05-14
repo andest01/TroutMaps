@@ -1,0 +1,23 @@
+<!--<div>-->
+    <!--{{restriction.restrictionType.officialText}}-->
+<!--</div>-->
+
+<ul class="restrictions" data-ng-repeat="restriction in restrictionViewModel.restrictions">
+    <li>
+        <!--<div data-restriction-legend restriction="restriction"></div>-->
+        <div>
+            <span class="legend {{restriction.cssClass}}">
+                <!--<svg>-->
+                    <!--<rect x="0"-->
+                          <!--y="3"-->
+                          <!--width="5"-->
+                          <!--height="5"-->
+                          <!--class="restriction {{restriction.cssClass}}">-->
+                    <!--</rect>-->
+                <!--</svg>-->
+            </span>
+            <span>{{restriction.text}}</span>
+
+        </div>
+    </li>
+</ul>

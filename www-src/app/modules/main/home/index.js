@@ -9,4 +9,6 @@ define(function(require) {
     require('./StreamLine/StreamLineViewModel');
     require('../../../ViewModels/LinearReferenceSegment');
     require('./StreamLine/RestrictionSummaryViewModel');
+    require('./StreamRatio/StreamRatioDirective');
+    require('./StreamRatio/StreamRatioViewModel');
 });

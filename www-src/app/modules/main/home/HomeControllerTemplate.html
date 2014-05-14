@@ -1,81 +1,57 @@
 <h1>Home controller template.</h1>
-        <div class="container_12">
-            <ul ng-repeat="stream in streams">
-                <li>
-                    <div class="containerHeader containerRow">
-                        <div class="grid_3 alpha">
-                            <h2 class="sectionTitle">
-                                {{stream.streamName}}
-                            </h2>
-                        </div>
-                        <div class="grid_1 omega">
-                            <div class="statusContainer">
-                <div data-species-summary species="stream.speciesSummary" >
+<div>
+<div class="grid">
+    <ul>
+        <li ng-repeat="stream in streams">
+            <div class="grid-row">
+                <div class="containerHeader grid-row">
+                    <div class="grid-row-col grid-row-col_9of12">
+                        <h2 class="sectionTitle">
+                            {{stream.streamName}}
+                        </h2>
+                    </div>
+                    <div class="grid-row-col grid-row-col_3of12">
+                        <div class="grid-row-col grid-row-col_4of12">
+                            <div data-species-summary species="stream.speciesSummary">
 
+                            </div>
+                        </div>
+                        <div class="grid-row-col grid-row-col_4of12">
+                            <div data-stream-ratio stream="stream">
+
+                            </div>
+                        </div>
+                        <div class="grid-row-col grid-row-col_4of12">
+                            <span class="statusText"></span>
+                        </div>
+                    </div>
                 </div>
-                <!--<span class="statusIcon">-->
-                    <!--<svg preserveAspectRatio="xMidYMid meet" width="16" height="16"-->
-                         <!--viewBox="0 0 16 16" version="1.1"-->
-                         <!--xmlns="http://www.w3.org/2000/svg" class="species">-->
-                        <!--<g>-->
-                            <!--<g class="{{stream.speciesSummary.brownTrout.name}}">-->
-                                <!--<circle class="population {{stream.speciesSummary.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.5"/>-->
-                                <!--<circle class="stocking {{stream.speciesSummary.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3"/>-->
-                            <!--</g>-->
+                <!-- end .containerHeader -->
 
-                            <!--<g class="{{stream.speciesSummary.brookTrout.name}}" >-->
-                                <!--<circle class="population {{stream.speciesSummary.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.5"/>-->
-                                <!--<circle class="stocking {{stream.speciesSummary.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3"/>-->
-                            <!--</g>-->
-
-                            <!--<g class="{{stream.speciesSummary.rainbowTrout.name}}">-->
-                                <!--<circle class="population {{stream.speciesSummary.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.5"/>-->
-                                <!--<circle class="stocking {{stream.speciesSummary.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3"/>-->
-                            <!--</g>-->
-                        <!--</g>-->
-                    <!--</svg>-->
-                  <!--&lt;!&ndash;<img src="assets/images/iconThing.png" >&ndash;&gt;-->
-                <!--</span>-->
-                                <span class="statusText"></span>
-                            </div>
-                        </div>
-                    </div><!-- end .containerHeader -->
-
-                    <div class="containerBody containerRow">
+                <div class="containerBody grid-row">
+                    <div class="grid-row-col_12of12">
                         <div data-stream-line stream="stream"></div>
-                        <!--<div height="12" width="292">-->
-                            <!--<svg class="js-stream-line" width="292" height="20">-->
-                                <!--<g class="js-stream-line_restriction" data-ng-repeat="segment in stream.restrictionSegments">-->
-                                    <!--<g data-ng-repeat="section in segment.restrictionSections">-->
-                                        <!--<rect ng-attr-x="{{section.start * 292}}"-->
-                                                <!--y="4"-->
-                                                <!--ng-attr-width="{{(section.stop * 292) - (section.start * 292)}}"-->
-                                                <!--height="11"-->
-                                                <!--rx="4"-->
-                                                <!--ry="4"-->
-                                                <!--class="public-land">-->
-                                        <!--</rect>-->
-                                    <!--</g>-->
-                                <!--</g>-->
-                            <!--</svg>-->
-                            <!--&lt;!&ndash;<img src="assets/images/stream-line.png" height="12" width="292" alt="" />&ndash;&gt;-->
-                        <!--</div>-->
-                    </div><!-- end .containerBody -->
+                    </div>
+                </div>
+                <!-- end .containerBody -->
 
-                    <div class="containerFooter containerRow">
-                        <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->
-                        <div class="grid_3 alpha">
-                            <div data-restriction-legend restriction="stream.restrictionSegments"></div>
+                <div class="grid-row">
+                    <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->
+                    <div class="grid-row-col grid-row-col_9of12">
+                        <div data-restriction-legend restriction="stream.restrictionSegments"></div>
+                    </div>
+                    <div class="grid-row-col grid-row-col_3of12">
+                        <div class="fractionContainer">
+                            <span class="{{stream.publiclyAccessibleLength > 0.0 ? 'numerator' : 'denominator'}} ">{{stream.publiclyAccessibleLength}}</span>
+                            /
+                            <span class="denominator">{{stream.streamLength}}</span>
                         </div>
-                        <div class="grid_1 omega">
-                            <div class="fractionContainer">
-                                <span class="numerator">{{stream.publiclyAccessibleLength}}</span>
-                                /
-                                <span class="denominator">{{stream.streamLength}}</span>
-                            </div>
-                        </div>
-                    </div><!-- end .containerFooter -->
-                </li>
-            </ul>
-        </div>
+                    </div>
+                </div>
+                <!-- end .containerFooter -->
+            </div>
+        </li>
+    </ul>
+</div>
+</div>
 
