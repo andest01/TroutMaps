@@ -149,7 +149,7 @@ body {
 }
 
 h4 {
-    font-size: 12px;
+    font-size: 13px;
     color: #463838;
 }
 
@@ -212,26 +212,41 @@ h4 {
     margin-right: 3px;
 }
 
+.heading {
+    color: #463838;
+    font-size: 13px;
+}
+
 .statusText {
     display: table-cell;
     color: #ce4e27;
     vertical-align: bottom;
     text-align: right;
-}
-
-.heading {
-    color: #463838;
-    font-size: 12px;
+    margin: 2px 0 0 0;
 }
 
 .numerator {
-    font-size: 12px;
+    font-size: 13px;
     color: #acbb39;
 }
 
 .denominator {
-    font-size: 12px;
+    font-size: 13px;
     color: #463838;
+}
+
+.box {
+    margin: 0 0 20px 0;
+    background: #dbdbda;
+    padding: 5px 4px;
+}
+
+.box-hd {
+    margin-bottom: 4px;
+}
+
+.box-bd {
+
 }
 
 /* ---------------------------------------------------------------------
@@ -372,7 +387,7 @@ h4 {
     width: 7px;
     height: 5px;
     display: inline-block;
-    margin: 4px 4px 0px 0px
+    margin: 3px 4px 0 0;
 }
 
 .legend.stream-line_restriction {

@@ -2,9 +2,9 @@
 <div>
 <div class="grid">
     <ul>
-        <li ng-repeat="stream in streams">
+        <li class="box" ng-repeat="stream in streams">
             <div class="grid-row">
-                <div class="containerHeader grid-row">
+                <div class="containerHeader grid-row box-hd">
                     <div class="grid-row-col grid-row-col_9of12">
                         <h2 class="sectionTitle">
                             {{stream.streamName}}
@@ -16,13 +16,13 @@
 
                             </div>
                         </div>
-                        <div class="grid-row-col grid-row-col_4of12">
-                            <div data-stream-ratio stream="stream">
+                        <!--<div class="grid-row-col grid-row-col_4of12">-->
+                            <!--<div data-stream-ratio stream="stream">-->
 
-                            </div>
-                        </div>
-                        <div class="grid-row-col grid-row-col_4of12">
-                            <span class="statusText"></span>
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="grid-row-col grid-row-col_8of12">
+                            <span class="heading statusText">Avoid</span>
                         </div>
                     </div>
                 </div>
