@@ -3,7 +3,7 @@ define(function(require) {
 
     var homeModule = require('../HomeModule');
     var template = require('text!./StreamLineTemplate.html');
-    var viewModel = require('./StreamLineViewModel');
+    var viewModel = require('ViewModels/StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
     var restrictionSummaryViewModel = require('./RestrictionSummaryViewModel');
 

@@ -57,9 +57,11 @@ define(function(require) {
      */
     require('./home/index');
     require('../SpeciesView/index');
+    require('../RestrictionsView/index');
 
     return ng.module('app', [
         'app.home',
-        'species'
+        'species',
+        'restriction'
     ]);
 });

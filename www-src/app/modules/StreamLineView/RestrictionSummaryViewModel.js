@@ -2,7 +2,7 @@ define(function(require) {
     'use strict';
 
     var Base = require('ViewModels/LinearReferenceSegment');
-    var streamLineViewModel = require('./StreamLineViewModel');
+    var streamLineViewModel = require('ViewModels/StreamLineViewModel');
 
     var RestrictionSummaryViewModel = function (restrictionSegments) {
         this.init(restrictionSegments);

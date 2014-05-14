@@ -110,8 +110,28 @@ define('modules/main/home/HomeController',['require','./HomeModule'],function(re
 });
 
 
-define('text!modules/main/home/Restriction/RestrictionTemplate.html',[],function () { return '<ul class="restrictions" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n    <li>\r\n        <div class="media">\r\n            <div class="media-hd legend {{restriction.cssClass}}">\r\n\r\n            </div>\r\n            <span class="media-bd heading">{{restriction.text}}</span>\r\n\r\n        </div>\r\n    </li>\r\n</ul>';});
+define('text!modules/main/home/StreamLine/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
 
+define('ViewModels/StreamLineViewModel',['require'],function(require) {
+    
+
+//    var Base = require('ViewModels/LinearReferenceSegment');
+
+    var StreamLineViewModel = function (lineSegment) {
+        this.lineSegment = null;
+        this.xOffset = 0.0;
+        this.width = 0.0;
+        this.init(lineSegment);
+    };
+
+    StreamLineViewModel.prototype.init = function(lineSegment) {
+        this.lineSegment = lineSegment;
+        this.xOffset = 1.0 - this.lineSegment.stop;
+        this.width = Math.abs(this.lineSegment.stop - this.lineSegment.start);
+    };
+
+    return StreamLineViewModel;
+});
 /**
  * Created by MBP on 3/12/14.
  */
@@ -141,30 +161,10 @@ define('ViewModels/LinearReferenceSegment',['require'],function(require) {
 
     return LinearReferenceSegment;
 });
-define('modules/main/home/StreamLine/StreamLineViewModel',['require','ViewModels/LinearReferenceSegment'],function(require) {
+define('ViewModels/RestrictionSummaryViewModel',['require','./StreamLineViewModel'],function(require) {
     
 
-    var Base = require('ViewModels/LinearReferenceSegment');
-
-    var StreamLineViewModel = function (lineSegment) {
-        this.lineSegment = null;
-        this.xOffset = 0.0;
-        this.width = 0.0;
-        this.init(lineSegment);
-    };
-
-    StreamLineViewModel.prototype.init = function(lineSegment) {
-        this.lineSegment = lineSegment;
-        this.xOffset = 1.0 - this.lineSegment.stop;
-        this.width = Math.abs(this.lineSegment.stop - this.lineSegment.start);
-    };
-
-    return StreamLineViewModel;
-});
-define('modules/main/home/StreamLine/RestrictionSummaryViewModel',['require','ViewModels/LinearReferenceSegment','./StreamLineViewModel'],function(require) {
-    
-
-    var Base = require('ViewModels/LinearReferenceSegment');
+//    var Base = require('ViewModels/LinearReferenceSegment');
     var streamLineViewModel = require('./StreamLineViewModel');
 
     var RestrictionSummaryViewModel = function (restrictionSegments) {
@@ -177,8 +177,8 @@ define('modules/main/home/StreamLine/RestrictionSummaryViewModel',['require','Vi
             var r = restrictionSegments[i];
             var restrictionViewModel = {
                 restrictionSections: r.restrictionSections.map(function(t) {
-                    return new streamLineViewModel(t);
-                }),
+                    return this.mapRestrictionSegment(t);
+                }.bind(this)),
                 cssClass: i == 0 ? 'stream-line_restriction' : 'stream-line_restriction_secondary',
                 text: r.officialText
             };
@@ -187,47 +187,20 @@ define('modules/main/home/StreamLine/RestrictionSummaryViewModel',['require','Vi
         }
     };
 
+    RestrictionSummaryViewModel.prototype.mapRestrictionSegment = function(section) {
+        return new streamLineViewModel(section);
+    };
+
     return RestrictionSummaryViewModel;
 });
-define(/** @lends SelectableGeometryDirective */'modules/main/home/Restriction/RestrictionDirective',['require','../HomeModule','text!./RestrictionTemplate.html','ViewModels/LinearReferenceSegment','../StreamLine/RestrictionSummaryViewModel'],function(require) {
-    
-    var homeModule = require('../HomeModule');
-//    require('./services/ProjectionService');
-    var htmlTemplate = require('text!./RestrictionTemplate.html');
-    var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
-    var restrictionSummaryViewModel = require('../StreamLine/RestrictionSummaryViewModel');
-
-    homeModule.directive('restrictionLegend', function() {
-
-        var exports = {
-            restrict: "A",
-            scope: {
-                restriction: '='
-            },
-            template: htmlTemplate,
-            link: function(scope, element, attrs) {
-//                console.log('hit the restriction directive');
-//                console.log(scope.restriction);
-                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
-            }
-        };
-
-        return exports;
-
-    });
-
-});
-
-define('text!modules/main/home/StreamLine/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
-
-define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeModule','text!./StreamLineTemplate.html','./StreamLineViewModel','ViewModels/LinearReferenceSegment','./RestrictionSummaryViewModel'],function(require) {
+define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeModule','text!./StreamLineTemplate.html','ViewModels/StreamLineViewModel','ViewModels/LinearReferenceSegment','ViewModels/RestrictionSummaryViewModel'],function(require) {
     
 
     var homeModule = require('../HomeModule');
     var template = require('text!./StreamLineTemplate.html');
-    var viewModel = require('./StreamLineViewModel');
+    var viewModel = require('ViewModels/StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
-    var restrictionSummaryViewModel = require('./RestrictionSummaryViewModel');
+    var restrictionSummaryViewModel = require('ViewModels/RestrictionSummaryViewModel');
 
     homeModule.directive('streamLine', function () {
         var exports = {
@@ -361,17 +334,16 @@ define('modules/main/home/StreamRatio/StreamRatioDirective',['require','../HomeM
         return exports;
     });
 });
-define('modules/main/home/index',['require','./HomeController','./HomeModule','./Restriction/RestrictionDirective','./StreamLine/StreamLineDirective','./StreamLine/StreamLineViewModel','../../../ViewModels/LinearReferenceSegment','./StreamLine/RestrictionSummaryViewModel','./StreamRatio/StreamRatioDirective','./StreamRatio/StreamRatioViewModel'],function(require) {
+define('modules/main/home/index',['require','./HomeController','./HomeModule','./StreamLine/StreamLineDirective','../../../ViewModels/LinearReferenceSegment','./StreamRatio/StreamRatioDirective','./StreamRatio/StreamRatioViewModel'],function(require) {
     
 
     require('./HomeController');
     require('./HomeModule');
-    require('./Restriction/RestrictionDirective');
-//    require('./Species/SpeciesDirective');
+//    require('./Restriction/RestrictionDirective');
     require('./StreamLine/StreamLineDirective');
-    require('./StreamLine/StreamLineViewModel');
+//    require('./StreamLine/StreamLineViewModel');
     require('../../../ViewModels/LinearReferenceSegment');
-    require('./StreamLine/RestrictionSummaryViewModel');
+//    require('./StreamLine/RestrictionSummaryViewModel');
     require('./StreamRatio/StreamRatioDirective');
     require('./StreamRatio/StreamRatioViewModel');
 });
@@ -418,6 +390,44 @@ define('modules/SpeciesView/SpeciesDirective',['require','./SpeciesModule','text
 define('modules/SpeciesView/index',['require','./SpeciesDirective'],function(require) {
     
     require('./SpeciesDirective');
+});
+
+define('modules/RestrictionsView/RestrictionModule',['require','angular'],function(require) {
+    
+
+    var ng = require('angular');
+    return ng.module('restriction', []);
+});
+
+define('text!modules/RestrictionsView/RestrictionTemplate.html',[],function () { return '<ul class="restrictions" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n    <li>\r\n        <div class="media">\r\n            <div class="media-hd legend {{restriction.cssClass}}">\r\n\r\n            </div>\r\n            <span class="media-bd heading">{{restriction.text}}</span>\r\n\r\n        </div>\r\n    </li>\r\n</ul>';});
+
+define(/** @lends SelectableGeometryDirective */'modules/RestrictionsView/RestrictionDirective',['require','./RestrictionModule','text!./RestrictionTemplate.html','../../ViewModels/RestrictionSummaryViewModel'],function(require) {
+    
+    var restrictionModule = require('./RestrictionModule');
+    var htmlTemplate = require('text!./RestrictionTemplate.html');
+    var restrictionSummaryViewModel = require('../../ViewModels/RestrictionSummaryViewModel');
+
+    restrictionModule.directive('restrictionLegend', function() {
+
+        var exports = {
+            restrict: "A",
+            scope: {
+                restriction: '='
+            },
+            template: htmlTemplate,
+            link: function(scope, element, attrs) {
+                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
+
+            }
+        };
+
+        return exports;
+    });
+
+});
+define('modules/RestrictionsView/index',['require','./RestrictionDirective'],function(require) {
+    
+    require('./RestrictionDirective');
 });
 
 /**
@@ -469,7 +479,7 @@ define('modules/SpeciesView/index',['require','./SpeciesDirective'],function(req
  *
  * @see [Angular Modules](http://docs.angularjs.org/guide/module)
  */
-define('modules/main/MainModule',['require','angular','./home/index','../SpeciesView/index'],function(require) {
+define('modules/main/MainModule',['require','angular','./home/index','../SpeciesView/index','../RestrictionsView/index'],function(require) {
     
 
     var ng = require('angular');
@@ -479,10 +489,12 @@ define('modules/main/MainModule',['require','angular','./home/index','../Species
      */
     require('./home/index');
     require('../SpeciesView/index');
+    require('../RestrictionsView/index');
 
     return ng.module('app', [
         'app.home',
-        'species'
+        'species',
+        'restriction'
     ]);
 });
 
