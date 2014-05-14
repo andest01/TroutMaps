@@ -4,7 +4,7 @@ define(function(require) {
     require('./HomeController');
     require('./HomeModule');
     require('./Restriction/RestrictionDirective');
-    require('./Species/SpeciesDirective');
+//    require('./Species/SpeciesDirective');
     require('./StreamLine/StreamLineDirective');
     require('./StreamLine/StreamLineViewModel');
     require('../../../ViewModels/LinearReferenceSegment');

@@ -97,6 +97,8 @@ define('modules/main/home/HomeController',['require','./HomeModule'],function(re
 
         $scope.selectStream = function(stream) {
             console.log(stream);
+            // emit?
+            $scope.emit('streamSelectionChanged', stream);
         };
     };
 
@@ -214,34 +216,6 @@ define(/** @lends SelectableGeometryDirective */'modules/main/home/Restriction/R
 
     });
 
-});
-
-define('text!modules/main/home/Species/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.4"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3.05"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
-
-define('modules/main/home/Species/SpeciesDirective',['require','../HomeModule','text!./SpeciesTemplate.html'],function(require) {
-    
-
-    var homeModule = require('../HomeModule');
-    var template = require('text!./SpeciesTemplate.html');
-
-    homeModule.directive('speciesSummary', function () {
-        var exports = {
-            restrict: 'A',
-
-            template: template,
-
-            scope: {
-                species: '='
-            },
-
-            link: function(scope, element, attributes) {
-//                console.log('hit the species summary directive');
-//                console.log(scope.speciesSummary);
-            }
-        };
-
-        return exports;
-    });
 });
 
 define('text!modules/main/home/StreamLine/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
@@ -387,19 +361,63 @@ define('modules/main/home/StreamRatio/StreamRatioDirective',['require','../HomeM
         return exports;
     });
 });
-define('modules/main/home/index',['require','./HomeController','./HomeModule','./Restriction/RestrictionDirective','./Species/SpeciesDirective','./StreamLine/StreamLineDirective','./StreamLine/StreamLineViewModel','../../../ViewModels/LinearReferenceSegment','./StreamLine/RestrictionSummaryViewModel','./StreamRatio/StreamRatioDirective','./StreamRatio/StreamRatioViewModel'],function(require) {
+define('modules/main/home/index',['require','./HomeController','./HomeModule','./Restriction/RestrictionDirective','./StreamLine/StreamLineDirective','./StreamLine/StreamLineViewModel','../../../ViewModels/LinearReferenceSegment','./StreamLine/RestrictionSummaryViewModel','./StreamRatio/StreamRatioDirective','./StreamRatio/StreamRatioViewModel'],function(require) {
     
 
     require('./HomeController');
     require('./HomeModule');
     require('./Restriction/RestrictionDirective');
-    require('./Species/SpeciesDirective');
+//    require('./Species/SpeciesDirective');
     require('./StreamLine/StreamLineDirective');
     require('./StreamLine/StreamLineViewModel');
     require('../../../ViewModels/LinearReferenceSegment');
     require('./StreamLine/RestrictionSummaryViewModel');
     require('./StreamRatio/StreamRatioDirective');
     require('./StreamRatio/StreamRatioViewModel');
+});
+
+define('modules/SpeciesView/SpeciesModule',['require','angular'],function(require) {
+    
+
+    var ng = require('angular');
+
+    // don't include your own index. this is only reserving a space for the
+    // species module
+//    require('./index');
+
+    return ng.module('species', []);
+});
+
+define('text!modules/SpeciesView/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.4"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3.05"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
+
+define('modules/SpeciesView/SpeciesDirective',['require','./SpeciesModule','text!./SpeciesTemplate.html'],function(require) {
+    
+
+    var speciesModule = require('./SpeciesModule');
+    var template = require('text!./SpeciesTemplate.html');
+
+    speciesModule.directive('speciesSummary', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                species: '='
+            },
+
+            link: function(scope, element, attributes) {
+//                console.log('hit the species summary directive');
+//                console.log(scope.speciesSummary);
+            }
+        };
+
+        return exports;
+    });
+});
+define('modules/SpeciesView/index',['require','./SpeciesDirective'],function(require) {
+    
+    require('./SpeciesDirective');
 });
 
 /**
@@ -451,7 +469,7 @@ define('modules/main/home/index',['require','./HomeController','./HomeModule','.
  *
  * @see [Angular Modules](http://docs.angularjs.org/guide/module)
  */
-define('modules/main/MainModule',['require','angular','./home/index'],function(require) {
+define('modules/main/MainModule',['require','angular','./home/index','../SpeciesView/index'],function(require) {
     
 
     var ng = require('angular');
@@ -460,9 +478,11 @@ define('modules/main/MainModule',['require','angular','./home/index'],function(r
      * @requires HomeModule
      */
     require('./home/index');
+    require('../SpeciesView/index');
 
     return ng.module('app', [
-        'app.home'
+        'app.home',
+        'species'
     ]);
 });
 

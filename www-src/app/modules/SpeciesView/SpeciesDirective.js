@@ -1,10 +1,10 @@
 define(function(require) {
     'use strict';
 
-    var homeModule = require('../HomeModule');
+    var speciesModule = require('./SpeciesModule');
     var template = require('text!./SpeciesTemplate.html');
 
-    homeModule.directive('speciesSummary', function () {
+    speciesModule.directive('speciesSummary', function () {
         var exports = {
             restrict: 'A',
 

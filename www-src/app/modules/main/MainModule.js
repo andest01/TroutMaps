@@ -56,8 +56,10 @@ define(function(require) {
      * @requires HomeModule
      */
     require('./home/index');
+    require('../SpeciesView/index');
 
     return ng.module('app', [
-        'app.home'
+        'app.home',
+        'species'
     ]);
 });
