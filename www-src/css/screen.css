@@ -212,9 +212,18 @@ h4 {
     margin-right: 3px;
 }
 
+.link {
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
 .heading {
     color: #463838;
     font-size: 13px;
+
 }
 
 .statusText {
@@ -239,6 +248,7 @@ h4 {
     margin: 0 0 20px 0;
     background: #dbdbda;
     padding: 5px 4px;
+
 }
 
 .box-hd {
