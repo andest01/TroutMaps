@@ -1,10 +1,10 @@
 define(function(require) {
     'use strict';
 
-    var speciesModule = require('./SpeciesModule');
+    var streamSummaryModule = require('../StreamSummaryModule');
     var template = require('text!./SpeciesTemplate.html');
 
-    speciesModule.directive('speciesSummary', function () {
+    streamSummaryModule.directive('speciesSummary', function () {
         var exports = {
             restrict: 'A',
 
@@ -15,8 +15,7 @@ define(function(require) {
             },
 
             link: function(scope, element, attributes) {
-//                console.log('hit the species summary directive');
-//                console.log(scope.speciesSummary);
+
             }
         };
 
