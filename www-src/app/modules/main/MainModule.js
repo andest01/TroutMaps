@@ -56,12 +56,10 @@ define(function(require) {
      * @requires HomeModule
      */
     require('./home/index');
-    require('../SpeciesView/index');
-    require('../RestrictionsView/index');
+    require('../StreamView/index');
 
     return ng.module('app', [
         'app.home',
-        'species',
-        'restriction'
+        'streamSummary'
     ]);
 });

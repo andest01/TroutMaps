@@ -24,7 +24,7 @@ define(function(require) {
     HomeController.$inject = [
         '$log',
         '$scope',
-        'StreamCollectionService'
+        'StreamCollectionService',
     ];
 
     HomeController.prototype.setupScope = function($scope) {

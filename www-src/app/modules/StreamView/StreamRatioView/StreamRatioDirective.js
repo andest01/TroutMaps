@@ -1,7 +1,7 @@
 define(function(require) {
     'use strict';
 
-    var homeModule = require('../HomeModule');
+    var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamRatioTemplate.html');
     var viewModel = require('./StreamRatioViewModel');
 
