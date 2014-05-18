@@ -2,28 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3935fab-e71a-40d5-a465-fd7565fab677" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\StreamView\StreamLineView\StreamLineViewModel.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamDetails\StreamDetailsDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamDetails\StreamDetailsTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamDetails\StreamDetailsViewModel.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamLine\StreamLineDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamLine\StreamLineTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamRatio\StreamRatioDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamRatio\StreamRatioTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamRatio\StreamRatioViewModel.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamSummary\StreamSummaryDirective.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamSummary\StreamSummaryTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\home\StreamSummary\StreamSummaryViewModel.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeController.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeController.js" />
+      <change type="DELETED" beforePath="C:\Users\MBP\Documents\GitHub\TroutMaps\www-src\app\modules\main\services\Streams.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/MainModule.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/MainModule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/StreamView/RestrictionsView/RestrictionDirective.js" afterPath="$PROJECT_DIR$/www-src/app/modules/StreamView/RestrictionsView/RestrictionDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamRatioView/StreamRatioDirective.js" afterPath="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamRatioView/StreamRatioDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamSummaryModule.js" afterPath="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamSummaryModule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/index.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/ViewModels/Restriction.js" afterPath="$PROJECT_DIR$/www-src/app/ViewModels/Restriction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js" afterPath="$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/assets/js/main.js" afterPath="$PROJECT_DIR$/www/assets/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www-src/css/screen.css" afterPath="$PROJECT_DIR$/www-src/css/screen.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/screen.css" afterPath="$PROJECT_DIR$/www/css/screen.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TroutMaps.iws" />
@@ -46,110 +31,46 @@
     <favorites_list name="TroutMaps" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="HomeControllerTemplate.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="2108">
-              <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreamLineTemplate.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/StreamView/StreamLineView/StreamLineTemplate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="850">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreamRatioDirective.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/StreamView/StreamRatioView/StreamRatioDirective.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-              <caret line="20" column="89" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreamRatioTemplate.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/StreamView/StreamRatioView/StreamRatioTemplate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeModule.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeModule.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="214" max-vertical-offset="1071">
-              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreamSummaryDirective.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/StreamView/StreamSummaryView/StreamSummaryDirective.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreamSummaryTemplate.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/StreamView/StreamSummaryView/StreamSummaryTemplate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="255">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeController.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4319809" vertical-offset="80" max-vertical-offset="935">
-              <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Restriction.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/www-src/app/ViewModels/Restriction.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.3711217" vertical-offset="675" max-vertical-offset="1564">
+                  <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HomeControllerTemplate.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-8.826923" vertical-offset="0" max-vertical-offset="1241">
+                  <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="screen.css" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/www-src/css/screen.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.20689656" vertical-offset="5391" max-vertical-offset="8347">
+                  <caret line="327" column="10" selection-start-line="327" selection-start-column="10" selection-end-line="327" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -162,16 +83,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/RestrictionSummaryViewModel.js" />
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionDirective.js" />
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamLine/StreamLineTemplate.html" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamRatio/StreamRatioTemplate.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamRatio/StreamRatioDirective.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamRatio/StreamRatioViewModel.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamRatio/StreamRatioTemplate.html" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Species/SpeciesTemplate.html" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/Restriction/RestrictionTemplate.html" />
-        <option value="$PROJECT_DIR$/www/assets/js/main.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamSummary/StreamSummaryDirective.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamSummary/StreamSummaryViewModel.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/StreamSummary/StreamSummaryTemplate.html" />
@@ -203,16 +120,20 @@
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamModule.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/SpeciesView/SpeciesDirective.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamLineView/StreamLineDirective.js" />
-        <option value="$PROJECT_DIR$/www-src/css/screen.css" />
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/index.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamRatioView/StreamRatioDirective.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/index.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/StreamSummaryModule.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/MainModule.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/StreamView/RestrictionsView/RestrictionDirective.js" />
-        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/index.js" />
         <option value="$PROJECT_DIR$/www-src/app/modules/main/home/HomeController.js" />
+        <option value="$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html" />
+        <option value="$PROJECT_DIR$/www-src/css/screen.css" />
+        <option value="$PROJECT_DIR$/www-src/app/modules/main/services/Streams.js" />
+        <option value="$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js" />
+        <option value="$PROJECT_DIR$/www/assets/js/main.js" />
+        <option value="$PROJECT_DIR$/www-src/app/ViewModels/Restriction.js" />
       </list>
     </option>
   </component>
@@ -390,7 +311,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="StreamSummaryView" />
+              <option name="myItemId" value="RestrictionsView" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -439,6 +360,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TroutMaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TroutMaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www-src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -469,6 +420,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TroutMaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TroutMaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TroutMaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TroutMaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -591,7 +578,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1208" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -632,13 +619,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www-src/app/ViewModels/Restriction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1462">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www-src/app/ViewModels/Stream.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
@@ -650,13 +630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
           <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/assets/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="43622">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -783,14 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www-src/css/screen.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8846154" vertical-offset="5830" max-vertical-offset="8364">
-          <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www-src/app/modules/StreamView/SpeciesView/SpeciesModule.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
@@ -908,7 +873,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -917,14 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="2108">
-          <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
           <folding />
         </state>
       </provider>
@@ -957,6 +914,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4319809" vertical-offset="80" max-vertical-offset="935">
           <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/services/Streams.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="376363">
+          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/services/StreamCollectionService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.709091" vertical-offset="3366" max-vertical-offset="24871">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/css/screen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20689656" vertical-offset="5391" max-vertical-offset="8347">
+          <caret line="327" column="10" selection-start-line="327" selection-start-column="10" selection-end-line="327" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8484849" vertical-offset="14464" max-vertical-offset="420019">
+          <caret line="892" column="0" selection-start-line="892" selection-start-column="0" selection-end-line="892" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/app/modules/main/home/HomeControllerTemplate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.826923" vertical-offset="0" max-vertical-offset="1241">
+          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www-src/app/ViewModels/Restriction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3711217" vertical-offset="675" max-vertical-offset="1564">
+          <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
           <folding />
         </state>
       </provider>
