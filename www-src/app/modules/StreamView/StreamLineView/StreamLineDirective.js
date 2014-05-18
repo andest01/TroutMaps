@@ -5,7 +5,7 @@ define(function(require) {
     var template = require('text!./StreamLineTemplate.html');
     var viewModel = require('ViewModels/StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
-    var restrictionSummaryViewModel = require('./RestrictionSummaryViewModel');
+    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
 
     homeModule.directive('streamLine', function () {
         var exports = {

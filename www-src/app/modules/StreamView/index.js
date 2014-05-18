@@ -5,5 +5,6 @@ define(function(require) {
     require('./StreamDetailsView/StreamDetailsDirective');
     require('./StreamLineView/StreamLineDirective');
     require('./StreamRatioView/StreamRatioDirective');
-    require('./StreamSummaryView/StreamSummaryDirective');
+    require('./StreamDetailsSHortView/StreamDetailsShortDirective');
+    require('./StreamLineIconView/StreamLineIconDirective');
 });
