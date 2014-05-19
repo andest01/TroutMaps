@@ -5,7 +5,7 @@ define(function(require) {
     var template = require('text!./StreamLineTemplate.html');
     var viewModel = require('ViewModels/StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
-    var restrictionSummaryViewModel = require('./RestrictionSummaryViewModel');
+    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
 
     homeModule.directive('streamLine', function () {
         var exports = {
@@ -36,10 +36,17 @@ define(function(require) {
                     var clampedLength = Math.floor(length);
                     var tickMarks = [];
                     if (clampedLength < 1) {
+                        tickMarks.push({
+                                xOffset: 0,
+                                width: 3,
+                                height: 3,
+                                yOffset: 8
+                            });
+
                         return tickMarks;
                     }
 
-                    var tickWidth = scope.stage.width / clampedLength;
+                    var tickWidth = scope.stage.width / streamLength;
                     for (var i = 0; i <= clampedLength; i++) {
                         tickMarks.push({
                                 xOffset: i * tickWidth,
@@ -47,22 +54,14 @@ define(function(require) {
                                 height: 3,
                                 yOffset: 8
                             }
-                        )
+                        );
                     }
-
+                    
                     return tickMarks;
                 };
 
                 var length = parseFloat(scope.stream.streamLength);
                 scope.tickMarks = createTickMarks(length);
-
-//                scope.restrictions = scope.stream.restrictionSegments;
-//                for (var i = 0; i < scope.restrictions.length; i++) {
-//                    var restriction = scope.restrictions[i];
-//                    restriction.restrictionSections = restriction.restrictionSections.map(function(segment) {
-//                        return new viewModel(segment);
-//                    });
-//                }
             }
         };
 

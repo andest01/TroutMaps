@@ -1,3 +1,30 @@
-/**
- * Created by MBP on 5/13/2014.
- */
+define(function(require) {
+    'use strict';
+
+    var homeModule = require('../StreamSummaryModule');
+    var template = require('text!./StreamDetailsTemplate.html');
+    // var viewModel = require('./StreamRatioViewModel');
+
+    homeModule.directive('streamDetails', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                stream: '='
+            },
+
+            link: function(scope, element, attributes) {
+                // console.log('hit stream details directive');
+                // var streamLength = parseFloat(scope.stream.streamLength);
+                // var publicLandLength = parseFloat(scope.stream.publiclyAccessibleLength);
+                // var vm = new viewModel();
+                // vm.init(streamLength, publicLandLength);
+                // scope.streamRatio = vm;
+            }
+        };
+
+        return exports;
+    });
+});

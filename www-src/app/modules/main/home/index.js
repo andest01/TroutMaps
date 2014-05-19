@@ -4,10 +4,10 @@ define(function(require) {
     require('./HomeController');
     require('./HomeModule');
 //    require('./Restriction/RestrictionDirective');
-    require('./StreamLine/StreamLineDirective');
+//    require('./StreamLine/StreamLineDirective');
 //    require('./StreamLine/StreamLineViewModel');
-    require('../../../ViewModels/LinearReferenceSegment');
+//    require('../../../ViewModels/LinearReferenceSegment');
 //    require('./StreamLine/RestrictionSummaryViewModel');
-    require('./StreamRatio/StreamRatioDirective');
-    require('./StreamRatio/StreamRatioViewModel');
+//    require('./StreamRatio/StreamRatioDirective');
+//    require('./StreamRatio/StreamRatioViewModel');
 });

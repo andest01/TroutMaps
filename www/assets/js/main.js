@@ -1,5 +1,5 @@
 
-define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n<div>\r\n<div class="grid">\r\n    <ul>\r\n        <li class="box" ng-repeat="stream in streams">\r\n            <div class="grid-row">\r\n                <div class="containerHeader grid-row box-hd">\r\n                    <div class="grid-row-col grid-row-col_9of12">\r\n                        <h2 class="link js-stream-link sectionTitle" ng-click="selectStream(stream)">\r\n                            {{stream.streamName}}\r\n                        </h2>\r\n                    </div>\r\n                    <div class="grid-row-col grid-row-col_3of12">\r\n                        <div class="grid-row-col grid-row-col_4of12">\r\n                            <div data-species-summary species="stream.speciesSummary">\r\n\r\n                            </div>\r\n                        </div>\r\n                        <!--<div class="grid-row-col grid-row-col_4of12">-->\r\n                            <!--<div data-stream-ratio stream="stream">-->\r\n\r\n                            <!--</div>-->\r\n                        <!--</div>-->\r\n                        <div class="grid-row-col grid-row-col_8of12">\r\n                            <span class="heading statusText">Avoid</span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <!-- end .containerHeader -->\r\n\r\n                <div class="containerBody grid-row">\r\n                    <div class="grid-row-col_12of12">\r\n                        <div data-stream-line stream="stream"></div>\r\n                    </div>\r\n                </div>\r\n                <!-- end .containerBody -->\r\n\r\n                <div class="grid-row">\r\n                    <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n                    <div class="grid-row-col grid-row-col_9of12">\r\n                        <div data-restriction-legend restriction="stream.restrictionSegments"></div>\r\n                    </div>\r\n                    <div class="grid-row-col grid-row-col_3of12">\r\n                        <div class="fractionContainer">\r\n                            <span class="{{stream.publiclyAccessibleLength > 0.0 ? \'numerator\' : \'denominator\'}} ">{{stream.publiclyAccessibleLength}}</span>\r\n                            /\r\n                            <span class="denominator">{{stream.streamLength}}</span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <!-- end .containerFooter -->\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n</div>\r\n\r\n';});
+define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n<div>\r\n\r\n    <div class="site">\r\n        <div class="site-hd"></div>\r\n        <div class="site-bd">\r\n            <div class="map">\r\n                <div class="map-nav">\r\n                    <div class="grid map-nav-container">\r\n                        <ul>\r\n                            <li ng-repeat="stream in streams">\r\n                                <div data-stream-details stream="stream">\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class="map-body">\r\n                    stuff\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="site-ft"></div>\r\n    </div>\r\n</div>\r\n\r\n';});
 
 define('modules/main/home/HomeModule',['require','angular','angular-route','text!./HomeControllerTemplate.html'],function(require) {
     
@@ -85,7 +85,7 @@ define('modules/main/home/HomeController',['require','./HomeModule'],function(re
     HomeController.$inject = [
         '$log',
         '$scope',
-        'StreamCollectionService'
+        'StreamCollectionService',
     ];
 
     HomeController.prototype.setupScope = function($scope) {
@@ -109,8 +109,27 @@ define('modules/main/home/HomeController',['require','./HomeModule'],function(re
 
 });
 
+define('modules/main/home/index',['require','./HomeController','./HomeModule'],function(require) {
+    
 
-define('text!modules/main/home/StreamLine/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
+    require('./HomeController');
+    require('./HomeModule');
+//    require('./Restriction/RestrictionDirective');
+//    require('./StreamLine/StreamLineDirective');
+//    require('./StreamLine/StreamLineViewModel');
+//    require('../../../ViewModels/LinearReferenceSegment');
+//    require('./StreamLine/RestrictionSummaryViewModel');
+//    require('./StreamRatio/StreamRatioDirective');
+//    require('./StreamRatio/StreamRatioViewModel');
+});
+
+define('modules/StreamView/StreamSummaryModule',['require','angular'],function(require) {
+    
+    var ng = require('angular');
+    return ng.module('streamSummary', []);
+});
+
+define('text!modules/StreamView/RestrictionsView/RestrictionTemplate.html',[],function () { return '<ul class="restrictions" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n    <li>\r\n        <div class="media">\r\n            <div class="media-hd legend {{restriction.cssClass}}">\r\n\r\n            </div>\r\n            <span class="media-bd heading">{{restriction.text}}</span>\r\n\r\n        </div>\r\n    </li>\r\n</ul>';});
 
 define('ViewModels/StreamLineViewModel',['require'],function(require) {
     
@@ -131,35 +150,6 @@ define('ViewModels/StreamLineViewModel',['require'],function(require) {
     };
 
     return StreamLineViewModel;
-});
-/**
- * Created by MBP on 3/12/14.
- */
-
-define('ViewModels/LinearReferenceSegment',['require'],function(require) {
-    
-    var LinearReferenceSegment = function(start, stop) {
-        //this.initialize(start, stop);
-        this.start = 0.0;
-        this.stop = 0.0;
-    };
-
-    var proto = LinearReferenceSegment.prototype;
-
-    proto.init = function(start, stop) {
-        if (typeof start !== 'number' || start < 0 || start > 1) {
-            throw new Error('start must be a number between 0 and 1');
-        }
-
-        if (typeof stop !== 'number' || stop < 0 || stop > 1) {
-            throw new Error('start must be a number between 0 and 1');
-        }
-
-        this.start = start;
-        this.stop = stop;
-    };
-
-    return LinearReferenceSegment;
 });
 define('ViewModels/RestrictionSummaryViewModel',['require','./StreamLineViewModel'],function(require) {
     
@@ -193,14 +183,130 @@ define('ViewModels/RestrictionSummaryViewModel',['require','./StreamLineViewMode
 
     return RestrictionSummaryViewModel;
 });
-define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeModule','text!./StreamLineTemplate.html','ViewModels/StreamLineViewModel','ViewModels/LinearReferenceSegment','ViewModels/RestrictionSummaryViewModel'],function(require) {
+define(/** @lends SelectableGeometryDirective */'modules/StreamView/RestrictionsView/RestrictionDirective',['require','../StreamSummaryModule','text!./RestrictionTemplate.html','../../../ViewModels/RestrictionSummaryViewModel'],function(require) {
+    
+    var streamSummaryModule = require('../StreamSummaryModule');
+    var htmlTemplate = require('text!./RestrictionTemplate.html');
+    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
+
+    streamSummaryModule.directive('restrictionLegend', function() {
+
+        var exports = {
+            restrict: "A",
+            scope: {
+                restriction: '='
+            },
+            template: htmlTemplate,
+            link: function(scope, element, attrs) {
+                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
+
+            }
+        };
+
+        return exports;
+    });
+
+});
+
+define('text!modules/StreamView/SpeciesView/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.4"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3.05"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
+
+define('modules/StreamView/SpeciesView/SpeciesDirective',['require','../StreamSummaryModule','text!./SpeciesTemplate.html'],function(require) {
     
 
-    var homeModule = require('../HomeModule');
+    var streamSummaryModule = require('../StreamSummaryModule');
+    var template = require('text!./SpeciesTemplate.html');
+
+    streamSummaryModule.directive('speciesSummary', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                species: '='
+            },
+
+            link: function(scope, element, attributes) {
+
+            }
+        };
+
+        return exports;
+    });
+});
+
+define('text!modules/StreamView/StreamDetailsView/StreamDetailsTemplate.html',[],function () { return '<div class="box">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2 class="link js-stream-link sectionTitle" ng-click="selectStream(stream)">\r\n                    {{stream.streamName}}\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary species="stream.speciesSummary">\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_8of12">\r\n                    <span class="heading statusText"></span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerHeader -->\r\n\r\n        <div class="containerBody grid-row">\r\n            <div class="grid-row-col_12of12">\r\n                <div data-stream-line stream="stream"></div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerBody -->\r\n\r\n        <div class="grid-row">\r\n            <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <div data-restriction-legend restriction="stream.restrictionSegments"></div>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div data-stream-ratio-text stream="stream">\r\n                </div>\r\n                <!-- <div class="fractionContainer">\r\n                    <span class="{{stream.publiclyAccessibleLength > 0.0 ? \'numerator\' : \'denominator\'}} ">{{stream.publiclyAccessibleLength}}</span>\r\n                    /\r\n                    <span class="denominator">{{stream.streamLength}}</span>\r\n                </div> -->\r\n            </div>\r\n        </div>\r\n        <!-- end .containerFooter -->\r\n    </div>\r\n</div>';});
+
+define('modules/StreamView/StreamDetailsView/StreamDetailsDirective',['require','../StreamSummaryModule','text!./StreamDetailsTemplate.html'],function(require) {
+    
+
+    var homeModule = require('../StreamSummaryModule');
+    var template = require('text!./StreamDetailsTemplate.html');
+    // var viewModel = require('./StreamRatioViewModel');
+
+    homeModule.directive('streamDetails', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                stream: '='
+            },
+
+            link: function(scope, element, attributes) {
+                // console.log('hit stream details directive');
+                // var streamLength = parseFloat(scope.stream.streamLength);
+                // var publicLandLength = parseFloat(scope.stream.publiclyAccessibleLength);
+                // var vm = new viewModel();
+                // vm.init(streamLength, publicLandLength);
+                // scope.streamRatio = vm;
+            }
+        };
+
+        return exports;
+    });
+});
+
+define('text!modules/StreamView/StreamLineView/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n            <g data-ng-repeat="segment in publicSegments">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="0"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="11"\r\n                      rx="4"\r\n                      ry="4"\r\n                      class="public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
+
+/**
+ * Created by MBP on 3/12/14.
+ */
+
+define('ViewModels/LinearReferenceSegment',['require'],function(require) {
+    
+    var LinearReferenceSegment = function(start, stop) {
+        //this.initialize(start, stop);
+        this.start = 0.0;
+        this.stop = 0.0;
+    };
+
+    var proto = LinearReferenceSegment.prototype;
+
+    proto.init = function(start, stop) {
+        if (typeof start !== 'number' || start < 0 || start > 1) {
+            throw new Error('start must be a number between 0 and 1');
+        }
+
+        if (typeof stop !== 'number' || stop < 0 || stop > 1) {
+            throw new Error('start must be a number between 0 and 1');
+        }
+
+        this.start = start;
+        this.stop = stop;
+    };
+
+    return LinearReferenceSegment;
+});
+define('modules/StreamView/StreamLineView/StreamLineDirective',['require','../StreamSummaryModule','text!./StreamLineTemplate.html','ViewModels/StreamLineViewModel','ViewModels/LinearReferenceSegment','../../../ViewModels/RestrictionSummaryViewModel'],function(require) {
+    
+
+    var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamLineTemplate.html');
     var viewModel = require('ViewModels/StreamLineViewModel');
     var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
-    var restrictionSummaryViewModel = require('ViewModels/RestrictionSummaryViewModel');
+    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
 
     homeModule.directive('streamLine', function () {
         var exports = {
@@ -231,10 +337,17 @@ define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeMod
                     var clampedLength = Math.floor(length);
                     var tickMarks = [];
                     if (clampedLength < 1) {
+                        tickMarks.push({
+                                xOffset: 0,
+                                width: 3,
+                                height: 3,
+                                yOffset: 8
+                            });
+
                         return tickMarks;
                     }
 
-                    var tickWidth = scope.stage.width / clampedLength;
+                    var tickWidth = scope.stage.width / streamLength;
                     for (var i = 0; i <= clampedLength; i++) {
                         tickMarks.push({
                                 xOffset: i * tickWidth,
@@ -242,22 +355,14 @@ define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeMod
                                 height: 3,
                                 yOffset: 8
                             }
-                        )
+                        );
                     }
-
+                    
                     return tickMarks;
                 };
 
                 var length = parseFloat(scope.stream.streamLength);
                 scope.tickMarks = createTickMarks(length);
-
-//                scope.restrictions = scope.stream.restrictionSegments;
-//                for (var i = 0; i < scope.restrictions.length; i++) {
-//                    var restriction = scope.restrictions[i];
-//                    restriction.restrictionSections = restriction.restrictionSections.map(function(segment) {
-//                        return new viewModel(segment);
-//                    });
-//                }
             }
         };
 
@@ -265,9 +370,9 @@ define('modules/main/home/StreamLine/StreamLineDirective',['require','../HomeMod
     });
 });
 
-define('text!modules/main/home/StreamRatio/StreamRatioTemplate.html',[],function () { return '<div class="icon">\r\n    <svg class="stream-ratio" preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg">\r\n        <g class="stream-ratio_stream">\r\n            <circle cx="8" cy="8" ng-attr-r="{{streamRatio.waterRadius * 2.5}}"/>\r\n        </g>\r\n        <g class="stream-ratio_public-land">\r\n            <circle cx="8" cy="8" ng-attr-r="{{streamRatio.publicLandRadius * 2.5}}"/>\r\n        </g>\r\n    </svg>\r\n</div>';});
+define('text!modules/StreamView/StreamRatioView/StreamRatioTemplate.html',[],function () { return '<div class="icon">\r\n    <svg class="stream-ratio" preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg">\r\n        <g class="stream-ratio_stream">\r\n            <circle cx="8" cy="8" ng-attr-r="{{streamRatio.waterRadius * 2.5}}"/>\r\n        </g>\r\n        <g class="stream-ratio_public-land">\r\n            <circle cx="8" cy="8" ng-attr-r="{{streamRatio.publicLandRadius * 2.5}}"/>\r\n        </g>\r\n    </svg>\r\n</div>';});
 
-define('modules/main/home/StreamRatio/StreamRatioViewModel',['require'],function(require) {
+define('modules/StreamView/StreamRatioView/StreamRatioViewModel',['require'],function(require) {
     
 
     var StreamRatioViewModel = function() {
@@ -304,10 +409,10 @@ define('modules/main/home/StreamRatio/StreamRatioViewModel',['require'],function
 
     return StreamRatioViewModel;
 });
-define('modules/main/home/StreamRatio/StreamRatioDirective',['require','../HomeModule','text!./StreamRatioTemplate.html','./StreamRatioViewModel'],function(require) {
+define('modules/StreamView/StreamRatioView/StreamRatioDirective',['require','../StreamSummaryModule','text!./StreamRatioTemplate.html','./StreamRatioViewModel'],function(require) {
     
 
-    var homeModule = require('../HomeModule');
+    var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamRatioTemplate.html');
     var viewModel = require('./StreamRatioViewModel');
 
@@ -334,100 +439,194 @@ define('modules/main/home/StreamRatio/StreamRatioDirective',['require','../HomeM
         return exports;
     });
 });
-define('modules/main/home/index',['require','./HomeController','./HomeModule','./StreamLine/StreamLineDirective','../../../ViewModels/LinearReferenceSegment','./StreamRatio/StreamRatioDirective','./StreamRatio/StreamRatioViewModel'],function(require) {
+
+define('text!modules/StreamView/StreamDetailsSHortView/StreamDetailsShortTemplate.html',[],function () { return '<div class="box box_small">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2 class="link js-stream-link sectionTitle" ng-click="selectStream(stream)">\r\n                    {{stream.streamName}}\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary species="stream.speciesSummary">\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-stream-line-icon stream="stream">\r\n                    </div>\r\n                </div>\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-stream-ratio stream="stream">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerHeader -->\r\n        <!-- end .containerFooter -->\r\n    </div>\r\n</div>';});
+
+define('modules/StreamView/StreamDetailsSHortView/StreamDetailsShortDirective',['require','../StreamSummaryModule','text!./StreamDetailsShortTemplate.html'],function(require) {
     
 
-    require('./HomeController');
-    require('./HomeModule');
-//    require('./Restriction/RestrictionDirective');
-    require('./StreamLine/StreamLineDirective');
-//    require('./StreamLine/StreamLineViewModel');
-    require('../../../ViewModels/LinearReferenceSegment');
-//    require('./StreamLine/RestrictionSummaryViewModel');
-    require('./StreamRatio/StreamRatioDirective');
-    require('./StreamRatio/StreamRatioViewModel');
-});
+    var homeModule = require('../StreamSummaryModule');
+    var template = require('text!./StreamDetailsShortTemplate.html');
+    // var viewModel = require('./StreamRatioViewModel');
 
-define('modules/SpeciesView/SpeciesModule',['require','angular'],function(require) {
-    
-
-    var ng = require('angular');
-
-    // don't include your own index. this is only reserving a space for the
-    // species module
-//    require('./index');
-
-    return ng.module('species', []);
-});
-
-define('text!modules/SpeciesView/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.4"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3.05"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
-
-define('modules/SpeciesView/SpeciesDirective',['require','./SpeciesModule','text!./SpeciesTemplate.html'],function(require) {
-    
-
-    var speciesModule = require('./SpeciesModule');
-    var template = require('text!./SpeciesTemplate.html');
-
-    speciesModule.directive('speciesSummary', function () {
+    homeModule.directive('streamDetailsShort', function () {
         var exports = {
             restrict: 'A',
 
             template: template,
 
             scope: {
-                species: '='
+                stream: '='
             },
 
             link: function(scope, element, attributes) {
-//                console.log('hit the species summary directive');
-//                console.log(scope.speciesSummary);
+                
             }
         };
 
         return exports;
     });
 });
-define('modules/SpeciesView/index',['require','./SpeciesDirective'],function(require) {
+
+define('text!modules/StreamView/StreamLineIconView/StreamLineIconTemplate.html',[],function () { return '<div height="16" width="16">\r\n    <svg class="js-stream-line stream-line_icon" width="16" height="16">\r\n      <g x="2" y="4">\r\n        <rect ng-attr-x="{{0 * 4}}"\r\n              y="5"\r\n              width="3"\r\n              height="2"\r\n              ng-attr-class="{{lengthIconClasses[0]}}">\r\n        </rect>\r\n        <rect ng-attr-x="{{1 * 4}}"\r\n              y="4"\r\n              width="3"\r\n              height="3"\r\n              ng-attr-class="{{lengthIconClasses[1]}}">\r\n        </rect>\r\n        <rect ng-attr-x="{{2 * 4}}"\r\n              y="2"\r\n              width="3"\r\n              height="5"\r\n              ng-attr-class="{{lengthIconClasses[2]}}">\r\n        </rect>\r\n        <rect ng-attr-x="{{3 * 4}}"\r\n              y="0"\r\n              width="3"\r\n              height="7"\r\n              ng-attr-class="{{lengthIconClasses[3]}}">\r\n        </rect>\r\n      </g>\r\n\r\n      <g x="2" y="14" class="stream-line_public-land js-stream-line_public-land">\r\n        <rect x="0"\r\n            width="16"\r\n            y="12"\r\n            height="7"\r\n            class="stream-ratio_background">\r\n        </rect>\r\n            <g>\r\n                <rect data-ng-repeat="segment in publicSegments" ng-attr-x="{{segment.xOffset * 16}}"\r\n                      y="12"\r\n                      ng-attr-width="{{segment.width * 16}}"\r\n                      height="7"\r\n                      class="stream-ratio_public-land">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n\r\n      <!-- <g data-ng-repeat="star in lengthIcon.stars">\r\n        <rect ng-attr-x="{{star.xOffset * stage.width}}"\r\n              y="0"\r\n              ng-attr-width="{{segment.width * stage.width}}"\r\n              height="11"\r\n              rx="4"\r\n              ry="4"\r\n              class="public-land">\r\n        </rect>\r\n      </g> -->\r\n        <!-- \r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n                    x="0"\r\n                    y="3"\r\n                    height="5"\r\n                    ng-attr-width="{{stage.width}}"></rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect ng-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      ng-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">\r\n            <rect ng-attr-x="{{tick.xOffset}}"\r\n                  ng-attr-y="{{tick.yOffset}}"\r\n                  ng-attr-width="{{tick.width}}"\r\n                  ng-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g> -->\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
+
+define('modules/StreamView/StreamLineIconView/StreamLineLengthIconViewModel',['require'],function(require) {
     
-    require('./SpeciesDirective');
+
+    var StreamLineLengthIconView = function() {
+        this.totalLength = 0;
+        this.stars = [];
+        this.settings = {};
+    };
+
+    var proto = StreamLineLengthIconView.prototype;
+
+    proto.init = function(totalLength, settings) {
+        if (totalLength == null || totalLength < 0) {
+            throw new Error('totalLength cannot be null or less than 0');
+        }
+
+        this.totalLength = totalLength;
+
+        if (settings == null) {
+            this.settings = this.getDefaultSettings();
+        }
+
+        else {
+            this.settings = settings;
+        }
+
+        this.setStars(settings);
+    };
+
+    proto.setStars = function(settings) {
+        this.stars = [];
+        this.stars.push(this.totalLength > settings.smallest);
+        this.stars.push(this.totalLength > settings.small);
+        this.stars.push(this.totalLength > settings.medium);
+        this.stars.push(this.totalLength > settings.large);
+
+
+
+
+        //         this.stars.push(this.totalLength > settings.smallest && this.totalLength < settings.small);
+        // this.stars.push(this.totalLength > settings.small && this.totalLength < settings.medium);
+        // this.stars.push(this.totalLength > settings.medium && this.totalLength < settings.large);
+        // this.stars.push(this.totalLength > settings.large && this.totalLength < settings.largest);
+
+    };
+
+    proto.getDefaultSettings = function() {
+        var percentiles = {
+                smallest: 1.5,
+                small: 4.0,
+                medium: 8.0,
+                large: 15.0,
+                largest: 10000.0
+            };
+        return percentiles;
+    };
+
+    return StreamLineLengthIconView;
 });
-
-define('modules/RestrictionsView/RestrictionModule',['require','angular'],function(require) {
+define('modules/StreamView/StreamLineIconView/StreamLineIconDirective',['require','../StreamSummaryModule','text!./StreamLineIconTemplate.html','ViewModels/StreamLineViewModel','ViewModels/LinearReferenceSegment','../../../ViewModels/RestrictionSummaryViewModel','./StreamLineLengthIconViewModel'],function(require) {
     
 
-    var ng = require('angular');
-    return ng.module('restriction', []);
-});
+    var homeModule = require('../StreamSummaryModule');
+    var template = require('text!./StreamLineIconTemplate.html');
+    var viewModel = require('ViewModels/StreamLineViewModel');
+    var LinearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
+    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
+    var LengthIcon = require('./StreamLineLengthIconViewModel');
 
-define('text!modules/RestrictionsView/RestrictionTemplate.html',[],function () { return '<ul class="restrictions" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n    <li>\r\n        <div class="media">\r\n            <div class="media-hd legend {{restriction.cssClass}}">\r\n\r\n            </div>\r\n            <span class="media-bd heading">{{restriction.text}}</span>\r\n\r\n        </div>\r\n    </li>\r\n</ul>';});
-
-define(/** @lends SelectableGeometryDirective */'modules/RestrictionsView/RestrictionDirective',['require','./RestrictionModule','text!./RestrictionTemplate.html','../../ViewModels/RestrictionSummaryViewModel'],function(require) {
-    
-    var restrictionModule = require('./RestrictionModule');
-    var htmlTemplate = require('text!./RestrictionTemplate.html');
-    var restrictionSummaryViewModel = require('../../ViewModels/RestrictionSummaryViewModel');
-
-    restrictionModule.directive('restrictionLegend', function() {
-
+    homeModule.directive('streamLineIcon', 
+        function () {
         var exports = {
-            restrict: "A",
+            restrict: 'A',
+
+            template: template,
+
             scope: {
-                restriction: '='
+                stream: '='
             },
-            template: htmlTemplate,
-            link: function(scope, element, attrs) {
-                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
+
+            link: function(scope, element, attributes) {
+                scope.stage = {
+                    width: 20
+                };
+
+                scope.percentiles = {
+                    smallest: 0.8,
+                    small: 4.0,
+                    medium: 8.0,
+                    large: 15.0,
+                    largest: 10000.0
+                };
+
+
+
+                var length = parseFloat(scope.stream.streamLength);
+                var lengthIcon = new LengthIcon();
+                lengthIcon.init(length, scope.percentiles);
+                scope.lengthIcon = lengthIcon;
+
+                scope.lengthIconClasses = scope.lengthIcon.stars.map(function(val) {
+                    return val === true ? 'stream-ratio_stream' : 'stream-ratio_background';
+                });
+
+                scope.publicSegments = scope.stream.publicAccessSegments.map(function(segment) {
+                    return new viewModel(segment);
+                });
 
             }
         };
 
         return exports;
     });
-
 });
-define('modules/RestrictionsView/index',['require','./RestrictionDirective'],function(require) {
+
+
+define('text!modules/StreamView/StreamRatioText/StreamRatioTextTemplate.html',[],function () { return '<div class="ratio-text">\r\n    <span ng-if="publicLandLength > 0.0">\r\n        <span class="ratio-text_numerator">{{stream.publiclyAccessibleLength}}</span>\r\n        <span class="ratio-text_divisor">/</span>\r\n    </span>\r\n    <span class="ratio-text_denominator">{{stream.streamLength}}</span>\r\n    <!-- <span class="ratio-text_unit">mi</span> -->\r\n</div>';});
+
+define('modules/StreamView/StreamRatioText/StreamRatioTextDirective',['require','../StreamSummaryModule','text!./StreamRatioTextTemplate.html'],function(require) {
     
-    require('./RestrictionDirective');
+
+    var homeModule = require('../StreamSummaryModule');
+    var template = require('text!./StreamRatioTextTemplate.html');
+
+    homeModule.directive('streamRatioText', function () {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            scope: {
+                stream: '='
+            },
+
+            link: function(scope, element, attributes) {
+                // console.log('hit ratio text directive');
+                var streamLength = parseFloat(scope.stream.streamLength);
+                var publicLandLength = parseFloat(scope.stream.publiclyAccessibleLength);
+                
+                scope.streamLength = streamLength;
+                scope.publicLandLength = publicLandLength;
+            }
+        };
+
+        return exports;
+    });
+});
+define('modules/StreamView/index',['require','./RestrictionsView/RestrictionDirective','./SpeciesView/SpeciesDirective','./StreamDetailsView/StreamDetailsDirective','./StreamLineView/StreamLineDirective','./StreamRatioView/StreamRatioDirective','./StreamDetailsSHortView/StreamDetailsShortDirective','./StreamLineIconView/StreamLineIconDirective','./StreamRatioText/StreamRatioTextDirective'],function(require) {
+    
+    require('./RestrictionsView/RestrictionDirective');
+    require('./SpeciesView/SpeciesDirective');
+    require('./StreamDetailsView/StreamDetailsDirective');
+    require('./StreamLineView/StreamLineDirective');
+    require('./StreamRatioView/StreamRatioDirective');
+    require('./StreamDetailsSHortView/StreamDetailsShortDirective');
+    require('./StreamLineIconView/StreamLineIconDirective');
+    require('./StreamRatioText/StreamRatioTextDirective');
 });
 
 /**
@@ -479,7 +678,7 @@ define('modules/RestrictionsView/index',['require','./RestrictionDirective'],fun
  *
  * @see [Angular Modules](http://docs.angularjs.org/guide/module)
  */
-define('modules/main/MainModule',['require','angular','./home/index','../SpeciesView/index','../RestrictionsView/index'],function(require) {
+define('modules/main/MainModule',['require','angular','./home/index','../StreamView/index'],function(require) {
     
 
     var ng = require('angular');
@@ -488,13 +687,11 @@ define('modules/main/MainModule',['require','angular','./home/index','../Species
      * @requires HomeModule
      */
     require('./home/index');
-    require('../SpeciesView/index');
-    require('../RestrictionsView/index');
+    require('../StreamView/index');
 
     return ng.module('app', [
         'app.home',
-        'species',
-        'restriction'
+        'streamSummary'
     ]);
 });
 
@@ -854,8 +1051,19 @@ define('ViewModels/Restriction',['require','ViewModels/RestrictionSegment'],func
     };
 
     Restriction.prototype.fromJSON = function(json) {
+
         var restrictionType = json.RestrictionType;
-        this.setSummary(restrictionType.short_description);
+        if (restrictionType == null) {
+            console.log(json);
+            return;
+        }
+        if (restrictionType.short_description == null) {
+            console.log(json)
+        }
+
+        else {
+            this.setSummary(restrictionType.short_description);
+        }
         this.setIsAnglingRestriction(restrictionType.is_angling_restriction);
         this.setIsHarvestingRestriction(restrictionType.is_harvest_restriction);
         this.setOfficialText(restrictionType.official_text);
@@ -1045,13 +1253,21 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
 
     return StreamLine;
 });
-define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['require','modules/main/MainModule','ViewModels/StreamLine'],function(require) {
+define(/** @lends Zoom */'modules/main/services/Streams',['require'],function(require) {
+
+    return [{"gid":3,"kittle_nam":"Morrison Brook","route_mi":12.333,"public_mi":0.0,"length_mi":12.333,"objectid":25925,"trout_flag":null,"kittle_nbr":"M-117-011-002","public_route_length":1.6620355310304338,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.728989870590055,"stop":0.7343853594728,"type":"TBD"},{"start":0.719201854068981,"stop":0.72676703497088,"type":"TBD"},{"start":0.716533951611863,"stop":0.718697369345258,"type":"TBD"},{"start":0.706830379431738,"stop":0.708541754411407,"type":"TBD"},{"start":0.701375633049035,"stop":0.703951585246573,"type":"TBD"},{"start":0.697216680909121,"stop":0.701363084226469,"type":"TBD"},{"start":0.686415695760574,"stop":0.694571034166173,"type":"TBD"},{"start":0.556991629232859,"stop":0.562482176130904,"type":"TBD"},{"start":0.540503860206979,"stop":0.556542664700186,"type":"TBD"},{"start":0.535069863695557,"stop":0.537413778343311,"type":"TBD"},{"start":0.45813004293199,"stop":0.470225296700912,"type":"TBD"},{"start":0.424789088322534,"stop":0.457597873323803,"type":"TBD"},{"start":0.0436397266765132,"stop":0.0779125453510477,"type":"TBD"}]},{"gid":9,"kittle_nam":"Stewart River","route_mi":16.903,"public_mi":0.0,"length_mi":16.903,"objectid":26537,"trout_flag":null,"kittle_nbr":"S-019","public_route_length":1.3217744472643986,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.372693067813805,"stop":0.373085200301929,"type":"TBD"},{"start":0.362766442718382,"stop":0.363154518669592,"type":"TBD"},{"start":0.348681462500616,"stop":0.352840022835683,"type":"TBD"},{"start":0.128733568981885,"stop":0.130137142738433,"type":"TBD"},{"start":0.123154041551923,"stop":0.126868773157225,"type":"TBD"},{"start":0.118033838899587,"stop":0.121941223316883,"type":"TBD"},{"start":0.109961901804782,"stop":0.117342345228612,"type":"TBD"},{"start":0.106768050465587,"stop":0.108443644034038,"type":"TBD"},{"start":0.0770729985629521,"stop":0.0814286664769768,"type":"TBD"},{"start":0.0754446822797699,"stop":0.0759396958208023,"type":"TBD"},{"start":0.0715167171314061,"stop":0.0730481986892868,"type":"TBD"},{"start":0.0680627488622059,"stop":0.0706786453997026,"type":"TBD"},{"start":0.0535869458381286,"stop":0.065725242160478,"type":"TBD"},{"start":0.0662977280846571,"stop":0.0667604398737149,"type":"TBD"},{"start":0.0474277112007002,"stop":0.052597599461805,"type":"TBD"},{"start":0.037004423392641,"stop":0.0406302483279399,"type":"TBD"},{"start":0.0450481328913114,"stop":0.0459269446305784,"type":"TBD"},{"start":0.021951987600624,"stop":0.0316862079483835,"type":"TBD"},{"start":0.0183020932272461,"stop":0.0212232671070829,"type":"TBD"},{"start":0.0110226201502868,"stop":0.0163777238049388,"type":"TBD"},{"start":0.0100778253580916,"stop":0.0104858681056264,"type":"TBD"},{"start":0.00686576052302516,"stop":0.00981671683125028,"type":"TBD"},{"start":0.00373922588705006,"stop":0.00627326532586946,"type":"TBD"}]},{"gid":15,"kittle_nam":"French River","route_mi":12.954,"public_mi":0.0,"length_mi":12.954,"objectid":26707,"trout_flag":null,"kittle_nbr":"S-011","public_route_length":8.3527316386398542,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.833863761103686,"stop":0.958935627041934,"type":"TBD"},{"start":0.797460033554177,"stop":0.800660012576701,"type":"TBD"},{"start":0.794751095247727,"stop":0.797075168974481,"type":"TBD"},{"start":0.800856980535665,"stop":0.803746143515554,"type":"TBD"},{"start":0.81044980752731,"stop":0.813269118226554,"type":"TBD"},{"start":0.979193106681045,"stop":0.979774122194547,"type":"TBD"},{"start":0.804866762130834,"stop":0.805778892737958,"type":"TBD"},{"start":0.805837703241775,"stop":0.808534068569753,"type":"TBD"},{"start":0.809158028827866,"stop":0.810023443317545,"type":"TBD"},{"start":0.98038891874008,"stop":0.982569934791597,"type":"TBD"},{"start":0.761623291307944,"stop":0.765701466513974,"type":"TBD"},{"start":0.689743731091368,"stop":0.727188756735138,"type":"TBD"},{"start":0.756362013521906,"stop":0.761163357235576,"type":"TBD"},{"start":0.727327226211616,"stop":0.739358922860055,"type":"TBD"},{"start":0.982938113368823,"stop":0.991252974377816,"type":"TBD"},{"start":0.743955228423778,"stop":0.749945335554222,"type":"TBD"},{"start":0.993662814145816,"stop":0.997623502115975,"type":"TBD"},{"start":0.997958855281284,"stop":0.999731790440866,"type":"TBD"},{"start":0.685741496233824,"stop":0.688761488106914,"type":"TBD"},{"start":0.657260864352107,"stop":0.661346902536159,"type":"TBD"},{"start":0.649837302412911,"stop":0.654141732928316,"type":"TBD"},{"start":0.641358879147178,"stop":0.647832123507711,"type":"TBD"},{"start":0.63811068150934,"stop":0.640979125962344,"type":"TBD"},{"start":0.636648186643581,"stop":0.637265387301385,"type":"TBD"},{"start":0.634169616915555,"stop":0.635533208477727,"type":"TBD"},{"start":0.549878284336311,"stop":0.611621549466349,"type":"TBD"},{"start":0.536456362638514,"stop":0.549496034109563,"type":"TBD"},{"start":0.48304729810918,"stop":0.533970735948385,"type":"TBD"},{"start":0.482388598818211,"stop":0.482400094300479,"type":"TBD"},{"start":0.466602105322669,"stop":0.476853297665896,"type":"TBD"},{"start":0.463459497990001,"stop":0.464435564552124,"type":"TBD"},{"start":0.46008309617272,"stop":0.460792916342484,"type":"TBD"},{"start":0.443411545505141,"stop":0.454419632668088,"type":"TBD"},{"start":0.427563837677705,"stop":0.441588998756495,"type":"TBD"},{"start":0.407642950239037,"stop":0.426229285516551,"type":"TBD"},{"start":0.385610699637106,"stop":0.400587460720419,"type":"TBD"},{"start":0.383397552893182,"stop":0.384859189211379,"type":"TBD"},{"start":0.357943269313105,"stop":0.358024475136765,"type":"TBD"},{"start":0.347783367938829,"stop":0.35753772845467,"type":"TBD"},{"start":0.358617822176314,"stop":0.359976967869482,"type":"TBD"},{"start":0.346484884443839,"stop":0.346802511034425,"type":"TBD"},{"start":0.343081264463343,"stop":0.343472342049614,"type":"TBD"},{"start":0.312310046523687,"stop":0.340836973176021,"type":"TBD"},{"start":0.286717657603614,"stop":0.290822234383885,"type":"TBD"},{"start":0.26312598919073,"stop":0.286139926459429,"type":"TBD"},{"start":0.235439329824245,"stop":0.261618455338189,"type":"TBD"},{"start":0.223089732827208,"stop":0.232737390453749,"type":"TBD"},{"start":0.171045137679495,"stop":0.211633715553363,"type":"TBD"},{"start":0.12362646644979,"stop":0.145339632631307,"type":"TBD"},{"start":0.0411975585006562,"stop":0.04454336607776,"type":"TBD"},{"start":0.039568224405225,"stop":0.0409984827881671,"type":"TBD"},{"start":0.0354075583812287,"stop":0.0383765204011075,"type":"TBD"},{"start":0.0201399727189679,"stop":0.0298618717465715,"type":"TBD"},{"start":0.0,"stop":0.0192740668152127,"type":"TBD"}]},{"gid":16,"kittle_nam":"Little Sucker River","route_mi":1.448,"public_mi":0.0,"length_mi":1.448,"objectid":26652,"trout_flag":null,"kittle_nbr":"S-016","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":17,"kittle_nam":"Knife River","route_mi":23.791,"public_mi":0.0,"length_mi":23.791,"objectid":26649,"trout_flag":null,"kittle_nbr":"S-017","public_route_length":6.8149215501464573,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0579242861107587,"stop":0.075318712635064,"type":"TBD"},{"start":0.0802571213466707,"stop":0.0886785287009787,"type":"TBD"},{"start":0.0768837582019914,"stop":0.0791207320517324,"type":"TBD"},{"start":0.0544534619396605,"stop":0.0553320642998639,"type":"TBD"},{"start":0.102372517093606,"stop":0.106322072283339,"type":"TBD"},{"start":0.0995551189442556,"stop":0.102143465466127,"type":"TBD"},{"start":0.0902328376159058,"stop":0.0995241667296809,"type":"TBD"},{"start":0.0514575355198472,"stop":0.0524401557611885,"type":"TBD"},{"start":0.108166732385047,"stop":0.109126923088341,"type":"TBD"},{"start":0.124437772519921,"stop":0.124843905501968,"type":"TBD"},{"start":0.126855977207233,"stop":0.157286646595185,"type":"TBD"},{"start":0.11016981593385,"stop":0.115972312661532,"type":"TBD"},{"start":0.116947826406273,"stop":0.121170057609433,"type":"TBD"},{"start":0.0455770162034048,"stop":0.0464830725353377,"type":"TBD"},{"start":0.0420106186642684,"stop":0.042632338104736,"type":"TBD"},{"start":0.159024748169244,"stop":0.16029746316235,"type":"TBD"},{"start":0.195288113717808,"stop":0.200718863111066,"type":"TBD"},{"start":0.193379587975868,"stop":0.194307106497072,"type":"TBD"},{"start":0.190810394925115,"stop":0.192553735577034,"type":"TBD"},{"start":0.0126137574042873,"stop":0.0314187078382151,"type":"TBD"},{"start":0.161859783805489,"stop":0.166080757245457,"type":"TBD"},{"start":0.167608919853959,"stop":0.189807620030125,"type":"TBD"},{"start":0.225104008359906,"stop":0.235960800423635,"type":"TBD"},{"start":0.242733597124285,"stop":0.243038065914089,"type":"TBD"},{"start":0.244191681809134,"stop":0.245239138336635,"type":"TBD"},{"start":0.24553111007022,"stop":0.247979466704602,"type":"TBD"},{"start":0.0,"stop":0.00418911362962766,"type":"TBD"},{"start":0.253044518569521,"stop":0.25549518251362,"type":"TBD"},{"start":0.72648438176826,"stop":0.731265820733806,"type":"TBD"},{"start":0.721785789627751,"stop":0.725831061621792,"type":"TBD"},{"start":0.733580029615768,"stop":0.733688332055866,"type":"TBD"},{"start":0.6925453719023,"stop":0.692831447361771,"type":"TBD"},{"start":0.693388142217949,"stop":0.69438198023339,"type":"TBD"},{"start":0.703140949787246,"stop":0.704162537264205,"type":"TBD"},{"start":0.701445098731777,"stop":0.70262597613199,"type":"TBD"},{"start":0.699419275119096,"stop":0.701135821991895,"type":"TBD"},{"start":0.788726082674798,"stop":0.799825867758913,"type":"TBD"},{"start":0.800872420994329,"stop":0.801588954365252,"type":"TBD"},{"start":0.803251189773692,"stop":0.805908317424994,"type":"TBD"},{"start":0.633496401864238,"stop":0.634005381804666,"type":"TBD"},{"start":0.632083216568106,"stop":0.632955660669746,"type":"TBD"},{"start":0.806027783660542,"stop":0.807765081991046,"type":"TBD"},{"start":0.635694759555668,"stop":0.636191769666077,"type":"TBD"},{"start":0.624689228575665,"stop":0.625306644132626,"type":"TBD"},{"start":0.625995196534952,"stop":0.626459525976038,"type":"TBD"},{"start":0.637254431477213,"stop":0.639154882029397,"type":"TBD"},{"start":0.644481629046596,"stop":0.645015711938075,"type":"TBD"},{"start":0.59953843230688,"stop":0.610729759300033,"type":"TBD"},{"start":0.596119365533079,"stop":0.596612632726482,"type":"TBD"},{"start":0.592907928155353,"stop":0.594113608051953,"type":"TBD"},{"start":0.901150424878216,"stop":0.907332253938537,"type":"TBD"},{"start":0.908061589218197,"stop":0.919367529202942,"type":"TBD"},{"start":0.89715332349199,"stop":0.900065751645214,"type":"TBD"},{"start":0.57696340087208,"stop":0.577957109780569,"type":"TBD"},{"start":0.436135727684641,"stop":0.441942002870537,"type":"TBD"},{"start":0.431971445627782,"stop":0.434641350839946,"type":"TBD"},{"start":0.572938079349856,"stop":0.576805300307991,"type":"TBD"},{"start":0.570979748479409,"stop":0.571591960574357,"type":"TBD"},{"start":0.570671060674539,"stop":0.570867629513189,"type":"TBD"},{"start":0.564604152253948,"stop":0.56946705775808,"type":"TBD"},{"start":0.442018158728409,"stop":0.44666928004969,"type":"TBD"},{"start":0.446762081566401,"stop":0.451665395649883,"type":"TBD"},{"start":0.564317412111303,"stop":0.564349748310615,"type":"TBD"},{"start":0.56284194544407,"stop":0.563958574514441,"type":"TBD"},{"start":0.560828427715068,"stop":0.561158920382379,"type":"TBD"},{"start":0.559531197147468,"stop":0.560305492034271,"type":"TBD"},{"start":0.555180450571376,"stop":0.556773705102667,"type":"TBD"},{"start":0.552413083934077,"stop":0.553549739849625,"type":"TBD"},{"start":0.548469249279397,"stop":0.550014512646047,"type":"TBD"},{"start":0.478769971760589,"stop":0.48032239071371,"type":"TBD"},{"start":0.546803323690053,"stop":0.54805150634839,"type":"TBD"},{"start":0.543871134245547,"stop":0.546050694681367,"type":"TBD"},{"start":0.527531315735638,"stop":0.527850668931562,"type":"TBD"},{"start":0.52239530428154,"stop":0.52614158140405,"type":"TBD"},{"start":0.541213684892884,"stop":0.542548783609929,"type":"TBD"},{"start":0.534657203929051,"stop":0.537014258020283,"type":"TBD"},{"start":0.537089579654035,"stop":0.538932779094633,"type":"TBD"},{"start":0.518464434214533,"stop":0.519221981856175,"type":"TBD"},{"start":0.513397048078221,"stop":0.515397335876039,"type":"TBD"}]},{"gid":18,"kittle_nam":"Big Sucker Creek","route_mi":17.828,"public_mi":0.0,"length_mi":17.828,"objectid":26676,"trout_flag":null,"kittle_nbr":"S-015","public_route_length":11.234001060243122,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.60622823833761,"stop":0.649521421477107,"type":"TBD"},{"start":0.651060502058086,"stop":0.655399978603827,"type":"TBD"},{"start":0.655489507133444,"stop":0.66108437314148,"type":"TBD"},{"start":0.661225096505911,"stop":0.666071038354733,"type":"TBD"},{"start":0.66775645374969,"stop":0.667892079857971,"type":"TBD"},{"start":0.549022406040713,"stop":0.590862472906079,"type":"TBD"},{"start":0.544419869930805,"stop":0.548045846304563,"type":"TBD"},{"start":0.538044249534676,"stop":0.544002207946463,"type":"TBD"},{"start":0.531761728206266,"stop":0.536106038806156,"type":"TBD"},{"start":0.519097808447227,"stop":0.531514302762674,"type":"TBD"},{"start":0.479375218859,"stop":0.517936812626647,"type":"TBD"},{"start":0.326489886483602,"stop":0.33815007834179,"type":"TBD"},{"start":0.339157099622816,"stop":0.343003142486059,"type":"TBD"},{"start":0.363544293614641,"stop":0.370334310636309,"type":"TBD"},{"start":0.769094730540413,"stop":0.801195300427633,"type":"TBD"},{"start":0.761659522961015,"stop":0.769022123688081,"type":"TBD"},{"start":0.34346661169416,"stop":0.345537128497132,"type":"TBD"},{"start":0.320685183917053,"stop":0.326101955737741,"type":"TBD"},{"start":0.374162253268342,"stop":0.377533423061665,"type":"TBD"},{"start":0.304320373525209,"stop":0.316067338788894,"type":"TBD"},{"start":0.824424724460762,"stop":0.963074115067143,"type":"TBD"},{"start":0.812315241437083,"stop":0.824413132458886,"type":"TBD"},{"start":0.395415854116148,"stop":0.427996980546277,"type":"TBD"},{"start":0.472590457999607,"stop":0.477629022395109,"type":"TBD"},{"start":0.47086648829852,"stop":0.471622013285435,"type":"TBD"},{"start":0.468734732324644,"stop":0.470630912018404,"type":"TBD"},{"start":0.449364511041691,"stop":0.46872512806475,"type":"TBD"},{"start":0.428473495680969,"stop":0.429922453790176,"type":"TBD"},{"start":0.431444828101444,"stop":0.448824734056321,"type":"TBD"},{"start":0.262971865981222,"stop":0.271260059670119,"type":"TBD"},{"start":0.25479141436893,"stop":0.26294583581849,"type":"TBD"},{"start":0.252615641529245,"stop":0.254234507121755,"type":"TBD"},{"start":0.250166184378044,"stop":0.252586815359245,"type":"TBD"},{"start":0.972698379706337,"stop":0.980246421568233,"type":"TBD"},{"start":0.247181349233997,"stop":0.247888490758711,"type":"TBD"},{"start":0.246681495621389,"stop":0.246912868768799,"type":"TBD"},{"start":0.983013408566883,"stop":0.990577480837956,"type":"TBD"},{"start":0.23631377432771,"stop":0.237395707488178,"type":"TBD"},{"start":0.991762833366543,"stop":0.994240971182529,"type":"TBD"},{"start":0.225998196579576,"stop":0.232701701666483,"type":"TBD"},{"start":0.995838706217302,"stop":0.998485330055949,"type":"TBD"},{"start":0.99852570306708,"stop":1.0,"type":"TBD"},{"start":0.206570980827587,"stop":0.224811398293881,"type":"TBD"},{"start":0.141210848013114,"stop":0.151262241115762,"type":"TBD"},{"start":0.175619720711439,"stop":0.184725016830502,"type":"TBD"},{"start":0.133916742293733,"stop":0.136735922742046,"type":"TBD"},{"start":0.173142664469912,"stop":0.174175387790618,"type":"TBD"},{"start":0.114024068656364,"stop":0.116285139885576,"type":"TBD"},{"start":0.107097072114999,"stop":0.113678079285822,"type":"TBD"},{"start":0.100403370839006,"stop":0.104489035884098,"type":"TBD"},{"start":0.0881517393290945,"stop":0.096069879073575,"type":"TBD"},{"start":0.0822738804372008,"stop":0.0857068951928133,"type":"TBD"},{"start":0.0768139982826379,"stop":0.0780437448395874,"type":"TBD"},{"start":0.039570980616416,"stop":0.0510603332189978,"type":"TBD"},{"start":0.0266811900277349,"stop":0.0385005101339085,"type":"TBD"},{"start":0.0138645030051645,"stop":0.0244848752494327,"type":"TBD"}]},{"gid":35,"kittle_nam":"Brittain Creek","route_mi":1.589,"public_mi":0.0,"length_mi":1.589,"objectid":25931,"trout_flag":null,"kittle_nbr":"M-106-013-005-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":61,"kittle_nam":"Lower Stump River","route_mi":4.013,"public_mi":0.0,"length_mi":4.013,"objectid":27771,"trout_flag":null,"kittle_nbr":"S-088-010-002","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":71,"kittle_nam":"Bear Creek","route_mi":4.745,"public_mi":0.0,"length_mi":4.745,"objectid":25354,"trout_flag":null,"kittle_nbr":"M-026-006","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":72,"kittle_nam":"Rupprecht Creek","route_mi":5.849,"public_mi":0.0,"length_mi":5.849,"objectid":25298,"trout_flag":null,"kittle_nbr":"M-026-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":75,"kittle_nam":"Speltz Creek","route_mi":3.98,"public_mi":0.0,"length_mi":3.98,"objectid":25370,"trout_flag":null,"kittle_nbr":"M-026-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":88,"kittle_nam":"Indian Creek","route_mi":5.351,"public_mi":0.0,"length_mi":5.351,"objectid":26372,"trout_flag":null,"kittle_nbr":"S-002-016-019","public_route_length":0.20707470748359583,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.876843814595109,"stop":0.915542134065039,"type":"TBD"}]},{"gid":117,"kittle_nam":"Rush Creek","route_mi":21.963,"public_mi":0.0,"length_mi":21.963,"objectid":25326,"trout_flag":null,"kittle_nbr":"M-009-017","public_route_length":14.435195323456993,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.871576217554595,"stop":0.897601715456476,"type":"TBD"},{"start":0.853569669406912,"stop":0.859420325862967,"type":"TBD"},{"start":0.803309277217688,"stop":0.821784974557105,"type":"TBD"},{"start":0.779454386758248,"stop":0.798665091410921,"type":"TBD"},{"start":0.742160345991154,"stop":0.749207371232644,"type":"TBD"},{"start":0.749512258645598,"stop":0.772145666587294,"type":"TBD"},{"start":0.732001456683388,"stop":0.740040708530387,"type":"TBD"},{"start":0.772883644821865,"stop":0.77790948036464,"type":"TBD"},{"start":0.72053680051212,"stop":0.730370983879988,"type":"TBD"},{"start":0.685506423307166,"stop":0.69918404427737,"type":"TBD"},{"start":0.703030560846905,"stop":0.713176675026019,"type":"TBD"},{"start":0.682475455516453,"stop":0.683286497235681,"type":"TBD"},{"start":0.61205732572547,"stop":0.645135325065826,"type":"TBD"},{"start":0.168964826981098,"stop":0.609923793263418,"type":"TBD"},{"start":0.654154281494186,"stop":0.669863172561302,"type":"TBD"},{"start":0.646150994447149,"stop":0.653572532723214,"type":"TBD"},{"start":0.653802776842256,"stop":0.653855095286814,"type":"TBD"},{"start":0.162015819921414,"stop":0.167671208960417,"type":"TBD"},{"start":0.153285445531748,"stop":0.155786106346952,"type":"TBD"},{"start":0.156165556973282,"stop":0.161263374563966,"type":"TBD"}]},{"gid":131,"kittle_nam":"Willow Creek","route_mi":5.78,"public_mi":0.0,"length_mi":5.78,"objectid":25961,"trout_flag":null,"kittle_nbr":"M-096-020-017","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":132,"kittle_nam":"Finn Creek","route_mi":2.425,"public_mi":0.0,"length_mi":2.425,"objectid":25962,"trout_flag":null,"kittle_nbr":"M-096-020-015","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":159,"kittle_nam":"Mud River","route_mi":3.162,"public_mi":0.0,"length_mi":3.162,"objectid":25066,"trout_flag":null,"kittle_nbr":"H-026-030-066","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":187,"kittle_nam":"Tomlinson Creek","route_mi":6.042,"public_mi":0.0,"length_mi":6.042,"objectid":25082,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-008-005","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":189,"kittle_nam":"Folly Creek","route_mi":8.042,"public_mi":0.0,"length_mi":8.042,"objectid":25096,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-008-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":190,"kittle_nam":"Scott Creek","route_mi":6.61,"public_mi":0.0,"length_mi":6.61,"objectid":25089,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-008-002","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":219,"kittle_nam":"Ninemile Creek","route_mi":4.667,"public_mi":0.0,"length_mi":4.667,"objectid":27597,"trout_flag":null,"kittle_nbr":"S-045-007","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":231,"kittle_nam":"Dragon Creek","route_mi":2.43,"public_mi":0.0,"length_mi":2.43,"objectid":27247,"trout_flag":null,"kittle_nbr":"S-044.1","public_route_length":0.476791854703262,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.452722047372086,"stop":0.648932687167667,"type":"TBD"}]},{"gid":232,"kittle_nam":"Pickerel Creek","route_mi":2.395,"public_mi":0.0,"length_mi":2.395,"objectid":25894,"trout_flag":null,"kittle_nbr":"M-128-018.5","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":233,"kittle_nam":"Mud Creek","route_mi":3.432,"public_mi":0.0,"length_mi":3.432,"objectid":25539,"trout_flag":null,"kittle_nbr":"M-055-158-034-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":245,"kittle_nam":"Shipwreck Creek","route_mi":3.292,"public_mi":0.0,"length_mi":3.292,"objectid":26876,"trout_flag":null,"kittle_nbr":"S-032","public_route_length":0.35717803983161872,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.108498797032691,"type":"TBD"}]},{"gid":246,"kittle_nam":"Lawndale Creek","route_mi":1.831,"public_mi":0.0,"length_mi":1.831,"objectid":24960,"trout_flag":null,"kittle_nbr":"H-026-056-009-005-006-B001","public_route_length":1.5626367364302298,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.00945903906551176,"type":"TBD"},{"start":0.151861035162856,"stop":0.99583549496694,"type":"TBD"}]},{"gid":247,"kittle_nam":"Beaver River","route_mi":23.218,"public_mi":0.0,"length_mi":23.218,"objectid":26875,"trout_flag":null,"kittle_nbr":"S-035","public_route_length":5.3876973119556011,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.876699672879399,"stop":0.900655605203378,"type":"TBD"},{"start":0.780175318235594,"stop":0.807745050672203,"type":"TBD"},{"start":0.714707175355079,"stop":0.724539031300565,"type":"TBD"},{"start":0.694882680112252,"stop":0.710602130681686,"type":"TBD"},{"start":0.596618425774816,"stop":0.601903468494623,"type":"TBD"},{"start":0.581055387864356,"stop":0.586612516509979,"type":"TBD"},{"start":0.549001854079905,"stop":0.571893913140216,"type":"TBD"},{"start":0.525676964449758,"stop":0.527257036444176,"type":"TBD"},{"start":0.369682899880679,"stop":0.377968787303437,"type":"TBD"},{"start":0.338710281611422,"stop":0.350669107065575,"type":"TBD"},{"start":0.292540496667292,"stop":0.326325147920682,"type":"TBD"},{"start":0.220281807789204,"stop":0.224077624906778,"type":"TBD"},{"start":0.194024573486142,"stop":0.212690165141894,"type":"TBD"},{"start":0.170037938770785,"stop":0.179914080029537,"type":"TBD"},{"start":0.093945245577375,"stop":0.127235352660995,"type":"TBD"}]},{"gid":248,"kittle_nam":"Palisade Creek","route_mi":5.143,"public_mi":0.0,"length_mi":5.143,"objectid":26814,"trout_flag":null,"kittle_nbr":"S-037","public_route_length":2.2462239846102587,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.644167503536251,"stop":1.0,"type":"TBD"},{"start":0.0,"stop":0.0809211462759474,"type":"TBD"}]},{"gid":249,"kittle_nam":"Baptism River","route_mi":25.945,"public_mi":0.0,"length_mi":25.945,"objectid":26809,"trout_flag":null,"kittle_nbr":"S-038","public_route_length":4.6042229217165449,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.285729260679332,"stop":0.29608461519215,"type":"TBD"},{"start":0.252755530847041,"stop":0.283726875895518,"type":"TBD"},{"start":0.163603319976028,"stop":0.171860856378788,"type":"TBD"},{"start":0.11480928236213,"stop":0.115358460929974,"type":"TBD"},{"start":0.111195441525989,"stop":0.112631025555392,"type":"TBD"},{"start":0.182365482859158,"stop":0.192546688106697,"type":"TBD"},{"start":0.106736168307745,"stop":0.107595589425847,"type":"TBD"},{"start":0.104969631024328,"stop":0.106168799340628,"type":"TBD"},{"start":0.0,"stop":0.104058709398685,"type":"TBD"},{"start":0.19400611352806,"stop":0.199607630451673,"type":"TBD"},{"start":0.204843698767762,"stop":0.205678517281799,"type":"TBD"},{"start":0.213208721897487,"stop":0.216365778854199,"type":"TBD"}]},{"gid":272,"kittle_nam":"Kedron Creek","route_mi":1.119,"public_mi":0.0,"length_mi":1.119,"objectid":25239,"trout_flag":null,"kittle_nbr":"M-009-033-008-004","public_route_length":0.37806138878322859,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":4,"short_description":"No harvest. No bait.","official_text":"Catch & Release for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":4},"RestrictionSections":[{"start":0.0,"stop":1.0,"restriction":{"summary":"No harvest. No bait.","officialText":"Catch & Release for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.231765049862647,"stop":0.569621518837829,"type":"TBD"}]},{"gid":290,"kittle_nam":"Gilmore Creek","route_mi":4.294,"public_mi":0.0,"length_mi":4.294,"objectid":25188,"trout_flag":null,"kittle_nbr":"M-024","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":292,"kittle_nam":"Rollingstone Creek","route_mi":11.773,"public_mi":0.0,"length_mi":11.773,"objectid":25179,"trout_flag":null,"kittle_nbr":"M-026","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":309,"kittle_nam":"Little Stony Creek","route_mi":3.893,"public_mi":0.0,"length_mi":3.893,"objectid":27340,"trout_flag":null,"kittle_nbr":"S-075-008-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":369,"kittle_nam":"Long Creek","route_mi":8.943,"public_mi":0.0,"length_mi":8.943,"objectid":25353,"trout_flag":null,"kittle_nbr":"M-034-022","public_route_length":1.468179346725806,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.528583885547169,"stop":0.692754672388923,"type":"TBD"}]},{"gid":371,"kittle_nam":"Spring Creek","route_mi":8.57,"public_mi":0.0,"length_mi":8.57,"objectid":25433,"trout_flag":null,"kittle_nbr":"M-034-020","public_route_length":1.4680307785369751,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.400200119389087,"stop":0.448275019210687,"type":"TBD"},{"start":0.255571674199029,"stop":0.286891203422314,"type":"TBD"},{"start":0.0839239558034654,"stop":0.175828334055777,"type":"TBD"}]},{"gid":370,"kittle_nam":"M. Creek","route_mi":4.876,"public_mi":0.0,"length_mi":4.876,"objectid":25412,"trout_flag":null,"kittle_nbr":"M-034-021","public_route_length":0.3862246605808119,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.731115659933579,"stop":0.810324983268446,"type":"TBD"}]},{"gid":390,"kittle_nam":"Gilmore Creek","route_mi":1.93,"public_mi":0.0,"length_mi":1.93,"objectid":25065,"trout_flag":null,"kittle_nbr":"H-001-046-007-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":391,"kittle_nam":"Auganash Creek","route_mi":3.684,"public_mi":0.0,"length_mi":3.684,"objectid":24957,"trout_flag":null,"kittle_nbr":"H-026-047-041","public_route_length":0.46500741780727289,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.438524929653783,"stop":0.449496587852847,"type":"TBD"},{"start":0.4236545764272,"stop":0.438014042473672,"type":"TBD"},{"start":0.399633963096886,"stop":0.422638554511325,"type":"TBD"},{"start":0.25021423126216,"stop":0.32810202749341,"type":"TBD"}]},{"gid":392,"kittle_nam":"Buckboard Creek","route_mi":7.404,"public_mi":0.0,"length_mi":7.404,"objectid":24958,"trout_flag":null,"kittle_nbr":"H-026-047-042","public_route_length":1.1176410598990854,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.00040303491283367,"type":"TBD"},{"start":0.362937852500578,"stop":0.385671165463451,"type":"TBD"},{"start":0.469479300992559,"stop":0.483072237575513,"type":"TBD"},{"start":0.572133370722329,"stop":0.575801006397569,"type":"TBD"},{"start":0.575884639389359,"stop":0.618118629085614,"type":"TBD"},{"start":0.796897584995174,"stop":0.811345645026603,"type":"TBD"},{"start":0.662224816208609,"stop":0.667842961469372,"type":"TBD"},{"start":0.668851831767292,"stop":0.673511976929428,"type":"TBD"},{"start":0.673894647798729,"stop":0.677483083053446,"type":"TBD"},{"start":0.686141971264623,"stop":0.698120114900163,"type":"TBD"},{"start":0.701481849189553,"stop":0.712075921853547,"type":"TBD"},{"start":0.882604184571179,"stop":0.899230936808646,"type":"TBD"},{"start":0.906201103342449,"stop":0.907007419803671,"type":"TBD"}]},{"gid":395,"kittle_nam":"Snake River","route_mi":10.73,"public_mi":0.0,"length_mi":10.73,"objectid":25021,"trout_flag":null,"kittle_nbr":"H-001-092-021-007","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":456,"kittle_nam":"Wildcat Creek","route_mi":4.417,"public_mi":0.0,"length_mi":4.417,"objectid":28021,"trout_flag":null,"kittle_nbr":"M-007","public_route_length":0.71091338806269133,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.574539968239493,"stop":0.619237433440163,"type":"TBD"},{"start":0.330050814472621,"stop":0.387787897027311,"type":"TBD"},{"start":0.267188782124196,"stop":0.325703609071732,"type":"TBD"}]},{"gid":458,"kittle_nam":"Crooked Creek","route_mi":1.934,"public_mi":0.0,"length_mi":1.934,"objectid":27743,"trout_flag":null,"kittle_nbr":"M-004","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":475,"kittle_nam":"Cottonwood Creek","route_mi":5.758,"public_mi":0.0,"length_mi":5.758,"objectid":25546,"trout_flag":null,"kittle_nbr":"M-055-158-014","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":476,"kittle_nam":"Briggs Creek","route_mi":5.967,"public_mi":0.0,"length_mi":5.967,"objectid":25507,"trout_flag":null,"kittle_nbr":"M-065-011","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":521,"kittle_nam":"Spring Creek","route_mi":1.333,"public_mi":0.0,"length_mi":1.333,"objectid":26415,"trout_flag":null,"kittle_nbr":"S-002-016-005-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":532,"kittle_nam":"Hammond Creek","route_mi":2.105,"public_mi":0.0,"length_mi":2.105,"objectid":25290,"trout_flag":null,"kittle_nbr":"M-034-041","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":563,"kittle_nam":"Skunk Creek","route_mi":11.082,"public_mi":0.0,"length_mi":11.082,"objectid":26954,"trout_flag":null,"kittle_nbr":"S-026-001","public_route_length":2.8040574515765297,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.97488528260348,"stop":1.0,"type":"TBD"},{"start":0.902889805324131,"stop":0.927931274068393,"type":"TBD"},{"start":0.870563810059544,"stop":0.901636524092531,"type":"TBD"},{"start":0.851230287293597,"stop":0.859649839509787,"type":"TBD"},{"start":0.81906695634507,"stop":0.825262990183046,"type":"TBD"},{"start":0.708745294393136,"stop":0.741691573989545,"type":"TBD"},{"start":0.683067344862425,"stop":0.696421679018641,"type":"TBD"},{"start":0.585908302028811,"stop":0.610332742654411,"type":"TBD"},{"start":0.465682079135591,"stop":0.525387240978249,"type":"TBD"},{"start":0.454907090814832,"stop":0.458930169940331,"type":"TBD"},{"start":0.0,"stop":0.0227303227007712,"type":"TBD"}]},{"gid":580,"kittle_nam":"Robinson Hill Creek","route_mi":7.555,"public_mi":0.0,"length_mi":7.555,"objectid":25492,"trout_flag":null,"kittle_nbr":"M-073-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":583,"kittle_nam":"Wolf Creek","route_mi":4.14,"public_mi":0.0,"length_mi":4.14,"objectid":25602,"trout_flag":null,"kittle_nbr":"M-050-049-005-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":593,"kittle_nam":"Dinner Creek","route_mi":25.366,"public_mi":0.0,"length_mi":25.366,"objectid":24995,"trout_flag":null,"kittle_nbr":"H-001-029-004-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":620,"kittle_nam":"Bemis Hill Creek","route_mi":2.685,"public_mi":0.0,"length_mi":2.685,"objectid":25048,"trout_flag":null,"kittle_nbr":"H-024-055-007","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":638,"kittle_nam":"Clear Creek","route_mi":3.53,"public_mi":0.0,"length_mi":3.53,"objectid":25726,"trout_flag":null,"kittle_nbr":"M-043-006","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":639,"kittle_nam":"Hay Creek","route_mi":1.639,"public_mi":0.0,"length_mi":1.639,"objectid":25736,"trout_flag":null,"kittle_nbr":"M-090-007.5","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":654,"kittle_nam":"Torkelson Creek","route_mi":2.03,"public_mi":0.0,"length_mi":2.03,"objectid":25255,"trout_flag":null,"kittle_nbr":"M-009-026","public_route_length":1.5496685686420608,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.763383531350769,"type":"TBD"}]},{"gid":657,"kittle_nam":"Diamond Creek","route_mi":5.64,"public_mi":0.0,"length_mi":5.64,"objectid":25295,"trout_flag":null,"kittle_nbr":"M-009-023","public_route_length":0.99726419819539558,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.233632709993324,"stop":0.290377256726315,"type":"TBD"},{"start":0.433621821222324,"stop":0.472342506459523,"type":"TBD"},{"start":0.640435269729834,"stop":0.671217389779432,"type":"TBD"},{"start":0.688053754291106,"stop":0.735505129808374,"type":"TBD"},{"start":0.739458882679956,"stop":0.742580048439956,"type":"TBD"}]},{"gid":658,"kittle_nam":"Big Springs Creek","route_mi":4.11,"public_mi":0.0,"length_mi":4.11,"objectid":25300,"trout_flag":null,"kittle_nbr":"M-009-021","public_route_length":2.0042582985254063,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.797938481358293,"stop":0.99976371578762,"type":"TBD"},{"start":0.473194323480506,"stop":0.673795486051669,"type":"TBD"},{"start":0.457443730463809,"stop":0.469137465405499,"type":"TBD"},{"start":0.322283349604741,"stop":0.39581730489502,"type":"TBD"}]},{"gid":666,"kittle_nam":"Trout Run Creek","route_mi":13.653,"public_mi":0.0,"length_mi":13.653,"objectid":25254,"trout_flag":null,"kittle_nbr":"M-009-029","public_route_length":9.9932298098476551,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":2,"short_description":"12\" to 16\" no harvest. No bait.","official_text":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":2},"RestrictionSections":[{"start":0.0013417648806322,"stop":1.0,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.530881381130391,"stop":0.642143592156971,"type":"TBD"},{"start":0.850854415702919,"stop":0.91226940182324,"type":"TBD"},{"start":0.766548078491542,"stop":0.850152653095336,"type":"TBD"},{"start":0.674857756042439,"stop":0.719693914014867,"type":"TBD"},{"start":0.748266575605136,"stop":0.765850940105216,"type":"TBD"},{"start":0.723476489750207,"stop":0.747229715159939,"type":"TBD"},{"start":0.72187342524886,"stop":0.722758884967763,"type":"TBD"},{"start":0.148406506492632,"stop":0.471702885686478,"type":"TBD"},{"start":0.0333390895211675,"stop":0.0986456121625964,"type":"TBD"}]},{"gid":670,"kittle_nam":"Stony Brook","route_mi":8.33,"public_mi":0.0,"length_mi":8.33,"objectid":24914,"trout_flag":null,"kittle_nbr":"H-001-030-023-002-003","public_route_length":3.8594114899268672,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.954019086743431,"stop":1.0,"type":"TBD"},{"start":0.951717530427594,"stop":0.953416346808995,"type":"TBD"},{"start":0.951295210416342,"stop":0.951361775001204,"type":"TBD"},{"start":0.924772934221382,"stop":0.940141436423744,"type":"TBD"},{"start":0.869807268465115,"stop":0.910752941687977,"type":"TBD"},{"start":0.860662779422534,"stop":0.862960577128371,"type":"TBD"},{"start":0.820761404135522,"stop":0.857407546515805,"type":"TBD"},{"start":0.812618421616392,"stop":0.817822691399485,"type":"TBD"},{"start":0.791592482424012,"stop":0.81168716029576,"type":"TBD"},{"start":0.782573394029127,"stop":0.789874717867849,"type":"TBD"},{"start":0.762021355798093,"stop":0.782528232918506,"type":"TBD"},{"start":0.673764965229427,"stop":0.717593344619599,"type":"TBD"},{"start":0.477981797654934,"stop":0.516074706828746,"type":"TBD"},{"start":0.391248151639375,"stop":0.449637981878892,"type":"TBD"},{"start":0.450776717654934,"stop":0.462054343508559,"type":"TBD"},{"start":0.462859001806032,"stop":0.470543519645364,"type":"TBD"},{"start":0.243227929311097,"stop":0.248034861492317,"type":"TBD"},{"start":0.230299026330447,"stop":0.242581264787452,"type":"TBD"},{"start":0.147432514406762,"stop":0.187764596074505,"type":"TBD"},{"start":0.094617415367055,"stop":0.14512604688957,"type":"TBD"}]},{"gid":700,"kittle_nam":"Meadow Creek","route_mi":4.4716,"public_mi":0.0,"length_mi":4.4716,"objectid":27997,"trout_flag":null,"kittle_nbr":"H-026-030-069-001-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":711,"kittle_nam":"Beaver River, E.","route_mi":21.243,"public_mi":0.0,"length_mi":21.243,"objectid":26874,"trout_flag":null,"kittle_nbr":"S-035-001","public_route_length":5.3833249211628287,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.479929758141551,"stop":0.521816504771629,"type":"TBD"},{"start":0.465666197806061,"stop":0.469916624963007,"type":"TBD"},{"start":0.461377303010427,"stop":0.465616006983603,"type":"TBD"},{"start":0.45272629837925,"stop":0.457082237580606,"type":"TBD"},{"start":0.438089868128972,"stop":0.442714755575955,"type":"TBD"},{"start":0.345138272719146,"stop":0.38379693976738,"type":"TBD"},{"start":0.254263519928481,"stop":0.291734428637664,"type":"TBD"},{"start":0.204008407404819,"stop":0.251258742231446,"type":"TBD"},{"start":0.12173321757179,"stop":0.173346881663915,"type":"TBD"},{"start":0.0852483360495803,"stop":0.0999048651306654,"type":"TBD"},{"start":0.0785256655701652,"stop":0.0829352732195972,"type":"TBD"}]},{"gid":712,"kittle_nam":"Lawrence Creek","route_mi":2.492,"public_mi":0.0,"length_mi":2.492,"objectid":25621,"trout_flag":null,"kittle_nbr":"M-050-028","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":714,"kittle_nam":"Kit Creek","route_mi":7.309,"public_mi":0.0,"length_mi":7.309,"objectid":26841,"trout_flag":null,"kittle_nbr":"S-035-009","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":755,"kittle_nam":"Heffelfinger Ceek","route_mi":4.278,"public_mi":0.0,"length_mi":4.278,"objectid":26765,"trout_flag":null,"kittle_nbr":"S-038-009-004","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":768,"kittle_nam":"Ekbeck Creek","route_mi":2.327,"public_mi":0.0,"length_mi":2.327,"objectid":26856,"trout_flag":null,"kittle_nbr":"S-035-001-010","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":778,"kittle_nam":"Pokegama Creek","route_mi":2.73,"public_mi":0.0,"length_mi":2.73,"objectid":25890,"trout_flag":null,"kittle_nbr":"M-137-007","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":780,"kittle_nam":"Little Pokegama Creek","route_mi":1.763,"public_mi":0.0,"length_mi":1.763,"objectid":25886,"trout_flag":null,"kittle_nbr":"M-137-008","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":819,"kittle_nam":"Goetzinger Tributary","route_mi":1.222,"public_mi":0.0,"length_mi":1.222,"objectid":25119,"trout_flag":null,"kittle_nbr":"M-004-008","public_route_length":0.016167635793665539,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.013230471189579,"type":"TBD"}]},{"gid":830,"kittle_nam":"Soukup Spring","route_mi":1.445,"public_mi":0.0,"length_mi":1.445,"objectid":25284,"trout_flag":null,"kittle_nbr":"M-009-024-003","public_route_length":0.01238762339411569,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.00857274975371328,"type":"TBD"}]},{"gid":832,"kittle_nam":"Little Devil Track River","route_mi":6.14,"public_mi":0.0,"length_mi":6.14,"objectid":27481,"trout_flag":null,"kittle_nbr":"S-067-002","public_route_length":0.32532826961489475,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0107895943130899,"stop":0.0637746545109555,"type":"TBD"}]},{"gid":833,"kittle_nam":"Woods Creek","route_mi":3.852,"public_mi":0.0,"length_mi":3.852,"objectid":27485,"trout_flag":null,"kittle_nbr":"S-067-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":836,"kittle_nam":"Fox Farm Creek","route_mi":1.79,"public_mi":0.0,"length_mi":1.79,"objectid":27444,"trout_flag":null,"kittle_nbr":"S-067-005","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":837,"kittle_nam":"Elbow Creek","route_mi":3.971,"public_mi":0.0,"length_mi":3.971,"objectid":27467,"trout_flag":null,"kittle_nbr":"S-067-004","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":877,"kittle_nam":"Vermillion River","route_mi":22.918,"public_mi":0.0,"length_mi":22.918,"objectid":25677,"trout_flag":null,"kittle_nbr":"M-049","public_route_length":3.3909178649975193,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":5,"short_description":"No harvest.","official_text":"Catch & Release for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":5},"RestrictionSections":[{"start":0.631775796247975,"stop":1.0,"restriction":{"summary":"No harvest.","officialText":"Catch & Release for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}},{"start":0.0,"stop":0.542515526517776,"restriction":{"summary":"No harvest.","officialText":"Catch & Release for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.385214784595243,"stop":0.385724626696348,"type":"TBD"},{"start":0.332455003753615,"stop":0.384179462759432,"type":"TBD"},{"start":0.273454105170789,"stop":0.291962034316265,"type":"TBD"},{"start":0.0734624959458526,"stop":0.108284947523362,"type":"TBD"},{"start":0.0730074915113824,"stop":0.0732896323791618,"type":"TBD"},{"start":0.0,"stop":0.0421118938132443,"type":"TBD"}]},{"gid":878,"kittle_nam":"Spring Creek","route_mi":8.453,"public_mi":0.0,"length_mi":8.453,"objectid":25717,"trout_flag":null,"kittle_nbr":"M-047","public_route_length":1.3533145385831136,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.643122827818202,"stop":0.741953118368843,"type":"TBD"},{"start":0.81276597523392,"stop":0.818796831741336,"type":"TBD"},{"start":0.919562870452496,"stop":0.919565382620328,"type":"TBD"},{"start":0.919663188760897,"stop":0.932823079583853,"type":"TBD"},{"start":0.933860467674212,"stop":0.959383465857215,"type":"TBD"},{"start":0.960199548431848,"stop":0.976751727111524,"type":"TBD"}]},{"gid":879,"kittle_nam":"Hay Creek","route_mi":17.434,"public_mi":0.0,"length_mi":17.434,"objectid":25721,"trout_flag":null,"kittle_nbr":"M-046","public_route_length":5.41109886145493,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":2,"short_description":"12\" to 16\" no harvest. No bait.","official_text":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":2},"RestrictionSections":[{"start":0.54203149025542,"stop":0.784230195369456,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.892512116030341,"stop":0.927133222134813,"type":"TBD"},{"start":0.855574602663532,"stop":0.881237282483879,"type":"TBD"},{"start":0.81218656494338,"stop":0.822213817926281,"type":"TBD"},{"start":0.735456499615391,"stop":0.780050734608784,"type":"TBD"},{"start":0.541801310755464,"stop":0.735432575605627,"type":"TBD"},{"start":0.536851954567032,"stop":0.538691626751567,"type":"TBD"}]},{"gid":880,"kittle_nam":"Bullard Creek","route_mi":5.198,"public_mi":0.0,"length_mi":5.198,"objectid":25723,"trout_flag":null,"kittle_nbr":"M-045","public_route_length":0.92278729920960734,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.614826140199163,"stop":0.792353515960919,"type":"TBD"}]},{"gid":882,"kittle_nam":"Miller Creek","route_mi":6.722,"public_mi":0.0,"length_mi":6.722,"objectid":25729,"trout_flag":null,"kittle_nbr":"M-041","public_route_length":0.580994566680571,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0857712229424311,"stop":0.171960531651146,"type":"TBD"},{"start":0.0805253315222273,"stop":0.0807678238668553,"type":"TBD"}]},{"gid":890,"kittle_nam":"Swine Creek","route_mi":2.145,"public_mi":0.0,"length_mi":2.145,"objectid":25132,"trout_flag":null,"kittle_nbr":"H-001-029-022.1","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":897,"kittle_nam":"Bad Boy Creek","route_mi":5.3483,"public_mi":0.0,"length_mi":5.3483,"objectid":27993,"trout_flag":null,"kittle_nbr":"H-026-047-033-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":904,"kittle_nam":"Washington Creek","route_mi":3.113,"public_mi":0.0,"length_mi":3.113,"objectid":25516,"trout_flag":null,"kittle_nbr":"M-064-023","public_route_length":1.4316775647314153,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.997676972653107,"stop":1.0,"type":"TBD"},{"start":0.437882477037091,"stop":0.710341382002406,"type":"TBD"},{"start":0.160558630128664,"stop":0.345679545465481,"type":"TBD"}]},{"gid":905,"kittle_nam":"Trout Brook","route_mi":1.26,"public_mi":0.0,"length_mi":1.26,"objectid":25155,"trout_flag":null,"kittle_nbr":"H-001-029-005.5","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":907,"kittle_nam":"Trout Brook","route_mi":1.079,"public_mi":0.0,"length_mi":1.079,"objectid":25000,"trout_flag":null,"kittle_nbr":"H-001-029-005.6","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":917,"kittle_nam":"Dutch Slough","route_mi":5.157,"public_mi":0.0,"length_mi":5.157,"objectid":26461,"trout_flag":null,"kittle_nbr":"S-002-014-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":964,"kittle_nam":"Valley Creek","route_mi":4.29,"public_mi":0.0,"length_mi":4.29,"objectid":25642,"trout_flag":null,"kittle_nbr":"M-050-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":970,"kittle_nam":"Daley Creek","route_mi":2.972,"public_mi":0.0,"length_mi":2.972,"objectid":25341,"trout_flag":null,"kittle_nbr":"M-009-012","public_route_length":2.0689337830779762,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.375975582482544,"stop":0.87457021323578,"type":"TBD"},{"start":0.343245756688109,"stop":0.366824174292633,"type":"TBD"},{"start":0.17098907803773,"stop":0.3416650670783,"type":"TBD"},{"start":0.370505739872676,"stop":0.373798621410408,"type":"TBD"}]},{"gid":972,"kittle_nam":"Money Creek","route_mi":5.255,"public_mi":0.0,"length_mi":5.255,"objectid":25363,"trout_flag":null,"kittle_nbr":"M-009-011","public_route_length":1.7899874641261473,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.316723141214254,"stop":0.605767549426588,"type":"TBD"},{"start":0.830685840457555,"stop":0.882267020090349,"type":"TBD"}]},{"gid":976,"kittle_nam":"Camp Hayward Creek","route_mi":1.429,"public_mi":0.0,"length_mi":1.429,"objectid":25302,"trout_flag":null,"kittle_nbr":"M-009-019","public_route_length":0.93506119316016789,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0327636557051073,"stop":0.335086386707367,"type":"TBD"},{"start":0.539087323836303,"stop":0.891111124086785,"type":"TBD"}]},{"gid":999,"kittle_nam":"Rose Valley Creek","route_mi":3.315,"public_mi":0.0,"length_mi":3.315,"objectid":25213,"trout_flag":null,"kittle_nbr":"M-011-009","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1034,"kittle_nam":"Ramsey Creek","route_mi":3.676,"public_mi":0.0,"length_mi":3.676,"objectid":25554,"trout_flag":null,"kittle_nbr":"M-055-126-001","public_route_length":0.79622621787072234,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.996573025072175,"stop":1.0,"type":"TBD"},{"start":0.925985814065887,"stop":0.991943687744836,"type":"TBD"},{"start":0.913625618968686,"stop":0.925933579968879,"type":"TBD"},{"start":0.900941520200324,"stop":0.908832379792341,"type":"TBD"},{"start":0.870569760835723,"stop":0.8974115508547,"type":"TBD"},{"start":0.852855997608286,"stop":0.866697253421313,"type":"TBD"},{"start":0.837809808057905,"stop":0.852589285951927,"type":"TBD"},{"start":0.819507083284024,"stop":0.829694834587593,"type":"TBD"},{"start":0.807846731780088,"stop":0.812771189259336,"type":"TBD"},{"start":0.769293271114666,"stop":0.807291399986159,"type":"TBD"},{"start":0.743610325908897,"stop":0.76205505155121,"type":"TBD"}]},{"gid":1036,"kittle_nam":"Pancake Creek","route_mi":2.175,"public_mi":0.0,"length_mi":2.175,"objectid":26348,"trout_flag":null,"kittle_nbr":"S-002-032-007-003","public_route_length":0.54099793668859686,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.123457188040132,"stop":0.266107614992117,"type":"TBD"},{"start":0.0818401714631265,"stop":0.110068704350007,"type":"TBD"},{"start":0.0,"stop":0.0778557236961216,"type":"TBD"}]},{"gid":1039,"kittle_nam":"Leskinen Creek","route_mi":1.457,"public_mi":0.0,"length_mi":1.457,"objectid":26791,"trout_flag":null,"kittle_nbr":"S-038-007","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1040,"kittle_nam":"Sawmill Creek","route_mi":8.636,"public_mi":0.0,"length_mi":8.636,"objectid":26796,"trout_flag":null,"kittle_nbr":"S-038-006","public_route_length":1.7164898634437467,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0638090797431389,"stop":0.0746517434139302,"type":"TBD"},{"start":0.075525931723374,"stop":0.0833106325812998,"type":"TBD"},{"start":0.0834477705158546,"stop":0.0847525019119802,"type":"TBD"},{"start":0.0847817714790582,"stop":0.140508522025637,"type":"TBD"},{"start":0.140554104835304,"stop":0.1766322831552,"type":"TBD"},{"start":0.448568902351742,"stop":0.497068192632108,"type":"TBD"},{"start":0.54745985420074,"stop":0.566487742211614,"type":"TBD"},{"start":0.639426509051407,"stop":0.658922132676092,"type":"TBD"}]},{"gid":1042,"kittle_nam":"Lindstrom Creek","route_mi":4.292,"public_mi":0.0,"length_mi":4.292,"objectid":26803,"trout_flag":null,"kittle_nbr":"S-038-004","public_route_length":0.34642412127012451,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.431874054036342,"stop":0.512587968591357,"type":"TBD"}]},{"gid":1046,"kittle_nam":"Hockamin Creek","route_mi":11.53,"public_mi":0.0,"length_mi":11.53,"objectid":26770,"trout_flag":null,"kittle_nbr":"S-038-009","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1047,"kittle_nam":"Baptism River, E.","route_mi":19.856,"public_mi":0.0,"length_mi":19.856,"objectid":26789,"trout_flag":null,"kittle_nbr":"S-038-008","public_route_length":1.1717551703831604,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.142740951561496,"stop":0.162224514891659,"type":"TBD"},{"start":0.199593557411413,"stop":0.223882914096903,"type":"TBD"},{"start":0.286269908539864,"stop":0.301509638120462,"type":"TBD"}]},{"gid":1052,"kittle_nam":"Snake Creek","route_mi":3.65,"public_mi":0.0,"length_mi":3.65,"objectid":25018,"trout_flag":null,"kittle_nbr":"H-001-092-021-007-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1062,"kittle_nam":"Monker Creek","route_mi":1.217,"public_mi":0.0,"length_mi":1.217,"objectid":27476,"trout_flag":null,"kittle_nbr":"S-067-002-004","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1096,"kittle_nam":"Wanless Creek","route_mi":2.944,"public_mi":0.0,"length_mi":2.944,"objectid":27172,"trout_flag":null,"kittle_nbr":"S-052-006-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1100,"kittle_nam":"Big Springs Creek","route_mi":1.568,"public_mi":0.0,"length_mi":1.568,"objectid":25251,"trout_flag":null,"kittle_nbr":"M-009-030-006","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1109,"kittle_nam":"Nira Creek","route_mi":2.849,"public_mi":0.0,"length_mi":2.849,"objectid":25009,"trout_flag":null,"kittle_nbr":"H-001-092-016-001-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1110,"kittle_nam":"Trout Brook","route_mi":4.582,"public_mi":0.0,"length_mi":4.582,"objectid":25710,"trout_flag":null,"kittle_nbr":"M-048-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1128,"kittle_nam":"Wyman Creek Braid","route_mi":1.81,"public_mi":0.0,"length_mi":1.81,"objectid":26300,"trout_flag":null,"kittle_nbr":"S-002-057-003-B001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1141,"kittle_nam":"Thirtynine Creek, Little","route_mi":6.716,"public_mi":0.0,"length_mi":6.716,"objectid":26838,"trout_flag":null,"kittle_nbr":"S-035-010-002","public_route_length":0.015869488524322031,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.997637062459154,"stop":1.0,"type":"TBD"}]},{"gid":1156,"kittle_nam":"Duschee Creek","route_mi":7.723,"public_mi":0.0,"length_mi":7.723,"objectid":25282,"trout_flag":null,"kittle_nbr":"M-009-025-001","public_route_length":6.1361850547569965,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.00135523765758908,"stop":0.473148903078684,"type":"TBD"},{"start":0.473978045819241,"stop":0.538618096790819,"type":"TBD"},{"start":0.579918338592738,"stop":0.657338063678109,"type":"TBD"},{"start":0.789882396383025,"stop":0.905009834197366,"type":"TBD"},{"start":0.702844102906547,"stop":0.736491719736048,"type":"TBD"},{"start":0.571512051069303,"stop":0.572078666712007,"type":"TBD"},{"start":0.572795421938832,"stop":0.577437893635573,"type":"TBD"},{"start":0.564451296520781,"stop":0.569550956090322,"type":"TBD"},{"start":0.556732967921226,"stop":0.563250647138235,"type":"TBD"},{"start":0.539355163990488,"stop":0.55443410873173,"type":"TBD"}]},{"gid":1158,"kittle_nam":"Watson Creek","route_mi":16.592,"public_mi":0.0,"length_mi":16.592,"objectid":25277,"trout_flag":null,"kittle_nbr":"M-009-025-002","public_route_length":0.028885658090156252,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.00463626171618396,"stop":0.0063772006078279,"type":"TBD"}]},{"gid":1160,"kittle_nam":"Willow Creek","route_mi":9.867,"public_mi":0.0,"length_mi":9.867,"objectid":25267,"trout_flag":null,"kittle_nbr":"M-009-025-004","public_route_length":1.2784525253759371,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.221528578299109,"stop":0.276930621562577,"type":"TBD"},{"start":0.00129198299715221,"stop":0.0112292982303185,"type":"TBD"},{"start":1.47149771842037E-05,"stop":4.93998855568311E-05,"type":"TBD"},{"start":0.0121113709513703,"stop":0.0213201088337439,"type":"TBD"},{"start":0.0237406448899685,"stop":0.0787263773733326,"type":"TBD"}]},{"gid":1202,"kittle_nam":"Whitewater River, S. Branch","route_mi":12.061,"public_mi":0.0,"length_mi":12.061,"objectid":25328,"trout_flag":null,"kittle_nbr":"M-031-017","public_route_length":9.026754942736126,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.163581868612859,"type":"TBD"},{"start":0.167889036952883,"stop":0.249640818365955,"type":"TBD"},{"start":0.250501203038184,"stop":0.303242219092568,"type":"TBD"},{"start":0.305796372310467,"stop":0.332604206886363,"type":"TBD"},{"start":0.84281625055026,"stop":0.99385954362669,"type":"TBD"},{"start":0.423289790129199,"stop":0.423618684326679,"type":"TBD"},{"start":0.515528649277174,"stop":0.74963399987205,"type":"TBD"},{"start":0.749975485984802,"stop":0.777618351803744,"type":"TBD"},{"start":0.778663260598091,"stop":0.789085440636552,"type":"TBD"}]},{"gid":1225,"kittle_nam":"Smith Creek","route_mi":8.209,"public_mi":0.0,"length_mi":8.209,"objectid":25892,"trout_flag":null,"kittle_nbr":"M-137","public_route_length":2.8957558921374487,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.88663996072723406,"stop":0.917241252576215,"type":"TBD"},{"start":0.862358645538493,"stop":0.883316872034454,"type":"TBD"},{"start":0.852503879802752,"stop":0.856601187228653,"type":"TBD"},{"start":0.846772348257713,"stop":0.851775177633076,"type":"TBD"},{"start":0.82549913141367,"stop":0.840645710288982,"type":"TBD"},{"start":0.818394894146308,"stop":0.824806265429385,"type":"TBD"},{"start":0.81473330392842,"stop":0.818268589763525,"type":"TBD"},{"start":0.804718217193921,"stop":0.812568707016553,"type":"TBD"},{"start":0.788123413753334,"stop":0.800653696137949,"type":"TBD"},{"start":0.777705298139792,"stop":0.787189026616018,"type":"TBD"},{"start":0.770789909454043,"stop":0.773789129810399,"type":"TBD"},{"start":0.762544705709502,"stop":0.77057408838327,"type":"TBD"},{"start":0.744232837411689,"stop":0.760782879741972,"type":"TBD"},{"start":0.736544858851243,"stop":0.737924843383034,"type":"TBD"},{"start":0.726980073649367,"stop":0.730000254775553,"type":"TBD"},{"start":0.674911602772248,"stop":0.715481705719234,"type":"TBD"},{"start":0.673884681303375,"stop":0.674653719999015,"type":"TBD"},{"start":0.6533277082667,"stop":0.656030887201615,"type":"TBD"},{"start":0.647599419576701,"stop":0.650251923618104,"type":"TBD"},{"start":0.635573844774249,"stop":0.638674908700723,"type":"TBD"},{"start":0.62628390520194,"stop":0.631069988113922,"type":"TBD"},{"start":0.609416500424118,"stop":0.624298713644525,"type":"TBD"},{"start":0.604348229185137,"stop":0.607600349642955,"type":"TBD"},{"start":0.59633816239259,"stop":0.603648006635887,"type":"TBD"},{"start":0.594022888333221,"stop":0.595397584215655,"type":"TBD"},{"start":0.569031085049191,"stop":0.573404873192755,"type":"TBD"},{"start":0.56481593801815,"stop":0.568207024503286,"type":"TBD"},{"start":0.555970606728386,"stop":0.558974000820592,"type":"TBD"},{"start":0.554360953906798,"stop":0.555506521559826,"type":"TBD"},{"start":0.330443210105474,"stop":0.356708128881761,"type":"TBD"},{"start":0.320311222056186,"stop":0.330036615244138,"type":"TBD"},{"start":0.305619479850659,"stop":0.318733947443456,"type":"TBD"},{"start":0.28230121993909,"stop":0.305598927558081,"type":"TBD"},{"start":0.356823226727177,"stop":0.362034272772429,"type":"TBD"},{"start":0.488585266378872,"stop":0.491473302703214,"type":"TBD"},{"start":0.453536659397426,"stop":0.465346042955205,"type":"TBD"},{"start":0.473582380437641,"stop":0.488214469498369,"type":"TBD"},{"start":0.467663903126807,"stop":0.472563770143701,"type":"TBD"}]},{"gid":1247,"kittle_nam":"Stony Brook","route_mi":3.33,"public_mi":0.0,"length_mi":3.33,"objectid":25805,"trout_flag":null,"kittle_nbr":"S-000.7-002.6","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1248,"kittle_nam":"Clear Creek","route_mi":6.428,"public_mi":0.0,"length_mi":6.428,"objectid":25812,"trout_flag":null,"kittle_nbr":"S-000.7-002.5","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1271,"kittle_nam":"Assumption Creek","route_mi":2.754,"public_mi":0.0,"length_mi":2.754,"objectid":25582,"trout_flag":null,"kittle_nbr":"M-055-017","public_route_length":0.903769999087564,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.266485216873262,"stop":0.480079415828858,"type":"TBD"},{"start":0.239745161372402,"stop":0.25046464498455,"type":"TBD"},{"start":0.224127872339441,"stop":0.226922897792283,"type":"TBD"},{"start":0.189433873477052,"stop":0.210435270877896,"type":"TBD"},{"start":0.178002775425669,"stop":0.181979385844302,"type":"TBD"},{"start":0.0967919414436927,"stop":0.136499910817933,"type":"TBD"},{"start":0.0845445242253202,"stop":0.0913524191786569,"type":"TBD"},{"start":0.0618116848170276,"stop":0.0630197786321489,"type":"TBD"},{"start":0.047789033011125,"stop":0.0545770029475357,"type":"TBD"},{"start":0.0318115246373894,"stop":0.0399949892155555,"type":"TBD"},{"start":0.0238052400244509,"stop":0.0249220049039632,"type":"TBD"},{"start":0.0,"stop":0.0122674298502969,"type":"TBD"}]},{"gid":1313,"kittle_nam":"Bee Creek","route_mi":3.477,"public_mi":0.0,"length_mi":3.477,"objectid":25067,"trout_flag":null,"kittle_nbr":"I-006","public_route_length":1.7367634603208466,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.453195342743868,"stop":0.561780933773573,"type":"TBD"},{"start":0.316065004674616,"stop":0.407326090434517,"type":"TBD"},{"start":0.000927445147497266,"stop":0.300581332154511,"type":"TBD"}]},{"gid":1317,"kittle_nam":"Merritt Creek","route_mi":2.74,"public_mi":0.0,"length_mi":2.74,"objectid":26141,"trout_flag":null,"kittle_nbr":"S-002-001.5","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1338,"kittle_nam":"Cedar Creek","route_mi":4.466,"public_mi":0.0,"length_mi":4.466,"objectid":27151,"trout_flag":null,"kittle_nbr":"S-053-002-001","public_route_length":0.332240434400975,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.656235911238536,"stop":0.730629201520886,"type":"TBD"}]},{"gid":1340,"kittle_nam":"Tower Creek","route_mi":1.015,"public_mi":0.0,"length_mi":1.015,"objectid":26786,"trout_flag":null,"kittle_nbr":"S-038-008-003","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1343,"kittle_nam":"Blesner Creek","route_mi":2.699,"public_mi":0.0,"length_mi":2.699,"objectid":26783,"trout_flag":null,"kittle_nbr":"S-038-008-006","public_route_length":1.8220827274807425,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.252159066845776,"stop":0.927254556834936,"type":"TBD"}]},{"gid":1348,"kittle_nam":"Crooked Creek","route_mi":10.0708,"public_mi":0.0,"length_mi":10.0708,"objectid":27859,"trout_flag":null,"kittle_nbr":"M-050-049","public_route_length":1.5718012235202188,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.151389674308528,"stop":0.15709715368332,"type":"TBD"},{"start":0.0,"stop":0.1503676311944,"type":"TBD"}]},{"gid":1349,"kittle_nam":"Sand River","route_mi":7.93,"public_mi":0.0,"length_mi":7.93,"objectid":25608,"trout_flag":null,"kittle_nbr":"M-050-048","public_route_length":1.7667830433777461,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0201069745731931,"stop":0.0627963613872989,"type":"TBD"},{"start":0.00122227098247728,"stop":0.0172634022968444,"type":"TBD"},{"start":0.212808856602127,"stop":0.293311542010046,"type":"TBD"},{"start":0.334022895555022,"stop":0.366670462835095,"type":"TBD"},{"start":0.778901322198121,"stop":0.829817908680237,"type":"TBD"}]},{"gid":1355,"kittle_nam":"Stewart Creek","route_mi":3.238,"public_mi":0.0,"length_mi":3.238,"objectid":26100,"trout_flag":null,"kittle_nbr":"S-002-004","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1356,"kittle_nam":"Sargent Creek","route_mi":7.301,"public_mi":0.0,"length_mi":7.301,"objectid":26097,"trout_flag":null,"kittle_nbr":"S-002-006","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1357,"kittle_nam":"Mission Creek","route_mi":7.009,"public_mi":0.0,"length_mi":7.009,"objectid":26081,"trout_flag":null,"kittle_nbr":"S-002-007","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1358,"kittle_nam":"Miller Creek","route_mi":9.494,"public_mi":0.0,"length_mi":9.494,"objectid":26164,"trout_flag":null,"kittle_nbr":"S-002-001","public_route_length":0.64237938431247554,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.707352530592998,"stop":0.711384902608464,"type":"TBD"},{"start":0.701814609484497,"stop":0.706719476483851,"type":"TBD"},{"start":0.716153720581065,"stop":0.749700990692529,"type":"TBD"},{"start":0.674241055699651,"stop":0.696271693097817,"type":"TBD"},{"start":0.696321867619979,"stop":0.699468337307081,"type":"TBD"}]},{"gid":1359,"kittle_nam":"Keene Creek","route_mi":8.102,"public_mi":0.0,"length_mi":8.102,"objectid":26139,"trout_flag":null,"kittle_nbr":"S-002-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1360,"kittle_nam":"Kingsbury Creek","route_mi":6.683,"public_mi":0.0,"length_mi":6.683,"objectid":26122,"trout_flag":null,"kittle_nbr":"S-002-003","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1361,"kittle_nam":"Silver Creek","route_mi":3.67,"public_mi":0.0,"length_mi":3.67,"objectid":26059,"trout_flag":null,"kittle_nbr":"S-002-008","public_route_length":3.1205632167051665,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.850289704824296,"type":"TBD"}]},{"gid":1390,"kittle_nam":"Thompson Creek","route_mi":3.54,"public_mi":0.0,"length_mi":3.54,"objectid":27515,"trout_flag":null,"kittle_nbr":"S-064-012","public_route_length":0.51478715664296049,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.529968390084734,"stop":0.608831124941049,"type":"TBD"},{"start":0.423855037731338,"stop":0.490412403621622,"type":"TBD"}]},{"gid":1391,"kittle_nam":"Fry Creek","route_mi":1.969,"public_mi":0.0,"length_mi":1.969,"objectid":27516,"trout_flag":null,"kittle_nbr":"S-064-011","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1392,"kittle_nam":"Mississippi Creek","route_mi":10.817,"public_mi":0.0,"length_mi":10.817,"objectid":27019,"trout_flag":null,"kittle_nbr":"S-064-010","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1403,"kittle_nam":"Spring Creek","route_mi":3.7407,"public_mi":0.0,"length_mi":3.7407,"objectid":27879,"trout_flag":null,"kittle_nbr":"M-050-046-010-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1426,"kittle_nam":"Mill Creek","route_mi":7.901,"public_mi":0.0,"length_mi":7.901,"objectid":25231,"trout_flag":null,"kittle_nbr":"M-009-034","public_route_length":4.7199602689184861,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.781909881118647,"stop":0.869026923615852,"type":"TBD"},{"start":0.874020871374167,"stop":0.889652424580965,"type":"TBD"},{"start":0.640054399551382,"stop":0.645245552946906,"type":"TBD"},{"start":0.341502692034496,"stop":0.635971161193327,"type":"TBD"},{"start":0.290129164971973,"stop":0.338079340979792,"type":"TBD"},{"start":0.277984029991452,"stop":0.286872848100283,"type":"TBD"},{"start":0.10316968775595,"stop":0.192016142684805,"type":"TBD"},{"start":0.260388886851494,"stop":0.277077028880032,"type":"TBD"},{"start":0.214609818281786,"stop":0.229985905381642,"type":"TBD"},{"start":0.236338792594632,"stop":0.253568602644907,"type":"TBD"}]},{"gid":1484,"kittle_nam":"Section 16 Creek","route_mi":1.185,"public_mi":0.0,"length_mi":1.185,"objectid":27198,"trout_flag":null,"kittle_nbr":"S-049.5","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1492,"kittle_nam":"Amity Creek","route_mi":9.974,"public_mi":0.0,"length_mi":9.974,"objectid":26270,"trout_flag":null,"kittle_nbr":"S-005-001","public_route_length":0.04376404887978104,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.069957720714238,"stop":0.0743455339165421,"type":"TBD"}]},{"gid":1509,"kittle_nam":"Hunters Creek","route_mi":5.824,"public_mi":0.0,"length_mi":5.824,"objectid":26235,"trout_flag":null,"kittle_nbr":"S-001-005-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1525,"kittle_nam":"Blind Temperance Creek","route_mi":3.966,"public_mi":0.0,"length_mi":3.966,"objectid":27137,"trout_flag":null,"kittle_nbr":"S-053-006","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1526,"kittle_nam":"Sixmile Creek","route_mi":7.057,"public_mi":0.0,"length_mi":7.057,"objectid":27135,"trout_flag":null,"kittle_nbr":"S-053-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1529,"kittle_nam":"Heartbreak Creek","route_mi":8.697,"public_mi":0.0,"length_mi":8.697,"objectid":27154,"trout_flag":null,"kittle_nbr":"S-053-002","public_route_length":0.89297854216110351,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.852148411371616,"stop":0.881360760738718,"type":"TBD"},{"start":0.836276168333774,"stop":0.847174528803962,"type":"TBD"},{"start":0.814842134228137,"stop":0.83494214235524,"type":"TBD"},{"start":0.783413336773908,"stop":0.814816644907299,"type":"TBD"},{"start":0.0159601645173964,"stop":0.0205157674052865,"type":"TBD"},{"start":0.0,"stop":0.00650698848714451,"type":"TBD"}]},{"gid":1534,"kittle_nam":"Pancake Creek","route_mi":3.941,"public_mi":0.0,"length_mi":3.941,"objectid":27131,"trout_flag":null,"kittle_nbr":"S-053-008","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1535,"kittle_nam":"Honeymoon Creek","route_mi":2.673,"public_mi":0.0,"length_mi":2.673,"objectid":27128,"trout_flag":null,"kittle_nbr":"S-053-009","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1547,"kittle_nam":"Mazeppa Creek","route_mi":8.58,"public_mi":0.0,"length_mi":8.58,"objectid":25733,"trout_flag":null,"kittle_nbr":"M-034-049-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1557,"kittle_nam":"Swamp River","route_mi":2.149,"public_mi":0.0,"length_mi":2.149,"objectid":27577,"trout_flag":null,"kittle_nbr":"S-088-008","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1558,"kittle_nam":"Portage Brook","route_mi":10.701,"public_mi":0.0,"length_mi":10.701,"objectid":27781,"trout_flag":null,"kittle_nbr":"S-088-009","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1564,"kittle_nam":"Straight River","route_mi":5.084,"public_mi":0.0,"length_mi":5.084,"objectid":30921,"trout_flag":null,"kittle_nbr":"M-096-035-002-002-003.5","public_route_length":2.5910053645089155,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.70314665793086,"stop":0.987500592243768,"type":"TBD"},{"start":0.156631815543558,"stop":0.381917016657266,"type":"TBD"}]},{"gid":1569,"kittle_nam":"Onion River, W. Branch","route_mi":2.848,"public_mi":0.0,"length_mi":2.848,"objectid":27102,"trout_flag":null,"kittle_nbr":"S-056-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1571,"kittle_nam":"Stoney Brook","route_mi":17.461,"public_mi":0.0,"length_mi":17.461,"objectid":25988,"trout_flag":null,"kittle_nbr":"M-096-001-006","public_route_length":2.9688049685895708,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":6,"short_description":"No harvest for Brook Trout.","official_text":"Catch & Release for Brook Trout ","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":6},"RestrictionSections":[{"start":0.00389456903960864,"stop":0.146796094762935,"restriction":{"summary":"No harvest for Brook Trout.","officialText":"Catch & Release for Brook Trout ","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.761645749151497,"stop":0.794305892059909,"type":"TBD"},{"start":0.343229290144422,"stop":0.366210520098819,"type":"TBD"},{"start":0.0875788639903971,"stop":0.146651263676639,"type":"TBD"},{"start":0.030789128440946,"stop":0.0793383430430792,"type":"TBD"},{"start":0.0,"stop":0.0067619237124303,"type":"TBD"}]},{"gid":1575,"kittle_nam":"Martin Creek","route_mi":1.361,"public_mi":0.0,"length_mi":1.361,"objectid":27205,"trout_flag":null,"kittle_nbr":"S-047-011","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1583,"kittle_nam":"Spring Valley Creek","route_mi":16.814,"public_mi":0.0,"length_mi":16.814,"objectid":25235,"trout_flag":null,"kittle_nbr":"M-009-033-010","public_route_length":1.0181109795935162,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":7,"short_description":"12\" to 16\" no harvest.","official_text":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":3},"RestrictionSections":[{"start":0.0,"stop":0.392249546285697,"restriction":{"summary":"12\" to 16\" no harvest.","officialText":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.629685126809825,"stop":0.63725857275464,"type":"TBD"},{"start":0.490883733484912,"stop":0.496358079256432,"type":"TBD"},{"start":0.475198907867784,"stop":0.475859199060361,"type":"TBD"},{"start":0.47224096404625,"stop":0.473798065190027,"type":"TBD"},{"start":0.469680856505424,"stop":0.471506704309328,"type":"TBD"},{"start":0.445732116210326,"stop":0.468596790871133,"type":"TBD"},{"start":0.417399438682243,"stop":0.437995116701153,"type":"TBD"}]},{"gid":1594,"kittle_nam":"Gill Creek","route_mi":1.341,"public_mi":0.0,"length_mi":1.341,"objectid":26061,"trout_flag":null,"kittle_nbr":"S-002-007.5","public_route_length":1.2913112539658225,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.962946498110233,"type":"TBD"}]},{"gid":1610,"kittle_nam":"Larson Creek","route_mi":2.863,"public_mi":0.0,"length_mi":2.863,"objectid":25410,"trout_flag":null,"kittle_nbr":"M-009-010-003-009-006","public_route_length":0.75362947765708777,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.01351052349114,"stop":0.272741129016497,"type":"TBD"},{"start":0.0,"stop":0.00400008873139739,"type":"TBD"}]},{"gid":1619,"kittle_nam":"Wisel Creek","route_mi":9.001,"public_mi":0.0,"length_mi":9.001,"objectid":25377,"trout_flag":null,"kittle_nbr":"M-009-010-010","public_route_length":6.0508936387625045,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":7,"short_description":"12\" to 16\" no harvest.","official_text":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":3},"RestrictionSections":[{"start":0.0,"stop":0.993736423623395,"restriction":{"summary":"12\" to 16\" no harvest.","officialText":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.877826573620318,"stop":0.956376644895166,"type":"TBD"},{"start":0.103234781248698,"stop":0.139611548937737,"type":"TBD"},{"start":0.179282757041328,"stop":0.288412408428748,"type":"TBD"},{"start":0.871931135429302,"stop":0.875898294091253,"type":"TBD"},{"start":0.0,"stop":0.0666527707715301,"type":"TBD"},{"start":0.0951443861640202,"stop":0.0962097535335198,"type":"TBD"},{"start":0.0782076892462647,"stop":0.078771324708787,"type":"TBD"},{"start":0.0728380554247354,"stop":0.0765974647879229,"type":"TBD"},{"start":0.0823654167473327,"stop":0.0850489429982269,"type":"TBD"},{"start":0.296440365996183,"stop":0.40403269939204,"type":"TBD"},{"start":0.461751213812183,"stop":0.524855431893955,"type":"TBD"},{"start":0.52873371836931,"stop":0.699135890229504,"type":"TBD"},{"start":0.703990006472248,"stop":0.706285242939954,"type":"TBD"},{"start":0.408721670397513,"stop":0.413944340191509,"type":"TBD"},{"start":0.414265656025613,"stop":0.415246086000277,"type":"TBD"},{"start":0.416936983037762,"stop":0.417977749289304,"type":"TBD"},{"start":0.418357506063995,"stop":0.422585654152812,"type":"TBD"},{"start":0.423401806155851,"stop":0.423704263472261,"type":"TBD"},{"start":0.424815304703572,"stop":0.42547186671594,"type":"TBD"},{"start":0.427401476024848,"stop":0.428623553416543,"type":"TBD"},{"start":0.428934032307183,"stop":0.430539542865255,"type":"TBD"},{"start":0.44745311164692,"stop":0.448678936898378,"type":"TBD"},{"start":0.433366813397465,"stop":0.434002899221959,"type":"TBD"},{"start":0.434295928271873,"stop":0.436860591342623,"type":"TBD"},{"start":0.442979503293841,"stop":0.445001987149229,"type":"TBD"},{"start":0.437275802810761,"stop":0.439936104942508,"type":"TBD"},{"start":0.440100366222835,"stop":0.441084618542702,"type":"TBD"},{"start":0.441630647552863,"stop":0.442382917001972,"type":"TBD"}]},{"gid":1651,"kittle_nam":"Lost River","route_mi":5.2412,"public_mi":0.0,"length_mi":5.2412,"objectid":27998,"trout_flag":null,"kittle_nbr":"H-026-030-019-007","public_route_length":0.17488853137401922,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.331235548994161,"stop":0.332461265830317,"type":"TBD"},{"start":0.336027073632413,"stop":0.339236573139722,"type":"TBD"},{"start":0.343134991025451,"stop":0.344620535773305,"type":"TBD"},{"start":0.344853247273345,"stop":0.358959931008646,"type":"TBD"},{"start":0.35967856267542,"stop":0.363041198029204,"type":"TBD"},{"start":0.37669095621014,"stop":0.379657492700643,"type":"TBD"},{"start":0.383977551298656,"stop":0.390519701922948,"type":"TBD"},{"start":0.391500960301717,"stop":0.391970225398722,"type":"TBD"}]},{"gid":1673,"kittle_nam":"Willow Creek","route_mi":4.518,"public_mi":0.0,"length_mi":4.518,"objectid":25494,"trout_flag":null,"kittle_nbr":"M-071-009","public_route_length":0.25282345016657026,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.763495143697938,"stop":0.806862140262977,"type":"TBD"},{"start":0.75394786467274,"stop":0.763490673181427,"type":"TBD"},{"start":0.748798199888722,"stop":0.74980888669996,"type":"TBD"},{"start":0.747265540942287,"stop":0.748628830199263,"type":"TBD"},{"start":0.744190987243956,"stop":0.744866358418654,"type":"TBD"}]},{"gid":1678,"kittle_nam":"Threemile Creek","route_mi":5.961,"public_mi":0.0,"length_mi":5.961,"objectid":25506,"trout_flag":null,"kittle_nbr":"M-071-002","public_route_length":0.15522087219890079,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.911871905385864,"stop":0.937911306861942,"type":"TBD"}]},{"gid":1690,"kittle_nam":"Kinmount Creek","route_mi":5.922,"public_mi":0.0,"length_mi":5.922,"objectid":25042,"trout_flag":null,"kittle_nbr":"H-001-040-027","public_route_length":0.59982129829484,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.399469973511623,"stop":0.500756920201059,"type":"TBD"}]},{"gid":1705,"kittle_nam":"Mission Creek","route_mi":2.4574,"public_mi":0.0,"length_mi":2.4574,"objectid":27884,"trout_flag":null,"kittle_nbr":"M-050-044-006","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1707,"kittle_nam":"Van Sickle Brook","route_mi":2.525,"public_mi":0.0,"length_mi":2.525,"objectid":25940,"trout_flag":null,"kittle_nbr":"M-106-001-005","public_route_length":0.13136698595674945,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.947973470908218,"stop":1.0,"type":"TBD"}]},{"gid":1731,"kittle_nam":"Sand Creek","route_mi":8.665,"public_mi":0.0,"length_mi":8.665,"objectid":25899,"trout_flag":null,"kittle_nbr":"M-128-010","public_route_length":3.9392392809880183,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.413223583324159,"stop":0.430391471880414,"type":"TBD"},{"start":0.434805985614835,"stop":0.444185801551092,"type":"TBD"},{"start":0.452435263607376,"stop":0.461758201445769,"type":"TBD"},{"start":0.283415008428695,"stop":0.291723413352381,"type":"TBD"},{"start":0.266895255881472,"stop":0.282299718092758,"type":"TBD"},{"start":0.157368776620692,"stop":0.266475256251812,"type":"TBD"},{"start":0.0882222420056911,"stop":0.100736870844288,"type":"TBD"},{"start":0.523457323713565,"stop":0.5835003961097,"type":"TBD"},{"start":0.593774212450102,"stop":0.601447593976323,"type":"TBD"},{"start":0.610421692786382,"stop":0.621922848561643,"type":"TBD"},{"start":0.697554540163793,"stop":0.713117800036023,"type":"TBD"},{"start":0.714419725481822,"stop":0.742881030757667,"type":"TBD"},{"start":0.744497515158778,"stop":0.75504866142062,"type":"TBD"},{"start":0.755397461197431,"stop":0.767544684085848,"type":"TBD"},{"start":0.776389950787083,"stop":0.803773032636114,"type":"TBD"},{"start":0.804362038647484,"stop":0.825330256943493,"type":"TBD"},{"start":0.825415229767253,"stop":0.843815675170686,"type":"TBD"},{"start":0.976099173049538,"stop":0.984791035680418,"type":"TBD"},{"start":0.964937132104921,"stop":0.976004771286454,"type":"TBD"},{"start":0.921843538657573,"stop":0.962802164678243,"type":"TBD"}]},{"gid":1739,"kittle_nam":"Dead Horse Creek","route_mi":6.349,"public_mi":0.0,"length_mi":6.349,"objectid":24975,"trout_flag":null,"kittle_nbr":"H-026-081-028-003","public_route_length":0.6839973126996034,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.161351755175264,"stop":0.174465771639235,"type":"TBD"},{"start":0.1745679350208,"stop":0.188625337838817,"type":"TBD"},{"start":0.189255645256934,"stop":0.195811618570076,"type":"TBD"},{"start":0.198727928040037,"stop":0.20375766364727,"type":"TBD"},{"start":0.204085888549561,"stop":0.217351602663194,"type":"TBD"},{"start":0.21887200319447,"stop":0.227416777864916,"type":"TBD"},{"start":0.227897389545474,"stop":0.23029838858031,"type":"TBD"},{"start":0.23168194073826,"stop":0.233719589893674,"type":"TBD"},{"start":0.235396956438943,"stop":0.237307319683317,"type":"TBD"},{"start":0.237435030130844,"stop":0.24026123408482,"type":"TBD"},{"start":0.243852347842835,"stop":0.25306434593199,"type":"TBD"},{"start":0.256075962615489,"stop":0.258468494685015,"type":"TBD"},{"start":0.258830582778407,"stop":0.270630864846139,"type":"TBD"},{"start":0.271071421477724,"stop":0.279419084246112,"type":"TBD"},{"start":0.27992514871846,"stop":0.285406540840895,"type":"TBD"},{"start":0.285826196537058,"stop":0.286582575120005,"type":"TBD"}]},{"gid":1767,"kittle_nam":"Whitley's Creek","route_mi":1.927,"public_mi":0.0,"length_mi":1.927,"objectid":25947,"trout_flag":null,"kittle_nbr":"M-100","public_route_length":0.5734866130801497,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0304405958991916,"stop":0.194377090863347,"type":"TBD"},{"start":0.612065924881115,"stop":0.670298236095876,"type":"TBD"},{"start":0.204045610206762,"stop":0.279482726747176,"type":"TBD"}]},{"gid":1768,"kittle_nam":"Sand Creek","route_mi":5.769,"public_mi":0.0,"length_mi":5.769,"objectid":25943,"trout_flag":null,"kittle_nbr":"M-101","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1773,"kittle_nam":"W. Branch","route_mi":17.59,"public_mi":0.0,"length_mi":17.59,"objectid":26617,"trout_flag":null,"kittle_nbr":"S-017-004","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1774,"kittle_nam":"Little Knife River","route_mi":5.67,"public_mi":0.0,"length_mi":5.67,"objectid":26571,"trout_flag":null,"kittle_nbr":"S-017-005","public_route_length":0.024338394160376944,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.00429248574257089,"type":"TBD"}]},{"gid":1776,"kittle_nam":"Stanley Creek","route_mi":8.111,"public_mi":0.0,"length_mi":8.111,"objectid":26629,"trout_flag":null,"kittle_nbr":"S-017-003","public_route_length":3.0111345873117132,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.679175737809265,"stop":0.688344665989026,"type":"TBD"},{"start":0.56809028900984,"stop":0.572351581175706,"type":"TBD"},{"start":0.561399687892441,"stop":0.56421421079785,"type":"TBD"},{"start":0.544333524412518,"stop":0.556265331359834,"type":"TBD"},{"start":0.533651410162892,"stop":0.538882124581139,"type":"TBD"},{"start":0.508660448096793,"stop":0.515896963430929,"type":"TBD"},{"start":0.496951868291012,"stop":0.507010953275738,"type":"TBD"},{"start":0.472856610762279,"stop":0.478665531413234,"type":"TBD"},{"start":0.46811803862688,"stop":0.47138570035282,"type":"TBD"},{"start":0.462018327767281,"stop":0.466465057707249,"type":"TBD"},{"start":0.45490356083015,"stop":0.461009120657923,"type":"TBD"},{"start":0.444136308388817,"stop":0.454056904864486,"type":"TBD"},{"start":0.434976196588029,"stop":0.440798823775285,"type":"TBD"},{"start":0.433435565134739,"stop":0.433885875396499,"type":"TBD"},{"start":0.425230779118703,"stop":0.427393862549756,"type":"TBD"},{"start":0.420594251932136,"stop":0.42131217566986,"type":"TBD"},{"start":0.404107043383007,"stop":0.406142012343734,"type":"TBD"},{"start":0.390312477918199,"stop":0.402371401366114,"type":"TBD"},{"start":0.378346024600244,"stop":0.385871124591458,"type":"TBD"},{"start":0.361449903499537,"stop":0.371393862356118,"type":"TBD"},{"start":0.354473217783149,"stop":0.357793983328613,"type":"TBD"},{"start":0.343876777299876,"stop":0.352659469615055,"type":"TBD"},{"start":0.313569016552406,"stop":0.340150687183639,"type":"TBD"},{"start":0.304070705777084,"stop":0.312739674835101,"type":"TBD"},{"start":0.281175200911184,"stop":0.302694047740686,"type":"TBD"},{"start":0.213338000966851,"stop":0.257993343964664,"type":"TBD"},{"start":0.201373537552246,"stop":0.212414289475013,"type":"TBD"},{"start":0.170085538120936,"stop":0.201056477256405,"type":"TBD"},{"start":0.260387690907227,"stop":0.263367439721796,"type":"TBD"},{"start":0.26436691305986,"stop":0.267643675706735,"type":"TBD"},{"start":0.155735370147116,"stop":0.160029686949135,"type":"TBD"},{"start":0.139927225956019,"stop":0.154023067663479,"type":"TBD"},{"start":0.164488919992506,"stop":0.16936141451355,"type":"TBD"},{"start":0.0905290382135258,"stop":0.13636077998546,"type":"TBD"},{"start":0.079520795522659,"stop":0.0897727996369653,"type":"TBD"},{"start":0.0684898334488716,"stop":0.07761857173484,"type":"TBD"}]},{"gid":1777,"kittle_nam":"Little Knife River","route_mi":8.057,"public_mi":0.0,"length_mi":8.057,"objectid":26648,"trout_flag":null,"kittle_nbr":"S-017-001","public_route_length":1.6319573794685367,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.403698101046229,"stop":0.411512225064818,"type":"TBD"},{"start":0.391993559499667,"stop":0.399760327923441,"type":"TBD"},{"start":0.379165239187782,"stop":0.391187154569191,"type":"TBD"},{"start":0.355137259414692,"stop":0.37704394848767,"type":"TBD"},{"start":0.326402379180266,"stop":0.353332666274996,"type":"TBD"},{"start":0.317257496111334,"stop":0.322179645423166,"type":"TBD"},{"start":0.30051818051631,"stop":0.31627837358379,"type":"TBD"},{"start":0.27915004956279,"stop":0.285406757474707,"type":"TBD"},{"start":0.214373778797269,"stop":0.258040756901575,"type":"TBD"},{"start":0.272906424377325,"stop":0.275538685501001,"type":"TBD"},{"start":0.182005783902857,"stop":0.212834482695458,"type":"TBD"},{"start":0.158798301792745,"stop":0.179496013070142,"type":"TBD"},{"start":0.151740458829035,"stop":0.153087468293963,"type":"TBD"}]},{"gid":1804,"kittle_nam":"Nemadji Creek","route_mi":12.233,"public_mi":0.0,"length_mi":12.233,"objectid":26238,"trout_flag":null,"kittle_nbr":"S-001-005","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1805,"kittle_nam":"Skunk Creek","route_mi":8.969,"public_mi":0.0,"length_mi":8.969,"objectid":25751,"trout_flag":null,"kittle_nbr":"S-001-004","public_route_length":1.0177874161282747,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.113478360589617,"type":"TBD"}]},{"gid":1806,"kittle_nam":"Blackhoof River","route_mi":25.292,"public_mi":0.0,"length_mi":25.292,"objectid":25773,"trout_flag":null,"kittle_nbr":"S-001-003","public_route_length":8.1014912061074682,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.925752268783562,"stop":0.938926258673582,"type":"TBD"},{"start":0.567338119075039,"stop":0.587858214301505,"type":"TBD"},{"start":0.538375036515366,"stop":0.54359596958987,"type":"TBD"},{"start":0.239225706942345,"stop":0.298932632307658,"type":"TBD"},{"start":0.3652497733552,"stop":0.383790438974513,"type":"TBD"},{"start":0.401775597798031,"stop":0.413040282041287,"type":"TBD"},{"start":0.42022655490384,"stop":0.42232386803419,"type":"TBD"},{"start":0.417034801448285,"stop":0.417727870973929,"type":"TBD"},{"start":0.146765342681098,"stop":0.220953197351247,"type":"TBD"},{"start":0.0,"stop":0.114912799403153,"type":"TBD"}]},{"gid":1807,"kittle_nam":"Deer Creek","route_mi":6.933,"public_mi":0.0,"length_mi":6.933,"objectid":25783,"trout_flag":null,"kittle_nbr":"S-001-002","public_route_length":1.3623008229367135,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.10777219573898,"stop":0.304267338236703,"type":"TBD"}]},{"gid":1808,"kittle_nam":"Rock Creek","route_mi":8.393,"public_mi":0.0,"length_mi":8.393,"objectid":25790,"trout_flag":null,"kittle_nbr":"S-001-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1815,"kittle_nam":"Koski Creek","route_mi":4.018,"public_mi":0.0,"length_mi":4.018,"objectid":27112,"trout_flag":null,"kittle_nbr":"S-053-013-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1847,"kittle_nam":"Toad River","route_mi":10.5417,"public_mi":0.0,"length_mi":10.5417,"objectid":27981,"trout_flag":null,"kittle_nbr":"H-026-081-028","public_route_length":0.29103924519484381,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.973684417039436,"stop":0.976020134587466,"type":"TBD"},{"start":0.856889775455029,"stop":0.862793435367892,"type":"TBD"},{"start":0.852187978222945,"stop":0.856348255940329,"type":"TBD"},{"start":0.836807783919265,"stop":0.852016507389104,"type":"TBD"}]},{"gid":1857,"kittle_nam":"Muckey Creek","route_mi":1.672,"public_mi":0.0,"length_mi":1.672,"objectid":25950,"trout_flag":null,"kittle_nbr":"M-096-037-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1867,"kittle_nam":"Fredenberg Creek","route_mi":3.187,"public_mi":0.0,"length_mi":3.187,"objectid":27195,"trout_flag":null,"kittle_nbr":"S-051-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1873,"kittle_nam":"Morris Creek","route_mi":1.741,"public_mi":0.0,"length_mi":1.741,"objectid":27184,"trout_flag":null,"kittle_nbr":"S-051-007","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1883,"kittle_nam":"Beaver Creek, W.","route_mi":7.308,"public_mi":0.0,"length_mi":7.308,"objectid":25411,"trout_flag":null,"kittle_nbr":"M-009-010-003-009","public_route_length":5.1660242926033257,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.809829450546897,"stop":0.8149631014902,"type":"TBD"},{"start":0.742962386928348,"stop":0.785599215223993,"type":"TBD"},{"start":0.48088353364763,"stop":0.702288481882832,"type":"TBD"},{"start":0.0333342009407562,"stop":0.449684960090874,"type":"TBD"},{"start":0.0,"stop":0.0213736892108891,"type":"TBD"}]},{"gid":1911,"kittle_nam":"Egge Creek","route_mi":2.362,"public_mi":0.0,"length_mi":2.362,"objectid":26784,"trout_flag":null,"kittle_nbr":"S-038-008-005","public_route_length":0.10499255668968471,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0444507013927539,"type":"TBD"}]},{"gid":1913,"kittle_nam":"Little Mississippi Creek","route_mi":6.439,"public_mi":0.0,"length_mi":6.439,"objectid":27524,"trout_flag":null,"kittle_nbr":"S-064-010-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1917,"kittle_nam":"Bjork Brook","route_mi":3.005,"public_mi":0.0,"length_mi":3.005,"objectid":25600,"trout_flag":null,"kittle_nbr":"M-050-050-002-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1975,"kittle_nam":"Hill Creek","route_mi":2.797,"public_mi":0.0,"length_mi":2.797,"objectid":25109,"trout_flag":null,"kittle_nbr":"H-001-092-021-011-008","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":1976,"kittle_nam":"Victor Creek","route_mi":1.309,"public_mi":0.0,"length_mi":1.309,"objectid":25110,"trout_flag":null,"kittle_nbr":"H-001-092-021-011-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1979,"kittle_nam":"Jack Pine Creek","route_mi":7.235,"public_mi":0.0,"length_mi":7.235,"objectid":24993,"trout_flag":null,"kittle_nbr":"H-001-092-021-011-004","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1986,"kittle_nam":"Libby Brook","route_mi":3.868,"public_mi":0.0,"length_mi":3.868,"objectid":25903,"trout_flag":null,"kittle_nbr":"M-121","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":1987,"kittle_nam":"Two Rivers Spring","route_mi":3.823,"public_mi":0.0,"length_mi":3.823,"objectid":25902,"trout_flag":null,"kittle_nbr":"M-122","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2005,"kittle_nam":"Stumble Creek","route_mi":2.628,"public_mi":0.0,"length_mi":2.628,"objectid":27180,"trout_flag":null,"kittle_nbr":"S-052-002","public_route_length":0.085821620791984368,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0326566289162802,"type":"TBD"}]},{"gid":2009,"kittle_nam":"Trout Creek","route_mi":3.72,"public_mi":0.0,"length_mi":3.72,"objectid":25744,"trout_flag":null,"kittle_nbr":"M-074-053-005-002","public_route_length":0.18656062809535254,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0501507064772453,"type":"TBD"}]},{"gid":2032,"kittle_nam":"Kinney Creek","route_mi":3.814,"public_mi":0.0,"length_mi":3.814,"objectid":25221,"trout_flag":null,"kittle_nbr":"M-009-040","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2045,"kittle_nam":"Valley Branch","route_mi":1.028,"public_mi":0.0,"length_mi":1.028,"objectid":25640,"trout_flag":null,"kittle_nbr":"M-050-007-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2069,"kittle_nam":"Humphrey Creek","route_mi":3.671,"public_mi":0.0,"length_mi":3.671,"objectid":26389,"trout_flag":null,"kittle_nbr":"S-002-016-011-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2087,"kittle_nam":"Stall Creek","route_mi":1.989,"public_mi":0.0,"length_mi":1.989,"objectid":25875,"trout_flag":null,"kittle_nbr":"M-146-014-008","public_route_length":1.1903046896441487,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.617479311587736,"stop":0.637422084754822,"type":"TBD"},{"start":0.475715940156403,"stop":0.617270455075546,"type":"TBD"},{"start":0.337549142439508,"stop":0.475306539313277,"type":"TBD"},{"start":0.208336890637911,"stop":0.331755483257398,"type":"TBD"},{"start":0.17659242008423,"stop":0.20425571327856,"type":"TBD"},{"start":0.125547844153561,"stop":0.167552608245682,"type":"TBD"},{"start":0.111683720674019,"stop":0.115528200924023,"type":"TBD"},{"start":0.069906131516272,"stop":0.108118447915893,"type":"TBD"},{"start":0.0650053895989324,"stop":0.0686245079185032,"type":"TBD"},{"start":0.0569854313595942,"stop":0.0629669454738065,"type":"TBD"},{"start":0.0,"stop":0.0544450216937672,"type":"TBD"}]},{"gid":2107,"kittle_nam":"Balsam Creek","route_mi":3.588,"public_mi":0.0,"length_mi":3.588,"objectid":27220,"trout_flag":null,"kittle_nbr":"S-045-010","public_route_length":0.063425907751220742,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0176772318147215,"type":"TBD"}]},{"gid":2148,"kittle_nam":"Burnt Creek","route_mi":3.306,"public_mi":0.0,"length_mi":3.306,"objectid":27109,"trout_flag":null,"kittle_nbr":"S-053-014-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2155,"kittle_nam":"Beauty Creek","route_mi":1.916,"public_mi":0.0,"length_mi":1.916,"objectid":25045,"trout_flag":null,"kittle_nbr":"H-001-040-027-003","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2162,"kittle_nam":"Ahrensfeld Creek","route_mi":1.032,"public_mi":0.0,"length_mi":1.032,"objectid":25311,"trout_flag":null,"kittle_nbr":"M-009-017-010","public_route_length":0.48641509291135471,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0271226630677463,"stop":0.0405161476696411,"type":"TBD"},{"start":0.0,"stop":0.0228572940934872,"type":"TBD"},{"start":0.0497763919855983,"stop":0.484858067661684,"type":"TBD"}]},{"gid":2164,"kittle_nam":"Ferguson Creek","route_mi":1.971,"public_mi":0.0,"length_mi":1.971,"objectid":25307,"trout_flag":null,"kittle_nbr":"M-009-017-012","public_route_length":1.6490845513087884,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.823283521534658,"stop":0.885717705917418,"type":"TBD"},{"start":0.0,"stop":0.774239864987503,"type":"TBD"}]},{"gid":2179,"kittle_nam":"Felton Creek","route_mi":13.017,"public_mi":0.0,"length_mi":13.017,"objectid":25068,"trout_flag":null,"kittle_nbr":"H-026-047-007-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2202,"kittle_nam":"Buckingham Creek","route_mi":2.073,"public_mi":0.0,"length_mi":2.073,"objectid":26166,"trout_flag":null,"kittle_nbr":"S-002-000.5","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2203,"kittle_nam":"Coffee Creek","route_mi":3.212,"public_mi":0.0,"length_mi":3.212,"objectid":26165,"trout_flag":null,"kittle_nbr":"S-002-000.7","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2229,"kittle_nam":"Whyte Creek","route_mi":5.495,"public_mi":0.0,"length_mi":5.495,"objectid":26360,"trout_flag":null,"kittle_nbr":"S-002-016-026","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2230,"kittle_nam":"Cloudy Spring Creek","route_mi":5.387,"public_mi":0.0,"length_mi":5.387,"objectid":26359,"trout_flag":null,"kittle_nbr":"S-002-016-027","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2239,"kittle_nam":"Sullivan Creek","route_mi":3.592,"public_mi":0.0,"length_mi":3.592,"objectid":26363,"trout_flag":null,"kittle_nbr":"S-002-016-023","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2268,"kittle_nam":"Luxemburg Creek","route_mi":5.41,"public_mi":0.0,"length_mi":5.41,"objectid":25490,"trout_flag":null,"kittle_nbr":"M-073-002","public_route_length":1.2741553649309669,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.305161269033089,"stop":0.310272044722216,"type":"TBD"},{"start":0.300561726531234,"stop":0.303079950569672,"type":"TBD"},{"start":0.293857199498141,"stop":0.295867817301308,"type":"TBD"},{"start":0.288648136481402,"stop":0.28989126697527,"type":"TBD"},{"start":0.28654847618691,"stop":0.28715415815974,"type":"TBD"},{"start":0.278687859526698,"stop":0.281069631731583,"type":"TBD"},{"start":0.117921258369874,"stop":0.275448994878969,"type":"TBD"},{"start":0.10201035931979,"stop":0.108291625329864,"type":"TBD"},{"start":0.0797694405198717,"stop":0.0931845777698301,"type":"TBD"},{"start":0.0591948358593445,"stop":0.0652129764700342,"type":"TBD"},{"start":0.044785017936631,"stop":0.0514062332910933,"type":"TBD"},{"start":0.0402160278482005,"stop":0.0441831919217604,"type":"TBD"},{"start":0.034465171566322,"stop":0.0378333049291006,"type":"TBD"},{"start":0.00950776170771334,"stop":0.0339573180780274,"type":"TBD"}]},{"gid":2308,"kittle_nam":"Mary Ann Creek","route_mi":1.269,"public_mi":0.0,"length_mi":1.269,"objectid":25014,"trout_flag":null,"kittle_nbr":"H-001-092-016-009-009-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2326,"kittle_nam":"Manitou River","route_mi":21.478,"public_mi":0.0,"length_mi":21.478,"objectid":27245,"trout_flag":null,"kittle_nbr":"S-045","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2327,"kittle_nam":"Little Marais River","route_mi":4.563,"public_mi":0.0,"length_mi":4.563,"objectid":27248,"trout_flag":null,"kittle_nbr":"S-044","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2328,"kittle_nam":"Caribou River","route_mi":14.964,"public_mi":0.0,"length_mi":14.964,"objectid":27212,"trout_flag":null,"kittle_nbr":"S-047","public_route_length":1.1402477296889215,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0152234435638015,"stop":0.0914228374216551,"type":"TBD"}]},{"gid":2329,"kittle_nam":"Little Manitou River","route_mi":1.776,"public_mi":0.0,"length_mi":1.776,"objectid":27213,"trout_flag":null,"kittle_nbr":"S-046","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2372,"kittle_nam":"Schueler Creek","route_mi":1.192,"public_mi":0.0,"length_mi":1.192,"objectid":25325,"trout_flag":null,"kittle_nbr":"M-009-017-001","public_route_length":0.38159083098549051,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.000125234985601588,"stop":0.00599653755501508,"type":"TBD"},{"start":0.00723323629136583,"stop":0.0160443544522801,"type":"TBD"},{"start":0.0185191346016524,"stop":0.079270471480012,"type":"TBD"},{"start":0.0835733560015172,"stop":0.328266134454483,"type":"TBD"}]},{"gid":2373,"kittle_nam":"Tikkanen Creek","route_mi":2.768,"public_mi":0.0,"length_mi":2.768,"objectid":26788,"trout_flag":null,"kittle_nbr":"S-038-008-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2375,"kittle_nam":"Grindstone River","route_mi":1.967,"public_mi":0.0,"length_mi":1.967,"objectid":25619,"trout_flag":null,"kittle_nbr":"M-050-046-010","public_route_length":0.0039565042099509572,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.929817839549838,"stop":0.931829280429325,"type":"TBD"}]},{"gid":2380,"kittle_nam":"Schoolhouse Creek","route_mi":1.937,"public_mi":0.0,"length_mi":1.937,"objectid":26780,"trout_flag":null,"kittle_nbr":"S-038-008-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2401,"kittle_nam":"Little Otter Creek","route_mi":9.693,"public_mi":0.0,"length_mi":9.693,"objectid":26047,"trout_flag":null,"kittle_nbr":"S-002-009-001","public_route_length":1.7158436090509344,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.652036954005092,"stop":0.728812380940115,"type":"TBD"},{"start":0.22865969364465,"stop":0.328903105980331,"type":"TBD"}]},{"gid":2413,"kittle_nam":"Little Net River","route_mi":10.007,"public_mi":0.0,"length_mi":10.007,"objectid":25846,"trout_flag":null,"kittle_nbr":"S-000.7-002-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2424,"kittle_nam":"Whitewater River","route_mi":1.41,"public_mi":0.0,"length_mi":1.41,"objectid":30096,"trout_flag":null,"kittle_nbr":"M-031-B001","public_route_length":1.41,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":1.0,"type":"TBD"}]},{"gid":2437,"kittle_nam":"State Line Creek","route_mi":8.857,"public_mi":0.0,"length_mi":8.857,"objectid":25870,"trout_flag":null,"kittle_nbr":"S-000.7-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2438,"kittle_nam":"Anderson Creek","route_mi":3.961,"public_mi":0.0,"length_mi":3.961,"objectid":25800,"trout_flag":null,"kittle_nbr":"S-000.7-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2439,"kittle_nam":"Net River","route_mi":16.071,"public_mi":0.0,"length_mi":16.071,"objectid":25850,"trout_flag":null,"kittle_nbr":"S-000.7-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2447,"kittle_nam":"Kabekona River","route_mi":22.719,"public_mi":0.0,"length_mi":22.719,"objectid":25877,"trout_flag":null,"kittle_nbr":"M-146-014","public_route_length":14.773237258006825,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.978271921604005,"stop":0.982215727353974,"type":"TBD"},{"start":0.976552979748492,"stop":0.977892812659604,"type":"TBD"},{"start":0.958870283645155,"stop":0.976075847357366,"type":"TBD"},{"start":0.921857044103691,"stop":0.94914145795092,"type":"TBD"},{"start":0.949484320632707,"stop":0.95020763172393,"type":"TBD"},{"start":0.950738568482188,"stop":0.950843291092005,"type":"TBD"},{"start":0.89830038391217,"stop":0.907006071111819,"type":"TBD"},{"start":0.838111482736618,"stop":0.845207783446123,"type":"TBD"},{"start":0.771034421574879,"stop":0.777545693653709,"type":"TBD"},{"start":0.769935748794596,"stop":0.770414203900109,"type":"TBD"},{"start":0.721005470205749,"stop":0.758859839940525,"type":"TBD"},{"start":0.679067059628902,"stop":0.695867339751566,"type":"TBD"},{"start":0.699084566389051,"stop":0.713392428294711,"type":"TBD"},{"start":0.714487246515888,"stop":0.715546902310899,"type":"TBD"},{"start":0.629210048413201,"stop":0.660484394058857,"type":"TBD"},{"start":0.626004249952262,"stop":0.62784458012178,"type":"TBD"},{"start":0.619185843170488,"stop":0.624532412190369,"type":"TBD"},{"start":0.589140340165392,"stop":0.607636561967874,"type":"TBD"},{"start":0.452573739155221,"stop":0.56158700180079,"type":"TBD"},{"start":0.426975966518451,"stop":0.43669562892148,"type":"TBD"},{"start":0.412703115211313,"stop":0.421477268836223,"type":"TBD"},{"start":0.400148521132999,"stop":0.406667767390921,"type":"TBD"},{"start":0.386647747180279,"stop":0.399993863407823,"type":"TBD"},{"start":0.385517982557336,"stop":0.386106420995989,"type":"TBD"},{"start":0.366418929473875,"stop":0.385493045631191,"type":"TBD"},{"start":0.278441191590111,"stop":0.366387287776306,"type":"TBD"},{"start":6.0549229608557E-05,"stop":0.0136865655019888,"type":"TBD"},{"start":0.0619570023988831,"stop":0.068212159218076,"type":"TBD"},{"start":0.244626932704659,"stop":0.277603196592202,"type":"TBD"},{"start":0.0698939498181795,"stop":0.0740093301176711,"type":"TBD"},{"start":0.100528165222225,"stop":0.198557377087254,"type":"TBD"},{"start":0.203333074984204,"stop":0.223862557396056,"type":"TBD"},{"start":0.223943534316865,"stop":0.243317065286491,"type":"TBD"}]},{"gid":2450,"kittle_nam":"Elbow Lake Creek","route_mi":2.03,"public_mi":0.0,"length_mi":2.03,"objectid":24989,"trout_flag":null,"kittle_nbr":"H-026-081-042","public_route_length":1.8118606334933887,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0294392503905189,"stop":0.0658323057889654,"type":"TBD"},{"start":0.0923829457967205,"stop":0.150107830867444,"type":"TBD"},{"start":0.150327677398288,"stop":0.194032217029388,"type":"TBD"},{"start":0.209793798454849,"stop":0.353364158105943,"type":"TBD"},{"start":0.35392296264645,"stop":0.371156656979084,"type":"TBD"},{"start":0.374738986959857,"stop":0.417561950825181,"type":"TBD"},{"start":0.435522414815631,"stop":0.563791972547746,"type":"TBD"},{"start":0.56498884297879,"stop":0.673590937775355,"type":"TBD"},{"start":0.680186128941718,"stop":0.711077789352709,"type":"TBD"},{"start":0.712368262584052,"stop":0.792665861772497,"type":"TBD"},{"start":0.796968226090547,"stop":1.0,"type":"TBD"}]},{"gid":2475,"kittle_nam":"Poplar Creek","route_mi":5.437,"public_mi":0.0,"length_mi":5.437,"objectid":25956,"trout_flag":null,"kittle_nbr":"M-096-021-004","public_route_length":0.20174077089641246,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.467756031354498,"stop":0.468597969882461,"type":"TBD"},{"start":0.470926444934152,"stop":0.476194047720117,"type":"TBD"},{"start":0.479367453759348,"stop":0.481587152374006,"type":"TBD"},{"start":0.487515792287113,"stop":0.496843889077975,"type":"TBD"},{"start":0.502243782976979,"stop":0.502891041241768,"type":"TBD"},{"start":0.506038604154733,"stop":0.509293106818531,"type":"TBD"},{"start":0.510620084965697,"stop":0.51386141336411,"type":"TBD"},{"start":0.515106229386267,"stop":0.523033272896211,"type":"TBD"},{"start":0.523242955178054,"stop":0.527620648560123,"type":"TBD"}]},{"gid":2481,"kittle_nam":"Tower Creek","route_mi":1.855,"public_mi":0.0,"length_mi":1.855,"objectid":25958,"trout_flag":null,"kittle_nbr":"M-096-021-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2494,"kittle_nam":"Hier Creek","route_mi":3.5563,"public_mi":0.0,"length_mi":3.5563,"objectid":27990,"trout_flag":null,"kittle_nbr":"H-026-047-045","public_route_length":0.465944902285036,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.746573867464072,"stop":0.766901627951695,"type":"TBD"},{"start":0.728512466475495,"stop":0.730072549648906,"type":"TBD"},{"start":0.664898614654324,"stop":0.726788619624714,"type":"TBD"},{"start":0.656264781143613,"stop":0.663506112566657,"type":"TBD"},{"start":0.216513600905539,"stop":0.222968030520192,"type":"TBD"},{"start":0.194411529971023,"stop":0.211439138320497,"type":"TBD"},{"start":0.171354659937864,"stop":0.18186913326135,"type":"TBD"},{"start":0.188397511594204,"stop":0.194401391796997,"type":"TBD"}]},{"gid":2507,"kittle_nam":"Split Rock River, E. Branch","route_mi":14.704,"public_mi":0.0,"length_mi":14.704,"objectid":26897,"trout_flag":null,"kittle_nbr":"S-029-001","public_route_length":3.6747746761045454,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.438873957895839,"stop":0.46862645628286,"type":"TBD"},{"start":0.267010297903324,"stop":0.430167986212555,"type":"TBD"},{"start":0.145980739879585,"stop":0.182968703077943,"type":"TBD"},{"start":0.0,"stop":0.00150396138784669,"type":"TBD"},{"start":0.0480444083087285,"stop":0.0665589643347964,"type":"TBD"}]},{"gid":2509,"kittle_nam":"Bud Creek","route_mi":2.912,"public_mi":0.0,"length_mi":2.912,"objectid":26886,"trout_flag":null,"kittle_nbr":"S-029-002","public_route_length":0.85824210203704043,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.448574051983174,"stop":0.654213514627075,"type":"TBD"},{"start":0.264225236932147,"stop":0.3533117708669,"type":"TBD"}]},{"gid":2519,"kittle_nam":"Arrowhead Creek","route_mi":18.961,"public_mi":0.0,"length_mi":18.961,"objectid":25105,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-002","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2523,"kittle_nam":"W. Albany Creek","route_mi":6.015,"public_mi":0.0,"length_mi":6.015,"objectid":25352,"trout_flag":null,"kittle_nbr":"M-034-020-001","public_route_length":0.63413337748666043,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.191226246851628,"stop":0.234363860450822,"type":"TBD"},{"start":0.111618726793442,"stop":0.165210263871676,"type":"TBD"},{"start":0.102096659729849,"stop":0.110792841967909,"type":"TBD"}]},{"gid":2534,"kittle_nam":"Indian Camp Creek","route_mi":2.428,"public_mi":0.0,"length_mi":2.428,"objectid":27054,"trout_flag":null,"kittle_nbr":"S-063","public_route_length":2.0096113526956634,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.766274491322945,"stop":1.0,"type":"TBD"},{"start":0.0388033180353372,"stop":0.632759585592081,"type":"TBD"}]},{"gid":2535,"kittle_nam":"Deer Yard Creek","route_mi":6.151,"public_mi":0.0,"length_mi":6.151,"objectid":27058,"trout_flag":null,"kittle_nbr":"S-062","public_route_length":1.6407474301654779,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0805140544917385,"stop":0.287982284257928,"type":"TBD"},{"start":0.0241563437740446,"stop":0.0798248279285736,"type":"TBD"},{"start":0.019838915556644,"stop":0.0234470285202497,"type":"TBD"}]},{"gid":2536,"kittle_nam":"Jonvick Creek","route_mi":4.605,"public_mi":0.0,"length_mi":4.605,"objectid":27061,"trout_flag":null,"kittle_nbr":"S-061","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2537,"kittle_nam":"Devil Track River","route_mi":8.643,"public_mi":0.0,"length_mi":8.643,"objectid":27486,"trout_flag":null,"kittle_nbr":"S-067","public_route_length":1.283771747209405,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.373404126380171,"stop":0.407046252571623,"type":"TBD"},{"start":0.329805137090593,"stop":0.371648451871654,"type":"TBD"},{"start":0.257462223609315,"stop":0.260645970151619,"type":"TBD"},{"start":0.241549984347567,"stop":0.245818191825805,"type":"TBD"},{"start":0.137198561611843,"stop":0.202794285583199,"type":"TBD"}]},{"gid":2538,"kittle_nam":"Fall Creek","route_mi":3.573,"public_mi":0.0,"length_mi":3.573,"objectid":27492,"trout_flag":null,"kittle_nbr":"S-066","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2539,"kittle_nam":"Cutface Creek","route_mi":2.798,"public_mi":0.0,"length_mi":2.798,"objectid":27498,"trout_flag":null,"kittle_nbr":"S-065","public_route_length":0.57213222217594961,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":7.00327998017849E-05,"stop":0.204549025714723,"type":"TBD"}]},{"gid":2541,"kittle_nam":"Cliff Creek","route_mi":4.432,"public_mi":0.0,"length_mi":4.432,"objectid":27419,"trout_flag":null,"kittle_nbr":"S-069","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2542,"kittle_nam":"Durfee Creek","route_mi":5.121,"public_mi":0.0,"length_mi":5.121,"objectid":27422,"trout_flag":null,"kittle_nbr":"S-068","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2543,"kittle_nam":"Otter Creek","route_mi":20.51,"public_mi":0.0,"length_mi":20.51,"objectid":26049,"trout_flag":null,"kittle_nbr":"S-002-009","public_route_length":3.9268886047536182,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.969326378234451,"stop":0.999542092321501,"type":"TBD"},{"start":0.581462781233289,"stop":0.583149785363636,"type":"TBD"},{"start":0.583159638665582,"stop":0.583573850732989,"type":"TBD"},{"start":0.524651447196264,"stop":0.544092547830703,"type":"TBD"},{"start":0.4196131876514,"stop":0.435395745136662,"type":"TBD"},{"start":0.435413043273841,"stop":0.440037068916939,"type":"TBD"},{"start":0.463035409631784,"stop":0.464346747229514,"type":"TBD"},{"start":0.464771149244207,"stop":0.469061211532796,"type":"TBD"},{"start":0.469702647076512,"stop":0.470522598600778,"type":"TBD"},{"start":0.470681543782995,"stop":0.47196686423926,"type":"TBD"},{"start":0.47231322938943,"stop":0.479505992785668,"type":"TBD"},{"start":0.165619557612071,"stop":0.186462694400932,"type":"TBD"},{"start":0.144328114190531,"stop":0.146675418268005,"type":"TBD"},{"start":0.135150758370662,"stop":0.1418811592769,"type":"TBD"},{"start":0.12746622177593,"stop":0.131412868875358,"type":"TBD"},{"start":0.120108262492445,"stop":0.122179383865336,"type":"TBD"},{"start":0.0699498781134972,"stop":0.11048632230771,"type":"TBD"},{"start":0.0,"stop":0.0277315681417219,"type":"TBD"},{"start":0.0287579785227365,"stop":0.0289494521579674,"type":"TBD"}]},{"gid":2544,"kittle_nam":"Assinika Creek","route_mi":4.994,"public_mi":0.0,"length_mi":4.994,"objectid":27344,"trout_flag":null,"kittle_nbr":"S-075-008","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2546,"kittle_nam":"Mons Creek","route_mi":4.543,"public_mi":0.0,"length_mi":4.543,"objectid":27367,"trout_flag":null,"kittle_nbr":"S-075-003","public_route_length":0.62916304016961011,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0714968579888111,"stop":0.163794083992079,"type":"TBD"},{"start":0.0,"stop":0.0461934277870931,"type":"TBD"}]},{"gid":2547,"kittle_nam":"Gauthier Creek","route_mi":3.363,"public_mi":0.0,"length_mi":3.363,"objectid":27373,"trout_flag":null,"kittle_nbr":"S-075-001","public_route_length":0.87417356933945034,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.25993861710956,"type":"TBD"}]},{"gid":2549,"kittle_nam":"Greenwood River","route_mi":7.201,"public_mi":0.0,"length_mi":7.201,"objectid":27354,"trout_flag":null,"kittle_nbr":"S-075-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2552,"kittle_nam":"Little Sauk Creek","route_mi":1.369,"public_mi":0.0,"length_mi":1.369,"objectid":25743,"trout_flag":null,"kittle_nbr":"M-074-066","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2575,"kittle_nam":"Hemmingway Creek","route_mi":2.225,"public_mi":0.0,"length_mi":2.225,"objectid":25317,"trout_flag":null,"kittle_nbr":"M-009-017-005-006","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2628,"kittle_nam":"Seven Mile Creek","route_mi":5.163,"public_mi":0.0,"length_mi":5.163,"objectid":25576,"trout_flag":null,"kittle_nbr":"M-055-071.5","public_route_length":0.13149100449434525,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.974532054136288,"stop":1.0,"type":"TBD"}]},{"gid":2662,"kittle_nam":"Ash River","route_mi":29.292,"public_mi":0.0,"length_mi":29.292,"objectid":25166,"trout_flag":null,"kittle_nbr":"H-001-040","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2709,"kittle_nam":"Missouri Creek","route_mi":1.72,"public_mi":0.0,"length_mi":1.72,"objectid":27065,"trout_flag":null,"kittle_nbr":"S-058-009","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2713,"kittle_nam":"Tait River","route_mi":2.333,"public_mi":0.0,"length_mi":2.333,"objectid":27084,"trout_flag":null,"kittle_nbr":"S-058-004","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2718,"kittle_nam":"Caribou Creek","route_mi":4.601,"public_mi":0.0,"length_mi":4.601,"objectid":27591,"trout_flag":null,"kittle_nbr":"S-058-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2720,"kittle_nam":"Fawn Creek","route_mi":4.088,"public_mi":0.0,"length_mi":4.088,"objectid":25966,"trout_flag":null,"kittle_nbr":"M-096-018","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2721,"kittle_nam":"Mosquito Creek","route_mi":2.782,"public_mi":0.0,"length_mi":2.782,"objectid":25968,"trout_flag":null,"kittle_nbr":"M-096-011","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2748,"kittle_nam":"Stockton Valley Creek","route_mi":7.421,"public_mi":0.0,"length_mi":7.421,"objectid":25172,"trout_flag":null,"kittle_nbr":"M-026-001-005","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2752,"kittle_nam":"Lengby Creek","route_mi":1.606,"public_mi":0.0,"length_mi":1.606,"objectid":25039,"trout_flag":null,"kittle_nbr":"H-026-030-019-007-001-013","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2758,"kittle_nam":"Nemadji River","route_mi":33.193,"public_mi":0.0,"length_mi":33.193,"objectid":25792,"trout_flag":null,"kittle_nbr":"S-001","public_route_length":5.3001705468865259,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.334234049328246,"stop":0.421454482443559,"type":"TBD"},{"start":0.424971437364423,"stop":0.428592351812002,"type":"TBD"},{"start":0.265079821711522,"stop":0.33391583223276,"type":"TBD"}]},{"gid":2759,"kittle_nam":"Chester Creek","route_mi":5.217,"public_mi":0.0,"length_mi":5.217,"objectid":26299,"trout_flag":null,"kittle_nbr":"S-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2760,"kittle_nam":"Lester River","route_mi":19.812,"public_mi":0.0,"length_mi":19.812,"objectid":26271,"trout_flag":null,"kittle_nbr":"S-005","public_route_length":8.8866596097839849,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.790728424318976,"stop":0.808562382424118,"type":"TBD"},{"start":0.78974856343833,"stop":0.790403856573869,"type":"TBD"},{"start":0.787700006417768,"stop":0.789262306875615,"type":"TBD"},{"start":0.784956516286322,"stop":0.786209918239622,"type":"TBD"},{"start":0.784381572833137,"stop":0.784768326954117,"type":"TBD"},{"start":0.782054783650835,"stop":0.782446986342977,"type":"TBD"},{"start":0.779574683929612,"stop":0.780015438005726,"type":"TBD"},{"start":0.778805294480778,"stop":0.779274823214247,"type":"TBD"},{"start":0.777761875263671,"stop":0.778387641870629,"type":"TBD"},{"start":0.776435203917484,"stop":0.777450723063011,"type":"TBD"},{"start":0.774468598061919,"stop":0.775540860927118,"type":"TBD"},{"start":0.772480280430892,"stop":0.77313338484135,"type":"TBD"},{"start":0.968882794615907,"stop":0.983293533779958,"type":"TBD"},{"start":0.747076412578751,"stop":0.748026551191234,"type":"TBD"},{"start":0.745997352119789,"stop":0.74705492650763194,"type":"TBD"},{"start":0.74501160136662,"stop":0.745721854606731,"type":"TBD"},{"start":0.743796407294174,"stop":0.744505927526972,"type":"TBD"},{"start":0.742495802302787,"stop":0.74341286366972,"type":"TBD"},{"start":0.738983591810227,"stop":0.739606931188003,"type":"TBD"},{"start":0.74072297140933,"stop":0.741878273377009,"type":"TBD"},{"start":0.736098330730041,"stop":0.737239750989832,"type":"TBD"},{"start":0.734943929510173,"stop":0.735554260078267,"type":"TBD"},{"start":0.723480518232747,"stop":0.724508966243141,"type":"TBD"},{"start":0.718402039759648,"stop":0.721502690534743,"type":"TBD"},{"start":0.715731863072768,"stop":0.716963851516571,"type":"TBD"},{"start":0.712669587005112,"stop":0.715257421202936,"type":"TBD"},{"start":0.709856864744078,"stop":0.710245833965749,"type":"TBD"},{"start":0.706815884009025,"stop":0.70873258277744,"type":"TBD"},{"start":0.705360566032609,"stop":0.705792525796776,"type":"TBD"},{"start":0.701615542668947,"stop":0.703221946216236,"type":"TBD"},{"start":0.699331635582413,"stop":0.700283178015037,"type":"TBD"},{"start":0.696575238055036,"stop":0.697011519033356,"type":"TBD"},{"start":0.69005588873224,"stop":0.691705563882704,"type":"TBD"},{"start":0.689339250432133,"stop":0.689822879762871,"type":"TBD"},{"start":0.679608879629858,"stop":0.68159971960061,"type":"TBD"},{"start":0.671830089748014,"stop":0.677840944233921,"type":"TBD"},{"start":0.585687052836083,"stop":0.670958687950359,"type":"TBD"},{"start":0.577218103159555,"stop":0.582293703744422,"type":"TBD"},{"start":0.575491581295346,"stop":0.576922438838067,"type":"TBD"},{"start":0.572926203914893,"stop":0.574251040120176,"type":"TBD"},{"start":0.567469214699993,"stop":0.571990982270379,"type":"TBD"},{"start":0.564940276244943,"stop":0.566987293472218,"type":"TBD"},{"start":0.562259250855963,"stop":0.56383829242369,"type":"TBD"},{"start":0.506819842610835,"stop":0.559777454007471,"type":"TBD"},{"start":0.48749257033049,"stop":0.497547804883323,"type":"TBD"},{"start":0.497923408736704,"stop":0.505893294171896,"type":"TBD"},{"start":0.482180319140581,"stop":0.486945026486309,"type":"TBD"},{"start":0.459160576441928,"stop":0.48208356750343,"type":"TBD"},{"start":0.444394596398432,"stop":0.45906874794827,"type":"TBD"},{"start":0.425425170166285,"stop":0.444221310459197,"type":"TBD"},{"start":0.418014971614899,"stop":0.425208201397476,"type":"TBD"},{"start":0.395328105864617,"stop":0.409188383963988,"type":"TBD"},{"start":0.386099601652787,"stop":0.389972282263309,"type":"TBD"},{"start":0.382059933736549,"stop":0.383218219649103,"type":"TBD"},{"start":0.375171532463869,"stop":0.38132452668372,"type":"TBD"},{"start":0.0519995015527239,"stop":0.0701252921855252,"type":"TBD"},{"start":0.0495198545042443,"stop":0.0504135226864853,"type":"TBD"},{"start":0.0703866904695618,"stop":0.0834223620931173,"type":"TBD"},{"start":0.0416014002522566,"stop":0.0467887126632825,"type":"TBD"},{"start":0.362161529032542,"stop":0.364717130601533,"type":"TBD"},{"start":0.366246952779836,"stop":0.369996282198081,"type":"TBD"},{"start":0.3728818071317,"stop":0.37502177826119,"type":"TBD"},{"start":0.0311942113811911,"stop":0.0332269672580192,"type":"TBD"},{"start":0.370681122369609,"stop":0.37179562103074,"type":"TBD"},{"start":0.346066982514995,"stop":0.346270611874956,"type":"TBD"},{"start":0.0362957800078485,"stop":0.0372526029363027,"type":"TBD"},{"start":0.338867303487704,"stop":0.344258490734785,"type":"TBD"},{"start":0.329680294495595,"stop":0.338522630324973,"type":"TBD"},{"start":0.104094892169121,"stop":0.107343816842663,"type":"TBD"},{"start":0.0874828494582514,"stop":0.0981025222207302,"type":"TBD"},{"start":0.319134878383819,"stop":0.32604850628112,"type":"TBD"},{"start":0.297678129412002,"stop":0.317570738288782,"type":"TBD"},{"start":0.29174812283694,"stop":0.297302811453769,"type":"TBD"}]},{"gid":2761,"kittle_nam":"Tischer Creek","route_mi":6.437,"public_mi":0.0,"length_mi":6.437,"objectid":26283,"trout_flag":null,"kittle_nbr":"S-004","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2762,"kittle_nam":"Talmadge River","route_mi":5.956,"public_mi":0.0,"length_mi":5.956,"objectid":26711,"trout_flag":null,"kittle_nbr":"S-007","public_route_length":0.83334032140842529,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.209607885534464,"stop":0.257667859892489,"type":"TBD"},{"start":0.10560295301332,"stop":0.129837632273452,"type":"TBD"},{"start":0.100524604287697,"stop":0.102369424292408,"type":"TBD"},{"start":0.075390226922838,"stop":0.0898218936129771,"type":"TBD"},{"start":0.0428324451164307,"stop":0.0634883758317567,"type":"TBD"},{"start":0.0111270915564883,"stop":0.0418161255329277,"type":"TBD"}]},{"gid":2763,"kittle_nam":"Knowlton Creek","route_mi":2.51,"public_mi":0.0,"length_mi":2.51,"objectid":26110,"trout_flag":null,"kittle_nbr":"S-002-003.5","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2774,"kittle_nam":"Sugar Loaf Creek","route_mi":1.483,"public_mi":0.0,"length_mi":1.483,"objectid":27200,"trout_flag":null,"kittle_nbr":"S-048","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2778,"kittle_nam":"Larsons Creek","route_mi":3.086,"public_mi":0.0,"length_mi":3.086,"objectid":27876,"trout_flag":null,"kittle_nbr":"M-050-046-028-010","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2783,"kittle_nam":"Falls Creek","route_mi":1.491,"public_mi":0.0,"length_mi":1.491,"objectid":27330,"trout_flag":null,"kittle_nbr":"S-075-011-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2846,"kittle_nam":"Girl Scout Camp Creek","route_mi":1.742,"public_mi":0.0,"length_mi":1.742,"objectid":25402,"trout_flag":null,"kittle_nbr":"M-009-010-005.5","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2877,"kittle_nam":"Beaver Creek","route_mi":6.315,"public_mi":0.0,"length_mi":6.315,"objectid":25620,"trout_flag":null,"kittle_nbr":"M-050-034-001-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2898,"kittle_nam":"Owens Creek","route_mi":3.994,"public_mi":0.0,"length_mi":3.994,"objectid":25162,"trout_flag":null,"kittle_nbr":"H-001-046-023-003","public_route_length":0.003508501782761277,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.000878443110355853,"type":"TBD"}]},{"gid":2927,"kittle_nam":"John's Creek","route_mi":3.729,"public_mi":0.0,"length_mi":3.729,"objectid":25562,"trout_flag":null,"kittle_nbr":"M-055-106","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2928,"kittle_nam":"Spring Creek","route_mi":4.701,"public_mi":0.0,"length_mi":4.701,"objectid":25560,"trout_flag":null,"kittle_nbr":"M-055-108","public_route_length":2.1920263278317966,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.346148082683383,"stop":0.608267808292141,"type":"TBD"},{"start":0.27279981539519,"stop":0.345269037400509,"type":"TBD"},{"start":0.155657360138867,"stop":0.269685657303527,"type":"TBD"},{"start":0.136113168588294,"stop":0.15378529369507,"type":"TBD"}]},{"gid":2930,"kittle_nam":"Clearwater River","route_mi":17.735,"public_mi":0.0,"length_mi":17.735,"objectid":25040,"trout_flag":null,"kittle_nbr":"H-026-030-019","public_route_length":10.574529855817767,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.998068737849867,"stop":1.0,"type":"TBD"},{"start":0.995880727264633,"stop":0.998028139772813,"type":"TBD"},{"start":0.985302042764564,"stop":0.99495821375141,"type":"TBD"},{"start":0.975342789395863,"stop":0.98465115924037,"type":"TBD"},{"start":0.960216338998975,"stop":0.972397242514192,"type":"TBD"},{"start":0.415880067763381,"stop":0.416234298186597,"type":"TBD"},{"start":0.409254757885223,"stop":0.415163573416177,"type":"TBD"},{"start":0.417201427892669,"stop":0.419301135177293,"type":"TBD"},{"start":0.406213793598151,"stop":0.408346354875054,"type":"TBD"},{"start":0.419570859050063,"stop":0.423772067295672,"type":"TBD"},{"start":0.395203965652898,"stop":0.401686263125014,"type":"TBD"},{"start":0.390282455284958,"stop":0.39414274691216,"type":"TBD"},{"start":0.401713691158358,"stop":0.403308469311224,"type":"TBD"},{"start":0.267204775880385,"stop":0.275306054731212,"type":"TBD"},{"start":0.384713510007589,"stop":0.388961324900072,"type":"TBD"},{"start":0.254701101564499,"stop":0.259416429396281,"type":"TBD"},{"start":0.424779909857816,"stop":0.425251507604955,"type":"TBD"},{"start":0.957758009389893,"stop":0.958539867462148,"type":"TBD"},{"start":0.956685557101957,"stop":0.957556068133292,"type":"TBD"},{"start":0.426512500084564,"stop":0.428995500889575,"type":"TBD"},{"start":0.952655725393114,"stop":0.95618466237055,"type":"TBD"},{"start":0.249806168664616,"stop":0.253533218865976,"type":"TBD"},{"start":0.429515082927683,"stop":0.441220699226705,"type":"TBD"},{"start":0.27617280043696,"stop":0.277196642100178,"type":"TBD"},{"start":0.380299089945759,"stop":0.382068050091863,"type":"TBD"},{"start":0.278148677521599,"stop":0.281579848627674,"type":"TBD"},{"start":0.247699483563355,"stop":0.248834203058775,"type":"TBD"},{"start":0.378222600622166,"stop":0.378674129406902,"type":"TBD"},{"start":0.246428434015462,"stop":0.247193654010995,"type":"TBD"},{"start":0.242085326451396,"stop":0.244643441075321,"type":"TBD"},{"start":0.943821698790019,"stop":0.94982185931921,"type":"TBD"},{"start":0.365470629241931,"stop":0.36949200506884,"type":"TBD"},{"start":0.282181465778756,"stop":0.283864748421011,"type":"TBD"},{"start":0.37385870084131,"stop":0.374509161081266,"type":"TBD"},{"start":0.370962919425378,"stop":0.373669898140371,"type":"TBD"},{"start":0.442962825350229,"stop":0.449659958115353,"type":"TBD"},{"start":0.235396770265085,"stop":0.237438511276601,"type":"TBD"},{"start":0.285079907135317,"stop":0.286836678973692,"type":"TBD"},{"start":0.932232476005487,"stop":0.938771017152893,"type":"TBD"},{"start":0.451449615606671,"stop":0.455052216267107,"type":"TBD"},{"start":0.455226121008072,"stop":0.459201029031566,"type":"TBD"},{"start":0.204417177182423,"stop":0.205367423098164,"type":"TBD"},{"start":0.205721043015591,"stop":0.206214139262219,"type":"TBD"},{"start":0.20705381718912,"stop":0.210490075191617,"type":"TBD"},{"start":0.20286862445183,"stop":0.204221650702588,"type":"TBD"},{"start":0.195557673467558,"stop":0.197089466432522,"type":"TBD"},{"start":0.218354851607218,"stop":0.222870328176679,"type":"TBD"},{"start":0.459744172652394,"stop":0.463665487557888,"type":"TBD"},{"start":0.210811174785885,"stop":0.217794550870039,"type":"TBD"},{"start":0.000497264229789544,"stop":0.00818777575840635,"type":"TBD"},{"start":0.118640834160849,"stop":0.129033281275437,"type":"TBD"},{"start":0.199561709868679,"stop":0.201016198553517,"type":"TBD"},{"start":0.929309492477043,"stop":0.93171076032985,"type":"TBD"},{"start":0.0100579299912348,"stop":0.0107332832557301,"type":"TBD"},{"start":0.191785936556927,"stop":0.194605766468904,"type":"TBD"},{"start":0.129947726676499,"stop":0.133028447964302,"type":"TBD"},{"start":0.0132727919802471,"stop":0.0139656212304638,"type":"TBD"},{"start":0.0168331293602666,"stop":0.0193554974449125,"type":"TBD"},{"start":0.0148268802180417,"stop":0.0155433853774673,"type":"TBD"},{"start":0.021102228712732,"stop":0.0215231126247835,"type":"TBD"},{"start":0.0509292784856803,"stop":0.051633086488424,"type":"TBD"},{"start":0.0216472293211557,"stop":0.0327035692203319,"type":"TBD"},{"start":0.0470517830200783,"stop":0.0505219046021873,"type":"TBD"},{"start":0.137802067733337,"stop":0.143941220800797,"type":"TBD"},{"start":0.92787997007487,"stop":0.927960223875983,"type":"TBD"},{"start":0.923815277180434,"stop":0.927152435579377,"type":"TBD"},{"start":0.0532766914973544,"stop":0.0570304467095591,"type":"TBD"},{"start":0.133586219491108,"stop":0.136358147684239,"type":"TBD"},{"start":0.189493216939636,"stop":0.189875621766125,"type":"TBD"},{"start":0.144712228797794,"stop":0.151618402734259,"type":"TBD"},{"start":0.467172414052591,"stop":0.468367504244102,"type":"TBD"},{"start":0.468539773958441,"stop":0.47385314422223,"type":"TBD"},{"start":0.47410892334141,"stop":0.476007427654862,"type":"TBD"},{"start":0.921913837798469,"stop":0.923432727786955,"type":"TBD"},{"start":0.185745506904872,"stop":0.18694069067143,"type":"TBD"},{"start":0.152814143970294,"stop":0.154092761991004,"type":"TBD"},{"start":0.154930654808067,"stop":0.156439845973181,"type":"TBD"},{"start":0.0420887002795328,"stop":0.0461908892809191,"type":"TBD"},{"start":0.11493998745483,"stop":0.118160701065905,"type":"TBD"},{"start":0.0342938139132388,"stop":0.0346349859129787,"type":"TBD"},{"start":0.0348858671013504,"stop":0.0408550254384165,"type":"TBD"},{"start":0.0570481157657904,"stop":0.058862026312922,"type":"TBD"},{"start":0.478550743507902,"stop":0.481030243388711,"type":"TBD"},{"start":0.183639326756988,"stop":0.185160117768961,"type":"TBD"},{"start":0.476539868522932,"stop":0.477078879957422,"type":"TBD"},{"start":0.0593616107384101,"stop":0.0637330413090672,"type":"TBD"},{"start":0.180664024188294,"stop":0.183302297271753,"type":"TBD"},{"start":0.881926305810658,"stop":0.918867443721378,"type":"TBD"},{"start":0.158177924081889,"stop":0.160117321880809,"type":"TBD"},{"start":0.482583880623649,"stop":0.488513243501061,"type":"TBD"},{"start":0.106536126591285,"stop":0.114374351956143,"type":"TBD"},{"start":0.179205836433009,"stop":0.180100400557548,"type":"TBD"},{"start":0.160135066964199,"stop":0.161607963625268,"type":"TBD"},{"start":0.174656430071867,"stop":0.17879105933396,"type":"TBD"},{"start":0.041217852673093,"stop":0.0413258207323037,"type":"TBD"},{"start":0.163332816783069,"stop":0.164702043276043,"type":"TBD"},{"start":0.173029326986192,"stop":0.174013371030821,"type":"TBD"},{"start":0.064932785576055,"stop":0.065238740150483,"type":"TBD"},{"start":0.165388627293678,"stop":0.167848309923929,"type":"TBD"},{"start":0.162700782538753,"stop":0.162963959423633,"type":"TBD"},{"start":0.170873789541543,"stop":0.171518632636916,"type":"TBD"},{"start":0.0658990172858265,"stop":0.0688277636398325,"type":"TBD"},{"start":0.168950977224009,"stop":0.17038623873368,"type":"TBD"},{"start":0.0695396253562894,"stop":0.0728925506806813,"type":"TBD"},{"start":0.493668233170614,"stop":0.494518103731725,"type":"TBD"},{"start":0.495292385933969,"stop":0.497456940011567,"type":"TBD"},{"start":0.491530399033001,"stop":0.492433055527163,"type":"TBD"},{"start":0.0735302594613447,"stop":0.0755866307288912,"type":"TBD"},{"start":0.100748595971221,"stop":0.103950169984007,"type":"TBD"},{"start":0.828305172256943,"stop":0.830924602166914,"type":"TBD"},{"start":0.831573999340825,"stop":0.832619433385044,"type":"TBD"},{"start":0.498579535153061,"stop":0.526341400958589,"type":"TBD"},{"start":0.820568513381474,"stop":0.826013327669251,"type":"TBD"},{"start":0.0773509136764138,"stop":0.0780856067314392,"type":"TBD"},{"start":0.83282867776947,"stop":0.839436971618591,"type":"TBD"},{"start":0.826817096598788,"stop":0.826852008113567,"type":"TBD"},{"start":0.814721765937835,"stop":0.817248589862414,"type":"TBD"},{"start":0.81256694415887,"stop":0.813936288593311,"type":"TBD"},{"start":0.0787700396216376,"stop":0.0840854767330686,"type":"TBD"},{"start":0.0842474057500534,"stop":0.0926359941748653,"type":"TBD"},{"start":0.809729179786041,"stop":0.81027036483658,"type":"TBD"},{"start":0.807664580540468,"stop":0.809529666075548,"type":"TBD"},{"start":0.0976885306464887,"stop":0.0982745983205654,"type":"TBD"},{"start":0.842216915423226,"stop":0.845911584641454,"type":"TBD"},{"start":0.0964438315008924,"stop":0.0976851937200883,"type":"TBD"},{"start":0.800666828595247,"stop":0.807069985019372,"type":"TBD"},{"start":0.0926624460207624,"stop":0.0948708197147327,"type":"TBD"},{"start":0.847928357445634,"stop":0.853397859267711,"type":"TBD"},{"start":0.793095909240453,"stop":0.7980661441025,"type":"TBD"},{"start":0.85370729778879,"stop":0.85828936811004,"type":"TBD"},{"start":0.78988039155881,"stop":0.790752524570664,"type":"TBD"},{"start":0.788082833516386,"stop":0.789741891914492,"type":"TBD"},{"start":0.858856499985266,"stop":0.859424958995278,"type":"TBD"},{"start":0.761094260345596,"stop":0.787734347548812,"type":"TBD"},{"start":0.86056546530101,"stop":0.861217785517787,"type":"TBD"},{"start":0.861490536596825,"stop":0.86389523402063,"type":"TBD"},{"start":0.758084042042191,"stop":0.7607564861495,"type":"TBD"},{"start":0.877149011773689,"stop":0.880244125081344,"type":"TBD"},{"start":0.746324389858916,"stop":0.758021508802999,"type":"TBD"},{"start":0.866752528853539,"stop":0.868155926008983,"type":"TBD"},{"start":0.696507490506616,"stop":0.706124164545399,"type":"TBD"},{"start":0.869846648806111,"stop":0.872417820066359,"type":"TBD"},{"start":0.682866280680397,"stop":0.684002511047569,"type":"TBD"},{"start":0.874513272861218,"stop":0.876272004195084,"type":"TBD"},{"start":0.706748517585544,"stop":0.710517168591153,"type":"TBD"},{"start":0.711501536890668,"stop":0.716546603990283,"type":"TBD"},{"start":0.640970172558278,"stop":0.641950273985918,"type":"TBD"},{"start":0.630093262515514,"stop":0.631033193573479,"type":"TBD"},{"start":0.628204661372883,"stop":0.629237510539558,"type":"TBD"},{"start":0.625419297682573,"stop":0.627868520712087,"type":"TBD"},{"start":0.642399865158575,"stop":0.643053394192896,"type":"TBD"},{"start":0.636484009418576,"stop":0.637164701847122,"type":"TBD"},{"start":0.643399788630963,"stop":0.644338941547928,"type":"TBD"},{"start":0.604393451310825,"stop":0.604422701861486,"type":"TBD"},{"start":0.607409659229335,"stop":0.608396738744897,"type":"TBD"},{"start":0.644555794831416,"stop":0.647093748190456,"type":"TBD"},{"start":0.623054969323662,"stop":0.623781131061178,"type":"TBD"},{"start":0.620454531975221,"stop":0.620924658141577,"type":"TBD"},{"start":0.621585395932877,"stop":0.622418841555703,"type":"TBD"},{"start":0.659486815211233,"stop":0.661091501346132,"type":"TBD"},{"start":0.617087064682717,"stop":0.617731780672488,"type":"TBD"},{"start":0.600184022405921,"stop":0.603345953120064,"type":"TBD"},{"start":0.725571575745429,"stop":0.737996194146311,"type":"TBD"},{"start":0.719765750598638,"stop":0.720492317910594,"type":"TBD"},{"start":0.609487634722034,"stop":0.61154135506868,"type":"TBD"},{"start":0.612292781057081,"stop":0.616265073102583,"type":"TBD"},{"start":0.72257511574648,"stop":0.725517964466689,"type":"TBD"},{"start":0.65277893840536,"stop":0.654538944626196,"type":"TBD"},{"start":0.65523985049832,"stop":0.655997161874443,"type":"TBD"},{"start":0.648992611253713,"stop":0.650060494342612,"type":"TBD"},{"start":0.651266387995894,"stop":0.651921128326428,"type":"TBD"},{"start":0.594439859722089,"stop":0.599165856009595,"type":"TBD"},{"start":0.580295659834438,"stop":0.583545369098316,"type":"TBD"},{"start":0.584590666345888,"stop":0.586810337606401,"type":"TBD"},{"start":0.593211950678316,"stop":0.5942316285349,"type":"TBD"}]},{"gid":2931,"kittle_nam":"Wallingford Brook","route_mi":4.309,"public_mi":0.0,"length_mi":4.309,"objectid":25951,"trout_flag":null,"kittle_nbr":"M-096-037","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2932,"kittle_nam":"Hellcamp Creek","route_mi":1.663,"public_mi":0.0,"length_mi":1.663,"objectid":25949,"trout_flag":null,"kittle_nbr":"M-096-038","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2955,"kittle_nam":"Little Cannon River","route_mi":12.049,"public_mi":0.0,"length_mi":12.049,"objectid":25684,"trout_flag":null,"kittle_nbr":"M-048-012","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2956,"kittle_nam":"Pine Creek","route_mi":6.026,"public_mi":0.0,"length_mi":6.026,"objectid":25694,"trout_flag":null,"kittle_nbr":"M-048-011","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2960,"kittle_nam":"Camp Creek","route_mi":1.048,"public_mi":0.0,"length_mi":1.048,"objectid":25520,"trout_flag":null,"kittle_nbr":"M-063-081-001-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2978,"kittle_nam":"Gooseberry River","route_mi":22.784,"public_mi":0.0,"length_mi":22.784,"objectid":26955,"trout_flag":null,"kittle_nbr":"S-026","public_route_length":7.8556989813212361,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.619947898014949,"stop":0.645162898608315,"type":"TBD"},{"start":0.682565577747117,"stop":0.709948322096536,"type":"TBD"},{"start":0.656536588547393,"stop":0.66074590694323,"type":"TBD"},{"start":0.593489793979744,"stop":0.599313699474658,"type":"TBD"},{"start":0.549799258174513,"stop":0.586590341692794,"type":"TBD"},{"start":0.747851689925646,"stop":0.763069914142317,"type":"TBD"},{"start":0.745294439262484,"stop":0.746508984260464,"type":"TBD"},{"start":0.787856466833409,"stop":0.794144102066866,"type":"TBD"},{"start":0.774883015737038,"stop":0.782454382174935,"type":"TBD"},{"start":0.800139271756743,"stop":0.805568883511516,"type":"TBD"},{"start":0.80725399286002,"stop":0.818300432771425,"type":"TBD"},{"start":0.831541577122547,"stop":0.837481838917069,"type":"TBD"},{"start":0.530004669325579,"stop":0.549711059151449,"type":"TBD"},{"start":0.837652251419982,"stop":0.846715813305317,"type":"TBD"},{"start":0.511922019156011,"stop":0.515599910375562,"type":"TBD"},{"start":0.505455824579762,"stop":0.511515916690143,"type":"TBD"},{"start":0.487506587727205,"stop":0.504915438539146,"type":"TBD"},{"start":0.858073694299401,"stop":0.862244547797877,"type":"TBD"},{"start":0.464843482524588,"stop":0.466735894454089,"type":"TBD"},{"start":0.46216545207432,"stop":0.46313091837005,"type":"TBD"},{"start":0.459865479259327,"stop":0.461293155299865,"type":"TBD"},{"start":0.446830634200559,"stop":0.450343606610851,"type":"TBD"},{"start":0.0,"stop":0.12477385621528,"type":"TBD"}]},{"gid":2980,"kittle_nam":"Crow Creek","route_mi":6.615,"public_mi":0.0,"length_mi":6.615,"objectid":26967,"trout_flag":null,"kittle_nbr":"S-023","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2981,"kittle_nam":"Encampment River","route_mi":8.546,"public_mi":0.0,"length_mi":8.546,"objectid":26982,"trout_flag":null,"kittle_nbr":"S-022","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2982,"kittle_nam":"Silver Creek","route_mi":12.895,"public_mi":0.0,"length_mi":12.895,"objectid":26998,"trout_flag":null,"kittle_nbr":"S-021","public_route_length":0.54769673301225552,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0994173327474573,"stop":0.100322367380228,"type":"TBD"},{"start":0.0534298767754801,"stop":0.0550001506387915,"type":"TBD"},{"start":0.0334601146250837,"stop":0.0529241322491944,"type":"TBD"},{"start":0.0154426926997148,"stop":0.0321679725146144,"type":"TBD"},{"start":0.0103979952291833,"stop":0.0142069630057819,"type":"TBD"}]},{"gid":2984,"kittle_nam":"Split Rock River","route_mi":15.508,"public_mi":0.0,"length_mi":15.508,"objectid":26899,"trout_flag":null,"kittle_nbr":"S-029","public_route_length":6.8707647103644165,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.66361723527358,"stop":0.704364855728456,"type":"TBD"},{"start":0.660116435521991,"stop":0.661235948664106,"type":"TBD"},{"start":0.635215530158715,"stop":0.658954269395343,"type":"TBD"},{"start":0.632673185325647,"stop":0.633069148749325,"type":"TBD"},{"start":0.499133765013901,"stop":0.632407371877307,"type":"TBD"},{"start":0.42946751758126,"stop":0.455441964608983,"type":"TBD"},{"start":0.291807597553013,"stop":0.37220672261059,"type":"TBD"},{"start":0.199955082842414,"stop":0.241508892342114,"type":"TBD"},{"start":0.0,"stop":0.0958436487508625,"type":"TBD"}]},{"gid":2997,"kittle_nam":"Woodson Creek","route_mi":1.267,"public_mi":0.0,"length_mi":1.267,"objectid":25146,"trout_flag":null,"kittle_nbr":"I-027-009","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2999,"kittle_nam":"Section Thirty Creek","route_mi":2.173,"public_mi":0.0,"length_mi":2.173,"objectid":28172,"trout_flag":null,"kittle_nbr":"H-001-092-004-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3000,"kittle_nam":"Longstorff Creek","route_mi":3.737,"public_mi":0.0,"length_mi":3.737,"objectid":25026,"trout_flag":null,"kittle_nbr":"H-001-092-004-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3007,"kittle_nam":"Johnson Creek","route_mi":6.768,"public_mi":0.0,"length_mi":6.768,"objectid":24924,"trout_flag":null,"kittle_nbr":"H-001-030-026-005","public_route_length":0.026087590261469028,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.614565618850871,"stop":0.618420168239386,"type":"TBD"}]},{"gid":3008,"kittle_nam":"Angora Creek","route_mi":3.286,"public_mi":0.0,"length_mi":3.286,"objectid":24922,"trout_flag":null,"kittle_nbr":"H-001-030-026-004","public_route_length":0.5166701908922301,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.833187583573507,"stop":0.84728369156683,"type":"TBD"},{"start":0.807068264770185,"stop":0.826866728864166,"type":"TBD"},{"start":0.779572356263265,"stop":0.806327452985027,"type":"TBD"},{"start":0.671764839775613,"stop":0.686411672833408,"type":"TBD"},{"start":0.70985965458661,"stop":0.743309810067013,"type":"TBD"},{"start":0.195239892693335,"stop":0.243727012245715,"type":"TBD"}]},{"gid":3033,"kittle_nam":"Us-kab-wan-ka River","route_mi":19.699,"public_mi":0.0,"length_mi":19.699,"objectid":26408,"trout_flag":null,"kittle_nbr":"S-002-016-006","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3035,"kittle_nam":"Chicken Creek","route_mi":7.39,"public_mi":0.0,"length_mi":7.39,"objectid":26416,"trout_flag":null,"kittle_nbr":"S-002-016-005","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3036,"kittle_nam":"Chalberg Creek","route_mi":5.468,"public_mi":0.0,"length_mi":5.468,"objectid":26439,"trout_flag":null,"kittle_nbr":"S-002-016-002","public_route_length":0.46605428302519364,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.802922087532413,"stop":0.888155131245872,"type":"TBD"}]},{"gid":3040,"kittle_nam":"Finland Creek","route_mi":1.537,"public_mi":0.0,"length_mi":1.537,"objectid":26771,"trout_flag":null,"kittle_nbr":"S-038-008.1","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3054,"kittle_nam":"Swanson Creek","route_mi":4.416,"public_mi":0.0,"length_mi":4.416,"objectid":27113,"trout_flag":null,"kittle_nbr":"S-053-013","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3061,"kittle_nam":"Mink Creek","route_mi":3.736,"public_mi":0.0,"length_mi":3.736,"objectid":26367,"trout_flag":null,"kittle_nbr":"S-002-016-021-002","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3062,"kittle_nam":"Mud Creek, Little","route_mi":3.805,"public_mi":0.0,"length_mi":3.805,"objectid":26366,"trout_flag":null,"kittle_nbr":"S-002-016-021-003","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3063,"kittle_nam":"Trappers Creek","route_mi":6.12,"public_mi":0.0,"length_mi":6.12,"objectid":26368,"trout_flag":null,"kittle_nbr":"S-002-016-021-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3066,"kittle_nam":"Venning Creek","route_mi":1.06,"public_mi":0.0,"length_mi":1.06,"objectid":24918,"trout_flag":null,"kittle_nbr":"H-001-030-023-002-010","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3068,"kittle_nam":"Hay Creek","route_mi":5.211,"public_mi":0.0,"length_mi":5.211,"objectid":25965,"trout_flag":null,"kittle_nbr":"M-096-020-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3070,"kittle_nam":"Union Creek","route_mi":11.504,"public_mi":0.0,"length_mi":11.504,"objectid":25964,"trout_flag":null,"kittle_nbr":"M-096-020-007","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3140,"kittle_nam":"Lynch Creek","route_mi":4.976,"public_mi":0.0,"length_mi":4.976,"objectid":25249,"trout_flag":null,"kittle_nbr":"M-009-031","public_route_length":1.4358606434998715,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.209991437405721,"stop":0.356952357192741,"type":"TBD"},{"start":0.101984362423616,"stop":0.190264695853071,"type":"TBD"},{"start":0.071665421268479,"stop":0.0811795275207646,"type":"TBD"},{"start":0.0,"stop":0.0438018438069371,"type":"TBD"}]},{"gid":3160,"kittle_nam":"King Creek","route_mi":3.16,"public_mi":0.0,"length_mi":3.16,"objectid":25618,"trout_flag":null,"kittle_nbr":"M-050-046-029-023","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3164,"kittle_nam":"Bang's Brook","route_mi":4.243,"public_mi":0.0,"length_mi":4.243,"objectid":25605,"trout_flag":null,"kittle_nbr":"M-050-049-003","public_route_length":0.12744773546625102,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0300371754575185,"type":"TBD"}]},{"gid":3165,"kittle_nam":"Wilbur Brook","route_mi":4.377,"public_mi":0.0,"length_mi":4.377,"objectid":27858,"trout_flag":null,"kittle_nbr":"M-050-049-002","public_route_length":3.5116064771881006,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.802286149688851,"type":"TBD"}]},{"gid":3167,"kittle_nam":"Kenney Brook","route_mi":1.1981,"public_mi":0.0,"length_mi":1.1981,"objectid":27854,"trout_flag":null,"kittle_nbr":"M-050-049-004","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3171,"kittle_nam":"Schermerhorn Creek","route_mi":4.076,"public_mi":0.0,"length_mi":4.076,"objectid":27991,"trout_flag":null,"kittle_nbr":"H-026-047-034","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3166,"kittle_nam":"Crooked Creek, W. Fork","route_mi":2.417,"public_mi":0.0,"length_mi":2.417,"objectid":25604,"trout_flag":null,"kittle_nbr":"M-050-049-005","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3178,"kittle_nam":"Mitawan Creek","route_mi":14.515,"public_mi":0.0,"length_mi":14.515,"objectid":25031,"trout_flag":null,"kittle_nbr":"H-001-092-021-011","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3179,"kittle_nam":"Little Isabella River","route_mi":14.855,"public_mi":0.0,"length_mi":14.855,"objectid":25137,"trout_flag":null,"kittle_nbr":"H-001-092-021-010","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3224,"kittle_nam":"Prairie River","route_mi":9.072,"public_mi":0.0,"length_mi":9.072,"objectid":25917,"trout_flag":null,"kittle_nbr":"M-120-005","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3228,"kittle_nam":"Kinney Creek","route_mi":3.848,"public_mi":0.0,"length_mi":3.848,"objectid":26362,"trout_flag":null,"kittle_nbr":"S-002-016-025","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3232,"kittle_nam":"Murphy Creek","route_mi":13.77,"public_mi":0.0,"length_mi":13.77,"objectid":27637,"trout_flag":null,"kittle_nbr":"S-002-016-021","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3249,"kittle_nam":"Whitewater River","route_mi":13.301,"public_mi":0.0,"length_mi":13.301,"objectid":25292,"trout_flag":null,"kittle_nbr":"M-031","public_route_length":12.888942952619821,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.953427135696728,"stop":0.990266583132651,"type":"TBD"},{"start":0.937151302115405,"stop":0.950340123048831,"type":"TBD"},{"start":0.920766316488999,"stop":0.93021433302469,"type":"TBD"},{"start":0.910709700860176,"stop":0.917032511515183,"type":"TBD"},{"start":0.558251032972734,"stop":0.904458522262908,"type":"TBD"},{"start":0.0,"stop":0.557014011542518,"type":"TBD"}]},{"gid":3256,"kittle_nam":"Snake River","route_mi":14.288,"public_mi":0.0,"length_mi":14.288,"objectid":25511,"trout_flag":null,"kittle_nbr":"M-065-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3261,"kittle_nam":"Harris Creek","route_mi":3.999,"public_mi":0.0,"length_mi":3.999,"objectid":25004,"trout_flag":null,"kittle_nbr":"H-001-092-016-001-001-003","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3272,"kittle_nam":"Johnson Creek","route_mi":2.547,"public_mi":0.0,"length_mi":2.547,"objectid":26456,"trout_flag":null,"kittle_nbr":"S-002-014-002-004","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3277,"kittle_nam":"Brandberg Creek","route_mi":3.256,"public_mi":0.0,"length_mi":3.256,"objectid":24965,"trout_flag":null,"kittle_nbr":"H-026-081-017-006","public_route_length":0.35845390785402809,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.00434286359893118,"stop":0.0674907696820547,"type":"TBD"},{"start":0.0678093587356886,"stop":0.1147517191925,"type":"TBD"}]},{"gid":3279,"kittle_nam":"Cabin Creek","route_mi":2.742,"public_mi":0.0,"length_mi":2.742,"objectid":27228,"trout_flag":null,"kittle_nbr":"S-045-008-001","public_route_length":0.031750985602722291,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.194702989936959,"stop":0.206282488697981,"type":"TBD"}]},{"gid":3291,"kittle_nam":"O'Brien Creek","route_mi":8.4957,"public_mi":0.0,"length_mi":8.4957,"objectid":27995,"trout_flag":null,"kittle_nbr":"H-026-030-069-004","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3314,"kittle_nam":"Fivemile Lake Outlet","route_mi":2.494,"public_mi":0.0,"length_mi":2.494,"objectid":25050,"trout_flag":null,"kittle_nbr":"H-001-046-023-005","public_route_length":0.45712424070341962,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.183289591300489,"type":"TBD"}]},{"gid":3326,"kittle_nam":"Beaverdam Creek","route_mi":4.547,"public_mi":0.0,"length_mi":4.547,"objectid":27780,"trout_flag":null,"kittle_nbr":"S-088-009-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3334,"kittle_nam":"Fry Creek","route_mi":2.456,"public_mi":0.0,"length_mi":2.456,"objectid":27265,"trout_flag":null,"kittle_nbr":"S-038-012-003","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3355,"kittle_nam":"Rollins Creek","route_mi":3.779,"public_mi":0.0,"length_mi":3.779,"objectid":27098,"trout_flag":null,"kittle_nbr":"S-057","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3365,"kittle_nam":"Snake Creek","route_mi":4.266,"public_mi":0.0,"length_mi":4.266,"objectid":25280,"trout_flag":null,"kittle_nbr":"M-032.5","public_route_length":1.361325373723336,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.820884447542258,"stop":0.828935763256773,"type":"TBD"},{"start":0.799428135673211,"stop":0.813735918962946,"type":"TBD"},{"start":0.771310780845819,"stop":0.795297478613937,"type":"TBD"},{"start":0.119635495755822,"stop":0.273821738610675,"type":"TBD"},{"start":0.0,"stop":0.118578455854105,"type":"TBD"}]},{"gid":3387,"kittle_nam":"Fiddle Creek","route_mi":4.621,"public_mi":0.0,"length_mi":4.621,"objectid":27322,"trout_flag":null,"kittle_nbr":"S-075-015","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3388,"kittle_nam":"Stickle Creek","route_mi":2.645,"public_mi":0.0,"length_mi":2.645,"objectid":27324,"trout_flag":null,"kittle_nbr":"S-075-014","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3401,"kittle_nam":"Jackpot Creek","route_mi":1.023,"public_mi":0.0,"length_mi":1.023,"objectid":25005,"trout_flag":null,"kittle_nbr":"H-001-092-016-005-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3403,"kittle_nam":"Mike Kelly Creek","route_mi":1.165,"public_mi":0.0,"length_mi":1.165,"objectid":25008,"trout_flag":null,"kittle_nbr":"H-001-092-016-005-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3420,"kittle_nam":"Dakota Creek","route_mi":3.052,"public_mi":0.0,"length_mi":3.052,"objectid":25201,"trout_flag":null,"kittle_nbr":"M-014","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3423,"kittle_nam":"Pine Creek","route_mi":5.805,"public_mi":0.0,"length_mi":5.805,"objectid":25214,"trout_flag":null,"kittle_nbr":"M-011","public_route_length":0.4393119299139997,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.735095607972232,"stop":0.810773804339846,"type":"TBD"}]},{"gid":3490,"kittle_nam":"Thirtynine Creek, Big","route_mi":9.998,"public_mi":0.0,"length_mi":9.998,"objectid":26839,"trout_flag":null,"kittle_nbr":"S-035-010","public_route_length":1.6135372183272361,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.55486165799044,"stop":0.613298873975761,"type":"TBD"},{"start":0.517679814155242,"stop":0.517985222865275,"type":"TBD"},{"start":0.387266002454584,"stop":0.457973869188092,"type":"TBD"},{"start":0.384099409086775,"stop":0.384722918003009,"type":"TBD"},{"start":0.199033055233848,"stop":0.230345053921282,"type":"TBD"}]},{"gid":3501,"kittle_nam":"Spring Creek","route_mi":2.7082,"public_mi":0.0,"length_mi":2.7082,"objectid":27996,"trout_flag":null,"kittle_nbr":"H-026-030-069-003-004","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3556,"kittle_nam":"Reservation River","route_mi":6.846,"public_mi":0.0,"length_mi":6.846,"objectid":27293,"trout_flag":null,"kittle_nbr":"S-081","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3557,"kittle_nam":"Farquhar Creek","route_mi":2.695,"public_mi":0.0,"length_mi":2.695,"objectid":27295,"trout_flag":null,"kittle_nbr":"S-080","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3558,"kittle_nam":"Red Rock Creek","route_mi":3.199,"public_mi":0.0,"length_mi":3.199,"objectid":27285,"trout_flag":null,"kittle_nbr":"S-083","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3559,"kittle_nam":"Hollow Rock Creek","route_mi":6.024,"public_mi":0.0,"length_mi":6.024,"objectid":27282,"trout_flag":null,"kittle_nbr":"S-084","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3560,"kittle_nam":"Grand Portage River","route_mi":5.467,"public_mi":0.0,"length_mi":5.467,"objectid":27275,"trout_flag":null,"kittle_nbr":"S-087","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3593,"kittle_nam":"Irish Creek","route_mi":7.245,"public_mi":0.0,"length_mi":7.245,"objectid":27788,"trout_flag":null,"kittle_nbr":"S-088-008-001","public_route_length":0.10108128351902823,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0139518679805422,"type":"TBD"}]},{"gid":3604,"kittle_nam":"Mistletoe Creek","route_mi":7.446,"public_mi":0.0,"length_mi":7.446,"objectid":27083,"trout_flag":null,"kittle_nbr":"S-058-004-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3605,"kittle_nam":"Wyman Creek","route_mi":8.208,"public_mi":0.0,"length_mi":8.208,"objectid":26302,"trout_flag":null,"kittle_nbr":"S-002-057-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3611,"kittle_nam":"Hypo Creek","route_mi":1.284,"public_mi":0.0,"length_mi":1.284,"objectid":26370,"trout_flag":null,"kittle_nbr":"S-002-016-019-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3615,"kittle_nam":"Johnson Creek","route_mi":6.845,"public_mi":0.0,"length_mi":6.845,"objectid":25493,"trout_flag":null,"kittle_nbr":"M-073","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3617,"kittle_nam":"Little Rock Creek","route_mi":21.741,"public_mi":0.0,"length_mi":21.741,"objectid":25742,"trout_flag":null,"kittle_nbr":"M-078","public_route_length":4.56372883853357,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.434882937829523,"stop":0.441925241649943,"type":"TBD"},{"start":0.288844608581732,"stop":0.308714351772662,"type":"TBD"},{"start":0.132142720249917,"stop":0.174240136275794,"type":"TBD"},{"start":0.185436195140905,"stop":0.18715739742221,"type":"TBD"},{"start":0.175518014969066,"stop":0.18473773242907,"type":"TBD"},{"start":0.189509438019425,"stop":0.190173063658177,"type":"TBD"},{"start":0.190472218280344,"stop":0.218426679860632,"type":"TBD"},{"start":0.283917964483441,"stop":0.288797671785231,"type":"TBD"},{"start":0.272031043167207,"stop":0.282626205241402,"type":"TBD"},{"start":0.218491814801383,"stop":0.219259141447062,"type":"TBD"},{"start":0.221466097461593,"stop":0.246946610084414,"type":"TBD"},{"start":0.713966940717961,"stop":0.773589236089679,"type":"TBD"}]},{"gid":3618,"kittle_nam":"Smarts Creek","route_mi":1.279,"public_mi":0.0,"length_mi":1.279,"objectid":25740,"trout_flag":null,"kittle_nbr":"M-079","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3634,"kittle_nam":"Rosholt Creek","route_mi":1.908,"public_mi":0.0,"length_mi":1.908,"objectid":25895,"trout_flag":null,"kittle_nbr":"M-128-010-004","public_route_length":1.1772883007218464,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.295022493467754,"stop":0.34743154604779,"type":"TBD"},{"start":0.361948657732626,"stop":0.469738360840262,"type":"TBD"},{"start":0.471773860027876,"stop":0.79177304227229,"type":"TBD"},{"start":0.7923528203276,"stop":0.827529557211437,"type":"TBD"},{"start":0.840497544458989,"stop":0.94215028092286,"type":"TBD"}]},{"gid":3635,"kittle_nam":"Spring Creek","route_mi":2.832,"public_mi":0.0,"length_mi":2.832,"objectid":25896,"trout_flag":null,"kittle_nbr":"M-128-010-003","public_route_length":1.4595431920031803,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.00890811095322533,"type":"TBD"},{"start":0.0305346213995456,"stop":0.123273443627188,"type":"TBD"},{"start":0.123970206312936,"stop":0.464282640194533,"type":"TBD"},{"start":0.475196306513545,"stop":0.545137276759983,"type":"TBD"},{"start":0.5482004859728,"stop":0.551675569568975,"type":"TBD"}]},{"gid":3642,"kittle_nam":"Fullers Creek","route_mi":1.697,"public_mi":0.0,"length_mi":1.697,"objectid":24985,"trout_flag":null,"kittle_nbr":"H-001-046-024-003","public_route_length":0.27311571049383837,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0158451206912898,"stop":0.129213933475548,"type":"TBD"},{"start":0.13630171992359,"stop":0.18387321974619,"type":"TBD"}]},{"gid":3647,"kittle_nam":"Little Gooseberry River","route_mi":1.189,"public_mi":0.0,"length_mi":1.189,"objectid":26911,"trout_flag":null,"kittle_nbr":"S-026-003","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3668,"kittle_nam":"Pleasant Valley Creek","route_mi":8.756,"public_mi":0.0,"length_mi":8.756,"objectid":25186,"trout_flag":null,"kittle_nbr":"M-024-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3666,"kittle_nam":"Burns Valley Creek, E.","route_mi":5.412,"public_mi":0.0,"length_mi":5.412,"objectid":25184,"trout_flag":null,"kittle_nbr":"M-024-002","public_route_length":0.90103025922693747,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.22660293080672,"stop":0.347188706684623,"type":"TBD"},{"start":0.367906046307587,"stop":0.391363612002771,"type":"TBD"},{"start":0.393743627495712,"stop":0.416187769150071,"type":"TBD"}]},{"gid":3688,"kittle_nam":"Mud Creek","route_mi":4.182,"public_mi":0.0,"length_mi":4.182,"objectid":27464,"trout_flag":null,"kittle_nbr":"S-067-004-003","public_route_length":0.095277622841389215,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0227827888190792,"type":"TBD"}]},{"gid":3696,"kittle_nam":"Nicado Creek","route_mi":4.853,"public_mi":0.0,"length_mi":4.853,"objectid":26867,"trout_flag":null,"kittle_nbr":"S-035-001-002-002","public_route_length":0.025372135724627785,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.106592887755206,"stop":0.11182102204835,"type":"TBD"}]},{"gid":3700,"kittle_nam":"Thompson Creek","route_mi":10.178,"public_mi":0.0,"length_mi":10.178,"objectid":25087,"trout_flag":null,"kittle_nbr":"M-009-001","public_route_length":1.9172584241922821,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.75002042527651,"stop":0.798530707056292,"type":"TBD"},{"start":0.462325507002662,"stop":0.602188031687046,"type":"TBD"}]},{"gid":3702,"kittle_nam":"Crystal Creek","route_mi":5.527,"public_mi":0.0,"length_mi":5.527,"objectid":25451,"trout_flag":null,"kittle_nbr":"M-009-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3704,"kittle_nam":"Storer Creek","route_mi":4.085,"public_mi":0.0,"length_mi":4.085,"objectid":25444,"trout_flag":null,"kittle_nbr":"M-009-008","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3712,"kittle_nam":"Elm Creek","route_mi":3.412,"public_mi":0.0,"length_mi":3.412,"objectid":26507,"trout_flag":null,"kittle_nbr":"S-002-010-002.6","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3735,"kittle_nam":"Hen Creek","route_mi":3.337,"public_mi":0.0,"length_mi":3.337,"objectid":26857,"trout_flag":null,"kittle_nbr":"S-035-001-008","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3771,"kittle_nam":"Rock Cut Creek","route_mi":2.767,"public_mi":0.0,"length_mi":2.767,"objectid":27237,"trout_flag":null,"kittle_nbr":"S-045-006","public_route_length":0.29585069651684082,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.106921104632035,"type":"TBD"}]},{"gid":3814,"kittle_nam":"S. Fork Nemadji River","route_mi":17.506,"public_mi":0.0,"length_mi":17.506,"objectid":25871,"trout_flag":null,"kittle_nbr":"S-000.7","public_route_length":0.043525064270268865,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.459660241582923,"stop":0.462146535668966,"type":"TBD"}]},{"gid":3847,"kittle_nam":"Hay Creek","route_mi":12.875,"public_mi":0.0,"length_mi":12.875,"objectid":25607,"trout_flag":null,"kittle_nbr":"M-050-048-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3850,"kittle_nam":"Larson Creek","route_mi":1.253,"public_mi":0.0,"length_mi":1.253,"objectid":25737,"trout_flag":null,"kittle_nbr":"M-088-012","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3885,"kittle_nam":"Strawberry Creek","route_mi":1.331,"public_mi":0.0,"length_mi":1.331,"objectid":27852,"trout_flag":null,"kittle_nbr":"M-050-049-005-003","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3886,"kittle_nam":"Old Mill Stream","route_mi":1.345,"public_mi":0.0,"length_mi":1.345,"objectid":25631,"trout_flag":null,"kittle_nbr":"M-050-019","public_route_length":0.60319118985945541,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.619458950024915,"stop":1.0,"type":"TBD"},{"start":0.419524277515014,"stop":0.487452513680788,"type":"TBD"}]},{"gid":3887,"kittle_nam":"Brown's Creek","route_mi":6.837,"public_mi":0.0,"length_mi":6.837,"objectid":25636,"trout_flag":null,"kittle_nbr":"M-050-012","public_route_length":1.3550403278879755,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.353467209512028,"stop":0.36631612659007,"type":"TBD"},{"start":0.280593480343285,"stop":0.341387875288916,"type":"TBD"},{"start":0.0493034745858512,"stop":0.173852400076874,"type":"TBD"}]},{"gid":3895,"kittle_nam":"Nip Creek","route_mi":5.38,"public_mi":0.0,"length_mi":5.38,"objectid":25006,"trout_flag":null,"kittle_nbr":"H-001-092-016-005","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3896,"kittle_nam":"Camp E Creek","route_mi":1.986,"public_mi":0.0,"length_mi":1.986,"objectid":28166,"trout_flag":null,"kittle_nbr":"H-001-092-016-006","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3912,"kittle_nam":"Sucker Brook","route_mi":3.545,"public_mi":0.0,"length_mi":3.545,"objectid":30938,"trout_flag":null,"kittle_nbr":"M-167","public_route_length":1.811497918653965,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.616075396903612,"stop":0.729600959057546,"type":"TBD"},{"start":0.608346361986706,"stop":0.614253126971225,"type":"TBD"},{"start":0.497328840638029,"stop":0.585379780342127,"type":"TBD"},{"start":0.409122225772116,"stop":0.495594159937652,"type":"TBD"},{"start":0.324459460038374,"stop":0.353416573040497,"type":"TBD"},{"start":0.209830916049602,"stop":0.321133375007727,"type":"TBD"},{"start":0.132301904496668,"stop":0.209087954843979,"type":"TBD"}]},{"gid":3920,"kittle_nam":"Hoblin Creek","route_mi":2.265,"public_mi":0.0,"length_mi":2.265,"objectid":25934,"trout_flag":null,"kittle_nbr":"M-106-013-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3921,"kittle_nam":"Bungo Creek","route_mi":6.938,"public_mi":0.0,"length_mi":6.938,"objectid":25933,"trout_flag":null,"kittle_nbr":"M-106-013-004","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3922,"kittle_nam":"Dabill Creek","route_mi":4.0,"public_mi":0.0,"length_mi":4.0,"objectid":25932,"trout_flag":null,"kittle_nbr":"M-106-013-005","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3923,"kittle_nam":"Cedar Creek","route_mi":2.767,"public_mi":0.0,"length_mi":2.767,"objectid":25928,"trout_flag":null,"kittle_nbr":"M-106-013-006","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3969,"kittle_nam":"Pitt Grade Creek","route_mi":5.22,"public_mi":0.0,"length_mi":5.22,"objectid":24980,"trout_flag":null,"kittle_nbr":"H-001-003-001-003","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3982,"kittle_nam":"Oliver Creek","route_mi":2.898,"public_mi":0.0,"length_mi":2.898,"objectid":27018,"trout_flag":null,"kittle_nbr":"S-038-010","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":3984,"kittle_nam":"Crown Creek","route_mi":17.758,"public_mi":0.0,"length_mi":17.758,"objectid":27267,"trout_flag":null,"kittle_nbr":"S-038-012","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3990,"kittle_nam":"Amenda Creek","route_mi":3.454,"public_mi":0.0,"length_mi":3.454,"objectid":27204,"trout_flag":null,"kittle_nbr":"S-047-012","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":3991,"kittle_nam":"Cory Brook","route_mi":4.065,"public_mi":0.0,"length_mi":4.065,"objectid":25996,"trout_flag":null,"kittle_nbr":"M-096-001-005-002-001","public_route_length":2.4001462543530891,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.807923726143698,"stop":0.855778901826519,"type":"TBD"},{"start":0.409360963702802,"stop":0.807135810053747,"type":"TBD"},{"start":0.347790006493799,"stop":0.357465611153451,"type":"TBD"},{"start":0.358927664748409,"stop":0.365670033835737,"type":"TBD"},{"start":0.374954404835647,"stop":0.398980631060394,"type":"TBD"},{"start":0.367236655355306,"stop":0.372597653404465,"type":"TBD"},{"start":0.407014477345952,"stop":0.409309218734578,"type":"TBD"},{"start":0.404003182960714,"stop":0.406879564801424,"type":"TBD"},{"start":0.341063938653884,"stop":0.347521399458059,"type":"TBD"},{"start":0.331086307654315,"stop":0.339047298554287,"type":"TBD"},{"start":0.29872284475186,"stop":0.308707512091879,"type":"TBD"},{"start":0.313811620707939,"stop":0.320338487915893,"type":"TBD"},{"start":0.250991260916216,"stop":0.253777307689893,"type":"TBD"},{"start":0.253994623294479,"stop":0.285358493165054,"type":"TBD"},{"start":0.323518733108722,"stop":0.325497452026865,"type":"TBD"},{"start":0.295684312412659,"stop":0.297929468403993,"type":"TBD"},{"start":0.290057088883329,"stop":0.292677063899279,"type":"TBD"},{"start":0.246042275271112,"stop":0.250767711517295,"type":"TBD"},{"start":0.285668202179346,"stop":0.289370544535028,"type":"TBD"},{"start":0.228107529568912,"stop":0.231324036903086,"type":"TBD"},{"start":0.217849387309697,"stop":0.222027730932201,"type":"TBD"},{"start":0.209640310012776,"stop":0.215729467338136,"type":"TBD"}]},{"gid":4010,"kittle_nam":"Paul's Creek","route_mi":1.245,"public_mi":0.0,"length_mi":1.245,"objectid":25577,"trout_flag":null,"kittle_nbr":"M-055-060","public_route_length":0.52873022944768355,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.523314205385052,"stop":0.550371870270346,"type":"TBD"},{"start":0.602374749666271,"stop":1.0,"type":"TBD"}]},{"gid":4053,"kittle_nam":"Battle River, S. Branch","route_mi":4.887,"public_mi":0.0,"length_mi":4.887,"objectid":27747,"trout_flag":null,"kittle_nbr":"H-026-030-070-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4060,"kittle_nam":"Etna Creek","route_mi":1.268,"public_mi":0.0,"length_mi":1.268,"objectid":25258,"trout_flag":null,"kittle_nbr":"M-009-025-014","public_route_length":1.007562539587628,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.794607681062798,"type":"TBD"}]},{"gid":4074,"kittle_nam":"Spring Branch Creek","route_mi":1.213,"public_mi":0.0,"length_mi":1.213,"objectid":24976,"trout_flag":null,"kittle_nbr":"M-007-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4108,"kittle_nam":"Fond du Lac Creek (Squaw)","route_mi":6.229,"public_mi":0.0,"length_mi":6.229,"objectid":26467,"trout_flag":null,"kittle_nbr":"S-002-013","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4109,"kittle_nam":"Midway River","route_mi":15.418,"public_mi":0.0,"length_mi":15.418,"objectid":26031,"trout_flag":null,"kittle_nbr":"S-002-010","public_route_length":1.4163748360176252,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.289582664078918,"stop":0.315025698689952,"type":"TBD"},{"start":0.323506910975121,"stop":0.336162877759505,"type":"TBD"},{"start":0.556366878166508,"stop":0.577776852837346,"type":"TBD"},{"start":0.736390873791545,"stop":0.746828194372521,"type":"TBD"},{"start":0.868082026013679,"stop":0.890000746620152,"type":"TBD"}]},{"gid":4110,"kittle_nam":"Pine River","route_mi":10.568,"public_mi":0.0,"length_mi":10.568,"objectid":26463,"trout_flag":null,"kittle_nbr":"S-002-014","public_route_length":1.5706659931585247,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.016616402305515,"type":"TBD"},{"start":0.572723176865173,"stop":0.614039835311025,"type":"TBD"},{"start":0.616126345269931,"stop":0.633866159483647,"type":"TBD"},{"start":0.800054881568774,"stop":0.830304839320298,"type":"TBD"},{"start":0.928943271466461,"stop":0.971645154226626,"type":"TBD"}]},{"gid":4111,"kittle_nam":"Borden Creek","route_mi":2.373,"public_mi":0.0,"length_mi":2.373,"objectid":25518,"trout_flag":null,"kittle_nbr":"M-063-087-003","public_route_length":0.46143390480102786,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.232668471417372,"stop":0.244289702214929,"type":"TBD"},{"start":0.180506334242727,"stop":0.230188998257964,"type":"TBD"},{"start":0.173904464748819,"stop":0.17856272530003,"type":"TBD"},{"start":0.164982185276482,"stop":0.17121244048794,"type":"TBD"},{"start":0.157000626605241,"stop":0.164855838614897,"type":"TBD"},{"start":0.124606042365189,"stop":0.151483909031944,"type":"TBD"},{"start":0.0974064406902207,"stop":0.124428876794988,"type":"TBD"},{"start":0.0530982071665668,"stop":0.0770129933988919,"type":"TBD"},{"start":0.0376978962303983,"stop":0.0446539480413753,"type":"TBD"},{"start":0.021811159472242,"stop":0.0328601975458219,"type":"TBD"},{"start":0.00219669937531167,"stop":0.0207806066253568,"type":"TBD"}]},{"gid":4115,"kittle_nam":"Trout Valley Creek","route_mi":7.329,"public_mi":0.0,"length_mi":7.329,"objectid":25185,"trout_flag":null,"kittle_nbr":"M-031-001","public_route_length":2.3829750647535648,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":3,"short_description":"12\" minimum for Brook Trout. Bag Limit of one trout. No bait.","official_text":"12 Inch Minimum for Brook Trout, Bag Limit of 1 (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":1},"RestrictionSections":[{"start":0.0,"stop":0.945642731165254,"restriction":{"summary":"12\" minimum for Brook Trout. Bag Limit of one trout. No bait.","officialText":"12 Inch Minimum for Brook Trout, Bag Limit of 1 (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.0,"stop":0.159801869793851,"type":"TBD"},{"start":0.166225347500927,"stop":0.210893508290967,"type":"TBD"},{"start":0.632095736295671,"stop":0.726715215420862,"type":"TBD"},{"start":0.759635272140571,"stop":0.762561072682167,"type":"TBD"},{"start":0.749030205696867,"stop":0.75731650865806,"type":"TBD"},{"start":0.270359433798468,"stop":0.285201095897494,"type":"TBD"}]},{"gid":4119,"kittle_nam":"Beaver Creek","route_mi":6.497,"public_mi":0.0,"length_mi":6.497,"objectid":25291,"trout_flag":null,"kittle_nbr":"M-031-006","public_route_length":4.7825393303364878,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.902591075527407,"stop":0.955762500273537,"type":"TBD"},{"start":0.873881196201311,"stop":0.878613618272747,"type":"TBD"},{"start":0.0873395951544541,"stop":0.709735956939709,"type":"TBD"},{"start":0.0446452415261466,"stop":0.0765430384806057,"type":"TBD"},{"start":0.0,"stop":0.0239170214300199,"type":"TBD"}]},{"gid":4123,"kittle_nam":"Corey Creek","route_mi":5.796,"public_mi":0.0,"length_mi":5.796,"objectid":25355,"trout_flag":null,"kittle_nbr":"M-009-011-005","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4124,"kittle_nam":"Gernander Creek","route_mi":1.852,"public_mi":0.0,"length_mi":1.852,"objectid":25348,"trout_flag":null,"kittle_nbr":"M-009-011-006","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4126,"kittle_nam":"Campbell Creek","route_mi":5.271,"public_mi":0.0,"length_mi":5.271,"objectid":25361,"trout_flag":null,"kittle_nbr":"M-009-011-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4131,"kittle_nam":"Houghtailing Ceek","route_mi":9.666,"public_mi":0.0,"length_mi":9.666,"objectid":27173,"trout_flag":null,"kittle_nbr":"S-052-006","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4145,"kittle_nam":"Little Stewart River","route_mi":7.914,"public_mi":0.0,"length_mi":7.914,"objectid":26536,"trout_flag":null,"kittle_nbr":"S-019-001","public_route_length":1.827885106675881,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.426331023173138,"stop":0.553283918677887,"type":"TBD"},{"start":0.115369678025581,"stop":0.11689039517819,"type":"TBD"},{"start":0.109194433091357,"stop":0.114667722441936,"type":"TBD"},{"start":0.102211432890853,"stop":0.105255403427569,"type":"TBD"},{"start":0.0823597484832411,"stop":0.0995577175145402,"type":"TBD"},{"start":0.019055301110456,"stop":0.0784937320411805,"type":"TBD"},{"start":0.0136525028031251,"stop":0.0189309232030362,"type":"TBD"},{"start":0.0,"stop":0.0120628573430814,"type":"TBD"}]},{"gid":4149,"kittle_nam":"Tomato Creek","route_mi":1.002,"public_mi":0.0,"length_mi":1.002,"objectid":25049,"trout_flag":null,"kittle_nbr":"H-004-002","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4159,"kittle_nam":"Gimlet Creek","route_mi":5.971,"public_mi":0.0,"length_mi":5.971,"objectid":26343,"trout_flag":null,"kittle_nbr":"S-002-035-019","public_route_length":4.1712858347321564,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0799542898775055,"stop":0.170431063232104,"type":"TBD"},{"start":0.171088816293939,"stop":0.240266502345205,"type":"TBD"},{"start":0.241128483938995,"stop":0.274199834637558,"type":"TBD"},{"start":0.274923058230668,"stop":0.288210678971153,"type":"TBD"},{"start":0.300010560765909,"stop":0.305535362886517,"type":"TBD"},{"start":0.306250327959102,"stop":0.376368655581282,"type":"TBD"},{"start":0.380357707709645,"stop":0.442115340060138,"type":"TBD"},{"start":0.450073374955692,"stop":0.467490361854455,"type":"TBD"},{"start":0.467648656911054,"stop":0.489804891449297,"type":"TBD"},{"start":0.491310308960309,"stop":0.500648045043477,"type":"TBD"},{"start":0.501143117600893,"stop":0.529933730575544,"type":"TBD"},{"start":0.631271805788638,"stop":0.651050804351675,"type":"TBD"},{"start":0.664450363349076,"stop":0.682931863623441,"type":"TBD"},{"start":0.702716028022177,"stop":0.702757840888102,"type":"TBD"},{"start":0.714232612213884,"stop":0.752236931827025,"type":"TBD"},{"start":0.754148415643585,"stop":0.77166811134237,"type":"TBD"},{"start":0.776019492682898,"stop":0.807124953938153,"type":"TBD"},{"start":0.809739312854996,"stop":0.820339738767607,"type":"TBD"},{"start":0.84222403399106,"stop":0.974280828342651,"type":"TBD"},{"start":0.9901139438431,"stop":1.0,"type":"TBD"}]},{"gid":4180,"kittle_nam":"Bad Boy Creek","route_mi":1.7519,"public_mi":0.0,"length_mi":1.7519,"objectid":27992,"trout_flag":null,"kittle_nbr":"H-026-047-033-001-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4200,"kittle_nam":"Eagle Creek","route_mi":2.186,"public_mi":0.0,"length_mi":2.186,"objectid":25589,"trout_flag":null,"kittle_nbr":"M-055-009","public_route_length":1.5700006655646521,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":5,"short_description":"No harvest.","official_text":"Catch & Release for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":5},"RestrictionSections":[{"start":0.203079265109606,"stop":1.0,"restriction":{"summary":"No harvest.","officialText":"Catch & Release for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.952562945448592,"stop":1.0,"type":"TBD"},{"start":0.815297549088763,"stop":0.915034639225893,"type":"TBD"},{"start":0.553875317891289,"stop":0.801210037784541,"type":"TBD"},{"start":0.389799400675607,"stop":0.549192769070127,"type":"TBD"},{"start":0.218383854998189,"stop":0.382688696845599,"type":"TBD"}]},{"gid":4201,"kittle_nam":"Camp Ripley Brook","route_mi":1.226,"public_mi":0.0,"length_mi":1.226,"objectid":25997,"trout_flag":null,"kittle_nbr":"M-095.1","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4220,"kittle_nam":"Section 36 Creek","route_mi":3.735,"public_mi":0.0,"length_mi":3.735,"objectid":25863,"trout_flag":null,"kittle_nbr":"S-000.7-001.5","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4294,"kittle_nam":"Sawbill Creek","route_mi":4.616,"public_mi":0.0,"length_mi":4.616,"objectid":27110,"trout_flag":null,"kittle_nbr":"S-053-014","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4295,"kittle_nam":"Pecore Creek","route_mi":1.744,"public_mi":0.0,"length_mi":1.744,"objectid":27123,"trout_flag":null,"kittle_nbr":"S-053-011","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4296,"kittle_nam":"Torgenson Creek","route_mi":2.015,"public_mi":0.0,"length_mi":2.015,"objectid":27125,"trout_flag":null,"kittle_nbr":"S-053-010","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4297,"kittle_nam":"Crystal Creek","route_mi":1.3733,"public_mi":0.0,"length_mi":1.3733,"objectid":25598,"trout_flag":null,"kittle_nbr":"M-050-052","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4298,"kittle_nam":"Plouffs Creek","route_mi":11.026,"public_mi":0.0,"length_mi":11.026,"objectid":27120,"trout_flag":null,"kittle_nbr":"S-053-012","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4313,"kittle_nam":"Stump River","route_mi":9.262,"public_mi":0.0,"length_mi":9.262,"objectid":27773,"trout_flag":null,"kittle_nbr":"S-088-010","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4319,"kittle_nam":"Sundling Creek","route_mi":6.553,"public_mi":0.0,"length_mi":6.553,"objectid":27039,"trout_flag":null,"kittle_nbr":"S-064-006","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4320,"kittle_nam":"Bally Creek","route_mi":4.883,"public_mi":0.0,"length_mi":4.883,"objectid":27036,"trout_flag":null,"kittle_nbr":"S-064-007","public_route_length":0.2549336597487869,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.787100589528676,"stop":0.839308998242333,"type":"TBD"}]},{"gid":4321,"kittle_nam":"Mark Creek","route_mi":3.519,"public_mi":0.0,"length_mi":3.519,"objectid":27031,"trout_flag":null,"kittle_nbr":"S-064-008","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4322,"kittle_nam":"Nestor Creek","route_mi":3.796,"public_mi":0.0,"length_mi":3.796,"objectid":27029,"trout_flag":null,"kittle_nbr":"S-064-009","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4329,"kittle_nam":"Hay Creek","route_mi":8.472,"public_mi":0.0,"length_mi":8.472,"objectid":26027,"trout_flag":null,"kittle_nbr":"S-002-010-002","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4354,"kittle_nam":"Spruce Creek","route_mi":7.389,"public_mi":0.0,"length_mi":7.389,"objectid":25975,"trout_flag":null,"kittle_nbr":"M-096-010-028","public_route_length":0.0055296928569066421,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.000748368230735775,"type":"TBD"}]},{"gid":4371,"kittle_nam":"Stony Creek","route_mi":3.272,"public_mi":0.0,"length_mi":3.272,"objectid":26935,"trout_flag":null,"kittle_nbr":"S-026-001-009","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4373,"kittle_nam":"Mink Creek","route_mi":6.93,"public_mi":0.0,"length_mi":6.93,"objectid":26944,"trout_flag":null,"kittle_nbr":"S-026-001-005","public_route_length":0.98121292153473261,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.564875533660408,"stop":0.57069752569327,"type":"TBD"},{"start":0.527143042688422,"stop":0.554504841548175,"type":"TBD"},{"start":0.508260071299361,"stop":0.526331222685663,"type":"TBD"},{"start":0.475659958048892,"stop":0.507606499175361,"type":"TBD"},{"start":0.335398445106577,"stop":0.343095161061168,"type":"TBD"},{"start":0.321648954952173,"stop":0.334642180232789,"type":"TBD"},{"start":0.294929277298945,"stop":0.317346584346679,"type":"TBD"},{"start":0.267464544378811,"stop":0.274879908620604,"type":"TBD"},{"start":0.251832560768859,"stop":0.259697631005367,"type":"TBD"}]},{"gid":4392,"kittle_nam":"Nepstad Creek","route_mi":5.964,"public_mi":0.0,"length_mi":5.964,"objectid":25388,"trout_flag":null,"kittle_nbr":"M-009-010-009","public_route_length":1.4694805899134227,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.47279261299205,"stop":0.486874984278325,"type":"TBD"},{"start":0.376336317797969,"stop":0.382370483771164,"type":"TBD"},{"start":0.316490401243538,"stop":0.367434339211298,"type":"TBD"},{"start":0.257259747507568,"stop":0.273923828646397,"type":"TBD"},{"start":0.0,"stop":0.158667225980256,"type":"TBD"}]},{"gid":4393,"kittle_nam":"Maple Creek","route_mi":4.186,"public_mi":0.0,"length_mi":4.186,"objectid":25391,"trout_flag":null,"kittle_nbr":"M-009-010-008","public_route_length":1.4166807478696855,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.107649280746639,"stop":0.342363191400128,"type":"TBD"},{"start":0.0,"stop":0.103719139482604,"type":"TBD"}]},{"gid":4394,"kittle_nam":"Swede Bottom Creek","route_mi":1.269,"public_mi":0.0,"length_mi":1.269,"objectid":25428,"trout_flag":null,"kittle_nbr":"M-009-010-001","public_route_length":0.795667126041998,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.154347732441391,"stop":0.781350983853525,"type":"TBD"}]},{"gid":4395,"kittle_nam":"Beaver Creek, Main","route_mi":6.991,"public_mi":0.0,"length_mi":6.991,"objectid":25419,"trout_flag":null,"kittle_nbr":"M-009-010-003","public_route_length":1.5820947383348119,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":7,"short_description":"12\" to 16\" no harvest.","official_text":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":3},"RestrictionSections":[{"start":0.999646535759348,"stop":1.0,"restriction":{"summary":"12\" to 16\" no harvest.","officialText":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.644823273860784,"stop":0.694669349372351,"type":"TBD"},{"start":0.883449599835377,"stop":1.0,"type":"TBD"},{"start":0.743235870984308,"stop":0.784069688504137,"type":"TBD"},{"start":0.851886404158821,"stop":0.864964531779966,"type":"TBD"},{"start":0.867151911062966,"stop":0.873147987218311,"type":"TBD"}]},{"gid":4396,"kittle_nam":"Badger Creek","route_mi":6.215,"public_mi":0.0,"length_mi":6.215,"objectid":25426,"trout_flag":null,"kittle_nbr":"M-009-010-002","public_route_length":4.2385796821378321,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.00173615330123508,"stop":0.488193676355056,"type":"TBD"},{"start":0.564541362485316,"stop":0.760075743234847,"type":"TBD"}]},{"gid":4397,"kittle_nam":"Riceford Creek","route_mi":13.518,"public_mi":0.0,"length_mi":13.518,"objectid":25408,"trout_flag":null,"kittle_nbr":"M-009-010-005","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4405,"kittle_nam":"Nassett Creek","route_mi":1.653,"public_mi":0.0,"length_mi":1.653,"objectid":25058,"trout_flag":null,"kittle_nbr":"H-026-030-019-007-024","public_route_length":0.96990416397465562,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.123416352887998,"stop":0.14070472187675,"type":"TBD"},{"start":0.115572683236711,"stop":0.1210819869144,"type":"TBD"},{"start":0.178697127642746,"stop":0.206845200887389,"type":"TBD"},{"start":0.162408694629264,"stop":0.173447476605253,"type":"TBD"},{"start":0.0806597988417563,"stop":0.0860862070009282,"type":"TBD"},{"start":0.103984748409375,"stop":0.113600914155924,"type":"TBD"},{"start":0.0708641698920293,"stop":0.0774549816263659,"type":"TBD"},{"start":0.054515637010573,"stop":0.0608162081699387,"type":"TBD"},{"start":0.0952028167562178,"stop":0.0964140552236509,"type":"TBD"},{"start":0.032421091540375,"stop":0.052158113809767,"type":"TBD"},{"start":0.212922874723417,"stop":0.242529811634906,"type":"TBD"},{"start":0.248576582691807,"stop":0.254341662241051,"type":"TBD"},{"start":0.0103171638570582,"stop":0.0270628232924962,"type":"TBD"},{"start":0.254744183199654,"stop":0.261231592976915,"type":"TBD"},{"start":0.00104886515886464,"stop":0.00579449765691479,"type":"TBD"},{"start":0.261778316346798,"stop":0.276143610114395,"type":"TBD"},{"start":0.283807832180913,"stop":0.291634653445868,"type":"TBD"},{"start":0.298661777262702,"stop":0.306187865724736,"type":"TBD"},{"start":0.321072420906978,"stop":0.33063993205082,"type":"TBD"},{"start":0.370648434271957,"stop":0.376053073938382,"type":"TBD"},{"start":0.392936764464327,"stop":0.464123177645081,"type":"TBD"},{"start":0.477505345600097,"stop":0.482458435217682,"type":"TBD"},{"start":0.484374050067415,"stop":0.491018944279025,"type":"TBD"},{"start":0.499882423678694,"stop":0.50433718457909,"type":"TBD"},{"start":0.514999775620235,"stop":0.522489955458679,"type":"TBD"},{"start":0.523153049333161,"stop":0.533452330721852,"type":"TBD"},{"start":0.534925607047941,"stop":0.548808885558088,"type":"TBD"},{"start":0.550337631585092,"stop":0.558703601251306,"type":"TBD"},{"start":0.565994622455614,"stop":0.571285082695947,"type":"TBD"},{"start":0.588798353274312,"stop":0.594138526415495,"type":"TBD"},{"start":0.600942126789588,"stop":0.630093710093238,"type":"TBD"},{"start":0.641261837915894,"stop":0.647245474299079,"type":"TBD"},{"start":0.659902660499551,"stop":0.669793761586392,"type":"TBD"},{"start":0.67824719266925,"stop":0.693309582817456,"type":"TBD"},{"start":0.693548619854533,"stop":0.701007102279863,"type":"TBD"},{"start":0.714897737377759,"stop":0.717301803079265,"type":"TBD"},{"start":0.721918572774017,"stop":0.731970430029119,"type":"TBD"},{"start":0.738520905552204,"stop":0.758368352849001,"type":"TBD"},{"start":0.760528628967974,"stop":0.782356019584906,"type":"TBD"},{"start":0.795574396768206,"stop":0.812630178189038,"type":"TBD"},{"start":0.812700979693599,"stop":0.81915283362102,"type":"TBD"},{"start":0.821674032418786,"stop":0.828612827113604,"type":"TBD"},{"start":0.846130277491983,"stop":0.859354345201141,"type":"TBD"},{"start":0.863531613642692,"stop":0.902295965542583,"type":"TBD"},{"start":0.908944892056344,"stop":0.934769649794115,"type":"TBD"}]},{"gid":4449,"kittle_nam":"Mud Creek","route_mi":4.604,"public_mi":0.0,"length_mi":4.604,"objectid":26380,"trout_flag":null,"kittle_nbr":"S-002-016-014-004","public_route_length":3.4554929757572665,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0295952012697967,"type":"TBD"},{"start":0.0493514199680411,"stop":0.0935616441347882,"type":"TBD"},{"start":0.245792919568962,"stop":0.392887240810187,"type":"TBD"},{"start":0.399730123036815,"stop":0.403293514951769,"type":"TBD"},{"start":0.409778450920311,"stop":0.540299742914957,"type":"TBD"},{"start":0.584532561116166,"stop":0.688190165462458,"type":"TBD"},{"start":0.69135797611093,"stop":0.832022902954756,"type":"TBD"},{"start":0.833861824545165,"stop":0.868296978382634,"type":"TBD"},{"start":0.875089465113913,"stop":0.885440068491482,"type":"TBD"},{"start":0.887826562916702,"stop":0.920702892705596,"type":"TBD"},{"start":0.921542968351532,"stop":0.927423904711895,"type":"TBD"},{"start":0.929701013851247,"stop":0.997392509108524,"type":"TBD"}]},{"gid":4523,"kittle_nam":"Sand Creek","route_mi":18.71,"public_mi":0.0,"length_mi":18.71,"objectid":24928,"trout_flag":null,"kittle_nbr":"H-001-030-023-003","public_route_length":3.0006876873600312,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.454054174272992,"stop":0.45891069593433,"type":"TBD"},{"start":0.459157843806143,"stop":0.492982485237947,"type":"TBD"},{"start":0.760419842807966,"stop":0.763298599796434,"type":"TBD"},{"start":0.755213096299383,"stop":0.759133439722136,"type":"TBD"},{"start":0.752374438015835,"stop":0.754574096346623,"type":"TBD"},{"start":0.746501846388041,"stop":0.752355148098707,"type":"TBD"},{"start":0.496938622870887,"stop":0.498001903801012,"type":"TBD"},{"start":0.537390658515404,"stop":0.57279574353828,"type":"TBD"},{"start":0.876015518314551,"stop":0.88943557088501,"type":"TBD"},{"start":0.637552158815093,"stop":0.652958708497228,"type":"TBD"},{"start":0.889715965329409,"stop":0.892772308271686,"type":"TBD"},{"start":0.894719425599984,"stop":0.895913877747814,"type":"TBD"},{"start":0.603669916474035,"stop":0.637058841466827,"type":"TBD"},{"start":0.599940570102434,"stop":0.603354525131074,"type":"TBD"},{"start":0.904953113129401,"stop":0.905450064404346,"type":"TBD"}]},{"gid":4524,"kittle_nam":"Dark River","route_mi":8.873,"public_mi":0.0,"length_mi":8.873,"objectid":25076,"trout_flag":null,"kittle_nbr":"H-001-030-023-008","public_route_length":0.9106907177347846,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.57115890685761,"stop":0.673795074752886,"type":"TBD"}]},{"gid":4544,"kittle_nam":"Warba Creek","route_mi":4.806,"public_mi":0.0,"length_mi":4.806,"objectid":25900,"trout_flag":null,"kittle_nbr":"M-128-008","public_route_length":0.99041781922423056,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.18712972862124,"stop":0.219664858369228,"type":"TBD"},{"start":0.225011226838439,"stop":0.244185801539624,"type":"TBD"},{"start":0.245940527231698,"stop":0.256322885449174,"type":"TBD"},{"start":0.257748501540149,"stop":0.310786175158509,"type":"TBD"},{"start":0.312060354729657,"stop":0.387226018864681,"type":"TBD"},{"start":0.398602554535251,"stop":0.414386600478978,"type":"TBD"}]},{"gid":4587,"kittle_nam":"Sucker Creek","route_mi":3.082,"public_mi":0.0,"length_mi":3.082,"objectid":24963,"trout_flag":null,"kittle_nbr":"H-026-081-012-008","public_route_length":0.54283470725189353,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.000654099537471691,"stop":0.00704224274747089,"type":"TBD"},{"start":0.0119959409470978,"stop":0.0731656313235114,"type":"TBD"},{"start":0.0801133399155228,"stop":0.0821692463850066,"type":"TBD"},{"start":0.0860372634191516,"stop":0.10229916696425,"type":"TBD"},{"start":0.102847523987396,"stop":0.108033480254556,"type":"TBD"},{"start":0.109616048641968,"stop":0.127177737333969,"type":"TBD"},{"start":0.129439533711385,"stop":0.133508052949769,"type":"TBD"},{"start":0.134222205524934,"stop":0.13827670598601,"type":"TBD"},{"start":0.141340218308544,"stop":0.158056537611786,"type":"TBD"},{"start":0.164364843111717,"stop":0.169107993892224,"type":"TBD"},{"start":0.192662951077662,"stop":0.211993644166393,"type":"TBD"},{"start":0.212005600969961,"stop":0.22214513806826,"type":"TBD"},{"start":0.23933419612738,"stop":0.242298140613209,"type":"TBD"},{"start":0.24607974662627,"stop":0.251570457870881,"type":"TBD"}]},{"gid":4588,"kittle_nam":"Long Branch Creek","route_mi":1.192,"public_mi":0.0,"length_mi":1.192,"objectid":24961,"trout_flag":null,"kittle_nbr":"H-026-081-012-004","public_route_length":0.99971403614950594,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.161313728062495,"stop":1.0,"type":"TBD"}]},{"gid":4610,"kittle_nam":"Cullen Brook","route_mi":2.676,"public_mi":0.0,"length_mi":2.676,"objectid":25979,"trout_flag":null,"kittle_nbr":"M-096-001-007-001","public_route_length":0.091017337728053316,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.965987541955137,"stop":1.0,"type":"TBD"}]},{"gid":4617,"kittle_nam":"Little Jordan Creek","route_mi":3.25,"public_mi":0.0,"length_mi":3.25,"objectid":25242,"trout_flag":null,"kittle_nbr":"M-009-033-005","public_route_length":2.5895400657973622,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.828333885981582,"stop":0.883138721890726,"type":"TBD"},{"start":0.884708056645532,"stop":0.888322571015291,"type":"TBD"},{"start":0.578692023940946,"stop":0.793085145201097,"type":"TBD"},{"start":0.0286826786221423,"stop":0.552651765789969,"type":"TBD"}]},{"gid":4618,"kittle_nam":"Shady Creek","route_mi":2.482,"public_mi":0.0,"length_mi":2.482,"objectid":25246,"trout_flag":null,"kittle_nbr":"M-009-033-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4619,"kittle_nam":"Lost Creek","route_mi":6.45,"public_mi":0.0,"length_mi":6.45,"objectid":27695,"trout_flag":null,"kittle_nbr":"M-009-033-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4621,"kittle_nam":"Deer Creek","route_mi":1.595,"public_mi":0.0,"length_mi":1.595,"objectid":25236,"trout_flag":null,"kittle_nbr":"M-009-033-009","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4662,"kittle_nam":"McCullen Creek","route_mi":1.504,"public_mi":0.0,"length_mi":1.504,"objectid":25601,"trout_flag":null,"kittle_nbr":"M-050-050-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4674,"kittle_nam":"Olson Brook","route_mi":1.072,"public_mi":0.0,"length_mi":1.072,"objectid":25978,"trout_flag":null,"kittle_nbr":"M-096-001-008-002","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4733,"kittle_nam":"Red River","route_mi":3.861,"public_mi":0.0,"length_mi":3.861,"objectid":26171,"trout_flag":null,"kittle_nbr":"S-001.9","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4737,"kittle_nam":"Clear Creek","route_mi":7.891,"public_mi":0.0,"length_mi":7.891,"objectid":26183,"trout_flag":null,"kittle_nbr":"S-001.5","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4738,"kittle_nam":"Crystal Creek","route_mi":1.596,"public_mi":0.0,"length_mi":1.596,"objectid":25265,"trout_flag":null,"kittle_nbr":"M-009-025-004-004","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4742,"kittle_nam":"Mud Creek","route_mi":11.019,"public_mi":0.0,"length_mi":11.019,"objectid":26205,"trout_flag":null,"kittle_nbr":"S-001.2","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4764,"kittle_nam":"Ninemile Creek","route_mi":7.581,"public_mi":0.0,"length_mi":7.581,"objectid":25093,"trout_flag":null,"kittle_nbr":"H-001-040-017-008","public_route_length":1.1797088879134587,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.37012755019079,"stop":0.372004734083171,"type":"TBD"},{"start":0.372626104472775,"stop":0.375628011815993,"type":"TBD"},{"start":0.387258539086727,"stop":0.39838838324469,"type":"TBD"},{"start":0.404033812080155,"stop":0.4114877213774,"type":"TBD"},{"start":0.473813609589429,"stop":0.529658327825232,"type":"TBD"},{"start":0.644241273339745,"stop":0.687031016083129,"type":"TBD"},{"start":0.730286673348213,"stop":0.733786365802391,"type":"TBD"},{"start":0.739049151277904,"stop":0.746317888112322,"type":"TBD"},{"start":0.748390994851069,"stop":0.771139148286287,"type":"TBD"}]},{"gid":4788,"kittle_nam":"Berry Creek","route_mi":24.193,"public_mi":0.0,"length_mi":24.193,"objectid":26377,"trout_flag":null,"kittle_nbr":"S-002-016-017-001","public_route_length":5.5627080585705917,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0046058663136217,"stop":0.0281540184166985,"type":"TBD"},{"start":0.033981649275737,"stop":0.0387252534881681,"type":"TBD"},{"start":0.0313714361262072,"stop":0.0329259032795712,"type":"TBD"},{"start":0.00277084215744748,"stop":0.00420117880047083,"type":"TBD"},{"start":0.0,"stop":0.00178523486152468,"type":"TBD"},{"start":0.0389376491504561,"stop":0.040927601215472,"type":"TBD"},{"start":0.0410887426363026,"stop":0.0561062401885902,"type":"TBD"},{"start":0.0564968595308241,"stop":0.0570777232216736,"type":"TBD"},{"start":0.0571031576425523,"stop":0.0618416716817336,"type":"TBD"},{"start":0.0621252901000677,"stop":0.0662880456723043,"type":"TBD"},{"start":0.0664310823622556,"stop":0.0699755770533238,"type":"TBD"},{"start":0.0700683405296526,"stop":0.0811702754513796,"type":"TBD"},{"start":0.0813917217246812,"stop":0.0883818077968564,"type":"TBD"},{"start":0.120396558887797,"stop":0.121711688966948,"type":"TBD"},{"start":0.12356750932133,"stop":0.125452202375849,"type":"TBD"},{"start":0.126292994984895,"stop":0.133045487483678,"type":"TBD"},{"start":0.121997349990851,"stop":0.123473142201409,"type":"TBD"},{"start":0.134618282106304,"stop":0.13925050335066,"type":"TBD"},{"start":0.1404156434989,"stop":0.148435437737939,"type":"TBD"},{"start":0.148505177896036,"stop":0.156099437402407,"type":"TBD"},{"start":0.156834074063117,"stop":0.16768293065462,"type":"TBD"},{"start":0.168110130299,"stop":0.168923495405919,"type":"TBD"},{"start":0.169150077244919,"stop":0.170337835056843,"type":"TBD"},{"start":0.170361629970092,"stop":0.1723945240551,"type":"TBD"},{"start":0.176154117976713,"stop":0.177062988663615,"type":"TBD"},{"start":0.177468326101895,"stop":0.179734247462147,"type":"TBD"},{"start":0.173115054400099,"stop":0.175145483965349,"type":"TBD"},{"start":0.179755923392056,"stop":0.18006906826646,"type":"TBD"},{"start":0.235736999722791,"stop":0.236016051025221,"type":"TBD"},{"start":0.236027278811329,"stop":0.249736730592949,"type":"TBD"},{"start":0.250394865277691,"stop":0.252254968836953,"type":"TBD"},{"start":0.27785415541408,"stop":0.300216444489817,"type":"TBD"},{"start":0.303907267830676,"stop":0.304659932110227,"type":"TBD"},{"start":0.306539448864969,"stop":0.31181518492061,"type":"TBD"},{"start":0.330702189745661,"stop":0.33853914781131,"type":"TBD"},{"start":0.33865169934693,"stop":0.341212011931783,"type":"TBD"},{"start":0.312108651844831,"stop":0.326286621346447,"type":"TBD"},{"start":0.341604131608545,"stop":0.349446489882306,"type":"TBD"},{"start":0.326777226882789,"stop":0.330550049630145,"type":"TBD"},{"start":0.667585934981282,"stop":0.679737073819532,"type":"TBD"},{"start":0.679806337721284,"stop":0.683892443341081,"type":"TBD"}]},{"gid":4794,"kittle_nam":"Bunker Hill Creek","route_mi":4.718,"public_mi":0.0,"length_mi":4.718,"objectid":25741,"trout_flag":null,"kittle_nbr":"M-078-002","public_route_length":0.014723152180121662,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.00312063420519747,"type":"TBD"}]},{"gid":4832,"kittle_nam":"Canby Creek","route_mi":10.032,"public_mi":0.0,"length_mi":10.032,"objectid":25535,"trout_flag":null,"kittle_nbr":"M-055-166-010","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4843,"kittle_nam":"Redwood River","route_mi":6.716,"public_mi":0.0,"length_mi":6.716,"objectid":25555,"trout_flag":null,"kittle_nbr":"M-055-126","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4868,"kittle_nam":"Lullaby Creek","route_mi":1.856,"public_mi":0.0,"length_mi":1.856,"objectid":27329,"trout_flag":null,"kittle_nbr":"S-075-012-004","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":4869,"kittle_nam":"Swamper Creek","route_mi":1.827,"public_mi":0.0,"length_mi":1.827,"objectid":27328,"trout_flag":null,"kittle_nbr":"S-075-012-008","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":4929,"kittle_nam":"Valley River","route_mi":19.528,"public_mi":0.0,"length_mi":19.528,"objectid":24990,"trout_flag":null,"kittle_nbr":"H-001-030-018","public_route_length":1.7920547504058493,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.908383290100589,"stop":0.931055481736769,"type":"TBD"},{"start":0.832021542612138,"stop":0.846269442108534,"type":"TBD"},{"start":0.825437275797859,"stop":0.83137063146017,"type":"TBD"},{"start":0.813911835484647,"stop":0.820347949516864,"type":"TBD"},{"start":0.807152895547209,"stop":0.813400597117056,"type":"TBD"},{"start":0.775073140657136,"stop":0.788409019273429,"type":"TBD"},{"start":0.774061610486548,"stop":0.774922207899163,"type":"TBD"},{"start":0.684639378480503,"stop":0.705265208521869,"type":"TBD"},{"start":0.768222658945739,"stop":0.769631563973283,"type":"TBD"}]},{"gid":4931,"kittle_nam":"Lost River","route_mi":12.28,"public_mi":0.0,"length_mi":12.28,"objectid":25023,"trout_flag":null,"kittle_nbr":"H-001-030-011","public_route_length":2.7014156580019875,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.26072451012416,"stop":0.275798881718547,"type":"TBD"},{"start":0.277252037052549,"stop":0.285283403898976,"type":"TBD"},{"start":0.570402770898102,"stop":0.62590346788956,"type":"TBD"},{"start":0.627265857393471,"stop":0.71379204993201,"type":"TBD"},{"start":0.7488656212925,"stop":0.803717981758333,"type":"TBD"}]},{"gid":4942,"kittle_nam":"Moose Creek","route_mi":3.006,"public_mi":0.0,"length_mi":3.006,"objectid":27229,"trout_flag":null,"kittle_nbr":"S-045-008","public_route_length":0.029872198967912177,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0111212802920299,"stop":0.0141071811697441,"type":"TBD"},{"start":0.830780173594625,"stop":0.837731797323668,"type":"TBD"}]},{"gid":4941,"kittle_nam":"Manitou River, S. Branch","route_mi":11.488,"public_mi":0.0,"length_mi":11.488,"objectid":27227,"trout_flag":null,"kittle_nbr":"S-045-009","public_route_length":0.79964131278321726,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.129620850943257,"stop":0.153775513583596,"type":"TBD"},{"start":0.157104023488505,"stop":0.159415944357982,"type":"TBD"},{"start":0.0,"stop":0.0431400767254919,"type":"TBD"}]},{"gid":4950,"kittle_nam":"Black Duck River","route_mi":15.255,"public_mi":0.0,"length_mi":15.255,"objectid":25106,"trout_flag":null,"kittle_nbr":"H-001-040-017","public_route_length":1.7270567067040934,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.705570975993747,"stop":0.724811041338192,"type":"TBD"},{"start":0.725067440535471,"stop":0.728171434645552,"type":"TBD"},{"start":0.728173568407759,"stop":0.73253129184062,"type":"TBD"},{"start":0.876506692111407,"stop":0.882023476977033,"type":"TBD"},{"start":0.882806240341838,"stop":0.890904545252606,"type":"TBD"},{"start":0.891098872086058,"stop":0.897934369343509,"type":"TBD"},{"start":0.898555142298334,"stop":0.900133234490694,"type":"TBD"},{"start":0.900299080903466,"stop":0.903996984549153,"type":"TBD"},{"start":0.904710885788625,"stop":0.932431221506974,"type":"TBD"},{"start":0.934263240744992,"stop":0.935215357899086,"type":"TBD"},{"start":0.936047137883742,"stop":0.957684741874924,"type":"TBD"},{"start":0.963716682893347,"stop":0.964638668580211,"type":"TBD"},{"start":0.966757296870023,"stop":0.967097174317631,"type":"TBD"},{"start":0.967434584737308,"stop":0.976646800238804,"type":"TBD"}]},{"gid":4975,"kittle_nam":"Beaver Creek","route_mi":2.1544,"public_mi":0.0,"length_mi":2.1544,"objectid":27886,"trout_flag":null,"kittle_nbr":"M-050-034-001-001-B001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5028,"kittle_nam":"Camp Creek","route_mi":8.154,"public_mi":0.0,"length_mi":8.154,"objectid":25104,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-002-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5054,"kittle_nam":"Captain Jacobson Creek","route_mi":4.671,"public_mi":0.0,"length_mi":4.671,"objectid":26602,"trout_flag":null,"kittle_nbr":"S-017-004-002","public_route_length":0.6019294666517746,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.840630780422067,"stop":0.893155376167281,"type":"TBD"},{"start":0.806710226873631,"stop":0.811170566314314,"type":"TBD"},{"start":0.134818603024917,"stop":0.15017586119902,"type":"TBD"},{"start":0.130022720729423,"stop":0.132496575786386,"type":"TBD"},{"start":0.108565313883967,"stop":0.126995642105097,"type":"TBD"},{"start":0.0647259207744584,"stop":0.100344769281254,"type":"TBD"}]},{"gid":5125,"kittle_nam":"Roger's Creek","route_mi":1.105,"public_mi":0.0,"length_mi":1.105,"objectid":25977,"trout_flag":null,"kittle_nbr":"M-096-002-003","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5127,"kittle_nam":"Junco Creek","route_mi":11.24,"public_mi":0.0,"length_mi":11.24,"objectid":27441,"trout_flag":null,"kittle_nbr":"S-067-006","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5139,"kittle_nam":"Weiss Creek","route_mi":4.757,"public_mi":0.0,"length_mi":4.757,"objectid":25002,"trout_flag":null,"kittle_nbr":"H-001-092-021-010-007","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5140,"kittle_nam":"Sphagnum Creek","route_mi":3.77,"public_mi":0.0,"length_mi":3.77,"objectid":24937,"trout_flag":null,"kittle_nbr":"H-001-092-021-010-004","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5151,"kittle_nam":"Holmstad Creek","route_mi":2.807,"public_mi":0.0,"length_mi":2.807,"objectid":24968,"trout_flag":null,"kittle_nbr":"H-026-081-023-001","public_route_length":1.3140708155656944,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.0773844702926692,"stop":0.268054079629742,"type":"TBD"},{"start":0.272438768501569,"stop":0.279501771141565,"type":"TBD"},{"start":0.286350331926428,"stop":0.286462041980515,"type":"TBD"},{"start":0.286529347248269,"stop":0.286570257107411,"type":"TBD"},{"start":0.298947349403392,"stop":0.34260788633203,"type":"TBD"},{"start":0.673303509370275,"stop":0.799052955940744,"type":"TBD"},{"start":0.899154561465039,"stop":1.0,"type":"TBD"}]},{"gid":5157,"kittle_nam":"Pine Creek","route_mi":14.378,"public_mi":0.0,"length_mi":14.378,"objectid":25323,"trout_flag":null,"kittle_nbr":"M-009-017-005","public_route_length":7.2159662248152419,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.512614850435277,"stop":0.592459435742774,"type":"TBD"},{"start":0.341290843727933,"stop":0.39320071152701,"type":"TBD"},{"start":0.456872001325799,"stop":0.472624934629984,"type":"TBD"},{"start":0.420802109455864,"stop":0.43240116926007,"type":"TBD"},{"start":0.44144012516284,"stop":0.451135350944547,"type":"TBD"},{"start":0.323451034077369,"stop":0.339502086856269,"type":"TBD"},{"start":0.311121023390777,"stop":0.322927036618803,"type":"TBD"},{"start":0.310244380081113,"stop":0.310325753045738,"type":"TBD"},{"start":0.306952756149737,"stop":0.309236764355365,"type":"TBD"},{"start":0.305202254071597,"stop":0.306287298378248,"type":"TBD"},{"start":0.286656964613316,"stop":0.303535338917466,"type":"TBD"},{"start":0.275642032431413,"stop":0.285355482178161,"type":"TBD"},{"start":0.0,"stop":0.275174532347251,"type":"TBD"}]},{"gid":5186,"kittle_nam":"Dumbbell River","route_mi":13.828,"public_mi":0.0,"length_mi":13.828,"objectid":25097,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-008","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5209,"kittle_nam":"Junction Creek","route_mi":6.196,"public_mi":0.0,"length_mi":6.196,"objectid":27226,"trout_flag":null,"kittle_nbr":"S-045-009-001","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5272,"kittle_nam":"Scheldorf Creek","route_mi":5.145,"public_mi":0.0,"length_mi":5.145,"objectid":25143,"trout_flag":null,"kittle_nbr":"I-037-034","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5297,"kittle_nam":"Onion River","route_mi":6.769,"public_mi":0.0,"length_mi":6.769,"objectid":27104,"trout_flag":null,"kittle_nbr":"S-056","public_route_length":0.39283719212599888,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.0580347454758456,"type":"TBD"}]},{"gid":5299,"kittle_nam":"Cross River","route_mi":17.091,"public_mi":0.0,"length_mi":17.091,"objectid":27182,"trout_flag":null,"kittle_nbr":"S-052","public_route_length":3.9854477629662743,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0359728396089438,"stop":0.269162691751374,"type":"TBD"}]},{"gid":5300,"kittle_nam":"Temperance River","route_mi":24.522,"public_mi":0.0,"length_mi":24.522,"objectid":27161,"trout_flag":null,"kittle_nbr":"S-053","public_route_length":3.1839850232412896,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0,"stop":0.129841979579206,"type":"TBD"}]},{"gid":5301,"kittle_nam":"Two Island River","route_mi":15.732,"public_mi":0.0,"length_mi":15.732,"objectid":27196,"trout_flag":null,"kittle_nbr":"S-051","public_route_length":0.64181613847714059,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.147003058525374,"stop":0.187646375616877,"type":"TBD"},{"start":0.14502936924091,"stop":0.145182908142106,"type":"TBD"}]},{"gid":5302,"kittle_nam":"Poplar River","route_mi":22.277,"public_mi":0.0,"length_mi":22.277,"objectid":27094,"trout_flag":null,"kittle_nbr":"S-058","public_route_length":1.6045161643632142,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.710882602986296,"stop":0.734042886739866,"type":"TBD"},{"start":0.690131824733373,"stop":0.706603607911136,"type":"TBD"},{"start":0.656510690886571,"stop":0.688904308040313,"type":"TBD"}]},{"gid":5304,"kittle_nam":"Falls Creek","route_mi":1.152,"public_mi":0.0,"length_mi":1.152,"objectid":27331,"trout_flag":null,"kittle_nbr":"S-075-011","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5305,"kittle_nam":"Timber Creek","route_mi":3.46,"public_mi":0.0,"length_mi":3.46,"objectid":27333,"trout_flag":null,"kittle_nbr":"S-075-010","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5306,"kittle_nam":"Bluff Creek","route_mi":2.979,"public_mi":0.0,"length_mi":2.979,"objectid":27325,"trout_flag":null,"kittle_nbr":"S-075-013","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5369,"kittle_nam":"Cedar Creek","route_mi":2.069,"public_mi":0.0,"length_mi":2.069,"objectid":26870,"trout_flag":null,"kittle_nbr":"S-035-001-002","public_route_length":0.90476484095256782,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.715177134149028,"stop":0.755699048462065,"type":"TBD"},{"start":0.64799463806652,"stop":0.688425560210779,"type":"TBD"},{"start":0.766422305742039,"stop":0.813859365315566,"type":"TBD"},{"start":0.0,"stop":0.0605307846866406,"type":"TBD"},{"start":0.154459642338801,"stop":0.175639810495368,"type":"TBD"},{"start":0.476944709839503,"stop":0.519192525921853,"type":"TBD"},{"start":0.247237411673969,"stop":0.296182752689923,"type":"TBD"},{"start":0.30120261530633,"stop":0.437204327532433,"type":"TBD"}]},{"gid":5400,"kittle_nam":"E. Two River","route_mi":12.708,"public_mi":0.0,"length_mi":12.708,"objectid":24942,"trout_flag":null,"kittle_nbr":"H-001-046-023","public_route_length":4.4195066474980793,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.182729725443434,"stop":0.198878302606232,"type":"TBD"},{"start":0.207041572400085,"stop":0.207831620608042,"type":"TBD"},{"start":0.431711827204151,"stop":0.44460947060977,"type":"TBD"},{"start":0.427213053688513,"stop":0.42975894609746,"type":"TBD"},{"start":0.454164983897086,"stop":0.458643307344163,"type":"TBD"},{"start":0.460774548312103,"stop":0.464804744548079,"type":"TBD"},{"start":0.465620243561202,"stop":0.533428863140192,"type":"TBD"},{"start":0.749527393302981,"stop":0.803412693554971,"type":"TBD"},{"start":0.805036594666878,"stop":0.830146660548261,"type":"TBD"},{"start":0.835037546499847,"stop":0.838228596289097,"type":"TBD"},{"start":0.83843675484561,"stop":0.91582874244361,"type":"TBD"},{"start":0.916417435289938,"stop":0.952614178810223,"type":"TBD"},{"start":0.953555873627329,"stop":0.984873324375857,"type":"TBD"},{"start":0.98505356059181,"stop":0.987956965427639,"type":"TBD"},{"start":0.988367791239971,"stop":0.991082492221939,"type":"TBD"},{"start":0.993417196454033,"stop":0.998554596576643,"type":"TBD"},{"start":0.998773824739209,"stop":1.0,"type":"TBD"}]},{"gid":5402,"kittle_nam":"W. Two River","route_mi":9.099,"public_mi":0.0,"length_mi":9.099,"objectid":24948,"trout_flag":null,"kittle_nbr":"H-001-046-024","public_route_length":4.0800847064158123,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.0149020890184211,"stop":0.0503526548134588,"type":"TBD"},{"start":0.163185022955751,"stop":0.178292411644014,"type":"TBD"},{"start":0.209709411680056,"stop":0.283234389966841,"type":"TBD"},{"start":0.393214060726892,"stop":0.397074577539437,"type":"TBD"},{"start":0.408153602122417,"stop":0.409275467160376,"type":"TBD"},{"start":0.409542474732045,"stop":0.410084307320885,"type":"TBD"},{"start":0.412603025969937,"stop":0.418773489553107,"type":"TBD"},{"start":0.419245319204601,"stop":0.422389504350567,"type":"TBD"},{"start":0.424569436613842,"stop":0.426773861025476,"type":"TBD"},{"start":0.427365141240957,"stop":0.428304793765919,"type":"TBD"},{"start":0.429351611430851,"stop":0.42975045422195,"type":"TBD"},{"start":0.429870903076854,"stop":0.432175058231047,"type":"TBD"},{"start":0.434006003166159,"stop":0.435647629844615,"type":"TBD"},{"start":0.435971382894208,"stop":0.436344018297145,"type":"TBD"},{"start":0.439009524064969,"stop":0.439108202312191,"type":"TBD"},{"start":0.4394957970442,"stop":0.440740653402434,"type":"TBD"},{"start":0.441481597592506,"stop":0.441960179058298,"type":"TBD"},{"start":0.442093500963363,"stop":0.442911574057365,"type":"TBD"},{"start":0.447500301246495,"stop":0.448216777019161,"type":"TBD"},{"start":0.448560185106915,"stop":0.451751229919299,"type":"TBD"},{"start":0.509998433747074,"stop":0.511357920777536,"type":"TBD"},{"start":0.524880845236626,"stop":0.529792301526452,"type":"TBD"},{"start":0.533986917527497,"stop":0.541250001343671,"type":"TBD"},{"start":0.597818074400343,"stop":0.632872619284645,"type":"TBD"},{"start":0.673149114834118,"stop":0.779920330988408,"type":"TBD"},{"start":0.791382511432452,"stop":0.892473665244532,"type":"TBD"},{"start":0.905874780792525,"stop":0.910852833382522,"type":"TBD"},{"start":0.912081767516921,"stop":0.929541578601977,"type":"TBD"},{"start":0.932431554754654,"stop":0.935646150686588,"type":"TBD"},{"start":0.942681384945958,"stop":0.955657373298417,"type":"TBD"}]},{"gid":5426,"kittle_nam":"Necktie River","route_mi":6.651,"public_mi":0.0,"length_mi":6.651,"objectid":25874,"trout_flag":null,"kittle_nbr":"M-146-017-001","public_route_length":2.5875464003351678,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.777383054559783,"stop":0.816242149822011,"type":"TBD"},{"start":0.772531394088734,"stop":0.775363910969507,"type":"TBD"},{"start":0.760500379546592,"stop":0.772107752139836,"type":"TBD"},{"start":0.734456150739983,"stop":0.760479860064606,"type":"TBD"},{"start":0.697954957966128,"stop":0.724375106724051,"type":"TBD"},{"start":0.442255095870327,"stop":0.696970502610258,"type":"TBD"},{"start":0.379332960499342,"stop":0.403621248215442,"type":"TBD"},{"start":0.373807653032741,"stop":0.378107334422055,"type":"TBD"}]},{"gid":5427,"kittle_nam":"Pokety Creek","route_mi":4.529,"public_mi":0.0,"length_mi":4.529,"objectid":25873,"trout_flag":null,"kittle_nbr":"M-146-017-002","public_route_length":1.7043700814544949,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.70831901397994,"stop":0.756821552186531,"type":"TBD"},{"start":0.6189371883137,"stop":0.657056006812624,"type":"TBD"},{"start":0.49024314580688,"stop":0.547554045058728,"type":"TBD"},{"start":0.28485086121403,"stop":0.355459762003142,"type":"TBD"},{"start":0.00331444339642364,"stop":0.16509699639923,"type":"TBD"}]},{"gid":5428,"kittle_nam":"Bungoshine Creek","route_mi":7.497,"public_mi":0.0,"length_mi":7.497,"objectid":25872,"trout_flag":null,"kittle_nbr":"M-146-017-003","public_route_length":1.645886450139916,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.933470459385372,"stop":0.955945952473197,"type":"TBD"},{"start":0.832035893743634,"stop":0.896459479970576,"type":"TBD"},{"start":0.728120261870429,"stop":0.743884504392249,"type":"TBD"},{"start":0.328840998196011,"stop":0.337075633177478,"type":"TBD"},{"start":0.308181643712187,"stop":0.328275345021656,"type":"TBD"},{"start":0.293613431153382,"stop":0.304338527693929,"type":"TBD"},{"start":0.254819803532829,"stop":0.292675887046396,"type":"TBD"},{"start":0.214165474382228,"stop":0.254131978622882,"type":"TBD"}]},{"gid":5451,"kittle_nam":"Round Lake Creek","route_mi":1.254,"public_mi":0.0,"length_mi":1.254,"objectid":26000,"trout_flag":null,"kittle_nbr":"M-094-012","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5456,"kittle_nam":"Gribben Creek","route_mi":3.968,"public_mi":0.0,"length_mi":3.968,"objectid":25286,"trout_flag":null,"kittle_nbr":"M-009-024","public_route_length":3.1400252108147133,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":2,"short_description":"12\" to 16\" no harvest. No bait.","official_text":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":2},"RestrictionSections":[{"start":0.0,"stop":0.925759880415715,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.0546254956569968,"stop":0.347986360790397,"type":"TBD"},{"start":0.601975477465929,"stop":0.913297791214329,"type":"TBD"},{"start":0.406757150146087,"stop":0.593410969957511,"type":"TBD"}]},{"gid":5471,"kittle_nam":"Lawndale Creek","route_mi":8.782,"public_mi":0.0,"length_mi":8.782,"objectid":24959,"trout_flag":null,"kittle_nbr":"H-026-056-009-005-006","public_route_length":2.1846133103505569,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.25313054461861,"stop":0.261339610652029,"type":"TBD"},{"start":0.398134718522448,"stop":0.403464465888688,"type":"TBD"},{"start":0.410795579661546,"stop":0.487743728788548,"type":"TBD"},{"start":0.498066106605957,"stop":0.527991164709061,"type":"TBD"},{"start":0.869409226986972,"stop":0.87426095901855,"type":"TBD"},{"start":0.876503412152284,"stop":1.0,"type":"TBD"}]},{"gid":5476,"kittle_nam":"Carlson Creek","route_mi":6.712,"public_mi":0.0,"length_mi":6.712,"objectid":27300,"trout_flag":null,"kittle_nbr":"S-079","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5477,"kittle_nam":"Little Brule Creek","route_mi":4.487,"public_mi":0.0,"length_mi":4.487,"objectid":27377,"trout_flag":null,"kittle_nbr":"S-074","public_route_length":0.9119820872226525,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.206873217234758,"stop":0.33345115863793,"type":"TBD"},{"start":0.0594392885674805,"stop":0.136111199453734,"type":"TBD"}]},{"gid":5478,"kittle_nam":"Brule River","route_mi":17.812,"public_mi":0.0,"length_mi":17.812,"objectid":27375,"trout_flag":null,"kittle_nbr":"S-075","public_route_length":8.2152150705828184,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.000346007720291433,"stop":0.461564010784676,"type":"TBD"}]},{"gid":5479,"kittle_nam":"Myhr Creek","route_mi":2.751,"public_mi":0.0,"length_mi":2.751,"objectid":27309,"trout_flag":null,"kittle_nbr":"S-076","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5480,"kittle_nam":"Flute Reed River","route_mi":11.661,"public_mi":0.0,"length_mi":11.661,"objectid":27308,"trout_flag":null,"kittle_nbr":"S-077","public_route_length":0.42651658978137458,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.610786931405848,"stop":0.629923869283196,"type":"TBD"},{"start":0.526449740159678,"stop":0.543889132766969,"type":"TBD"}]},{"gid":5481,"kittle_nam":"Kimball Creek","route_mi":8.858,"public_mi":0.0,"length_mi":8.858,"objectid":27414,"trout_flag":null,"kittle_nbr":"S-070","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5482,"kittle_nam":"Stone Creek","route_mi":4.382,"public_mi":0.0,"length_mi":4.382,"objectid":27399,"trout_flag":null,"kittle_nbr":"S-071","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5483,"kittle_nam":"Kadunce Creek","route_mi":8.259,"public_mi":0.0,"length_mi":8.259,"objectid":27394,"trout_flag":null,"kittle_nbr":"S-072","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5486,"kittle_nam":"Spring Creek","route_mi":1.626,"public_mi":0.0,"length_mi":1.626,"objectid":26240,"trout_flag":null,"kittle_nbr":"S-001-004.7","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5534,"kittle_nam":"Moose Horn River","route_mi":10.3825,"public_mi":0.0,"length_mi":10.3825,"objectid":27875,"trout_flag":null,"kittle_nbr":"M-050-046-029","public_route_length":1.2260636814643748,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.679940351500945,"stop":0.798029798307049,"type":"TBD"}]},{"gid":5576,"kittle_nam":"Martin Branch Of Stoney Brook","route_mi":4.448,"public_mi":0.0,"length_mi":4.448,"objectid":26357,"trout_flag":null,"kittle_nbr":"S-002-017-002","public_route_length":1.1553455786648073,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.630524313657003,"stop":0.668594081758065,"type":"TBD"},{"start":0.54220942685199,"stop":0.625384537669262,"type":"TBD"},{"start":0.507154278575295,"stop":0.537095166789953,"type":"TBD"},{"start":0.323830878532441,"stop":0.432390070631645,"type":"TBD"}]},{"gid":5637,"kittle_nam":"Cat River","route_mi":6.563,"public_mi":0.0,"length_mi":6.563,"objectid":25954,"trout_flag":null,"kittle_nbr":"M-096-028","public_route_length":2.4731405970278439,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.825594842778438,"stop":0.878597540907713,"type":"TBD"},{"start":0.545428472025421,"stop":0.676454988455381,"type":"TBD"},{"start":0.298022138493268,"stop":0.41612041752791,"type":"TBD"},{"start":0.154726687935335,"stop":0.182393009708529,"type":"TBD"},{"start":0.016026766739067,"stop":0.0630637600003433,"type":"TBD"}]},{"gid":5638,"kittle_nam":"Farnham Creek","route_mi":10.776,"public_mi":0.0,"length_mi":10.776,"objectid":25960,"trout_flag":null,"kittle_nbr":"M-096-021","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5650,"kittle_nam":"Spring Brook","route_mi":3.158,"public_mi":0.0,"length_mi":3.158,"objectid":25683,"trout_flag":null,"kittle_nbr":"M-048-020","public_route_length":1.1941270380071916,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.421846850096649,"stop":0.799700575375428,"type":"TBD"},{"start":0.415644317305388,"stop":0.415918216474738,"type":"TBD"}]},{"gid":5659,"kittle_nam":"Wenho Creek","route_mi":4.324,"public_mi":0.0,"length_mi":4.324,"objectid":25012,"trout_flag":null,"kittle_nbr":"H-001-092-016-009-009","public_route_length":0.0,"species":[{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":655,"kittle_nam":"Root River, S. Branch","route_mi":36.539,"public_mi":0.0,"length_mi":36.539,"objectid":25283,"trout_flag":null,"kittle_nbr":"M-009-025","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":707,"kittle_nam":"Beaver River, W.","route_mi":3.868,"public_mi":0.0,"length_mi":3.868,"objectid":26852,"trout_flag":null,"kittle_nbr":"S-035-006","public_route_length":0.19830073252614072,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.806521817160101,"stop":0.8168258314161,"type":"TBD"},{"start":0.744704657946055,"stop":0.785667637621323,"type":"TBD"}]},{"gid":971,"kittle_nam":"Root River, S. Fork","route_mi":16.071,"public_mi":0.0,"length_mi":16.071,"objectid":25429,"trout_flag":null,"kittle_nbr":"M-009-010","public_route_length":11.368444542351011,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":4,"short_description":"No harvest. No bait.","official_text":"Catch & Release for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":4},"RestrictionSections":[{"start":0.532859402582055,"stop":1.0,"restriction":{"summary":"No harvest. No bait.","officialText":"Catch & Release for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]},{"RestrictionType":{"id":7,"short_description":"12\" to 16\" no harvest.","official_text":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":3},"RestrictionSections":[{"start":0.589716101368559,"stop":0.590024725576744,"restriction":{"summary":"12\" to 16\" no harvest.","officialText":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.932402120414244,"stop":0.959412375522536,"type":"TBD"},{"start":0.923592872606383,"stop":0.923799249529581,"type":"TBD"},{"start":0.924720825133901,"stop":0.926977677109685,"type":"TBD"},{"start":0.75336616228243,"stop":0.875296203594151,"type":"TBD"},{"start":0.73661446522212,"stop":0.752718357983832,"type":"TBD"},{"start":0.72629691621372,"stop":0.736494718097753,"type":"TBD"},{"start":0.724503848844811,"stop":0.725052320711422,"type":"TBD"},{"start":0.722931391286766,"stop":0.723852421428899,"type":"TBD"},{"start":0.715541354158281,"stop":0.722462469809745,"type":"TBD"},{"start":0.713876894136729,"stop":0.714773268530328,"type":"TBD"},{"start":0.711034073500027,"stop":0.712966545584167,"type":"TBD"},{"start":0.675865550739017,"stop":0.710832492956983,"type":"TBD"},{"start":0.494279954904062,"stop":0.674785321763619,"type":"TBD"},{"start":0.251111658121677,"stop":0.490897220145909,"type":"TBD"},{"start":0.184656536208703,"stop":0.231652660729528,"type":"TBD"},{"start":0.120831743664522,"stop":0.137041810274331,"type":"TBD"}]},{"gid":989,"kittle_nam":"E. Swan River","route_mi":30.515,"public_mi":0.0,"length_mi":30.515,"objectid":26331,"trout_flag":null,"kittle_nbr":"S-002-041","public_route_length":0.46790967755797469,"species":[{"id":3,"name":"Brown Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.304012409241358,"stop":0.313679101333628,"type":"TBD"},{"start":0.31943437392543,"stop":0.324045030009927,"type":"TBD"},{"start":0.300161862385545,"stop":0.301218273919018,"type":"TBD"}]},{"gid":74,"kittle_nam":"Rollingstone Creek, M. Branch","route_mi":2.482,"public_mi":0.0,"length_mi":2.482,"objectid":25435,"trout_flag":null,"kittle_nbr":"M-026-002","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":302,"kittle_nam":"Floodwood River, W. Branch","route_mi":2.751,"public_mi":0.0,"length_mi":2.751,"objectid":26349,"trout_flag":null,"kittle_nbr":"S-002-032-007","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":432,"kittle_nam":"Root River, S. Branch","route_mi":1.177,"public_mi":0.0,"length_mi":1.177,"objectid":28871,"trout_flag":null,"kittle_nbr":"M-009-025-B001","public_route_length":3.0997780550531261E-05,"species":[{"id":2,"name":"Brook Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.99997366373785,"stop":1.0,"type":"TBD"}]},{"gid":820,"kittle_nam":"Crooked Creek, S. Fork","route_mi":1.121,"public_mi":0.0,"length_mi":1.121,"objectid":25118,"trout_flag":null,"kittle_nbr":"M-004-009","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":845,"kittle_nam":"E. Branch Amity Creek","route_mi":7.817,"public_mi":0.0,"length_mi":7.817,"objectid":26262,"trout_flag":null,"kittle_nbr":"S-005-001-001","public_route_length":1.8632316888166594,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.971444781415125,"stop":0.97563050743125,"type":"TBD"},{"start":0.784874064868592,"stop":0.802562579115596,"type":"TBD"},{"start":0.779658530605341,"stop":0.784281443121673,"type":"TBD"},{"start":0.770551103551241,"stop":0.777861694579409,"type":"TBD"},{"start":0.737088230825239,"stop":0.770284319751745,"type":"TBD"},{"start":0.731355701238598,"stop":0.736042320727589,"type":"TBD"},{"start":0.728306119043711,"stop":0.730987940645128,"type":"TBD"},{"start":0.721149707496706,"stop":0.727732776830602,"type":"TBD"},{"start":0.707620869015067,"stop":0.716244450622921,"type":"TBD"},{"start":0.669366006545934,"stop":0.702758300597905,"type":"TBD"},{"start":0.646207743033125,"stop":0.664390834506716,"type":"TBD"},{"start":0.630770037218563,"stop":0.643550532378509,"type":"TBD"},{"start":0.622179303009932,"stop":0.629567571622587,"type":"TBD"},{"start":0.601360140360445,"stop":0.617479523501914,"type":"TBD"},{"start":0.496001218933155,"stop":0.522373152882081,"type":"TBD"},{"start":0.522835336647298,"stop":0.557377308395947,"type":"TBD"}]},{"gid":1206,"kittle_nam":"Whitewater River, M. Branch","route_mi":15.267,"public_mi":0.0,"length_mi":15.267,"objectid":25276,"trout_flag":null,"kittle_nbr":"M-031-019","public_route_length":10.686834249828381,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":4,"short_description":"No harvest. No bait.","official_text":"Catch & Release for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":4},"RestrictionSections":[{"start":0.360758756374338,"stop":0.974718953097878,"restriction":{"summary":"No harvest. No bait.","officialText":"Catch & Release for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.920023782419502,"stop":0.963052839538557,"type":"TBD"},{"start":0.806076516858105,"stop":0.833568951123104,"type":"TBD"},{"start":0.76728693042137,"stop":0.804614655560693,"type":"TBD"},{"start":0.636575371032398,"stop":0.765727895179351,"type":"TBD"},{"start":0.616902616732788,"stop":0.619197954190447,"type":"TBD"},{"start":0.604358823247984,"stop":0.612389220114193,"type":"TBD"},{"start":0.582592403166764,"stop":0.598306931495141,"type":"TBD"},{"start":0.562436996894628,"stop":0.565912486803188,"type":"TBD"},{"start":0.55058530025004,"stop":0.557271455881936,"type":"TBD"},{"start":0.549072931137105,"stop":0.549867916017356,"type":"TBD"},{"start":0.48201042523575,"stop":0.505728178850189,"type":"TBD"},{"start":0.514567064048554,"stop":0.523078200415421,"type":"TBD"},{"start":0.0991098173964256,"stop":0.476867059241967,"type":"TBD"},{"start":0.0442845490240932,"stop":0.044621152830341,"type":"TBD"},{"start":0.0437567114514477,"stop":0.0442149246521024,"type":"TBD"},{"start":0.027123452815154,"stop":0.0423395635523543,"type":"TBD"}]},{"gid":1207,"kittle_nam":"Whitewater River, N. Branch","route_mi":19.004,"public_mi":0.0,"length_mi":19.004,"objectid":25387,"trout_flag":null,"kittle_nbr":"M-031-018","public_route_length":11.647152463699182,"species":[{"id":2,"name":"Brook Trout","isStocked":false},{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":2,"short_description":"12\" to 16\" no harvest. No bait.","official_text":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","is_angling_restriction":true,"is_harvest_restriction":true,"dnr_trout_map_new_reg":2},"RestrictionSections":[{"start":0.580463025003428,"stop":0.791742540416828,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}},{"start":0.541768758916486,"stop":0.580057981955063,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}},{"start":0.230726380466779,"stop":0.536382985766739,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}},{"start":0.135455439418972,"stop":0.228361509447575,"restriction":{"summary":"12\" to 16\" no harvest. No bait.","officialText":"12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)","isAnglingRestriction":true,"isHarvestRestriction":true}}]}],"publicLand":[{"start":0.794879032990206,"stop":0.860789720747527,"type":"TBD"},{"start":0.65422659548872,"stop":0.693234492305478,"type":"TBD"},{"start":0.480719808966752,"stop":0.516321493728119,"type":"TBD"},{"start":0.52801552181139,"stop":0.578807346051271,"type":"TBD"},{"start":0.583998687264953,"stop":0.589285363711707,"type":"TBD"},{"start":0.579569250219601,"stop":0.581935314233952,"type":"TBD"},{"start":0.235873065657368,"stop":0.472660191311724,"type":"TBD"},{"start":0.146052435235402,"stop":0.23348595988457,"type":"TBD"},{"start":0.119051769048682,"stop":0.144028681061382,"type":"TBD"},{"start":0.0383473261254412,"stop":0.10306392702069,"type":"TBD"}]},{"gid":1220,"kittle_nam":"Root River, M. Branch","route_mi":1.484,"public_mi":0.0,"length_mi":1.484,"objectid":25247,"trout_flag":null,"kittle_nbr":"M-009-033","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[{"RestrictionType":{"id":5,"short_description":"No harvest.","official_text":"Catch & Release for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":5},"RestrictionSections":[{"start":0.0,"stop":0.973857270784851,"restriction":{"summary":"No harvest.","officialText":"Catch & Release for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]},{"RestrictionType":{"id":7,"short_description":"12\" to 16\" no harvest.","official_text":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":3},"RestrictionSections":[{"start":0.970528615724545,"stop":1.0,"restriction":{"summary":"12\" to 16\" no harvest.","officialText":"12 to 16 Inch Protected Slot for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[]},{"gid":1892,"kittle_nam":"W. Swan River","route_mi":1.103,"public_mi":0.0,"length_mi":1.103,"objectid":26328,"trout_flag":null,"kittle_nbr":"S-002-041-001","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":2000,"kittle_nam":"Stony Brook, N. Fork","route_mi":1.991,"public_mi":0.0,"length_mi":1.991,"objectid":25983,"trout_flag":null,"kittle_nbr":"M-096-001-006-005","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":2620,"kittle_nam":"Trib 6 to M. Branch","route_mi":1.562,"public_mi":0.0,"length_mi":1.562,"objectid":25279,"trout_flag":null,"kittle_nbr":"M-031-019-006","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":false}],"restrictions":[],"publicLand":[]},{"gid":5484,"kittle_nam":"E. Colville Creek","route_mi":3.023,"public_mi":0.0,"length_mi":3.023,"objectid":27379,"trout_flag":null,"kittle_nbr":"S-073","public_route_length":0.028652460627701319,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.211314281888817,"stop":0.220792436247964,"type":"TBD"}]},{"gid":2729,"kittle_nam":"Moose Creek, E.","route_mi":1.796,"public_mi":0.0,"length_mi":1.796,"objectid":27233,"trout_flag":null,"kittle_nbr":"S-045-007-002","public_route_length":0.32266022727224775,"species":[{"id":3,"name":"Brown Trout","isStocked":true},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.407444647052154,"stop":0.58709956201443,"type":"TBD"}]},{"gid":4411,"kittle_nam":"Diamond Creek, S. Fork","route_mi":1.571,"public_mi":0.0,"length_mi":1.571,"objectid":25289,"trout_flag":null,"kittle_nbr":"M-009-023-001","public_route_length":0.41061638407014389,"species":[{"id":1,"name":"Rainbow Trout","isStocked":true},{"id":3,"name":"Brown Trout","isStocked":true}],"restrictions":[],"publicLand":[{"start":0.105441555637807,"stop":0.227632163083935,"type":"TBD"},{"start":0.28703005266636,"stop":0.426212063979076,"type":"TBD"}]},{"gid":4804,"kittle_nam":"Chester Creek, E. Branch","route_mi":3.401,"public_mi":0.0,"length_mi":3.401,"objectid":26290,"trout_flag":null,"kittle_nbr":"S-003-009","public_route_length":0.24695214099325794,"species":[{"id":3,"name":"Brown Trout","isStocked":false}],"restrictions":[],"publicLand":[{"start":0.98668632337515,"stop":1.0,"type":"TBD"},{"start":0.914062571354198,"stop":0.940818726595489,"type":"TBD"},{"start":0.205463299917475,"stop":0.238005094335738,"type":"TBD"}]},{"gid":5188,"kittle_nam":"Pine River, S. Fork","route_mi":2.838,"public_mi":0.0,"length_mi":2.838,"objectid":25935,"trout_flag":null,"kittle_nbr":"M-106-013","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false},{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[],"publicLand":[]},{"gid":5189,"kittle_nam":"Vermillion River, S. Branch","route_mi":5.89,"public_mi":0.0,"length_mi":5.89,"objectid":25676,"trout_flag":null,"kittle_nbr":"M-049-005","public_route_length":0.0,"species":[{"id":2,"name":"Brook Trout","isStocked":true}],"restrictions":[{"RestrictionType":{"id":5,"short_description":"No harvest.","official_text":"Catch & Release for All Trout (Bait Allowed)","is_angling_restriction":false,"is_harvest_restriction":true,"dnr_trout_map_new_reg":5},"RestrictionSections":[{"start":0.0,"stop":1.0,"restriction":{"summary":"No harvest.","officialText":"Catch & Release for All Trout (Bait Allowed)","isAnglingRestriction":false,"isHarvestRestriction":true}}]}],"publicLand":[]},{"gid":5646,"kittle_nam":"Camp Creek, W.","route_mi":3.346,"public_mi":0.0,"length_mi":3.346,"objectid":25103,"trout_flag":null,"kittle_nbr":"H-001-092-021-015-002-001-001","public_route_length":0.0,"species":[{"id":1,"name":"Rainbow Trout","isStocked":false}],"restrictions":[],"publicLand":[]}]
+
+
+    
+});
+define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['require','modules/main/MainModule','ViewModels/StreamLine','./Streams'],function(require) {
     
 
     // load our main module.
     var mainModule = require('modules/main/MainModule');
 
     var StreamLine = require('ViewModels/StreamLine');
+    var fakeStreamData = require('./Streams');
 
 
     mainModule.factory('StreamCollectionService', function($http, $q) {
@@ -1061,1430 +1277,7 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
 
         StreamCollectionService.prototype.getStreams = function() {
             var deferred = $q.defer();
-
-            var streams =
-                [
-                    { "gid" : 4200,
-                    "kittle_nam" : "Eagle Creek",
-                    "kittle_nbr" : "M-055-009",
-                    "length_mi" : 2.1859999999999999,
-                    "objectid" : 25589,
-                    "publicLand" : [ { "start" : 0.952562945448592,
-                        "stop" : 1.0,
-                        "type" : "TBD"
-                    },
-                        { "start" : 0.815297549088763,
-                            "stop" : 0.915034639225893,
-                            "type" : "TBD"
-                        },
-                        { "start" : 0.553875317891289,
-                            "stop" : 0.801210037784541,
-                            "type" : "TBD"
-                        },
-                        { "start" : 0.389799400675607,
-                            "stop" : 0.549192769070127,
-                            "type" : "TBD"
-                        },
-                        { "start" : 0.218383854998189,
-                            "stop" : 0.382688696845599,
-                            "type" : "TBD"
-                        }
-                    ],
-                    "public_route_length" : 1.5700006655646521,
-                    "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                        "isHarvestRestriction" : true,
-                        "officialText" : "Catch & Release for All Trout (Bait Allowed)",
-                        "summary" : "No harvest."
-                    },
-                        "start" : 0.203079265109606,
-                        "stop" : 1.0
-                    } ],
-                        "RestrictionType" : { "dnr_trout_map_new_reg" : 5,
-                            "id" : 5,
-                            "is_angling_restriction" : false,
-                            "is_harvest_restriction" : true,
-                            "official_text" : "Catch & Release for All Trout (Bait Allowed)",
-                            "short_description" : "No harvest."
-                        }
-                    } ],
-                    "route_mi" : 2.1859999999999999,
-                    "species" : [ { "id" : 1,
-                        "isStocked" : true,
-                        "name" : "Rainbow Trout"
-                    },
-                        { "id" : 3,
-                            "isStocked" : true,
-                            "name" : "Brown Trout"
-                        }
-                    ],
-                    "trout_flag" : null
-                },
-                    { "gid" : 971,
-                        "kittle_nam" : "Root River, S. Fork",
-                        "kittle_nbr" : "M-009-010",
-                        "length_mi" : 16.071000000000002,
-                        "objectid" : 25429,
-                        "publicLand" :
-                            [ { "start" : 0.932402120414244,
-                            "stop" : 0.959412375522536,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.923592872606383,
-                                "stop" : 0.923799249529581,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.924720825133901,
-                                "stop" : 0.926977677109685,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.75336616228243003,
-                                "stop" : 0.875296203594151,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.73661446522212004,
-                                "stop" : 0.752718357983832,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.72629691621371995,
-                                "stop" : 0.736494718097753,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.724503848844811,
-                                "stop" : 0.725052320711422,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.722931391286766,
-                                "stop" : 0.723852421428899,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.715541354158281,
-                                "stop" : 0.722462469809745,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.713876894136729,
-                                "stop" : 0.714773268530328,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.711034073500027,
-                                "stop" : 0.712966545584167,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.675865550739017,
-                                "stop" : 0.710832492956983,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.494279954904062,
-                                "stop" : 0.674785321763619,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.251111658121677,
-                                "stop" : 0.490897220145909,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.184656536208703,
-                                "stop" : 0.231652660729528,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.120831743664522,
-                                "stop" : 0.137041810274331,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 11.368444542351011,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "No harvest. No bait."
-                        },
-                            "start" : 0.532859402582055,
-                            "stop" : 1.0
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 4,
-                                "id" : 4,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "No harvest. No bait."
-                            }
-                        },
-                            { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                "summary" : "12\" to 16\" no harvest."
-                            },
-                                "start" : 0.589716101368559,
-                                "stop" : 0.590024725576744
-                            } ],
-                                "RestrictionType" : { "dnr_trout_map_new_reg" : 3,
-                                    "id" : 7,
-                                    "is_angling_restriction" : false,
-                                    "is_harvest_restriction" : true,
-                                    "official_text" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                    "short_description" : "12\" to 16\" no harvest."
-                                }
-                            }
-                        ],
-                        "route_mi" : 16.071000000000002,
-                        "species" : [ { "id" : 2,
-                            "isStocked" : false,
-                            "name" : "Brook Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 877,
-                        "kittle_nam" : "Vermillion River",
-                        "kittle_nbr" : "M-049",
-                        "length_mi" : 22.917999999999999,
-                        "objectid" : 25677,
-                        "publicLand" : [ { "start" : 0.385214784595243,
-                            "stop" : 0.385724626696348,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.332455003753615,
-                                "stop" : 0.384179462759432,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.273454105170789,
-                                "stop" : 0.291962034316265,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0734624959458526,
-                                "stop" : 0.108284947523362,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0730074915113824,
-                                "stop" : 0.0732896323791618,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0,
-                                "stop" : 0.0421118938132443,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 3.3909178649975193,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for All Trout (Bait Allowed)",
-                            "summary" : "No harvest."
-                        },
-                            "start" : 0.631775796247975,
-                            "stop" : 1.0
-                        },
-                            { "restriction" : { "isAnglingRestriction" : false,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "Catch & Release for All Trout (Bait Allowed)",
-                                "summary" : "No harvest."
-                            },
-                                "start" : 0.0,
-                                "stop" : 0.542515526517776
-                            }
-                        ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 5,
-                                "id" : 5,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for All Trout (Bait Allowed)",
-                                "short_description" : "No harvest."
-                            }
-                        } ],
-                        "route_mi" : 22.917999999999999,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : true,
-                            "name" : "Brown Trout"
-                        },
-                            { "id" : 1,
-                                "isStocked" : true,
-                                "name" : "Rainbow Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 4637,
-                        "kittle_nam" : "Eagle Creek, E. Branch",
-                        "kittle_nbr" : "M-055-009-003",
-                        "length_mi" : 0.56499999999999995,
-                        "objectid" : 25585,
-                        "publicLand" : [ { "start" : 0.0,
-                            "stop" : 0.366657444630871,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.393899215666819,
-                                "stop" : 1.0,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 0.5496083993646893,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for All Trout (Bait Allowed)",
-                            "summary" : "No harvest."
-                        },
-                            "start" : 0.0,
-                            "stop" : 1.0
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 5,
-                                "id" : 5,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for All Trout (Bait Allowed)",
-                                "short_description" : "No harvest."
-                            }
-                        } ],
-                        "route_mi" : 0.56499999999999995,
-                        "species" : [ { "id" : 1,
-                            "isStocked" : true,
-                            "name" : "Rainbow Trout"
-                        },
-                            { "id" : 3,
-                                "isStocked" : true,
-                                "name" : "Brown Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 2743,
-                        "kittle_nam" : "Peterson Creek",
-                        "kittle_nbr" : "M-026-001-008",
-                        "length_mi" : 0.93000000000000005,
-                        "objectid" : 25169,
-                        "publicLand" : [ { "start" : 0.0,
-                            "stop" : 0.0248512219658021,
-                            "type" : "TBD"
-                        } ],
-                        "public_route_length" : 0.023111636428195956,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.0527478347894509
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 0.93000000000000005,
-                        "species" : [ { "id" : 1,
-                            "isStocked" : true,
-                            "name" : "Rainbow Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 73,
-                        "kittle_nam" : "Garvin Brook",
-                        "kittle_nbr" : "M-026-001",
-                        "length_mi" : 0.88800000000000001,
-                        "objectid" : 25177,
-                        "publicLand" : [ { "start" : 0.931551500114637,
-                            "stop" : 0.934504792198182,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.904771134808107,
-                                "stop" : 0.92184893731758999,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.901224538502568,
-                                "stop" : 0.904319679658459,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.760871692246637,
-                                "stop" : 0.867705210703636,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.929824672224248,
-                                "stop" : 0.931078794777874,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.923482903726745,
-                                "stop" : 0.92632652770959001,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.517515564242262,
-                                "stop" : 0.540535756847628,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.548688099498282,
-                                "stop" : 0.554654569474391,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.555507546251087,
-                                "stop" : 0.581808824486639,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 0.16813875210476142,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.619311303171795,
-                            "stop" : 0.867568937607969
-                        },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.610947355725732,
-                                "stop" : 0.616933203064368
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.609056920638632,
-                                "stop" : 0.610330529659815
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.606961287830184,
-                                "stop" : 0.607750267298468
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.596247619750948,
-                                "stop" : 0.596775744378411
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.595348134187036,
-                                "stop" : 0.596057321353228
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.597456262770404,
-                                "stop" : 0.599125495597007
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.588021072615283,
-                                "stop" : 0.592629560993842
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.585068394848563,
-                                "stop" : 0.587695279904963
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.570452562178556,
-                                "stop" : 0.583779268702359
-                            }
-                        ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 0.88800000000000001,
-                        "species" : [ { "id" : 2,
-                            "isStocked" : false,
-                            "name" : "Brook Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 666,
-                        "kittle_nam" : "Trout Run Creek",
-                        "kittle_nbr" : "M-009-029",
-                        "length_mi" : 13.653,
-                        "objectid" : 25254,
-                        "publicLand" : [ { "start" : 0.530881381130391,
-                            "stop" : 0.642143592156971,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.850854415702919,
-                                "stop" : 0.91226940182324001,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.766548078491542,
-                                "stop" : 0.850152653095336,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.674857756042439,
-                                "stop" : 0.719693914014867,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.748266575605136,
-                                "stop" : 0.765850940105216,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.723476489750207,
-                                "stop" : 0.747229715159939,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.72187342524886,
-                                "stop" : 0.722758884967763,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.148406506492632,
-                                "stop" : 0.471702885686478,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0333390895211675,
-                                "stop" : 0.0986456121625964,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 9.9932298098476551,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.0013417648806322,
-                            "stop" : 1.0
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 13.653,
-                        "species" : [ { "id" : 1,
-                            "isStocked" : true,
-                            "name" : "Rainbow Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 879,
-                        "kittle_nam" : "Hay Creek",
-                        "kittle_nbr" : "M-046",
-                        "length_mi" : 17.434000000000001,
-                        "objectid" : 25721,
-                        "publicLand" : [ { "start" : 0.892512116030341,
-                            "stop" : 0.927133222134813,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.855574602663532,
-                                "stop" : 0.881237282483879,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.81218656494338004,
-                                "stop" : 0.822213817926281,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.735456499615391,
-                                "stop" : 0.780050734608784,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.541801310755464,
-                                "stop" : 0.735432575605627,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.536851954567032,
-                                "stop" : 0.538691626751567,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 5.4110988614549296,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.54203149025541997,
-                            "stop" : 0.784230195369456
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 17.434000000000001,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : false,
-                            "name" : "Brown Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1583,
-                        "kittle_nam" : "Spring Valley Creek",
-                        "kittle_nbr" : "M-009-033-010",
-                        "length_mi" : 16.814,
-                        "objectid" : 25235,
-                        "publicLand" : [ { "start" : 0.629685126809825,
-                            "stop" : 0.63725857275464004,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.490883733484912,
-                                "stop" : 0.496358079256432,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.475198907867784,
-                                "stop" : 0.475859199060361,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.47224096404624999,
-                                "stop" : 0.473798065190027,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.469680856505424,
-                                "stop" : 0.471506704309328,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.445732116210326,
-                                "stop" : 0.468596790871133,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.417399438682243,
-                                "stop" : 0.437995116701153,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 1.0181109795935162,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                            "summary" : "12\" to 16\" no harvest."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.392249546285697
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 3,
-                                "id" : 7,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                "short_description" : "12\" to 16\" no harvest."
-                            }
-                        } ],
-                        "route_mi" : 16.814,
-                        "species" : [ { "id" : 1,
-                            "isStocked" : true,
-                            "name" : "Rainbow Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 4818,
-                        "kittle_nam" : "Logan Creek",
-                        "kittle_nbr" : "M-031-018-004",
-                        "length_mi" : 0.97599999999999998,
-                        "objectid" : 25330,
-                        "publicLand" : [ { "start" : 0.977050984830476,
-                            "stop" : 1.0,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.0,
-                                "stop" : 0.695192394373249,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 0.70090601571374633,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.960399524370996
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 0.97599999999999998,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : false,
-                            "name" : "Brown Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 4395,
-                        "kittle_nam" : "Beaver Creek, Main",
-                        "kittle_nbr" : "M-009-010-003",
-                        "length_mi" : 6.9909999999999997,
-                        "objectid" : 25419,
-                        "publicLand" : [ { "start" : 0.644823273860784,
-                            "stop" : 0.694669349372351,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.883449599835377,
-                                "stop" : 1.0,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.743235870984308,
-                                "stop" : 0.784069688504137,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.851886404158821,
-                                "stop" : 0.864964531779966,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.867151911062966,
-                                "stop" : 0.873147987218311,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 1.5820947383348119,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                            "summary" : "12\" to 16\" no harvest."
-                        },
-                            "start" : 0.999646535759348,
-                            "stop" : 1.0
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 3,
-                                "id" : 7,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                "short_description" : "12\" to 16\" no harvest."
-                            }
-                        } ],
-                        "route_mi" : 6.9909999999999997,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : true,
-                            "name" : "Brown Trout"
-                        },
-                            { "id" : 2,
-                                "isStocked" : true,
-                                "name" : "Brook Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 4115,
-                        "kittle_nam" : "Trout Valley Creek",
-                        "kittle_nbr" : "M-031-001",
-                        "length_mi" : 7.3289999999999997,
-                        "objectid" : 25185,
-                        "publicLand" : [ { "start" : 0.0,
-                            "stop" : 0.159801869793851,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.166225347500927,
-                                "stop" : 0.210893508290967,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.632095736295671,
-                                "stop" : 0.726715215420862,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.759635272140571,
-                                "stop" : 0.762561072682167,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.749030205696867,
-                                "stop" : 0.75731650865805999,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.270359433798468,
-                                "stop" : 0.285201095897494,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 2.3829750647535648,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 Inch Minimum for Brook Trout, Bag Limit of 1 (Artificial Lures or Flies Only)",
-                            "summary" : "12\" minimum for Brook Trout. Bag Limit of one trout. No bait."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.945642731165254
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 1,
-                                "id" : 3,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 Inch Minimum for Brook Trout, Bag Limit of 1 (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" minimum for Brook Trout. Bag Limit of one trout. No bait."
-                            }
-                        } ],
-                        "route_mi" : 7.3289999999999997,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : true,
-                            "name" : "Brown Trout"
-                        },
-                            { "id" : 1,
-                                "isStocked" : true,
-                                "name" : "Rainbow Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1206,
-                        "kittle_nam" : "Whitewater River, M. Branch",
-                        "kittle_nbr" : "M-031-019",
-                        "length_mi" : 15.266999999999999,
-                        "objectid" : 25276,
-                        "publicLand" : [ { "start" : 0.920023782419502,
-                            "stop" : 0.963052839538557,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.806076516858105,
-                                "stop" : 0.833568951123104,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.76728693042136997,
-                                "stop" : 0.804614655560693,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.636575371032398,
-                                "stop" : 0.765727895179351,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.616902616732788,
-                                "stop" : 0.619197954190447,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.604358823247984,
-                                "stop" : 0.612389220114193,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.582592403166764,
-                                "stop" : 0.598306931495141,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.562436996894628,
-                                "stop" : 0.565912486803188,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.55058530025004004,
-                                "stop" : 0.557271455881936,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.549072931137105,
-                                "stop" : 0.549867916017356,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.48201042523575,
-                                "stop" : 0.505728178850189,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.514567064048554,
-                                "stop" : 0.523078200415421,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0991098173964256,
-                                "stop" : 0.476867059241967,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0442845490240932,
-                                "stop" : 0.044621152830341,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0437567114514477,
-                                "stop" : 0.0442149246521024,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.027123452815154,
-                                "stop" : 0.0423395635523543,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 10.686834249828381,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "No harvest. No bait."
-                        },
-                            "start" : 0.360758756374338,
-                            "stop" : 0.974718953097878
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 4,
-                                "id" : 4,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "No harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 15.266999999999999,
-                        "species" : [ { "id" : 1,
-                            "isStocked" : true,
-                            "name" : "Rainbow Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1207,
-                        "kittle_nam" : "Whitewater River, N. Branch",
-                        "kittle_nbr" : "M-031-018",
-                        "length_mi" : 19.004000000000001,
-                        "objectid" : 25387,
-                        "publicLand" : [ { "start" : 0.794879032990206,
-                            "stop" : 0.860789720747527,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.65422659548871998,
-                                "stop" : 0.693234492305478,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.480719808966752,
-                                "stop" : 0.516321493728119,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.52801552181139,
-                                "stop" : 0.578807346051271,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.583998687264953,
-                                "stop" : 0.589285363711707,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.579569250219601,
-                                "stop" : 0.581935314233952,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.235873065657368,
-                                "stop" : 0.472660191311724,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.146052435235402,
-                                "stop" : 0.23348595988456999,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.119051769048682,
-                                "stop" : 0.144028681061382,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0383473261254412,
-                                "stop" : 0.10306392702069,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 11.647152463699182,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.580463025003428,
-                            "stop" : 0.791742540416828
-                        },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.541768758916486,
-                                "stop" : 0.580057981955063
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.230726380466779,
-                                "stop" : 0.536382985766739
-                            },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "12\" to 16\" no harvest. No bait."
-                            },
-                                "start" : 0.135455439418972,
-                                "stop" : 0.228361509447575
-                            }
-                        ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 19.004000000000001,
-                        "species" : [ { "id" : 2,
-                            "isStocked" : false,
-                            "name" : "Brook Trout"
-                        },
-                            { "id" : 1,
-                                "isStocked" : true,
-                                "name" : "Rainbow Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 272,
-                        "kittle_nam" : "Kedron Creek",
-                        "kittle_nbr" : "M-009-033-008-004",
-                        "length_mi" : 1.119,
-                        "objectid" : 25239,
-                        "publicLand" : [ { "start" : 0.231765049862647,
-                            "stop" : 0.569621518837829,
-                            "type" : "TBD"
-                        } ],
-                        "public_route_length" : 0.37806138878322859,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "No harvest. No bait."
-                        },
-                            "start" : 0.0,
-                            "stop" : 1.0
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 4,
-                                "id" : 4,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "No harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 1.119,
-                        "species" : [ { "id" : 2,
-                            "isStocked" : true,
-                            "name" : "Brook Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 5642,
-                        "kittle_nam" : "W. Indian Creek",
-                        "kittle_nbr" : "M-034-017",
-                        "length_mi" : 0.052999999999999999,
-                        "objectid" : 25310,
-                        "publicLand" : [ { "start" : 0.144474079155596,
-                            "stop" : 0.249595150536868,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.411843973434417,
-                                "stop" : 0.741605855457837,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.742173548578622,
-                                "stop" : 0.969145062134694,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 0.035078286748920488,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                            "summary" : "12\" to 16\" no harvest."
-                        },
-                            "start" : 0.483342075737928,
-                            "stop" : 0.985970163861386
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 3,
-                                "id" : 7,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                "short_description" : "12\" to 16\" no harvest."
-                            }
-                        } ],
-                        "route_mi" : 0.052999999999999999,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : false,
-                            "name" : "Brown Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1153,
-                        "kittle_nam" : "Forestville Creek",
-                        "kittle_nbr" : "M-009-025-009",
-                        "length_mi" : 0.877,
-                        "objectid" : 25262,
-                        "publicLand" : [ { "start" : 0.0,
-                            "stop" : 0.743891945669883,
-                            "type" : "TBD"
-                        } ],
-                        "public_route_length" : 0.65239323635248747,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                            "summary" : "12\" to 16\" no harvest."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.740912470206055
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 3,
-                                "id" : 7,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                "short_description" : "12\" to 16\" no harvest."
-                            }
-                        } ],
-                        "route_mi" : 0.877,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : true,
-                            "name" : "Brown Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 4058,
-                        "kittle_nam" : "Canfield Creek",
-                        "kittle_nbr" : "M-009-025-010",
-                        "length_mi" : 0.46000000000000002,
-                        "objectid" : 25260,
-                        "publicLand" : [ { "start" : 0.688542411275628,
-                            "stop" : 1.0,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.0,
-                                "stop" : 0.684171709738285,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 0.45798947729282224,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.761162302368143
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 0.46000000000000002,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : false,
-                            "name" : "Brown Trout"
-                        },
-                            { "id" : 1,
-                                "isStocked" : true,
-                                "name" : "Rainbow Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1619,
-                        "kittle_nam" : "Wisel Creek",
-                        "kittle_nbr" : "M-009-010-010",
-                        "length_mi" : 9.0009999999999994,
-                        "objectid" : 25377,
-                        "publicLand" : [ { "start" : 0.877826573620318,
-                            "stop" : 0.956376644895166,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.103234781248698,
-                                "stop" : 0.139611548937737,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.179282757041328,
-                                "stop" : 0.288412408428748,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.871931135429302,
-                                "stop" : 0.875898294091253,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0,
-                                "stop" : 0.0666527707715301,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0951443861640202,
-                                "stop" : 0.0962097535335198,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0782076892462647,
-                                "stop" : 0.078771324708787,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0728380554247354,
-                                "stop" : 0.0765974647879229,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0823654167473327,
-                                "stop" : 0.0850489429982269,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.296440365996183,
-                                "stop" : 0.40403269939204001,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.461751213812183,
-                                "stop" : 0.524855431893955,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.52873371836931005,
-                                "stop" : 0.699135890229504,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.703990006472248,
-                                "stop" : 0.706285242939954,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.408721670397513,
-                                "stop" : 0.413944340191509,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.414265656025613,
-                                "stop" : 0.415246086000277,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.416936983037762,
-                                "stop" : 0.417977749289304,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.418357506063995,
-                                "stop" : 0.422585654152812,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.423401806155851,
-                                "stop" : 0.423704263472261,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.424815304703572,
-                                "stop" : 0.42547186671594001,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.427401476024848,
-                                "stop" : 0.428623553416543,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.428934032307183,
-                                "stop" : 0.430539542865255,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.44745311164691998,
-                                "stop" : 0.448678936898378,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.433366813397465,
-                                "stop" : 0.434002899221959,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.434295928271873,
-                                "stop" : 0.436860591342623,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.442979503293841,
-                                "stop" : 0.445001987149229,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.437275802810761,
-                                "stop" : 0.439936104942508,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.440100366222835,
-                                "stop" : 0.441084618542702,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.441630647552863,
-                                "stop" : 0.442382917001972,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 6.0508936387625045,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                            "summary" : "12\" to 16\" no harvest."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.993736423623395
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 3,
-                                "id" : 7,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Bait Allowed)",
-                                "short_description" : "12\" to 16\" no harvest."
-                            }
-                        } ],
-                        "route_mi" : 9.0009999999999994,
-                        "species" : [ { "id" : 3,
-                            "isStocked" : true,
-                            "name" : "Brown Trout"
-                        },
-                            { "id" : 1,
-                                "isStocked" : true,
-                                "name" : "Rainbow Trout"
-                            }
-                        ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1157,
-                        "kittle_nam" : "Camp Creek",
-                        "kittle_nbr" : "M-009-025-003",
-                        "length_mi" : 0.56200000000000006,
-                        "objectid" : 25272,
-                        "publicLand" : [ { "start" : 0.00257341344518059,
-                            "stop" : 0.0116629226921006,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.0120447893012718,
-                                "stop" : 0.203179704793355,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.26121733802301,
-                                "stop" : 0.291697015217451,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.298741858078277,
-                                "stop" : 0.301451411966826,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 0.13117847457196019,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "No harvest. No bait."
-                        },
-                            "start" : 0.0996354092012657,
-                            "stop" : 0.309563085478619
-                        },
-                            { "restriction" : { "isAnglingRestriction" : true,
-                                "isHarvestRestriction" : true,
-                                "officialText" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                                "summary" : "No harvest. No bait."
-                            },
-                                "start" : 0.0694806533183947,
-                                "stop" : 0.0994161719251231
-                            }
-                        ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 4,
-                                "id" : 4,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "No harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 0.56200000000000006,
-                        "species" : [ { "id" : 1,
-                            "isStocked" : true,
-                            "name" : "Rainbow Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 5456,
-                        "kittle_nam" : "Gribben Creek",
-                        "kittle_nbr" : "M-009-024",
-                        "length_mi" : 3.968,
-                        "objectid" : 25286,
-                        "publicLand" : [ { "start" : 0.0546254956569968,
-                            "stop" : 0.347986360790397,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.601975477465929,
-                                "stop" : 0.913297791214329,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.406757150146087,
-                                "stop" : 0.593410969957511,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 3.1400252108147133,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : true,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                            "summary" : "12\" to 16\" no harvest. No bait."
-                        },
-                            "start" : 0.0,
-                            "stop" : 0.925759880415715
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 2,
-                                "id" : 2,
-                                "is_angling_restriction" : true,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "12 to 16 Inch Protected Slot for All Trout (Artificial Lures or Flies Only)",
-                                "short_description" : "12\" to 16\" no harvest. No bait."
-                            }
-                        } ],
-                        "route_mi" : 3.968,
-                        "species" : [ { "id" : 2,
-                            "isStocked" : true,
-                            "name" : "Brook Trout"
-                        } ],
-                        "trout_flag" : null
-                    },
-                    { "gid" : 1571,
-                        "kittle_nam" : "Stoney Brook",
-                        "kittle_nbr" : "M-096-001-006",
-                        "length_mi" : 17.460999999999999,
-                        "objectid" : 25988,
-                        "publicLand" : [ { "start" : 0.761645749151497,
-                            "stop" : 0.794305892059909,
-                            "type" : "TBD"
-                        },
-                            { "start" : 0.343229290144422,
-                                "stop" : 0.366210520098819,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0875788639903971,
-                                "stop" : 0.146651263676639,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.030789128440946,
-                                "stop" : 0.0793383430430792,
-                                "type" : "TBD"
-                            },
-                            { "start" : 0.0,
-                                "stop" : 0.0067619237124303,
-                                "type" : "TBD"
-                            }
-                        ],
-                        "public_route_length" : 2.9688049685895708,
-                        "restrictions" : [ { "RestrictionSections" : [ { "restriction" : { "isAnglingRestriction" : false,
-                            "isHarvestRestriction" : true,
-                            "officialText" : "Catch & Release for Brook Trout ",
-                            "summary" : "No harvest for Brook Trout."
-                        },
-                            "start" : 0.00389456903960864,
-                            "stop" : 0.146796094762935
-                        } ],
-                            "RestrictionType" : { "dnr_trout_map_new_reg" : 6,
-                                "id" : 6,
-                                "is_angling_restriction" : false,
-                                "is_harvest_restriction" : true,
-                                "official_text" : "Catch & Release for Brook Trout ",
-                                "short_description" : "No harvest for Brook Trout."
-                            }
-                        } ],
-                        "route_mi" : 17.460999999999999,
-                        "species" : [ { "id" : 2,
-                            "isStocked" : true,
-                            "name" : "Brook Trout"
-                        } ],
-                        "trout_flag" : null
-                    }
-                ];
-
+            var streams = fakeStreamData;
             var streamLines = streams.map(function(streamJson) {
                 var streamLine = new StreamLine();
                 streamLine.fromJSON(streamJson);
@@ -2500,59 +1293,26 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
         return new StreamCollectionService();
     });
 });
-/**
- * Created by MBP on 3/12/14.
- */
-
-define('ViewModels/StreamRatio',['require'],function(require) {
-    
-    var StreamRatio = function() {
-        this.init();
-    };
-
-    var proto = StreamRatio.prototype;
-
-    proto.init = function(streamLength, publicAccessibleLength) {
-        this.streamLength = 0.0;
-        this.publicAccessibleLength = 0.0;
-
-        if (typeof streamLength === 'number') {
-            this.streamLength = streamLength;
-        }
-
-        if (typeof publicAccessibleLength === 'number') {
-            this.publicAccessibleLength = publicAccessibleLength;
-        }
-    };
-
-    proto.fromJSON = function(jsonString) {
-        throw new Error('not implemented yet');
-    };
-
-    proto.destroy = function() {
-        throw new Error('not implemented yet');
-    };
-    
-    return StreamRatio;
-});
-define('modules/main/index',['require','./MainModule','./services/StreamCollectionService','ViewModels/LinearReferenceSegment','ViewModels/PublicLand','ViewModels/PublicLandSegment','ViewModels/Restriction','ViewModels/RestrictionSegment','ViewModels/Species/Species','ViewModels/Species/RainbowTrout','ViewModels/Species/BrookTrout','ViewModels/Species/BrownTrout','ViewModels/Species/SpeciesConfiguration','ViewModels/Species/SpeciesSummary','ViewModels/Stream','ViewModels/StreamLine','ViewModels/StreamRatio'],function(require) {
+define('modules/main/index',['require','./MainModule','./services/StreamCollectionService','../StreamView/StreamSummaryModule'],function(require) {
     
     require('./MainModule');
     require('./services/StreamCollectionService');
-    require('ViewModels/LinearReferenceSegment');
-    require('ViewModels/PublicLand');
-    require('ViewModels/PublicLandSegment');
-    require('ViewModels/Restriction');
-    require('ViewModels/RestrictionSegment');
-    require('ViewModels/Species/Species');
-    require('ViewModels/Species/RainbowTrout');
-    require('ViewModels/Species/BrookTrout');
-    require('ViewModels/Species/BrownTrout');
-    require('ViewModels/Species/SpeciesConfiguration');
-    require('ViewModels/Species/SpeciesSummary');
-    require('ViewModels/Stream');
-    require('ViewModels/StreamLine');
-    require('ViewModels/StreamRatio');
+    require('../StreamView/StreamSummaryModule');
+//    require('ViewModels/LinearReferenceSegment');
+//    require('ViewModels/PublicLand');
+//    require('ViewModels/PublicLandSegment');
+//    require('ViewModels/Restriction');
+//    require('ViewModels/RestrictionSegment');
+//    require('ViewModels/Species/Species');
+//    require('ViewModels/Species/RainbowTrout');
+//    require('ViewModels/Species/BrookTrout');
+//    require('ViewModels/Species/BrownTrout');
+//    require('ViewModels/Species/SpeciesConfiguration');
+//    require('ViewModels/Species/SpeciesSummary');
+//    require('ViewModels/Stream');
+//    require('ViewModels/StreamLine');
+//    require('ViewModels/StreamRatio');
+//    require('ViewModels/RestrictionSummaryViewModel');
 });
 
 /**

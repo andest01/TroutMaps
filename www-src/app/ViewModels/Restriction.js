@@ -57,8 +57,19 @@ define(function(require) {
     };
 
     Restriction.prototype.fromJSON = function(json) {
+
         var restrictionType = json.RestrictionType;
-        this.setSummary(restrictionType.short_description);
+        if (restrictionType == null) {
+            console.log(json);
+            return;
+        }
+        if (restrictionType.short_description == null) {
+            console.log(json)
+        }
+
+        else {
+            this.setSummary(restrictionType.short_description);
+        }
         this.setIsAnglingRestriction(restrictionType.is_angling_restriction);
         this.setIsHarvestingRestriction(restrictionType.is_harvest_restriction);
         this.setOfficialText(restrictionType.official_text);

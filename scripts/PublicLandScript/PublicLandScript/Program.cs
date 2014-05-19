@@ -15,7 +15,7 @@ namespace PublicLandScript
 		{
 			var db = new StreamDatabase();
 			var interestingStreams =
-				db.Streams.Where(s => s.FishingRestrictionSections.Any() && s.PubliclyAccessibleSectionses.Any()).ToList();
+				db.Streams.Where(s => s.route_mi > 0.5).ToList().Where(s => s.kittle_nam.IndexOf("Unnamed", StringComparison.OrdinalIgnoreCase) < 0).ToList();
 
 			var results = interestingStreams.Select(s =>
 			                                        {
@@ -38,14 +38,14 @@ namespace PublicLandScript
 
 				                                        var restrictionGroups =
 					                                        s.FishingRestrictionSections.GroupBy(
-						                                        restrictionSection => restrictionSection.DnrAnglingRestriction.id);
+						                                        restrictionSection => restrictionSection.DnrAnglingRestriction.id).ToArray();
 
 				                                        var restrictions = restrictionGroups.Select(group => new Restriction()
 				                                                                                             {
 					                                                                                             RestrictionSections =
 																													 group.Select(ConvertToRestricitonSection),
 																													 RestrictionType = group.FirstOrDefault().DnrAnglingRestriction
-				                                                                                             });
+				                                                                                             }).ToList();
 				                                        model.restrictions = restrictions;
 				                                        return model;
 			                                        }).ToList();
@@ -94,6 +94,8 @@ namespace PublicLandScript
 			const string rainbow = "Rainbow Trout";
 			const string brook = "Brook Trout";
 			const string brown = "Brown Trout";
+			var isStocked = rand.Next(0, 2) == 0;
+			
 
 			switch (randomSpecies)
 			{
@@ -101,21 +103,21 @@ namespace PublicLandScript
 					return new Species()
 					{
 						id = randomSpecies,
-						isStocked = rand.Next(0, 1) == 0,
+						isStocked = true,  // rainbows are always stocked
 						name = rainbow
 					};
 				case 2:
 					return new Species()
 					{
 						id = randomSpecies,
-						isStocked = rand.Next(0, 1) == 0,
+						isStocked = isStocked,
 						name = brook
 					};
 				default:
 					return new Species()
 					{
 						id = randomSpecies,
-						isStocked = rand.Next(0, 1) == 0,
+						isStocked = isStocked,
 						name = brown
 					};
 			}
