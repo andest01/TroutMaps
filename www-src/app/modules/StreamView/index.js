@@ -7,4 +7,5 @@ define(function(require) {
     require('./StreamRatioView/StreamRatioDirective');
     require('./StreamDetailsSHortView/StreamDetailsShortDirective');
     require('./StreamLineIconView/StreamLineIconDirective');
+    require('./StreamRatioText/StreamRatioTextDirective');
 });

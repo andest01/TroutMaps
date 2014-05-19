@@ -164,10 +164,6 @@ h4 {
     width: 100%;
 }
 
-.fractionContainer {
-    text-align: right;
-}
-
 .restrictions li {
     margin-bottom: 5px;
 }
@@ -234,14 +230,34 @@ h4 {
     margin: 2px 0 0 0;
 }
 
-.numerator {
+/* ---------------------------------------------------------------------
+ Ratio Text
+------------------------------------------------------------------------ */
+
+.ratio-text {
     font-size: 13px;
-    color: #acbb39;
+    text-align: right;
 }
 
-.denominator {
-    font-size: 13px;
+.ratio-text_numerator {
+    color: #acbb39;
+    margin: 0px -4px 0px 0px;
+    font-weight: bold;
+}
+
+.ratio-text_denominator {
     color: #463838;
+    margin: 0px 0px 0px -5px;
+}
+
+.ratio-text_divisor {
+    font-size: 14px;
+}
+
+.ratio-text_unit {
+    color: #ebebeb;
+    margin: 0 0px 0 -4px;
+    font-size: 10px;
 }
 
 .box {
