@@ -14,7 +14,9 @@
                 </div>
 
                 <div class="grid-row-col grid-row-col_8of12">
-                    <span class="heading statusText"></span>
+                    <!-- <span class="heading statusText"></span> -->
+                    <div data-stream-ratio-text stream="stream">
+                </div>
                 </div>
             </div>
         </div>
@@ -29,18 +31,13 @@
 
         <div class="grid-row">
             <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->
-            <div class="grid-row-col grid-row-col_9of12">
+            <div class="grid-row-col grid-row-col_12of12">
                 <div data-restriction-legend restriction="stream.restrictionSegments"></div>
             </div>
-            <div class="grid-row-col grid-row-col_3of12">
+            <!-- <div class="grid-row-col grid-row-col_3of12">
                 <div data-stream-ratio-text stream="stream">
                 </div>
-                <!-- <div class="fractionContainer">
-                    <span class="{{stream.publiclyAccessibleLength > 0.0 ? 'numerator' : 'denominator'}} ">{{stream.publiclyAccessibleLength}}</span>
-                    /
-                    <span class="denominator">{{stream.streamLength}}</span>
-                </div> -->
-            </div>
+            </div> -->
         </div>
         <!-- end .containerFooter -->
     </div>

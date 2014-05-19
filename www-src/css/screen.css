@@ -235,23 +235,26 @@ h4 {
 ------------------------------------------------------------------------ */
 
 .ratio-text {
-    font-size: 13px;
     text-align: right;
+    margin: 4px -2px 0 -5px;
+    font-size: 11px;
 }
 
 .ratio-text_numerator {
     color: #acbb39;
     margin: 0px -4px 0px 0px;
     font-weight: bold;
+    font-size: 11px;
 }
 
 .ratio-text_denominator {
     color: #463838;
-    margin: 0px 0px 0px -5px;
+    margin: 0px 0px 0px -4px;
+    font-size: 11px;
 }
 
 .ratio-text_divisor {
-    font-size: 14px;
+    font-size: 11px;
 }
 
 .ratio-text_unit {
@@ -313,7 +316,7 @@ h4 {
 
 .grid-row-col {
     float: left;
-    min-height: 1px;
+    /*min-height: 1px;*/
 }
 
 .grid-row-col + .grid-row-col {
