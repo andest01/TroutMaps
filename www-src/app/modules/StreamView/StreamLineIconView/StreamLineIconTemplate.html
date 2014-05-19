@@ -1,0 +1,87 @@
+<div height="16" width="16">
+    <svg class="js-stream-line stream-line_icon" width="16" height="16">
+      <g x="2" y="4">
+        <rect ng-attr-x="{{0 * 4}}"
+              y="5"
+              width="3"
+              height="2"
+              ng-attr-class="{{lengthIconClasses[0]}}">
+        </rect>
+        <rect ng-attr-x="{{1 * 4}}"
+              y="4"
+              width="3"
+              height="3"
+              ng-attr-class="{{lengthIconClasses[1]}}">
+        </rect>
+        <rect ng-attr-x="{{2 * 4}}"
+              y="2"
+              width="3"
+              height="5"
+              ng-attr-class="{{lengthIconClasses[2]}}">
+        </rect>
+        <rect ng-attr-x="{{3 * 4}}"
+              y="0"
+              width="3"
+              height="7"
+              ng-attr-class="{{lengthIconClasses[3]}}">
+        </rect>
+      </g>
+
+      <g x="2" y="14" class="stream-line_public-land js-stream-line_public-land">
+        <rect x="0"
+            width="16"
+            y="12"
+            height="7"
+            class="stream-ratio_background">
+        </rect>
+            <g>
+                <rect data-ng-repeat="segment in publicSegments" ng-attr-x="{{segment.xOffset * 16}}"
+                      y="12"
+                      ng-attr-width="{{segment.width * 16}}"
+                      height="7"
+                      class="stream-ratio_public-land">
+                </rect>
+            </g>
+        </g>
+
+      <!-- <g data-ng-repeat="star in lengthIcon.stars">
+        <rect ng-attr-x="{{star.xOffset * stage.width}}"
+              y="0"
+              ng-attr-width="{{segment.width * stage.width}}"
+              height="11"
+              rx="4"
+              ry="4"
+              class="public-land">
+        </rect>
+      </g> -->
+        <!-- 
+
+        <g class="js-stream-line_stream stream-line_stream">
+            <rect
+                    x="0"
+                    y="3"
+                    height="5"
+                    ng-attr-width="{{stage.width}}"></rect>
+        </g>
+
+        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">
+            <g data-ng-repeat="segment in restriction.restrictionSections">
+                <rect ng-attr-x="{{segment.xOffset * stage.width}}"
+                      y="3"
+                      ng-attr-width="{{segment.width * stage.width}}"
+                      height="5"
+                      class="restriction {{restriction.cssClass}}">
+                </rect>
+            </g>
+        </g>
+        <g class="js-stream-line_grid-lines" data-ng-repeat="tick in tickMarks">
+            <rect ng-attr-x="{{tick.xOffset}}"
+                  ng-attr-y="{{tick.yOffset}}"
+                  ng-attr-width="{{tick.width}}"
+                  ng-attr-height="{{tick.height}}"
+                  class="tick">
+            </rect>
+        </g> -->
+    </svg>
+    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->
+</div>

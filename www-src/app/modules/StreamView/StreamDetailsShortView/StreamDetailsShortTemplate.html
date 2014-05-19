@@ -1,0 +1,29 @@
+<div class="box box_small">
+    <div class="grid-row">
+        <div class="containerHeader grid-row box-hd">
+            <div class="grid-row-col grid-row-col_9of12">
+                <h2 class="link js-stream-link sectionTitle" ng-click="selectStream(stream)">
+                    {{stream.streamName}}
+                </h2>
+            </div>
+            <div class="grid-row-col grid-row-col_3of12">
+                <div class="grid-row-col grid-row-col_4of12">
+                    <div data-species-summary species="stream.speciesSummary">
+
+                    </div>
+                </div>
+
+                <div class="grid-row-col grid-row-col_4of12">
+                    <div data-stream-line-icon stream="stream">
+                    </div>
+                </div>
+                <div class="grid-row-col grid-row-col_4of12">
+                    <div data-stream-ratio stream="stream">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end .containerHeader -->
+        <!-- end .containerFooter -->
+    </div>
+</div>
