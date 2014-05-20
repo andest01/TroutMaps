@@ -7,7 +7,7 @@
 	 * @author Pasquale Vazzana <pasqualevazzana@gmail.com>
 	 * @license MIT License, http://www.opensource.org/licenses/MIT
 	 */
-
+	
 	var bindonceModule = angular.module('pasvaz.bindonce', []);
 
 	bindonceModule.directive('bindonce', function ()

@@ -8,4 +8,5 @@ define(function(require) {
     require('./StreamDetailsSHortView/StreamDetailsShortDirective');
     require('./StreamLineIconView/StreamLineIconDirective');
     require('./StreamRatioText/StreamRatioTextDirective');
+    require('angular-bindonce');
 });

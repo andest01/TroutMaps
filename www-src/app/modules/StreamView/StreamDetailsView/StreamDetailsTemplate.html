@@ -2,8 +2,7 @@
     <div class="grid-row">
         <div class="containerHeader grid-row box-hd">
             <div class="grid-row-col grid-row-col_9of12">
-                <h2 class="link js-stream-link sectionTitle" ng-click="selectStream(stream)">
-                    {{stream.streamName}}
+                <h2 bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" >
                 </h2>
             </div>
             <div class="grid-row-col grid-row-col_3of12">

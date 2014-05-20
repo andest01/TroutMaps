@@ -1,8 +1,8 @@
-<div class="ratio-text">
+<div class="ratio-text" bindonce>
     <span ng-if="publicLandLength > 0.0">
-        <span class="ratio-text_numerator">{{stream.publiclyAccessibleLength}}</span>
+        <span class="ratio-text_numerator" bo-bind="stream.publiclyAccessibleLength"></span>
         <span class="ratio-text_divisor">/</span>
     </span>
-    <span class="ratio-text_denominator">{{stream.streamLength}}</span>
+    <span class="ratio-text_denominator"  bo-bind="stream.streamLength"></span>
     <!-- <span class="ratio-text_unit">mi</span> -->
 </div>

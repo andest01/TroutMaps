@@ -16,7 +16,7 @@ define(function(require) {
             template: template,
 
             scope: {
-                stream: '='
+                stream: '&'
             },
 
             link: function(scope, element, attributes) {
@@ -46,7 +46,9 @@ define(function(require) {
                 scope.publicSegments = scope.stream.publicAccessSegments.map(function(segment) {
                     return new viewModel(segment);
                 });
-
+                
+                
+                scope.$on('$destroy', function(){console.log(arguments);});
             }
         };
 

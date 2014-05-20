@@ -24,6 +24,7 @@ define(/** @lends Zoom */function(require) {
 
 
             deferred.resolve(streamLines);
+            console.log(streamLines.length);
 
             return deferred.promise;
         };
