@@ -9,11 +9,6 @@ define(function(require) {
             restrict: 'A',
 
             template: template,
-
-            scope: {
-                stream: '='
-            },
-
             link: function(scope, element, attributes) {
                 // console.log('hit ratio text directive');
                 var streamLength = parseFloat(scope.stream.streamLength);

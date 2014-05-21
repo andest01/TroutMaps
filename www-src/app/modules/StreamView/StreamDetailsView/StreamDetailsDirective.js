@@ -11,10 +11,6 @@ define(function(require) {
 
             template: template,
 
-            scope: {
-                stream: '='
-            },
-
             link: function(scope, element, attributes) {
                 // console.log('hit stream details directive');
                 // var streamLength = parseFloat(scope.stream.streamLength);
@@ -22,6 +18,7 @@ define(function(require) {
                 // var vm = new viewModel();
                 // vm.init(streamLength, publicLandLength);
                 // scope.streamRatio = vm;
+                console.log(scope);
             }
         };
 

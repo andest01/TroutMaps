@@ -2,23 +2,20 @@ define(/** @lends SelectableGeometryDirective */function(require) {
     'use strict';
     var streamSummaryModule = require('../StreamSummaryModule');
     var htmlTemplate = require('text!./RestrictionTemplate.html');
-    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
+    var RestrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
 
     streamSummaryModule.directive('restrictionLegend', function() {
 
         var exports = {
-            restrict: "A",
-            scope: {
-                restriction: '='
-            },
+            restrict: 'A',
             template: htmlTemplate,
             link: function(scope, element, attrs) {
-                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
+                scope.restriction = scope.stream.restrictionSegments;
+                scope.restrictionViewModel = new RestrictionSummaryViewModel(scope.restriction);
 
             }
         };
 
         return exports;
     });
-
 });

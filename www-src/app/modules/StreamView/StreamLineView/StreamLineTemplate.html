@@ -36,11 +36,15 @@
             </g>
         </g>
         <g class="js-stream-line_grid-lines" >
-            <rect data-ng-repeat="tick in tickMarks" bindonce bo-attr bo-attr-x="{{tick.xOffset}}"
-                  bo-attr-y="{{tick.yOffset}}"
-                  bo-attr-width="{{tick.width}}"
-                  bo-attr-height="{{tick.height}}"
-                  class="tick">
+            <rect 
+              data-ng-repeat="tick in tickMarks" 
+              bindonce 
+              bo-attr 
+              bo-attr-x="{{tick.xOffset}}"
+              bo-attr-y="{{tick.yOffset}}"
+              bo-attr-width="{{tick.width}}"
+              bo-attr-height="{{tick.height}}"
+              class="tick">
             </rect>
         </g>
     </svg>

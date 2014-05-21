@@ -13,10 +13,6 @@ define(function(require) {
 
             template: template,
 
-            scope: {
-                stream: '='
-            },
-
             link: function(scope, element, attributes) {
                 scope.stage = {
                     width: 292
@@ -62,6 +58,7 @@ define(function(require) {
 
                 var length = parseFloat(scope.stream.streamLength);
                 scope.tickMarks = createTickMarks(length);
+                console.log(scope.tickMarks);
             }
         };
 

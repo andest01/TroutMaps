@@ -187,25 +187,22 @@ define(/** @lends SelectableGeometryDirective */'modules/StreamView/Restrictions
     
     var streamSummaryModule = require('../StreamSummaryModule');
     var htmlTemplate = require('text!./RestrictionTemplate.html');
-    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
+    var RestrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
 
     streamSummaryModule.directive('restrictionLegend', function() {
 
         var exports = {
-            restrict: "A",
-            scope: {
-                restriction: '='
-            },
+            restrict: 'A',
             template: htmlTemplate,
             link: function(scope, element, attrs) {
-                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.restriction);
+                scope.restriction = scope.stream.restrictionSegments;
+                scope.restrictionViewModel = new RestrictionSummaryViewModel(scope.restriction);
 
             }
         };
 
         return exports;
     });
-
 });
 
 define('text!modules/StreamView/SpeciesView/SpeciesTemplate.html',[],function () { return '<span class="statusIcon">\r\n    <svg preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg" class="species">\r\n        <g>\r\n            <g class="{{species.brownTrout.name}}">\r\n                <circle class="population {{species.brownTrout.getPopulationClassName()}}" cx="4" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brownTrout.getIsStockedClass()}}" cx="4" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.brookTrout.name}}" >\r\n                <circle class="population {{species.brookTrout.getPopulationClassName()}}" cx="12" cy="12" r="3.4"/>\r\n                <circle class="stocking {{species.brookTrout.getIsStockedClass()}}" cx="12" cy="12" r="3.05"/>\r\n            </g>\r\n\r\n            <g class="{{species.rainbowTrout.name}}">\r\n                <circle class="population {{species.rainbowTrout.getPopulationClassName()}}" cx="8" cy="5.0718" r="3.4"/>\r\n                <circle class="stocking {{species.rainbowTrout.getIsStockedClass()}}" cx="8" cy="5.0718" r="3.05"/>\r\n            </g>\r\n        </g>\r\n    </svg>\r\n  <!--<img src="assets/images/iconThing.png" >-->\r\n</span>';});
@@ -222,12 +219,8 @@ define('modules/StreamView/SpeciesView/SpeciesDirective',['require','../StreamSu
 
             template: template,
 
-            scope: {
-                species: '='
-            },
-
             link: function(scope, element, attributes) {
-                console.log('second', scope.species);
+                scope.species = scope.stream.speciesSummary;
             }
         };
 
@@ -235,26 +228,29 @@ define('modules/StreamView/SpeciesView/SpeciesDirective',['require','../StreamSu
     });
 });
 
-define('text!modules/StreamView/StreamDetailsView/StreamDetailsTemplate.html',[],function () { return '<div class="box">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2 bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" >\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary species="stream.speciesSummary">\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_8of12">\r\n                    <div data-stream-ratio-text stream="stream.streamRatio">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerHeader -->\r\n\r\n        <div class="containerBody grid-row">\r\n            <div class="grid-row-col_12of12">\r\n                <div data-stream-line stream="stream"></div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerBody -->\r\n\r\n        <div class="grid-row">\r\n            <!--data-ng-if="stream.restrictionSegments == null || stream.restrictionSegments.length === 0"-->\r\n            <div class="grid-row-col grid-row-col_12of12">\r\n                <div data-restriction-legend restriction="stream.restrictionSegments"></div>\r\n            </div>\r\n            <!-- <div class="grid-row-col grid-row-col_3of12">\r\n                <div data-stream-ratio-text stream="stream">\r\n                </div>\r\n            </div> -->\r\n        </div>\r\n        <!-- end .containerFooter -->\r\n    </div>\r\n</div>';});
+define('text!modules/StreamView/StreamDetailsView/StreamDetailsTemplate.html',[],function () { return '<div class="box">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2 bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" >\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary >\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_8of12">\r\n                    <!-- <span class="heading statusText"></span> -->\r\n                    <div data-stream-ratio-text>\r\n                </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerHeader -->\r\n\r\n        <div class="containerBody grid-row">\r\n            <div class="grid-row-col_12of12">\r\n                <div data-stream-line></div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerBody -->\r\n\r\n        <div class="grid-row">\r\n            <div class="grid-row-col grid-row-col_12of12">\r\n                <div data-restriction-legend></div>\r\n            </div>\r\n            \r\n        </div>\r\n        <!-- end .containerFooter -->\r\n    </div>\r\n</div>';});
 
 define('modules/StreamView/StreamDetailsView/StreamDetailsDirective',['require','../StreamSummaryModule','text!./StreamDetailsTemplate.html'],function(require) {
     
 
-    var streamSummaryModule = require('../StreamSummaryModule');
+    var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamDetailsTemplate.html');
+    // var viewModel = require('./StreamRatioViewModel');
 
-    streamSummaryModule.directive('streamDetails', function () {
+    homeModule.directive('streamDetails', function () {
         var exports = {
             restrict: 'A',
 
             template: template,
 
-            scope: {
-                stream: '='
-            },
-
             link: function(scope, element, attributes) {
-                console.log('first', scope.stream.streamRatio);
+                // console.log('hit stream details directive');
+                // var streamLength = parseFloat(scope.stream.streamLength);
+                // var publicLandLength = parseFloat(scope.stream.publiclyAccessibleLength);
+                // var vm = new viewModel();
+                // vm.init(streamLength, publicLandLength);
+                // scope.streamRatio = vm;
+                console.log(scope);
             }
         };
 
@@ -262,7 +258,7 @@ define('modules/StreamView/StreamDetailsView/StreamDetailsDirective',['require',
     });
 });
 
-define('text!modules/StreamView/StreamLineView/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg  class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n          <rect data-ng-repeat="segment in publicSegments" \r\n            bindonce\r\n            bo-attr\r\n            bo-attr-x="{{segment.xOffset * stage.width}}"\r\n            y="0"\r\n            bo-attr-width="{{segment.width * stage.width}}"\r\n            height="11"\r\n            rx="4"\r\n            ry="4"\r\n            class="public-land">\r\n          </rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n              x="0"\r\n              y="3"\r\n              height="5"\r\n              ng-attr-width="{{stage.width}}">\r\n            </rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g bindonce data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect  bo-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      bindonce\r\n                      bo-attr \r\n                      bo-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" >\r\n            <rect data-ng-repeat="tick in tickMarks" bindonce bo-attr bo-attr-x="{{tick.xOffset}}"\r\n                  bo-attr-y="{{tick.yOffset}}"\r\n                  bo-attr-width="{{tick.width}}"\r\n                  bo-attr-height="{{tick.height}}"\r\n                  class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
+define('text!modules/StreamView/StreamLineView/StreamLineTemplate.html',[],function () { return '<div height="12" width="292">\r\n    <svg  class="js-stream-line stream-line" ng-attr-width="{{stage.width}}" height="20">\r\n        <g class="stream-line_public-land js-stream-line_public-land">\r\n          <rect data-ng-repeat="segment in publicSegments" \r\n            bindonce\r\n            bo-attr\r\n            bo-attr-x="{{segment.xOffset * stage.width}}"\r\n            y="0"\r\n            bo-attr-width="{{segment.width * stage.width}}"\r\n            height="11"\r\n            rx="4"\r\n            ry="4"\r\n            class="public-land">\r\n          </rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_stream stream-line_stream">\r\n            <rect\r\n              x="0"\r\n              y="3"\r\n              height="5"\r\n              ng-attr-width="{{stage.width}}">\r\n            </rect>\r\n        </g>\r\n\r\n        <g class="js-stream-line_restriction stream-line_restriction" data-ng-repeat="restriction in restrictionViewModel.restrictions">\r\n            <g bindonce data-ng-repeat="segment in restriction.restrictionSections">\r\n                <rect  bo-attr-x="{{segment.xOffset * stage.width}}"\r\n                      y="3"\r\n                      bindonce\r\n                      bo-attr \r\n                      bo-attr-width="{{segment.width * stage.width}}"\r\n                      height="5"\r\n                      class="restriction {{restriction.cssClass}}">\r\n                </rect>\r\n            </g>\r\n        </g>\r\n        <g class="js-stream-line_grid-lines" >\r\n            <rect \r\n              data-ng-repeat="tick in tickMarks" \r\n              bindonce \r\n              bo-attr \r\n              bo-attr-x="{{tick.xOffset}}"\r\n              bo-attr-y="{{tick.yOffset}}"\r\n              bo-attr-width="{{tick.width}}"\r\n              bo-attr-height="{{tick.height}}"\r\n              class="tick">\r\n            </rect>\r\n        </g>\r\n    </svg>\r\n    <!--<img src="assets/images/stream-line.png" height="12" width="292" alt="" />-->\r\n</div>';});
 
 /**
  * Created by MBP on 3/12/14.
@@ -307,10 +303,6 @@ define('modules/StreamView/StreamLineView/StreamLineDirective',['require','../St
             restrict: 'A',
 
             template: template,
-
-            scope: {
-                stream: '='
-            },
 
             link: function(scope, element, attributes) {
                 scope.stage = {
@@ -357,6 +349,7 @@ define('modules/StreamView/StreamLineView/StreamLineDirective',['require','../St
 
                 var length = parseFloat(scope.stream.streamLength);
                 scope.tickMarks = createTickMarks(length);
+                console.log(scope.tickMarks);
             }
         };
 
@@ -364,7 +357,7 @@ define('modules/StreamView/StreamLineView/StreamLineDirective',['require','../St
     });
 });
 
-define('text!modules/StreamView/StreamRatioView/StreamRatioTemplate.html',[],function () { return '<div class="icon">\r\n    <svg bindonce class="stream-ratio" preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg">\r\n        <g class="stream-ratio_stream">\r\n            <circle cx="8" cy="8" bo-attr bo-attr-r="{{streamRatio.waterRadius * 2.5}}"/>\r\n        </g>\r\n        <g class="stream-ratio_public-land">\r\n            <circle cx="8" cy="8" bo-attr bo-attr-r="{{streamRatio.publicLandRadius * 2.5}}"/>\r\n        </g>\r\n    </svg>\r\n</div>';});
+define('text!modules/StreamView/StreamRatioView/StreamRatioTemplate.html',[],function () { return '<div class="icon">\r\n    <svg class="stream-ratio" preserveAspectRatio="xMidYMid meet" width="16" height="16"\r\n         viewBox="0 0 16 16" version="1.1"\r\n         xmlns="http://www.w3.org/2000/svg">\r\n        <g class="stream-ratio_stream">\r\n            <circle cx="8" cy="8" ng-attr-r="{{streamRatio.waterRadius * 2.5}}"/>\r\n        </g>\r\n        <g class="stream-ratio_public-land">\r\n            <circle cx="8" cy="8" ng-attr-r="{{streamRatio.publicLandRadius * 2.5}}"/>\r\n        </g>\r\n    </svg>\r\n</div>';});
 
 define('modules/StreamView/StreamRatioView/StreamRatioViewModel',['require'],function(require) {
     
@@ -408,7 +401,7 @@ define('modules/StreamView/StreamRatioView/StreamRatioDirective',['require','../
 
     var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamRatioTemplate.html');
-    var ViewModel = require('./StreamRatioViewModel');
+    var viewModel = require('./StreamRatioViewModel');
 
     homeModule.directive('streamRatio', function () {
         var exports = {
@@ -417,12 +410,15 @@ define('modules/StreamView/StreamRatioView/StreamRatioDirective',['require','../
             template: template,
 
             scope: {
-                streamRatio: '='
+                stream: '='
             },
 
             link: function(scope, element, attributes) {
-                var vm = new ViewModel();
-                vm.init(scope.streamRatio.streamLength, scope.streamRatio.publicAccessibleLength);
+                console.log('hit stream ratio');
+                var streamLength = parseFloat(scope.stream.streamLength);
+                var publicLandLength = parseFloat(scope.stream.publiclyAccessibleLength);
+                var vm = new viewModel();
+                vm.init(streamLength, publicLandLength);
                 scope.streamRatio = vm;
             }
         };
@@ -431,9 +427,9 @@ define('modules/StreamView/StreamRatioView/StreamRatioDirective',['require','../
     });
 });
 
-define('text!modules/StreamView/StreamDetailsShortView/StreamDetailsShortTemplate.html',[],function () { return '<div class="box box_small">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2 class="link js-stream-link sectionTitle" ng-bind="stream.streamName" ng-click="selectStream(stream)">\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary species="stream.speciesSummary">\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-stream-line-icon stream="stream">\r\n                    </div>\r\n                </div>\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <!-- <div data-stream-ratio stream="stream">\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerHeader -->\r\n        <!-- end .containerFooter -->\r\n    </div>\r\n</div>';});
+define('text!modules/StreamView/StreamDetailsSHortView/StreamDetailsShortTemplate.html',[],function () { return '<div class="box box_small">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2 class="link js-stream-link sectionTitle" ng-bind="stream.streamName" ng-click="selectStream(stream)">\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary species="stream.speciesSummary">\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-stream-line-icon stream="stream">\r\n                    </div>\r\n                </div>\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <!-- <div data-stream-ratio stream="stream">\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- end .containerHeader -->\r\n        <!-- end .containerFooter -->\r\n    </div>\r\n</div>';});
 
-define('modules/StreamView/StreamDetailsShortView/StreamDetailsShortDirective',['require','../StreamSummaryModule','text!./StreamDetailsShortTemplate.html'],function(require) {
+define('modules/StreamView/StreamDetailsSHortView/StreamDetailsShortDirective',['require','../StreamSummaryModule','text!./StreamDetailsShortTemplate.html'],function(require) {
     
 
     var homeModule = require('../StreamSummaryModule');
@@ -579,40 +575,40 @@ define('modules/StreamView/StreamLineIconView/StreamLineIconDirective',['require
 });
 
 
-define('text!modules/StreamView/StreamRatioText/StreamRatioTextTemplate.html',[],function () { return '<div class="ratio-text" bindonce>\r\n    <span ng-if="publicLandLength > 0.0">\r\n        <span class="ratio-text_numerator" bo-bind="stream.publicAccessibleLength"></span>\r\n        <span class="ratio-text_divisor">/</span>\r\n    </span>\r\n    <span class="ratio-text_denominator"  bo-bind="stream.streamLength"></span>\r\n    <!-- <span class="ratio-text_unit">mi</span> -->\r\n</div>';});
+define('text!modules/StreamView/StreamRatioText/StreamRatioTextTemplate.html',[],function () { return '<div class="ratio-text" bindonce>\r\n    <span ng-if="publicLandLength > 0.0">\r\n        <span class="ratio-text_numerator" bo-bind="stream.publiclyAccessibleLength"></span>\r\n        <span class="ratio-text_divisor">/</span>\r\n    </span>\r\n    <span class="ratio-text_denominator"  bo-bind="stream.streamLength"></span>\r\n    <!-- <span class="ratio-text_unit">mi</span> -->\r\n</div>';});
 
 define('modules/StreamView/StreamRatioText/StreamRatioTextDirective',['require','../StreamSummaryModule','text!./StreamRatioTextTemplate.html'],function(require) {
     
 
-    var streamSummaryModule = require('../StreamSummaryModule');
+    var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamRatioTextTemplate.html');
 
-    streamSummaryModule.directive('streamRatioText', function () {
+    homeModule.directive('streamRatioText', function () {
         var exports = {
             restrict: 'A',
 
             template: template,
-
-            scope: {
-                stream: '='
-            },
-
             link: function(scope, element, attributes) {
-                console.log('stream in ratio', scope.stream);
+                // console.log('hit ratio text directive');
+                var streamLength = parseFloat(scope.stream.streamLength);
+                var publicLandLength = parseFloat(scope.stream.publiclyAccessibleLength);
+                
+                scope.streamLength = streamLength;
+                scope.publicLandLength = publicLandLength;
             }
         };
 
         return exports;
     });
 });
-define('modules/StreamView/index',['require','./RestrictionsView/RestrictionDirective','./SpeciesView/SpeciesDirective','./StreamDetailsView/StreamDetailsDirective','./StreamLineView/StreamLineDirective','./StreamRatioView/StreamRatioDirective','./StreamDetailsShortView/StreamDetailsShortDirective','./StreamLineIconView/StreamLineIconDirective','./StreamRatioText/StreamRatioTextDirective','angular-bindonce'],function(require) {
+define('modules/StreamView/index',['require','./RestrictionsView/RestrictionDirective','./SpeciesView/SpeciesDirective','./StreamDetailsView/StreamDetailsDirective','./StreamLineView/StreamLineDirective','./StreamRatioView/StreamRatioDirective','./StreamDetailsSHortView/StreamDetailsShortDirective','./StreamLineIconView/StreamLineIconDirective','./StreamRatioText/StreamRatioTextDirective','angular-bindonce'],function(require) {
     
     require('./RestrictionsView/RestrictionDirective');
     require('./SpeciesView/SpeciesDirective');
     require('./StreamDetailsView/StreamDetailsDirective');
     require('./StreamLineView/StreamLineDirective');
     require('./StreamRatioView/StreamRatioDirective');
-    require('./StreamDetailsShortView/StreamDetailsShortDirective');
+    require('./StreamDetailsSHortView/StreamDetailsShortDirective');
     require('./StreamLineIconView/StreamLineIconDirective');
     require('./StreamRatioText/StreamRatioTextDirective');
     require('angular-bindonce');
@@ -1143,54 +1139,22 @@ define('ViewModels/PublicLand',['require'],function(require) {
 
     return PublicLand;
 });
-define('ViewModels/StreamRatio',['require'],function(require) {
-    
-    var StreamRatio = function() {
-        this.init();
-    };
-
-    var proto = StreamRatio.prototype;
-
-    proto.init = function(streamLength, publicAccessibleLength) {
-        this.streamLength = 0.0;
-        this.publicAccessibleLength = 0.0;
-
-        if (typeof streamLength === 'number') {
-            this.streamLength = streamLength.toFixed(1);
-        }
-
-        if (typeof publicAccessibleLength === 'number') {
-            this.publicAccessibleLength = publicAccessibleLength.toFixed(1);
-        }
-    };
-
-    proto.fromJSON = function(jsonString) {
-        throw new Error('not implemented yet');
-    };
-
-    proto.destroy = function() {
-        throw new Error('not implemented yet');
-    };
-    
-    return StreamRatio;
-});
 /**
  * @fileOverview Stream is a base class for a Stream View.
  */
 
-define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Species/SpeciesSummary','ViewModels/Restriction','ViewModels/PublicLandSegment','ViewModels/PublicLand','ViewModels/StreamRatio'],function(require) {
+define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Species/Species','ViewModels/Species/SpeciesSummary','ViewModels/LinearReferenceSegment','ViewModels/RestrictionSegment','ViewModels/Restriction','ViewModels/PublicLandSegment','ViewModels/PublicLand'],function(require) {
     
     var Base = require('ViewModels/Stream');
-    // var Species = require('ViewModels/Species/Species');
+    var Species = require('ViewModels/Species/Species');
     var SpeciesSummary = require('ViewModels/Species/SpeciesSummary');
-    // var LinearReferenceSegment = require('ViewModels/LinearReferenceSegment');
-// 
-    // var RestrictionSegment = require('ViewModels/RestrictionSegment');
+    var LinearReferenceSegment = require('ViewModels/LinearReferenceSegment');
+
+    var RestrictionSegment = require('ViewModels/RestrictionSegment');
     var Restriction = require('ViewModels/Restriction');
 
     var PublicLandSegment = require('ViewModels/PublicLandSegment');
     var PublicLand = require('ViewModels/PublicLand');
-    var StreamRatio = require('ViewModels/StreamRatio');
 
 
 
@@ -1209,7 +1173,6 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
         this.restrictionSegments = [];
         this.publicAccessSegments = [];
         this.speciesSummary = new SpeciesSummary();
-        this.streamRatio = {};
     };
 
     proto.getRestrictionSegment = function() {
@@ -1241,11 +1204,15 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
         this.setStreamId(json.gid);
         this.setStreamName(json.kittle_nam);
         this.setStreamLength(json.length_mi);
-        this.setPublicAccessibleLength(json.public_route_length);
+        this.setPublicAccessibleLength(json.public_route_length)
 
         if (json.species != null) {
+//            var species = json.species.map(function(speciesJson) {
+//                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
+//            });
             var speciesJSON = json.species;
             this.speciesSummary.fromJSON(speciesJSON);
+//            this.setSpecies(species);
         }
 
         if (json.restrictions != null) {
@@ -1267,9 +1234,6 @@ define('ViewModels/StreamLine',['require','ViewModels/Stream','ViewModels/Specie
             });
             this.setPublicAccessSegments(publicLandSegments);
         }
-
-        this.streamRatio = new StreamRatio();
-        this.streamRatio.init(parseFloat(json.length_mi), parseFloat(json.public_route_length));
     };
 
     return StreamLine;
@@ -1306,9 +1270,9 @@ define(/** @lends Zoom */'modules/main/services/StreamCollectionService',['requi
             });
 
 
-            deferred.resolve([streamLines[0]]);
-            
-            console.log('returning items', streamLines);
+            deferred.resolve(streamLines);
+            console.log(streamLines.length);
+
             return deferred.promise;
         };
 

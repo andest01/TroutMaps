@@ -10,12 +10,8 @@ define(function(require) {
 
             template: template,
 
-            scope: {
-                species: '='
-            },
-
             link: function(scope, element, attributes) {
-
+                scope.species = scope.stream.speciesSummary;
             }
         };
 
