@@ -23,6 +23,9 @@ require.config({
         },
         'angular-bindonce': {
             deps: ['angular']
+        },
+        'topojson': {
+            exports: ['../vendor/topojson/topojson']
         }
     }
 });
