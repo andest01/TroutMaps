@@ -5,7 +5,8 @@ require.config({
         angular: '../vendor/angular/angular',
         'angular-route': '../vendor/angular-route/angular-route',
         'angular-bindonce': '../vendor/angular-bindonce/bindonce',
-        text: '../vendor/requirejs-text/text'
+        text: '../vendor/requirejs-text/text',
+        'd3': '../vendor/d3/d3.min'
     },
 
     // shim settings for files that are not AMD compliant

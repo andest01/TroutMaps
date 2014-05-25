@@ -3,11 +3,12 @@ define(function(require) {
 
     var homeModule = require('../StreamSummaryModule');
     var template = require('text!./StreamLineTemplate.html');
-    var viewModel = require('ViewModels/StreamLineViewModel');
-    var linearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
-    var restrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
+    var ViewModel = require('ViewModels/StreamLineViewModel');
+    var LinearReferenceViewModel = require('ViewModels/LinearReferenceSegment');
+    var RestrictionSummaryViewModel = require('../../../ViewModels/RestrictionSummaryViewModel');
+    var d3 = require('d3');
 
-    homeModule.directive('streamLine', function () {
+    homeModule.directive('streamLine', ['$q', function ($q) {
         var exports = {
             restrict: 'A',
 
@@ -18,15 +19,69 @@ define(function(require) {
                     width: 292
                 };
 
-                var streamBase = new linearReferenceViewModel();
+                var streamBase = new LinearReferenceViewModel();
                 streamBase.init(1.0, 0.0);
-                scope.streamBase = new viewModel(streamBase);
+                scope.streamBase = new ViewModel(streamBase);
 
                 scope.publicSegments = scope.stream.publicAccessSegments.map(function(segment) {
-                    return new viewModel(segment);
+                    return new ViewModel(segment);
                 });
 
-                scope.restrictionViewModel = new restrictionSummaryViewModel(scope.stream.restrictionSegments);
+                
+
+                
+
+                scope.streamLine = d3.select(element[0])
+                    .append('svg')
+                    .attr('class', 'stream-line')
+                    .attr('width', scope.stage.width)
+                    .attr('height', 16)
+                    .attr('xmlns', 'http://www.w3.org/2000/svg');
+
+                scope.streamLine.publicLand = scope.streamLine.append('g')
+                    .attr('class', 'stream-line_public-land');
+
+                scope.streamLine.publicLand.selectAll('rect')
+                    .data(scope.publicSegments).enter()
+                    .append('rect')
+                    .attr('x', function(d) {
+                        return d.xOffset * scope.stage.width;
+                    })
+                    .attr('y', 0)
+                    .attr('width', function(d) {
+                        return d.width * scope.stage.width;
+                    })
+                    .attr('height', 11)
+                    .attr('rx', 4)
+                    .attr('ry', 4)
+                    .attr('class', 'public-land');
+
+                scope.streamLine.stream = scope.streamLine.append('g')
+                    .attr('class', 'stream-line_stream')
+                    .append('rect')
+                    .attr('x', 0)
+                    .attr('y', 3)
+                    .attr('height', 5)
+                    .attr('width', scope.stage.width);
+
+
+                var restrictions = new RestrictionSummaryViewModel(scope.stream.restrictionSegments);
+                
+                scope.streamLine.restrictions = scope.streamLine.append('g')
+                    .attr('class', 'stream-line_restriction')
+                    .selectAll('g').data(restrictions.restrictions).enter()
+                    .append('g')
+                    .attr('class', function(d) { return d.cssClass;})
+                    .selectAll('rect').data(function(d) {
+                        return d.restrictionSections;
+                    }).enter()
+                    .append('rect')
+                    .attr('x', function(d) { return d.xOffset * scope.stage.width;})
+                    .attr('y', 3)
+                    .attr('width', function(d) { return d.width * scope.stage.width;})
+                    .attr('height', 5)
+                    .attr('class', 'restriction');
+
 
                 var createTickMarks = function(streamLength) {
                     var clampedLength = Math.floor(length);
@@ -57,11 +112,20 @@ define(function(require) {
                 };
 
                 var length = parseFloat(scope.stream.streamLength);
-                scope.tickMarks = createTickMarks(length);
-                console.log(scope.tickMarks);
+                var tickMarks = createTickMarks(length);
+                scope.streamLine.tickMarks = scope.streamLine
+                    .append('g')
+                    .attr('class', 'stream-line_grid-lines')
+                    .selectAll('rect').data(tickMarks).enter()
+                    .append('rect')
+                    .attr('x', function(d) { return d.xOffset;})
+                    .attr('y', function(d) { return d.yOffset;})
+                    .attr('width', function(d) {return d.width;})
+                    .attr('height', function(d) { return d.height;})
+                    .attr('class', 'tick');
             }
         };
 
         return exports;
-    });
+    }]);
 });

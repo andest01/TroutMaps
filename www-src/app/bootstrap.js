@@ -7,6 +7,5 @@ require([
     'modules/main/index'
 ], function (ng) {
     'use strict';
-
     ng.bootstrap(document, ['app']);
 });
