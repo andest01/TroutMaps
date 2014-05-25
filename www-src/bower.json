@@ -13,6 +13,7 @@
     "requirejs-text": "latest",
     "angular-mocks": "latest",
     "angular-route": "latest",
-    "angular-bindonce": "latest"
+    "angular-bindonce": "latest",
+	"d3": "latest"
   }
 }
