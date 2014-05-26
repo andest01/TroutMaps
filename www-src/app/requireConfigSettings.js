@@ -6,17 +6,16 @@ require.config({
         'angular-route': '../vendor/angular-route/angular-route',
         'angular-bindonce': '../vendor/angular-bindonce/bindonce',
         text: '../vendor/requirejs-text/text',
-        'd3': '../vendor/d3/d3.min'
+        'd3': '../vendor/d3/d3.min',
+        'topojson': '../vendor/topojson/topojson',
+        'leaflet': '../vendor/leaflet/dist/leaflet'
     },
 
     // shim settings for files that are not AMD compliant
     // this tells require.js how to handle non-modular files
     shim: {
         angular: {
-            exports: 'angular'/*,
-            // only use jquery if you have an absolute need to do so
-            // don't forget to add it to bower and the paths config above
-            deps: ['jquery'] */
+            exports: 'angular'
         },
         'angular-route': {
             deps: ['angular']
@@ -24,8 +23,8 @@ require.config({
         'angular-bindonce': {
             deps: ['angular']
         },
-        'topojson': {
-            exports: ['../vendor/topojson/topojson']
+        'leaflet': {
+            exports: 'L'
         }
     }
 });

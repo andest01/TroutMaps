@@ -1,7 +1,7 @@
-define(/** @lends Zoom */function(require) {
+define(function(require) {
     'use strict';
 
-    // load our main module.
+    // load our services module.
     var mainModule = require('modules/main/MainModule');
 
     var StreamLine = require('ViewModels/StreamLine');
@@ -24,8 +24,6 @@ define(/** @lends Zoom */function(require) {
 
 
             deferred.resolve(streamLines);
-            // console.log(streamLines.length);
-
             return deferred.promise;
         };
 

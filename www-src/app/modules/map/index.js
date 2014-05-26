@@ -1,3 +1,4 @@
-/**
- * Created by standers on 5/14/2014.
- */
+define(function(require) {
+    'use strict';
+    require('./MapDirective');
+});
