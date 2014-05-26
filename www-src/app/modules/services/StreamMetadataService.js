@@ -7,6 +7,7 @@ define(function(require) {
 
     var StreamLine = require('ViewModels/StreamLine');
     var fakeStreamData = require('./Streams');
+    require('./BaseService');
 
 
     servicesModule.factory('StreamCollectionService', function($http, $q) {
@@ -15,7 +16,6 @@ define(function(require) {
         };
 
         StreamCollectionService.prototype.getStreams = function() {
-            console.log('stuff');
             var deferred = $q.defer();
             var streams = fakeStreamData;
             var streamLines = streams.map(function(streamJson) {

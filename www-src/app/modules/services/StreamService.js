@@ -1,14 +1,13 @@
-define(/** @lends Zoom */function(require) {
+define(function(require) {
     'use strict';
 
-    // load our main module.
-    var mainModule = require('./ServicesModule');
-    require('./BaseApiService');
+    var servicesModule = require('./ServicesModule');
+    require('./BaseService');
 
     var StreamLine = require('ViewModels/StreamLine');
 
 
-    mainModule.factory('StreamCollectionService',
+    servicesModule.factory('StreamCollectionService',
         ['$http',
             '$q',
             'BaseApiService',
@@ -25,14 +24,12 @@ define(/** @lends Zoom */function(require) {
                         return this.cache.get(key);
                     }
 
-                    var getPromise = this.callApi({}, 'GetAnalyses/', this.cache)
+                    var getPromise = this.callApi({}, 'streams/Streams.js', this.cache)
                         .then(function(response) {
-                            if (!response || !response.list) {
+                            if (!response) {
                                 return $q.reject(response);
                             }
 
-                            // return new AnalysisCollection(response.list);
-                            debugger;
                             var streamLines = response.map(function(streamJson) {
                                 var streamLine = new StreamLine();
                                 streamLine.fromJSON(streamJson);

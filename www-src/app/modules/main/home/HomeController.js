@@ -1,4 +1,4 @@
-define(function(require) {
+    define(function(require) {
     'use strict';
 
     var homeModule = require('./HomeModule');
@@ -28,8 +28,11 @@ define(function(require) {
     ];
 
     HomeController.prototype.setupScope = function($scope) {
-        StreamCollectionService.getStreams()
-            .then(function (streams) {
+        console.log('enter');
+        var gettingStreams = StreamCollectionService.getStreams();
+        console.log(gettingStreams);
+
+        gettingStreams.then(function (streams) {
                 $scope.streams = streams;
 //                console.log($scope.streams);
             });

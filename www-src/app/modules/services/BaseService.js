@@ -2,7 +2,7 @@ define(function(require) {
     'use strict';
 
     // var sessionStorage = window.sessionStorage;
-    var ServiceModule = require('./servicesModule');
+    var ServiceModule = require('./ServicesModule');
 
     ServiceModule.factory('BaseApiService', function($rootScope, $cacheFactory, $http) {
         var globalCache = $cacheFactory('trout');
@@ -29,6 +29,7 @@ define(function(require) {
 
                 return $http(config)
                     .then(function(response) {
+                        console.log(response);
                         if (response && response.exceptionType) {
                             console.log(
                                 'SERVER EXCEPTION: ',
@@ -48,7 +49,7 @@ define(function(require) {
          * @type {String}
          * @constant
          */
-        BaseApiService.API_BASE_PATH = '/';
+        BaseApiService.API_BASE_PATH = '/api/';
 
         return BaseApiService;
     });

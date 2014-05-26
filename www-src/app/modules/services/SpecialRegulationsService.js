@@ -1,32 +1,41 @@
 define(function(require) {
     'use strict';
 
-    // load our services module.
-    var mainModule = require('modules/main/MainModule');
+    var servicesModule = require('./ServicesModule');
+    require('./BaseService');
 
-    var StreamLine = require('ViewModels/StreamLine');
-    var fakeStreamData = require('./Streams');
+    servicesModule.factory('SpecialRegulationsService',
+        ['$http',
+            '$q',
+            'BaseApiService',
+            function($http, $q, BaseApiService) {
+                function SpecialRegulationsService() {
+                    BaseApiService.call(this);
+                }
 
+                var proto = SpecialRegulationsService.prototype = Object.create(BaseApiService.prototype);
 
-    mainModule.factory('StreamCollectionService', function($http, $q) {
-        var StreamCollectionService = function() {
+                proto.getStreams = function() {
+                    var key = 'specialRegulations';
+                    if (this.cache.get(key)) {
+                        return this.cache.get(key);
+                    }
 
-        };
+                    var getPromise = this.callApi({}, 'SpecialRegulations/SpecialRegulations.json', this.cache)
+                        .then(function(response) {
+                            if (!response) {
+                                return $q.reject(response);
+                            }
 
-        StreamCollectionService.prototype.getStreams = function() {
-            var deferred = $q.defer();
-            var streams = fakeStreamData;
-            var streamLines = streams.map(function(streamJson) {
-                var streamLine = new StreamLine();
-                streamLine.fromJSON(streamJson);
-                return streamLine;
-            });
+                            return response;
+                        });
 
+                    this.cache.put(key, getPromise);
+                    return getPromise;
+                };
 
-            deferred.resolve(streamLines);
-            return deferred.promise;
-        };
-
-        return new StreamCollectionService();
-    });
+                return new SpecialRegulationsService();
+            }
+        ]
+    );
 });

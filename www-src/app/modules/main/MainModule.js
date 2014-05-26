@@ -61,6 +61,6 @@ define(function(require) {
     return ng.module('app', [
         'app.home',
         'streamSummary',
-        'services'
+       'services'
     ]);
 });

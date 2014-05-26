@@ -89,9 +89,9 @@ define(function(require) {
                     if (clampedLength < 1) {
                         tickMarks.push({
                                 xOffset: 0,
-                                width: 3,
+                                width: 1,
                                 height: 3,
-                                yOffset: 8
+                                yOffset: 7
                             });
 
                         return tickMarks;
@@ -101,8 +101,8 @@ define(function(require) {
                     for (var i = 0; i <= clampedLength; i++) {
                         tickMarks.push({
                                 xOffset: i * tickWidth,
-                                width: 3,
-                                height: 3,
+                                width: 1.5,   
+                                height: 4,
                                 yOffset: 8
                             }
                         );
@@ -112,7 +112,13 @@ define(function(require) {
                 };
 
                 var length = parseFloat(scope.stream.streamLength);
+                // boost the first tickmark!
+                
                 var tickMarks = createTickMarks(length);
+                var firstMark = tickMarks[0];
+
+                firstMark.width = 1;
+                firstMark.height = 3;
                 scope.streamLine.tickMarks = scope.streamLine
                     .append('g')
                     .attr('class', 'stream-line_grid-lines')

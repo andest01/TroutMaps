@@ -2,30 +2,40 @@ define(function(require) {
     'use strict';
 
     var servicesModule = require('./ServicesModule');
+    require('./BaseService');
 
-    var StreamLine = require('ViewModels/StreamLine');
-    var fakeStreamData = require('./Streams');
+    servicesModule.factory('EasementService',
+        ['$http',
+            '$q',
+            'BaseApiService',
+            function($http, $q, BaseApiService) {
+                function EasementService() {
+                    BaseApiService.call(this);
+                }
 
+                var proto = EasementService.prototype = Object.create(BaseApiService.prototype);
 
-    servicesModule.factory('StreamCollectionService', function($http, $q) {
-        var StreamCollectionService = function() {
+                proto.getStreams = function() {
+                    var key = 'getMnEasements';
+                    if (this.cache.get(key)) {
+                        return this.cache.get(key);
+                    }
 
-        };
+                    var getPromise = this.callApi({}, 'publicLand/MnEasements.json', this.cache)
+                        .then(function(response) {
+                            if (!response) {
+                                return $q.reject(response);
+                            }
 
-        StreamCollectionService.prototype.getStreams = function() {
-            var deferred = $q.defer();
-            var streams = fakeStreamData;
-            var streamLines = streams.map(function(streamJson) {
-                var streamLine = new StreamLine();
-                streamLine.fromJSON(streamJson);
-                return streamLine;
-            });
+                            return response;
+                        });
 
+                    this.cache.put(key, getPromise);
+                    return getPromise;
+                };
 
-            deferred.resolve(streamLines);
-            return deferred.promise;
-        };
-
-        return new StreamCollectionService();
-    });
+                return new EasementService();
+            }
+        ]
+    );
 });
