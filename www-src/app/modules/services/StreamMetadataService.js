@@ -2,18 +2,20 @@ define(function(require) {
     'use strict';
 
     // load our services module.
-    var mainModule = require('modules/main/MainModule');
+    console.log('stuffs');
+    var servicesModule = require('./ServicesModule');
 
     var StreamLine = require('ViewModels/StreamLine');
     var fakeStreamData = require('./Streams');
 
 
-    mainModule.factory('StreamCollectionService', function($http, $q) {
+    servicesModule.factory('StreamCollectionService', function($http, $q) {
         var StreamCollectionService = function() {
 
         };
 
         StreamCollectionService.prototype.getStreams = function() {
+            console.log('stuff');
             var deferred = $q.defer();
             var streams = fakeStreamData;
             var streamLines = streams.map(function(streamJson) {

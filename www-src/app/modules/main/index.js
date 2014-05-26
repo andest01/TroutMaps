@@ -1,5 +1,5 @@
 define(function(require) {
     'use strict';
     require('./MainModule');
-    require('./services/StreamCollectionService');
+    require('modules/services/StreamMetadataService');
 });
