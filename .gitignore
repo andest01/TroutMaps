@@ -1,2 +1,4 @@
 /www-src/node_modules
 /.idea
+/scripts/PublicLandScript/PublicLandScript/bin
+/scripts/PublicLandScript/PublicLandScript/obj
