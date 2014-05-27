@@ -2,3 +2,7 @@
 /.idea
 /scripts/PublicLandScript/PublicLandScript/bin
 /scripts/PublicLandScript/PublicLandScript/obj
+/scripts/ConsoleApplication1/ConsoleApplication1/bin
+/scripts/ConsoleApplication1/ConsoleApplication1/obj
+/scripts/DbConnection/DbConnection/obj
+/scripts/DbConnection/DbConnection/bin
