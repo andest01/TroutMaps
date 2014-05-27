@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+
+
+<metadata>
+
+
+  <idinfo>
+
+    <citation>
+      <citeinfo>
+        <origin>Minnesota DNR - Minerals Division/Section of Wildlife</origin>
+        <pubdate>2003-09-04 00:00:00.0</pubdate>
+        <title>Minnesota County Boundaries</title>
+        <mgmg1cid></mgmg1cid>
+          <pubinfo>
+            <publish>Minnesota DNR - MIS Bureau</publish>
+          </pubinfo>
+        <onlink>http://deli.dnr.state.mn.us/</onlink>
+      </citeinfo>
+    </citation>
+
+    <descript>
+      <abstract>Minnesota county boundaries derived from a combination of 1:24,000 scale PLS lines, 1:100,000 scale TIGER, 1:100,000 scale DLG,  and  1:24,000 scale hydrography lines.  At the time of its development (1993),  the largest available scale data were assembled to create the layer.</abstract>
+      <purpose>This layer exists to facilitate integration between county and PLS data sets.   Used also as the basis for county-based tiling schemes with DNR&apos;s GIS Core datbase.  The state border contained within the layer is used in numerous DNR data sets.</purpose>
+      <supplinf>Statewide</supplinf>
+    </descript>
+
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>Unknown</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>A multitude of source dates are associated with this data set, including those associated with the original GISMO, RKI, DLG, and TIGER data set development efforts.  Work on the coverage was completed during the summer/fall of 1993.  Attribute restructuring to ensure conformance with DNR PLS Coding standard performed in March 1996.</current>
+    </timeperd>
+
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    
+    <spdom>
+      <bounding>
+        <westbc>-97.5</westbc>
+        <eastbc>-89</eastbc>
+        <northbc>49.5</northbc>
+        <southbc>43</southbc>
+      </bounding>
+    </spdom>
+
+    <keywords>
+      <theme>
+        <themekey>Minnesota counties, boundaries</themekey>
+      </theme>
+      <place>
+        <placekey>Minnesota</placekey>
+      </place>
+    </keywords>
+
+    <accconst>None</accconst>
+    <useconst>Use of the data are constrained only by the DNR GIS Data License Agreement</useconst>
+    
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Renee Johnson</cntper>
+          <cntorg>DNR-Lands and Minerals</cntorg>
+        </cntperp>
+        <cntpos>ITS 3</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road - Box 45</address>
+          <city>St. Paul</city>
+          <state>MN</state>
+          <postal>55155</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5396</cntvoice>
+        <cntfax>(651) 296-5939</cntfax>
+        <cntemail>renee.johnson@state.mn.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+
+    <browse>
+      <browsen>http://jmaps.dnr.state.mn.us/gis/dp_datasample.jsp?mpid=22000003&amp;ptid=2&amp;fcid=1&amp;lname=Minnesota County Boundaries</browsen>
+      <browsed></browsed>
+    </browse>
+
+    <native>ARC/INFO 7.0.3</native>
+    
+    <crossref>
+      <citeinfo>
+        <title></title>
+      </citeinfo>
+    </crossref>
+
+  </idinfo>
+
+
+  <dataqual>
+
+    <attracc>
+      <attraccr>Source table BDRY_COUNPY2.DBF:  Unknown
+</attraccr>
+    </attracc>
+
+    <logic>Data are topolocially correct using ARC/INFO 7.0.3.  All polygons are closed and lines intersect where intended.</logic>
+    <complete>All Minnesota county lands are present, including off-shore islands in Lake Superior.  The official state and international borders within Lake Superior are not included in this data set.</complete>
+    
+    <posacc>
+      <horizpa>
+        <horizpar>Source layer plsctne3:  Source accuracies vary greatly.  PLS lines and coincident county boundaries range in expected offsets from 50 to 200 feet, with the smaller value being more common.  The most significant offsets within this category are in the northeastern portion of the state where the USGS quad sources are most tentative with regards to section corner locations.  County boundaries not coincident with PLS lines are typically from 1990 vintage TIGER data with many off-sets in the 100 foot range.  The international boundary should be highly accurate as it was taken directly from legislative notes.  The Lake Superior North Shore was from National Wetland Inventory and will typically exhibit off-sets of about 60 feet, with generally good depictions of the shore line character.
+</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>Source layer plsctne3:  Not Applicable
+</vertaccr>
+      </vertacc>
+    </posacc>
+     
+    <lineage>
+      <srcinfo>
+        <srcscale>Source layer plsctne3:  24000
+</srcscale>
+      </srcinfo>
+      <procstep>
+        <procdesc>Attribute Lineage for source table BDRY_COUNPY2.DBF:  Some attribute table restructuring was performing during the GIS Core Library development effort in March 1996.  This entailed bringing in selected fields from the county cross-reference table, including county names and county abbreviations.
+</procdesc>
+      </procstep>
+    </lineage>
+
+  </dataqual>
+
+
+  <spdoinfo>
+
+    <indspref>None</indspref>
+    <direct>vector</direct>
+    <mgmg3obj>polygon</mgmg3obj>
+    <mgmg3til>state</mgmg3til>
+
+  </spdoinfo>
+
+
+  <spref>
+
+    <horizsys>
+      <geograph>
+        <latres></latres>
+        <longres></longres>
+      </geograph>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <mgmg4par>Not Applicable</mgmg4par>
+          <otherprj>Not Applicable</otherprj>
+        </mapproj>
+        <gridsys>
+          <gridsysn>UTM</gridsysn>
+          <utm>
+            <utmzone>15</utmzone>
+          </utm>
+          <spcs>
+            <spcszone></spcszone>
+          </spcs>
+          <mgmg4coz></mgmg4coz>
+          <mgmg4adj>Not Applicable</mgmg4adj>
+        </gridsys>
+        <planci>
+          <coordrep>
+            <absres></absres>
+            <ordres></ordres>
+          </coordrep>
+          <distbrep>
+            <distres></distres>
+          </distbrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83</horizdn>
+        <ellips>GRS1980</ellips>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>Not Applicable</altdatum>
+        <altunits>Not Applicable</altunits>
+      </altsys>
+      <depthsys>
+        <depthdn>Not Applicable</depthdn>
+        <depthdu>Not Applicable</depthdu>
+      </depthsys>
+    </vertdef>
+
+  </spref>
+
+
+  <eainfo>
+
+  <detailed><enttyp><enttypl>BDRY_COUNPY2.DBF</enttypl><enttypd>Shapefile Attribute Table</enttypd></enttyp><attr><attrlabl>CTY_NAME</attrlabl><attrdef>County name</attrdef><attrdomv></attrdomv></attr><attr><attrlabl>CTY_ABB</attrlabl><attrdef></attrdef><attrdomv><edom><edomv>AITK</edomv><edomvd>Aitkin</edomvd></edom><edom><edomv>ANOK</edomv><edomvd>Anoka</edomvd></edom><edom><edomv>BECK</edomv><edomvd>Becker</edomvd></edom><edom><edomv>BELT</edomv><edomvd>Beltrami</edomvd></edom><edom><edomv>BENT</edomv><edomvd>Benton</edomvd></edom><edom><edomv>BIGS</edomv><edomvd>Big Stone</edomvd></edom><edom><edomv>BLUE</edomv><edomvd>Blue Earth</edomvd></edom><edom><edomv>BROW</edomv><edomvd>Brown</edomvd></edom><edom><edomv>CARL</edomv><edomvd>Carlton</edomvd></edom><edom><edomv>CARV</edomv><edomvd>Carver</edomvd></edom><edom><edomv>CASS</edomv><edomvd>Cass</edomvd></edom><edom><edomv>CHIP</edomv><edomvd>Chippewa</edomvd></edom><edom><edomv>CHIS</edomv><edomvd>Chisago</edomvd></edom><edom><edomv>CLAY</edomv><edomvd>Clay</edomvd></edom><edom><edomv>CLEA</edomv><edomvd>Clearwater</edomvd></edom><edom><edomv>COOK</edomv><edomvd>Cook</edomvd></edom><edom><edomv>COTT</edomv><edomvd>Cottonwood</edomvd></edom><edom><edomv>CROW</edomv><edomvd>Crow Wing</edomvd></edom><edom><edomv>DAKO</edomv><edomvd>Dakota</edomvd></edom><edom><edomv>DODG</edomv><edomvd>Dodge</edomvd></edom><edom><edomv>DOUG</edomv><edomvd>Douglas</edomvd></edom><edom><edomv>FARI</edomv><edomvd>Faribault</edomvd></edom><edom><edomv>FILL</edomv><edomvd>Fillmore</edomvd></edom><edom><edomv>FREE</edomv><edomvd>Freeborn</edomvd></edom><edom><edomv>GOOD</edomv><edomvd>Goodhue</edomvd></edom><edom><edomv>GRAN</edomv><edomvd>Grant</edomvd></edom><edom><edomv>HENN</edomv><edomvd>Hennepin</edomvd></edom><edom><edomv>HOUS</edomv><edomvd>Houston</edomvd></edom><edom><edomv>HUBB</edomv><edomvd>Hubbard</edomvd></edom><edom><edomv>ISAN</edomv><edomvd>Isanti</edomvd></edom><edom><edomv>ITAS</edomv><edomvd>Itasca</edomvd></edom><edom><edomv>JACK</edomv><edomvd>Jackson</edomvd></edom><edom><edomv>KANA</edomv><edomvd>Kanabec</edomvd></edom><edom><edomv>KAND</edomv><edomvd>Kandiyohi</edomvd></edom><edom><edomv>KITT</edomv><edomvd>Kittson</edomvd></edom><edom><edomv>KOOC</edomv><edomvd>Koochiching</edomvd></edom><edom><edomv>LACQ</edomv><edomvd>Lac Qui Parle</edomvd></edom><edom><edomv>LAKE</edomv><edomvd>Lake</edomvd></edom><edom><edomv>LESU</edomv><edomvd>Le Sueur</edomvd></edom><edom><edomv>LINC</edomv><edomvd>Lincoln</edomvd></edom><edom><edomv>LOTW</edomv><edomvd>Lake of the Woods</edomvd></edom><edom><edomv>LYON</edomv><edomvd>Lyon</edomvd></edom><edom><edomv>MAHN</edomv><edomvd>Mahnomen</edomvd></edom><edom><edomv>MARS</edomv><edomvd>Marshall</edomvd></edom><edom><edomv>MART</edomv><edomvd>Martin</edomvd></edom><edom><edomv>MCLE</edomv><edomvd>McLeod</edomvd></edom><edom><edomv>MEEK</edomv><edomvd>Meeker</edomvd></edom><edom><edomv>MILL</edomv><edomvd>Mille Lacs</edomvd></edom><edom><edomv>MORR</edomv><edomvd>Morrison</edomvd></edom><edom><edomv>MOWE</edomv><edomvd>Mower</edomvd></edom><edom><edomv>MURR</edomv><edomvd>Murray</edomvd></edom><edom><edomv>NICO</edomv><edomvd>Nicollet</edomvd></edom><edom><edomv>NOBL</edomv><edomvd>Nobles</edomvd></edom><edom><edomv>NORM</edomv><edomvd>Norman</edomvd></edom><edom><edomv>OLMS</edomv><edomvd>Olmsted</edomvd></edom><edom><edomv>OTTE</edomv><edomvd>Otter Tail</edomvd></edom><edom><edomv>PENN</edomv><edomvd>Pennington</edomvd></edom><edom><edomv>PINE</edomv><edomvd>Pine</edomvd></edom><edom><edomv>PIPE</edomv><edomvd>Pipestone</edomvd></edom><edom><edomv>POLK</edomv><edomvd>Polk</edomvd></edom><edom><edomv>POPE</edomv><edomvd>Pope</edomvd></edom><edom><edomv>RAMS</edomv><edomvd>Ramsey</edomvd></edom><edom><edomv>REDL</edomv><edomvd>Red Lake</edomvd></edom><edom><edomv>REDW</edomv><edomvd>Redwood</edomvd></edom><edom><edomv>RENV</edomv><edomvd>Renville</edomvd></edom><edom><edomv>RICE</edomv><edomvd>Rice</edomvd></edom><edom><edomv>ROCK</edomv><edomvd>Rock</edomvd></edom><edom><edomv>ROSE</edomv><edomvd>Roseau</edomvd></edom><edom><edomv>SCOT</edomv><edomvd>Scott</edomvd></edom><edom><edomv>SHER</edomv><edomvd>Sherburne</edomvd></edom><edom><edomv>SIBL</edomv><edomvd>Sibley</edomvd></edom><edom><edomv>STEA</edomv><edomvd>Stearns</edomvd></edom><edom><edomv>STEE</edomv><edomvd>Steele</edomvd></edom><edom><edomv>STEV</edomv><edomvd>Stevens</edomvd></edom><edom><edomv>STLO</edomv><edomvd>St. Louis</edomvd></edom><edom><edomv>SWIF</edomv><edomvd>Swift</edomvd></edom><edom><edomv>TODD</edomv><edomvd>Todd</edomvd></edom><edom><edomv>TRAV</edomv><edomvd>Traverse</edomvd></edom><edom><edomv>WABA</edomv><edomvd>Wabasha</edomvd></edom><edom><edomv>WASE</edomv><edomvd>Waseca</edomvd></edom><edom><edomv>WASH</edomv><edomvd>Washington</edomvd></edom><edom><edomv>WATO</edomv><edomvd>Watonwan</edomvd></edom><edom><edomv>WILK</edomv><edomvd>Wilkin</edomvd></edom><edom><edomv>WINO</edomv><edomvd>Winona</edomvd></edom><edom><edomv>WRIG</edomv><edomvd>Wright</edomvd></edom><edom><edomv>Wade</edomv><edomvd>Wadena</edomvd></edom><edom><edomv>YELL</edomv><edomvd>Yellow Medicine</edomvd></edom></attrdomv></attr><attr><attrlabl>CTY_FIPS</attrlabl><attrdef>Numeric FIPS county code</attrdef><attrdomv><edom><edomv>1-173</edomv><edomvd>Can be derived  from CTY.CODE using the formula: FIPS.CODE = (CTY.CODE * 2) - 1.</edomvd></edom></attrdomv></attr></detailed>
+
+    <overview>
+      <eaover></eaover>
+      <eadetcit></eadetcit>
+    </overview>
+
+  </eainfo>
+
+
+  <distinfo>
+
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>Hal Watson</cntper>
+          <cntorg>DNR-MIS</cntorg>
+        </cntperp>
+        <cntpos>GIS Database Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road, Box 11</address>
+          <city>St. Paul</city>
+          <state>MN</state>
+          <postal>55155-4011</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5508</cntvoice>
+        <cntfax>(651) 297-4946</cntfax>
+        <cntemail>hal.watson@state.mn.us</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>bdry_counpy2</resdesc>
+    <distliab>The Minnesota Department of Natural Resources makes no representation or warranties, express or implied, with respect to the reuse of data provided herewith, regardless of its format or the means of its transmission. There is no guarantee or representation to the user as to the accuracy, currency, suitability, or reliability of this data for any purpose. The user accepts the data &apos;as is&apos;, and assumes all risks associated with its use. By accepting this data, the user agrees not to transmit this data or provide access to it or any part of it to another party unless the user shall include with the data a copy of this disclaimer. The Minnesota Department of Natural Resources assumes no responsibility for actual or consequential damage incurred as a result of any user&apos;s reliance on this data.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Shapefile</formname>
+          <formvern>Not Applicable</formvern>
+          <transize>0.5</transize>
+        </digtinfo>
+      </digform>
+      <ordering>See Online Linkage or Distribution Contact</ordering>
+    </stdorder>
+
+  </distinfo>
+
+
+  <metainfo>
+
+    <metd>2006-08-09 08:49:28.0</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Renee Johnson</cntper>
+          <cntorg>DNR-Lands and Minerals</cntorg>
+        </cntperp>
+        <cntpos>ITS 3</cntpos>
+        <cntaddr>
+	  <addrtype>Mailing and Physical</addrtype>
+          <address>500 Lafayette Road - Box 45</address>
+          <city>St. Paul</city>
+          <state>MN</state>
+          <postal>55155</postal>
+        </cntaddr>
+        <cntvoice>(651) 259-5396</cntvoice>
+        <cntfax>(651) 296-5939</cntfax>
+        <cntemail>renee.johnson@state.mn.us</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>Minnesota Geographic Metadata Guidelines</metstdn>
+    <metstdv>1.2</metstdv>
+    <metextns>
+      <onlink>http://www.gis.state.mn.us/stds/metadata.htm</onlink>
+    </metextns>
+
+  </metainfo>
+
+</metadata>
+
