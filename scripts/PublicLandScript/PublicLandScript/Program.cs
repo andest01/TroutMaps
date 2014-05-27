@@ -17,6 +17,8 @@ namespace PublicLandScript
 			var interestingStreams =
 				db.Streams.Where(s => s.route_mi > 0.5).ToList().Where(s => s.kittle_nam.IndexOf("Unnamed", StringComparison.OrdinalIgnoreCase) < 0).ToList();
 
+			var countyLookupTable = GetCounties();
+
 			var results = interestingStreams.Select(s =>
 			                                        {
 				                                        var model = new StreamViewModel();
@@ -27,6 +29,7 @@ namespace PublicLandScript
 				                                        model.kittle_nbr = s.kittle_nbr;
 				                                        model.objectid = s.objectid;
 				                                        model.species = SpeciesGenerator();
+				                                        model.Counties = countyLookupTable[model.gid];
 				                                        model.publicLand =
 					                                        s.PubliclyAccessibleSectionses.Select(
 						                                        pas => new PublicLand()
@@ -51,6 +54,43 @@ namespace PublicLandScript
 			                                        }).ToList();
 
 			var json = JsonConvert.SerializeObject(results);
+		}
+
+		private static ILookup<int, CountyViewModel> GetCounties()
+		{
+			var q = @"SELECT county.*, stream.kittle_nam, stream.gid from public.""Minnesota_County_Borders"" county, 
+public.""minnesota_dnr_troutstreamsfiltered"" stream
+where ST_Intersects(county.geom, stream.geom)
+order by stream.gid";
+
+			var tempStorage = new List<Tuple<int, CountyViewModel>>();
+
+
+			using (var conn =
+				new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=fakepassword;Database=TroutMaps;"))
+			{
+				conn.Open();
+				var command = new NpgsqlCommand(q, conn);
+				var dr = command.ExecuteReader();
+
+				while (dr.Read())
+				{
+					var start = (int)dr.GetInt16(5);
+					var stop = dr.GetString(6);
+					var streamGid = dr.GetInt32(11);
+					var streamName = dr.GetString(10);
+
+					var county = new CountyViewModel()
+					{
+						id = start,
+						name = stop,
+					};
+
+					tempStorage.Add(new Tuple<int, CountyViewModel>(streamGid, county));	
+				}
+			}
+
+			return tempStorage.ToLookup(i => i.Item1, j => j.Item2);
 		}
 
 		private static RestrictionSection ConvertToRestricitonSection(FishingRestrictionSections frs)

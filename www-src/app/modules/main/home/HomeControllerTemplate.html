@@ -6,9 +6,10 @@
         <div class="site-bd">
             <div class="map">
                 <div class="map-nav">
+                    <input id="js-stream-search" type="search" autocomplete="true" autofocus="true" inputmode="latin" placeholder="Search for streams" ng-model="search.name">
                     <div class="grid map-nav-container">
                         <ul>
-                            <li ng-repeat="stream in streams">
+                            <li ng-repeat="stream in streams | filter:filterStreamByName">
                                 <div data-stream-details stream="stream">
                                 </div>
                             </li>

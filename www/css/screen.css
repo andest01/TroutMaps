@@ -194,11 +194,12 @@ h4 {
 ------------------------------------------------------------------------ */
 
 .sectionTitle {
-    line-height: 1.1875;
+    line-height: 1.1;
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: #463838;
+    margin-top: 2px;
 }
 
 .statusIcon {
@@ -242,14 +243,14 @@ h4 {
 
 .ratio-text_numerator {
     color: #acbb39;
-    margin: 0px -4px 0px 0px;
+    margin: 0px -2px 0px 0px;
     font-weight: bold;
     font-size: 11px;
 }
 
 .ratio-text_denominator {
     color: #463838;
-    margin: 0px 0px 0px -4px;
+    margin: 0px 0px 0px -2px;
     font-size: 11px;
 }
 
@@ -264,18 +265,29 @@ h4 {
 }
 
 .box {
-    margin: 0 0 20px 0;
+    margin: 0 0 5px 0;
     background: #dbdbda;
-    padding: 5px 4px;
-
+    padding: 1px 4px;
+    border-bottom-color: #ebebeb;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
 }
+
 
 .box.box_small {
     margin: 0 0 1px 0;
 }
 
 .box-hd {
-    margin-bottom: 4px;
+    margin-bottom: 1px;
+}
+
+.box-hd_minor {
+    color: #aaa;
+}
+
+.box-hd_minor + .box-hd_minor {
+    content: ", ";
 }
 
 .box-bd {
@@ -408,7 +420,7 @@ h4 {
 ------------------------------------------------------------------------ */
 
 .species .stocking.stocked{
-    stroke-width: 2px;
+    stroke-width: 1.5px;
 }
 
 .species .brook {
@@ -452,7 +464,7 @@ h4 {
 }
 
 .axis path.domain {
-    fill: #5897BA;
+    fill: #4e7f84;
     /*stroke: #463838;*/
     /*stroke: blue;*/
     /*stroke-width: 5px;*/
@@ -467,7 +479,7 @@ h4 {
 }
 
 .stream-line_stream {
-    fill: #5897BA;
+    fill: #4e7f84;
 }
 
 .stream-line_restriction {
@@ -499,7 +511,7 @@ h4 {
 }
 
 .stream-ratio_stream {
-    fill: #5897BA;
+    fill: #4e7f84;
 }
 
 .stream-ratio_public-land {

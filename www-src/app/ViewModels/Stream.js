@@ -50,6 +50,8 @@ define(function(require) {
         this.publiclyAccessibleLength = length.toFixed(1);
     };
 
+    
+
     proto.clone = function() {
         throw new Error('not implemented yet');
     };

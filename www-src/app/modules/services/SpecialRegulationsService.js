@@ -15,7 +15,7 @@ define(function(require) {
 
                 var proto = SpecialRegulationsService.prototype = Object.create(BaseApiService.prototype);
 
-                proto.getStreams = function() {
+                proto.getSpecialRegulations = function() {
                     var key = 'specialRegulations';
                     if (this.cache.get(key)) {
                         return this.cache.get(key);

@@ -29,7 +29,6 @@ define(function(require) {
 
                 return $http(config)
                     .then(function(response) {
-                        console.log(response);
                         if (response && response.exceptionType) {
                             console.log(
                                 'SERVER EXCEPTION: ',

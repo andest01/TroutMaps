@@ -32,6 +32,7 @@ define(function(require) {
         this.restrictionSegments = [];
         this.publicAccessSegments = [];
         this.speciesSummary = new SpeciesSummary();
+        this.counties = [];
     };
 
     proto.getRestrictionSegment = function() {
@@ -58,6 +59,22 @@ define(function(require) {
         this.speciesSummary = speciesSummary;
     };
 
+    var countriesToText = function(countriesArray) {
+        if (countriesArray.length === 1) {
+            return countriesArray[0].name;
+        }
+
+        var temp = '';
+        var separator = ', ';
+
+        for (var i = 0; i < countriesArray.length; i++) {
+            temp += countriesArray[i].name + separator;
+        }
+
+        var result = temp.slice(0, -separator.length) + '';
+        return result;
+    };
+
     proto.fromJSON = function(json) {
         // how can i defer to the functionality of the base type Stream's fromJSON functionality?
         this.setStreamId(json.gid);
@@ -66,12 +83,8 @@ define(function(require) {
         this.setPublicAccessibleLength(json.public_route_length)
 
         if (json.species != null) {
-//            var species = json.species.map(function(speciesJson) {
-//                return new Species(speciesJson.id, speciesJson.name, speciesJson.isStocked);
-//            });
             var speciesJSON = json.species;
             this.speciesSummary.fromJSON(speciesJSON);
-//            this.setSpecies(species);
         }
 
         if (json.restrictions != null) {
@@ -92,6 +105,11 @@ define(function(require) {
                 return new PublicLandSegment(start, stop, publicLand);
             });
             this.setPublicAccessSegments(publicLandSegments);
+        }
+
+        if (json.Counties != null && json.Counties.length > 0) {
+            this.counties = json.Counties;
+            this.countiesText = countriesToText(this.counties);
         }
     };
 

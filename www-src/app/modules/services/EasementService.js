@@ -15,7 +15,7 @@ define(function(require) {
 
                 var proto = EasementService.prototype = Object.create(BaseApiService.prototype);
 
-                proto.getStreams = function() {
+                proto.getPublicLand = function() {
                     var key = 'getMnEasements';
                     if (this.cache.get(key)) {
                         return this.cache.get(key);
