@@ -32,6 +32,7 @@ define(function(require) {
      * @requires HomeControllerTemplate.html
      */
     var homeControllerTemplate = require('text!./HomeControllerTemplate.html');
+    var mapControllerTemplate = require('text!../../map/MapTemplate.html');
 
     /**
      * Home module configuration
@@ -47,9 +48,16 @@ define(function(require) {
      */
     homeModule.config(function($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/streams', {
                 template: homeControllerTemplate,
                 controller: 'HomeController'
+            })
+            .when('/streams/:streamId', {
+                template: homeControllerTemplate,
+                controller: 'HomeController'
+            })
+            .otherwise({
+                redirectTo: '/streams'
             });
     });
 

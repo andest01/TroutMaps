@@ -3,7 +3,7 @@
         <div class="containerHeader grid-row box-hd">
             <div class="grid-row-col grid-row-col_9of12">
                 <h2>
-                    <span bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" ></span>
+                    <span data-ng-click="selectStream(stream)" bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" ></span>
                     <span class="box-hd_minor" bindonce bo-bind="stream.countiesText"></span>
 
                 </h2>
@@ -20,7 +20,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div>  
 
         <div class="containerBody grid-row">
             <div class="grid-row-col_12of12">

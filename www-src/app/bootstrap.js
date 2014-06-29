@@ -5,6 +5,7 @@
 require([
     'angular',
     'modules/main/index'
+    //'app/Routes'
 ], function (ng) {
     'use strict';
     ng.bootstrap(document, ['app']);

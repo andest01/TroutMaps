@@ -1,7 +1,10 @@
 
-define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1>Home controller template.</h1>\r\n<div>\r\n\r\n    <div class="site">\r\n        <div class="site-hd"></div>\r\n        <div class="site-bd">\r\n            <div class="map">\r\n                <div class="map-nav">\r\n                    <input id="js-stream-search" type="search" autocomplete="true" autofocus="true" inputmode="latin" placeholder="Search for streams" ng-model="search.name">\r\n                    <div class="grid map-nav-container">\r\n                        <ul>\r\n                            <li ng-repeat="stream in streams | filter:filterStreamByName">\r\n                                <div data-stream-details stream="stream">\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class="map-body">\r\n                    \r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="site-ft"></div>\r\n    </div>\r\n</div>\r\n\r\n';});
+define('text!modules/main/home/HomeControllerTemplate.html',[],function () { return '<h1></h1>\r\n<div>\r\n\r\n    <div class="site">\r\n        <div class="site-hd"></div>\r\n        <div class="site-bd">\r\n            <div class="map">\r\n                <div class="map-nav">\r\n                    <input id="js-stream-search" type="search" autocomplete="true" autofocus="true" inputmode="latin" placeholder="Search for streams" ng-model="search.name">\r\n                    <div class="grid map-nav-container">\r\n                        <ul>\r\n                            <li ng-repeat="stream in streams | filter:filterStreamByName">\r\n                                <div data-stream-details stream="stream">\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class="map-body" data-map-view>\r\n                    \r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class="site-ft"></div>\r\n    </div>\r\n</div>\r\n\r\n';});
 
-define('modules/main/home/HomeModule',['require','angular','angular-route','text!./HomeControllerTemplate.html'],function(require) {
+
+define('text!modules/map/MapTemplate.html',[],function () { return '<div id="js-map">\r\n    <div id="selectedStream">\r\n        <h3>Selected Stream Name</h3>\r\n    </div>\r\n\r\n    <div>\r\n        <ul>\r\n            <li>\r\n                <h5>stream name</h5>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>';});
+
+define('modules/main/home/HomeModule',['require','angular','angular-route','text!./HomeControllerTemplate.html','text!../../map/MapTemplate.html'],function(require) {
     
 
     var ng = require('angular');
@@ -35,6 +38,7 @@ define('modules/main/home/HomeModule',['require','angular','angular-route','text
      * @requires HomeControllerTemplate.html
      */
     var homeControllerTemplate = require('text!./HomeControllerTemplate.html');
+    var mapControllerTemplate = require('text!../../map/MapTemplate.html');
 
     /**
      * Home module configuration
@@ -50,9 +54,16 @@ define('modules/main/home/HomeModule',['require','angular','angular-route','text
      */
     homeModule.config(function($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/streams', {
                 template: homeControllerTemplate,
                 controller: 'HomeController'
+            })
+            .when('/streams/:streamId', {
+                template: homeControllerTemplate,
+                controller: 'HomeController'
+            })
+            .otherwise({
+                redirectTo: '/streams'
             });
     });
 
@@ -76,45 +87,37 @@ define('modules/main/home/HomeModule',['require','angular','angular-route','text
      * @constructor
      * @param {$log} Angular's wrapper for window.console.log
      */
-    function HomeController($log, $scope, _StreamCollectionService_, _EasementService, _SpecialRegulationsService) {
+    function HomeController($log, $scope, $rootScope, _StreamCollectionService_, _EasementService, _SpecialRegulationsService) {
         StreamCollectionService = _StreamCollectionService_;
         // $log.info('application is running!');
-        this.setupScope($scope);
+        this.setupScope($scope, $rootScope);
 
         _EasementService.getPublicLand()
             .then(function(data) {
-                console.log(data);
+                // console.log(data);
             });
 
         _SpecialRegulationsService.getSpecialRegulations()
             .then(function(data) {
-                console.log(data);
+                // console.log(data);
             });
     }
 
     HomeController.$inject = [
         '$log',
         '$scope',
+        '$rootScope',
         'StreamCollectionService',
         'EasementService',
         'SpecialRegulationsService'
     ];
 
-    HomeController.prototype.setupScope = function($scope) {
-        console.log('enter');
+    HomeController.prototype.setupScope = function($scope, $rootScope) {
         var gettingStreams = StreamCollectionService.getStreams();
-        var gettingPublicData = 
-
-        console.log(gettingStreams);
 
         gettingStreams.then(function (streams) {
                 $scope.streams = streams;
             });
-
-        $scope.selectStream = function(stream) {
-            console.log(stream);
-            $scope.emit('streamSelectionChanged', stream);
-        };
 
         $scope.filterStreamByName = function(stream) {
             // console.log(stream);
@@ -122,6 +125,10 @@ define('modules/main/home/HomeModule',['require','angular','angular-route','text
             return !$scope.search.name || re.test(stream.streamName);
             return true;
         };
+
+        $rootScope.$watch('streamSelectionChanged', function(newStream, oldStream) {
+            console.log('home controller noticed a new stream!', newStream);
+        });
 
         $scope.search = {
             name: ''
@@ -140,6 +147,38 @@ define('modules/main/home/index',['require','./HomeController','./HomeModule'],f
 
     require('./HomeController');
     require('./HomeModule');
+});
+
+define('modules/map/MapModule',['require','angular'],function(require) {
+    
+    var ng = require('angular');
+    return ng.module('app.map', []);
+});
+define('modules/map/MapDirective',['require','./MapModule','text!./MapTemplate.html'],function(require) {
+    
+
+    var mapModule = require('./MapModule');
+    var template = require('text!./MapTemplate.html');
+
+    mapModule.directive('mapView', ['$http', '$routeParams', '$route', function ($http, $routeParams, $route) {
+        var exports = {
+            restrict: 'A',
+
+            template: template,
+
+            link: function(scope, element, attributes) {
+                scope.$on('$routeChangeStart', function(event, next, current) {
+                    console.log('next: ', next);
+                });
+            }
+        };
+
+        return exports;
+    }]);
+});
+define('modules/map/index',['require','./MapDirective'],function(require) {
+    
+    require('./MapDirective');
 });
 
 define('modules/StreamView/StreamSummaryModule',['require','angular'],function(require) {
@@ -247,7 +286,7 @@ define('modules/StreamView/SpeciesView/SpeciesDirective',['require','../StreamSu
     });
 });
 
-define('text!modules/StreamView/StreamDetailsView/StreamDetailsTemplate.html',[],function () { return '<div class="box" data-stream-id="{{stream.streamId}}">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2>\r\n                    <span bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" ></span>\r\n                    <span class="box-hd_minor" bindonce bo-bind="stream.countiesText"></span>\r\n\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary >\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_8of12">\r\n                    <div data-stream-ratio-text>\r\n                </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="containerBody grid-row">\r\n            <div class="grid-row-col_12of12">\r\n                <div data-stream-line></div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="grid-row">\r\n            <div class="grid-row-col grid-row-col_12of12">\r\n                <div data-restriction-legend></div>\r\n            </div>\r\n            \r\n        </div>\r\n    </div>\r\n</div>';});
+define('text!modules/StreamView/StreamDetailsView/StreamDetailsTemplate.html',[],function () { return '<div class="box" data-stream-id="{{stream.streamId}}">\r\n    <div class="grid-row">\r\n        <div class="containerHeader grid-row box-hd">\r\n            <div class="grid-row-col grid-row-col_9of12">\r\n                <h2>\r\n                    <span data-ng-click="selectStream(stream)" bindonce bo-bind="stream.streamName" class="link js-stream-link sectionTitle" ></span>\r\n                    <span class="box-hd_minor" bindonce bo-bind="stream.countiesText"></span>\r\n\r\n                </h2>\r\n            </div>\r\n            <div class="grid-row-col grid-row-col_3of12">\r\n                <div class="grid-row-col grid-row-col_4of12">\r\n                    <div data-species-summary >\r\n\r\n                    </div>\r\n                </div>\r\n\r\n                <div class="grid-row-col grid-row-col_8of12">\r\n                    <div data-stream-ratio-text>\r\n                </div>\r\n                </div>\r\n            </div>\r\n        </div>  \r\n\r\n        <div class="containerBody grid-row">\r\n            <div class="grid-row-col_12of12">\r\n                <div data-stream-line></div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class="grid-row">\r\n            <div class="grid-row-col grid-row-col_12of12">\r\n                <div data-restriction-legend></div>\r\n            </div>\r\n            \r\n        </div>\r\n    </div>\r\n</div>';});
 
 define('modules/StreamView/StreamDetailsView/StreamDetailsDirective',['require','../StreamSummaryModule','text!./StreamDetailsTemplate.html'],function(require) {
     
@@ -256,18 +295,22 @@ define('modules/StreamView/StreamDetailsView/StreamDetailsDirective',['require',
     var template = require('text!./StreamDetailsTemplate.html');
     // var viewModel = require('./StreamRatioViewModel');
 
-    homeModule.directive('streamDetails', function () {
+    homeModule.directive('streamDetails', ['$rootScope', function ($rootScope) {
         var exports = {
             restrict: 'A',
 
             template: template,
 
             link: function(scope, element, attributes) {
+                scope.selectStream = function(stream) {
+                    console.log(stream);
+                    $rootScope.$emit('streamSelectionChanged', stream);
+                };
             }
         };
 
         return exports;
-    });
+    }]);
 });
 
 define('text!modules/StreamView/StreamLineView/StreamLineTemplate.html',[],function () { return '<div class="js-stream-line">\r\n    \r\n</div>';});
@@ -750,7 +793,7 @@ define('modules/StreamView/index',['require','./RestrictionsView/RestrictionDire
  *
  * @see [Angular Modules](http://docs.angularjs.org/guide/module)
  */
-define('modules/main/MainModule',['require','angular','./home/index','../StreamView/index'],function(require) {
+define('modules/main/MainModule',['require','angular','./home/index','../map/index','../StreamView/index'],function(require) {
     
 
     var ng = require('angular');
@@ -758,13 +801,17 @@ define('modules/main/MainModule',['require','angular','./home/index','../StreamV
     /**
      * @requires HomeModule
      */
+
     require('./home/index');
+    require('../map/index');
     require('../StreamView/index');
+
 
     return ng.module('app', [
         'app.home',
         'streamSummary',
-       'services'
+       'services',
+       'app.map'
     ]);
 });
 
@@ -1540,9 +1587,11 @@ define('modules/services/EasementService',['require','./ServicesModule','./BaseS
         ]
     );
 });
-define('modules/main/index',['require','./MainModule','modules/services/StreamService','modules/services/SpecialRegulationsService','modules/services/EasementService'],function(require) {
+define('modules/main/index',['require','./MainModule','modules/map/MapModule','modules/services/StreamService','modules/services/SpecialRegulationsService','modules/services/EasementService'],function(require) {
     
     require('./MainModule');
+    require('modules/map/MapModule');
+    
     require('modules/services/StreamService');
     require('modules/services/SpecialRegulationsService');
     require('modules/services/EasementService');
@@ -1555,6 +1604,7 @@ define('modules/main/index',['require','./MainModule','modules/services/StreamSe
 require([
     'angular',
     'modules/main/index'
+    //'app/Routes'
 ], function (ng) {
     
     ng.bootstrap(document, ['app']);

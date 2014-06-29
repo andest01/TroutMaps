@@ -55,12 +55,16 @@ define(function(require) {
     /**
      * @requires HomeModule
      */
+
     require('./home/index');
+    require('../map/index');
     require('../StreamView/index');
+
 
     return ng.module('app', [
         'app.home',
         'streamSummary',
-       'services'
+       'services',
+       'app.map'
     ]);
 });

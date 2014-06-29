@@ -5,16 +5,20 @@ define(function(require) {
     var template = require('text!./StreamDetailsTemplate.html');
     // var viewModel = require('./StreamRatioViewModel');
 
-    homeModule.directive('streamDetails', function () {
+    homeModule.directive('streamDetails', ['$rootScope', function ($rootScope) {
         var exports = {
             restrict: 'A',
 
             template: template,
 
             link: function(scope, element, attributes) {
+                scope.selectStream = function(stream) {
+                    console.log(stream);
+                    $rootScope.$emit('streamSelectionChanged', stream);
+                };
             }
         };
 
         return exports;
-    });
+    }]);
 });

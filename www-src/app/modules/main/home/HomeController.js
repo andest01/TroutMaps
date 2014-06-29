@@ -15,45 +15,37 @@
      * @constructor
      * @param {$log} Angular's wrapper for window.console.log
      */
-    function HomeController($log, $scope, _StreamCollectionService_, _EasementService, _SpecialRegulationsService) {
+    function HomeController($log, $scope, $rootScope, _StreamCollectionService_, _EasementService, _SpecialRegulationsService) {
         StreamCollectionService = _StreamCollectionService_;
         // $log.info('application is running!');
-        this.setupScope($scope);
+        this.setupScope($scope, $rootScope);
 
         _EasementService.getPublicLand()
             .then(function(data) {
-                console.log(data);
+                // console.log(data);
             });
 
         _SpecialRegulationsService.getSpecialRegulations()
             .then(function(data) {
-                console.log(data);
+                // console.log(data);
             });
     }
 
     HomeController.$inject = [
         '$log',
         '$scope',
+        '$rootScope',
         'StreamCollectionService',
         'EasementService',
         'SpecialRegulationsService'
     ];
 
-    HomeController.prototype.setupScope = function($scope) {
-        console.log('enter');
+    HomeController.prototype.setupScope = function($scope, $rootScope) {
         var gettingStreams = StreamCollectionService.getStreams();
-        var gettingPublicData = 
-
-        console.log(gettingStreams);
 
         gettingStreams.then(function (streams) {
                 $scope.streams = streams;
             });
-
-        $scope.selectStream = function(stream) {
-            console.log(stream);
-            $scope.emit('streamSelectionChanged', stream);
-        };
 
         $scope.filterStreamByName = function(stream) {
             // console.log(stream);
@@ -61,6 +53,10 @@
             return !$scope.search.name || re.test(stream.streamName);
             return true;
         };
+
+        $rootScope.$watch('streamSelectionChanged', function(newStream, oldStream) {
+            console.log('home controller noticed a new stream!', newStream);
+        });
 
         $scope.search = {
             name: ''
