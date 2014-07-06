@@ -15,10 +15,11 @@
      * @constructor
      * @param {$log} Angular's wrapper for window.console.log
      */
-    function HomeController($log, $scope, $rootScope, _StreamCollectionService_, _EasementService, _SpecialRegulationsService) {
+    function HomeController($log, $scope, $rootScope, _StreamCollectionService_, _EasementService, _SpecialRegulationsService, $location) {
         StreamCollectionService = _StreamCollectionService_;
+
         // $log.info('application is running!');
-        this.setupScope($scope, $rootScope);
+        this.setupScope($scope, $rootScope, $location);
 
         _EasementService.getPublicLand()
             .then(function(data) {
@@ -37,10 +38,11 @@
         '$rootScope',
         'StreamCollectionService',
         'EasementService',
-        'SpecialRegulationsService'
+        'SpecialRegulationsService',
+        '$location'
     ];
 
-    HomeController.prototype.setupScope = function($scope, $rootScope) {
+    HomeController.prototype.setupScope = function($scope, $rootScope, $location) {
         var gettingStreams = StreamCollectionService.getStreams();
 
         gettingStreams.then(function (streams) {
@@ -54,8 +56,9 @@
             return true;
         };
 
-        $rootScope.$watch('streamSelectionChanged', function(newStream, oldStream) {
-            console.log('home controller noticed a new stream!', newStream);
+        $rootScope.$on('streamSelectionChanged', function(event, data) {
+            console.log('home controller noticed a new stream!', data);
+            $location.path('/streams/' + data.streamId);
         });
 
         $scope.search = {

@@ -10,8 +10,8 @@ define(function (require) {
     // 'modules/main/index'
     var Application = require('app/modules/main/MainModule');
     require('angular-route');
-    require('app/services/AnalysisApiService');
-    require('app/services/SearchApiService');
+    // require('app/services/AnalysisApiService');
+    // require('app/services/SearchApiService');
 
     // Make Routes available to the application module
     var AppRoutes = require('app/providers/AppRoutesProvider');

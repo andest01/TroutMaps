@@ -5,7 +5,7 @@ define(function(require) {
     var template = require('text!./StreamDetailsTemplate.html');
     // var viewModel = require('./StreamRatioViewModel');
 
-    homeModule.directive('streamDetails', ['$rootScope', function ($rootScope) {
+    homeModule.directive('streamDetails', ['$rootScope', '$location', function ($rootScope, $location) {
         var exports = {
             restrict: 'A',
 
@@ -13,8 +13,7 @@ define(function(require) {
 
             link: function(scope, element, attributes) {
                 scope.selectStream = function(stream) {
-                    console.log(stream);
-                    $rootScope.$emit('streamSelectionChanged', stream);
+                    $rootScope.$broadcast('streamSelectionChanged', stream);
                 };
             }
         };
